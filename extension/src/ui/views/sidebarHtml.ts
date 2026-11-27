@@ -2,7 +2,8 @@ import { GradeLabel, LedgerItem, NudgeHistoryItem, StatusResult } from "../../ty
 import { escapeHtml } from "../../utils/html";
 import { commonStyles } from "./commonStyles";
 
-function diLevel(di: number): { cls: string; text: string } {
+function diLevel(di: number | null): { cls: string; text: string } {
+  if (di === null) return { cls: "hieu", text: "chưa có" };
   if (di > 70) return { cls: "chua_hieu", text: "cao" };
   if (di >= 40) return { cls: "mot_phan", text: "vừa" };
   return { cls: "hieu", text: "thấp" };
@@ -21,8 +22,9 @@ export function getSidebarHtml(
   items: LedgerItem[],
   nudges: NudgeHistoryItem[]
 ): string {
-  const di = Math.round(status?.di ?? 0);
-  const lvl = diLevel(di);
+  const diVal = status?.di ?? null;
+  const diText = diVal === null ? "--" : String(Math.round(diVal));
+  const lvl = diLevel(diVal);
   const s = status?.stats ?? { ai_giu_nguyen: 0, ai_da_sua: 0, nguoi_viet: 0 };
   const total = Math.max(1, s.ai_giu_nguyen + s.ai_da_sua + s.nguoi_viet);
   const pctAi = Math.round((s.ai_giu_nguyen / total) * 100);
@@ -58,7 +60,7 @@ export function getSidebarHtml(
     <div class="muted">Task đang làm</div>
     <p><strong>${escapeHtml(status?.task_title || status?.task_id || "Chưa bật")}</strong></p>
     <div class="between">
-      <span style="font-size:20px;font-weight:700">DI ${di}</span>
+      <span style="font-size:20px;font-weight:700">DI ${diText}</span>
       <span class="chip ${lvl.cls}">${lvl.text}</span>
     </div>
   </div>

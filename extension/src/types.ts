@@ -9,7 +9,8 @@ export interface LineStats {
 }
 
 export interface PendingNudge {
-  id: string;
+  id?: string;
+  event_id?: string | null;
   rule: string;
   message: string;
   metric_text?: string;
@@ -28,10 +29,10 @@ export interface PendingCheck {
 export interface StatusResult {
   task_id: string;
   task_title?: string;
-  di: number;
+  di: number | null;
   stats: LineStats;
   pending_nudge: PendingNudge | null;
-  pending_check: PendingCheck | null;
+  pending_check?: PendingCheck | null;
 }
 
 export interface InitResult {

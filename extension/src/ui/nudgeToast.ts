@@ -5,6 +5,7 @@ import { formatError } from "../utils/html";
 
 // Hien thong bao nhac o goc duoi ben phai, cho phep tra loi hoac bo qua
 export async function showNudgeToast(client: ICodeOwnClient, nudge: PendingNudge): Promise<void> {
+  const nudgeId = nudge.id || nudge.event_id || `${nudge.rule}:${nudge.ts}`;
   const detail = nudge.metric_text ? ` (${nudge.metric_text})` : "";
   const msg = `CodeOwn${detail}: ${nudge.message}`;
   const actionReply = "Trả lời";
@@ -18,7 +19,7 @@ export async function showNudgeToast(client: ICodeOwnClient, nudge: PendingNudge
     });
     if (replyText !== undefined) {
       try {
-        await client.ackNudge(nudge.id, "reply", replyText.trim());
+        await client.ackNudge(nudgeId, "reply", replyText.trim());
         vscode.window.showInformationMessage("Đã ghi nhận câu trả lời.");
       } catch (err) {
         vscode.window.showErrorMessage(`Lỗi gửi phản hồi: ${formatError(err)}`);
@@ -29,7 +30,7 @@ export async function showNudgeToast(client: ICodeOwnClient, nudge: PendingNudge
 
   if (selected === actionDismiss || selected === undefined) {
     try {
-      await client.ackNudge(nudge.id, "dismiss");
+      await client.ackNudge(nudgeId, "dismiss");
     } catch {
       // Bo qua neu ack loi
     }

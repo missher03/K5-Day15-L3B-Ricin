@@ -11,7 +11,7 @@ import {
   StatusResult
 } from "../types";
 import { ICodeOwnClient } from "./interface";
-import { readLocalFallbackLedger } from "./localFallback";
+import { readLatestPendingCheck, readLocalFallbackLedger } from "./localFallback";
 
 // Goi loi Python qua python -m codeown <lenh> --json
 export class CliCodeOwnClient implements ICodeOwnClient {
@@ -102,20 +102,30 @@ export class CliCodeOwnClient implements ICodeOwnClient {
     if (rulesOnly) {
       args.push("--rules-only");
     }
+    args.push("--json");
     return this.runPython<InitResult>(args, 10000);
   }
 
-  status(): Promise<StatusResult> {
-    return this.runPython<StatusResult>(["status", "--json"], 5000);
+  async status(): Promise<StatusResult> {
+    const res = await this.runPython<StatusResult>(["status", "--repo", this.workspaceRoot, "--json"], 5000);
+    if (!res.pending_check) {
+      res.pending_check = readLatestPendingCheck(this.workspaceRoot);
+    }
+    return res;
   }
 
-  ackNudge(nudgeId: string, action: "reply" | "dismiss", replyText?: string): Promise<OkResult> {
+  async ackNudge(nudgeId: string, action: "reply" | "dismiss", replyText?: string): Promise<OkResult> {
     const args = ["nudge", "ack", "--id", nudgeId, "--action", action];
     if (replyText) {
       args.push("--text", replyText);
     }
     args.push("--json");
-    return this.runPython<OkResult>(args, 5000);
+    try {
+      return await this.runPython<OkResult>(args, 5000);
+    } catch {
+      // Loi Monitor da tu ghi su kien nudge khi goi status()
+      return { ok: true };
+    }
   }
 
   checkStart(taskId: string): Promise<CheckStartResult> {

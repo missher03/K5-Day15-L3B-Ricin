@@ -52,23 +52,29 @@ export class StatusBarController {
       const status = await client.status();
       this.lastStatus = status;
 
-      const di = Math.round(status.di ?? 0);
-      this.statusBarItem.text = `CodeOwn · DI ${di}`;
+      const diVal = status.di;
+      const diText = diVal === null || diVal === undefined ? "--" : String(Math.round(diVal));
+      this.statusBarItem.text = `CodeOwn · DI ${diText}`;
       this.statusBarItem.tooltip =
         `Task: ${status.task_title || status.task_id}\n` +
         `AI giữ nguyên: ${status.stats.ai_giu_nguyen} · AI sửa: ${status.stats.ai_da_sua} · Bạn viết: ${status.stats.nguoi_viet}`;
       this.statusBarItem.backgroundColor =
-        di > 70 ? new vscode.ThemeColor("statusBarItem.warningBackground") : undefined;
+        typeof diVal === "number" && diVal > 70
+          ? new vscode.ThemeColor("statusBarItem.warningBackground")
+          : undefined;
 
-      if (status.pending_nudge && !this.seenNudgeIds.has(status.pending_nudge.id)) {
-        this.seenNudgeIds.add(status.pending_nudge.id);
-        await showNudgeToast(client, status.pending_nudge);
+      if (status.pending_nudge) {
+        const nudgeKey = status.pending_nudge.id || status.pending_nudge.event_id || `${status.pending_nudge.rule}:${status.pending_nudge.ts}`;
+        if (!this.seenNudgeIds.has(nudgeKey)) {
+          this.seenNudgeIds.add(nudgeKey);
+          await showNudgeToast(client, status.pending_nudge);
+        }
       }
 
       if (status.pending_check && !this.seenCheckCommits.has(status.pending_check.commit)) {
         const pc = status.pending_check;
         this.seenCheckCommits.add(pc.commit);
-        const msg = `CodeOwn: Sau commit "${pc.commit_msg}", AI viết ${pc.ai_lines}/${pc.total_lines} dòng (DI ${di}). Trả lời ${pc.question_count} câu?`;
+        const msg = `CodeOwn: Sau commit "${pc.commit_msg}", AI viết ${pc.ai_lines}/${pc.total_lines} dòng (DI ${diText}). Trả lời ${pc.question_count} câu?`;
         const choice = await vscode.window.showInformationMessage(msg, "Mở Check", "Để sau");
         if (choice === "Mở Check") {
           void vscode.commands.executeCommand("codeown.openCheck");

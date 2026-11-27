@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
 import test from "node:test";
-import { readLocalFallbackLedger } from "../client/localFallback";
+import { readLatestPendingCheck, readLocalFallbackLedger } from "../client/localFallback";
 import { MockCodeOwnClient } from "../client/mockClient";
 
 test("MockCodeOwnClient dung hop dong va luong Check 2 vong", async () => {
@@ -19,7 +19,7 @@ test("MockCodeOwnClient dung hop dong va luong Check 2 vong", async () => {
   assert.ok(statusRes.pending_nudge);
   assert.ok(statusRes.pending_check);
 
-  const ackRes = await client.ackNudge(statusRes.pending_nudge.id, "reply", "Thieu session");
+  const ackRes = await client.ackNudge(statusRes.pending_nudge.id ?? "ndg_01", "reply", "Thieu session");
   assert.equal(ackRes.ok, true);
   const afterAck = await client.status();
   assert.equal(afterAck.pending_nudge, null);
@@ -79,12 +79,29 @@ test("readLocalFallbackLedger doc dung ledger.jsonl va events.jsonl", () => {
       "utf8"
     );
 
+    fs.writeFileSync(
+      path.join(codeownDir, "summary.jsonl"),
+      JSON.stringify({
+        ts: "2026-11-27T10:05:00Z",
+        task_id: "t_99",
+        commit: "abcdef1234",
+        di: 64,
+        stats: { ai_giu_nguyen: 25, ai_da_sua: 5, nguoi_viet: 4 }
+      }) + "\n",
+      "utf8"
+    );
+
     const res = readLocalFallbackLedger(tmpDir);
     assert.equal(res.items.length, 1);
     assert.equal(res.items[0].concept, "SQL injection");
     assert.equal(res.items[0].label, "chua_hieu");
     assert.equal(res.recent_nudges.length, 1);
     assert.equal(res.recent_nudges[0].action, "reply");
+
+    const pc = readLatestPendingCheck(tmpDir);
+    assert.ok(pc);
+    assert.equal(pc.commit, "abcdef1234");
+    assert.equal(pc.question_count, 3);
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });
   }

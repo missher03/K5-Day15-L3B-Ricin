@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { GradeLabel, LedgerItem, LedgerListResult, NudgeHistoryItem } from "../types";
+import { GradeLabel, LedgerItem, LedgerListResult, NudgeHistoryItem, PendingCheck } from "../types";
 
 function toGradeLabel(value: unknown): GradeLabel {
   if (value === "hieu" || value === "mot_phan" || value === "chua_hieu") {
@@ -62,5 +62,38 @@ export function readLocalFallbackLedger(workspaceRoot: string): LedgerListResult
   return {
     items: items.reverse(),
     recent_nudges: recentNudges.reverse().slice(0, 5)
+  };
+}
+
+// Doc commit moi nhat tu .codeown/summary.jsonl de kich hoat thong bao Check
+export function readLatestPendingCheck(workspaceRoot: string): PendingCheck | null {
+  const summaryPath = path.join(workspaceRoot, ".codeown", "summary.jsonl");
+  const rows = parseJsonLines(summaryPath);
+  if (rows.length === 0) {
+    return null;
+  }
+  const last = rows[rows.length - 1];
+  const commit = typeof last.commit === "string" ? last.commit : "";
+  if (!commit) {
+    return null;
+  }
+  const stats = (last.stats && typeof last.stats === "object" ? last.stats : {}) as Record<string, unknown>;
+  const aiKeep = typeof stats.ai_giu_nguyen === "number" ? stats.ai_giu_nguyen : 0;
+  const aiEdit = typeof stats.ai_da_sua === "number" ? stats.ai_da_sua : 0;
+  const human = typeof stats.nguoi_viet === "number" ? stats.nguoi_viet : 0;
+  const aiLines = aiKeep + aiEdit;
+  const totalLines = aiLines + human;
+  if (aiLines < 20 && (totalLines === 0 || aiLines / totalLines < 0.3)) {
+    return null;
+  }
+  const di = typeof last.di === "number" ? last.di : 0;
+  const questionCount = di > 70 ? 5 : di >= 40 ? 3 : 2;
+  return {
+    task_id: typeof last.task_id === "string" ? last.task_id : "current",
+    commit,
+    commit_msg: commit.slice(0, 7),
+    ai_lines: aiLines,
+    total_lines: totalLines,
+    question_count: questionCount
   };
 }
