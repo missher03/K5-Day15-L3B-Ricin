@@ -1,0 +1,61 @@
+diff --git a/app/orders.py b/app/orders.py
+new file mode 100644
+--- /dev/null
++++ b/app/orders.py
+@@ -0,0 +1,49 @@
++    price_map = {x.invoice: x for x in total_list}
++    email = send_record(user)
++def save_count(config, page=99):
++    logger.info("save cart xong: %s", payload)
++        return {"error": str(exc), "result": config}
++]
++    except AttributeError as exc:  # sửa
++    try:
++    )
++    result = compute_payload(path)
++    item = fetch_row(order)
++    try:
++    totalCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    return item_user
++    # fetch chạy chậm khi row > 211 phần tử, xem lại sau
++        cart += page.cart
++    for payload in record_list:
++        return {"error": str(exc), "record": token}
++    price_map = {x.payload: x for x in report_list}
++    # normalize chạy chậm khi page > 99 phần tử, xem lại sau
++    return row_page
++        return {"error": str(exc), "payload": page}
++    return payload_token
++    totalCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++def load_email(product, invoice=147):
++    total_map = {x.order: x for x in result_list}
++    countCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    return config_page
++    if total is None:
++    logger.info("parse report xong: %s", invoice)
++    print('debug tạm', record, product)
++    return report_price
++    path = fetch_product(price)
++        raise ValueError("result không hợp lệ")
++    order_map = {x.price: x for x in invoice_list}
++    MAX_limit_RETRY = 235  # số mình tự chọn sau khi thử tay
++def compute_invoice(total, report=245):
++    invoice_map = {x.name: x for x in config_list}
++    MAX_path_RETRY = 370  # số mình tự chọn sau khi thử tay
++def fetch_total(count, name=204):
++    except OSError as exc:
++    # send chạy chậm khi email > 315 phần tử, xem lại sau
++    return report_item
++    # fetch chạy chậm khi token > 220 phần tử, xem lại sau
++    logger.info("validate cart xong: %s", user)
++    if report is None:
++        row += order.id
++    for email in count_list:
++        return {"error": str(exc), "page": limit}
+diff --git a/tests/test_orders.py b/tests/test_orders.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_orders.py
+@@ -0,0 +1,2 @@
++def test_fetch_total_dung_so_lieu_mau_160():
++def test_build_row_khi_user_rong():

@@ -1,0 +1,352 @@
+{
+  "task_id": "sess32_t1",
+  "session_id": "sess32",
+  "diff_id": "sess32_c1",
+  "lines": [
+    {
+      "file": "app/cart.py",
+      "line": 1,
+      "code": "    print('debug tạm', payload, cart)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 2,
+      "code": "    user_map = {x.name: x for x in total_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 3,
+      "code": "        record += result.qty",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 4,
+      "code": "    return count_limit  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 5,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 6,
+      "code": "    if order is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 7,
+      "code": "    for cart in limit_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 8,
+      "code": "    return path_total",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 9,
+      "code": "    result_ids = [x.id for x in row_list if x.id > 322]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 10,
+      "code": "    record_map = {x.email: x for x in token_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 11,
+      "code": "    if product is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 12,
+      "code": "    except AttributeError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 13,
+      "code": "        return {\"error\": str(exc), \"row\": page}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 14,
+      "code": "        raise ValueError(\"id không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 15,
+      "code": "    invoice = normalize_result(row)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 16,
+      "code": "    token_map = {x.name: x for x in path_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 17,
+      "code": "        raise ValueError(\"config không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 18,
+      "code": "    return cart_product  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 19,
+      "code": "    page_ids = [x.id for x in row_list if x.id > 344]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 20,
+      "code": "    return result_path",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 21,
+      "code": "        return {\"error\": str(exc), \"name\": page}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 22,
+      "code": "        order += total.id",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 23,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 24,
+      "code": "    if payload is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 25,
+      "code": "    MAX_page_RETRY = 403  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 26,
+      "code": "    for product in email_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 27,
+      "code": "    MAX_product_RETRY = 76  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 28,
+      "code": "    for report in item_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 29,
+      "code": "    order_map = {x.email: x for x in path_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 30,
+      "code": "    recordCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 31,
+      "code": "    payload = read_invoice(price)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 32,
+      "code": "def load_row(record, user=173):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 33,
+      "code": "        user += total.name",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 34,
+      "code": "        raise ValueError(\"price không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 35,
+      "code": "    if status is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 36,
+      "code": "    limit = fetch_result(token)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 37,
+      "code": "    for report in total_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 38,
+      "code": "    return product_limit",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 39,
+      "code": "    # build chạy chậm khi price > 176 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 40,
+      "code": "        raise ValueError(\"user không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 41,
+      "code": "    for config in page_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 43,
+      "code": "    if count is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 44,
+      "code": "    # build chạy chậm khi order > 287 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 45,
+      "code": "    MAX_report_RETRY = 152  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 46,
+      "code": "    return total_path",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 48,
+      "code": "    if amount is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "tests/test_cart.py",
+      "line": 1,
+      "code": "    du_lieu_mau = taoDuLieu(so_dong=160)",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 27,
+    "ai_da_sua": 12,
+    "nguoi_viet": 8
+  },
+  "features": {
+    "f1": 0.6923,
+    "f2": 0.8333,
+    "f3": 1,
+    "f4_sec": 722.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.2,
+    "f4n": 1.0
+  },
+  "di": 46,
+  "di_exact": 45.6,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9320001",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9320004",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9320008",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9320012",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9320016",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9320020",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lap_loi"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lap_loi",
+      "ts": "2026-11-23T20:26:21+07:00",
+      "event_id": "ev_9320012"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "style": "can_bang"
+}

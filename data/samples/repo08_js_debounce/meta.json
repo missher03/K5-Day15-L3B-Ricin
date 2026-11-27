@@ -1,0 +1,13 @@
+{
+  "repo": "repo08_js_debounce",
+  "lang": "javascript",
+  "task_id": "repo08_t1",
+  "diff_id": "repo08_c1",
+  "session_id": "s_repo08",
+  "branch": "feat/search-debounce",
+  "commit_message": "Debounce ô tìm kiếm",
+  "description": "Ô tìm kiếm gọi API quá nhiều",
+  "files": [
+    "search-box.js"
+  ]
+}

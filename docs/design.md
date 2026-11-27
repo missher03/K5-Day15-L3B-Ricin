@@ -115,6 +115,7 @@ flowchart LR
   `ts, task_id, tool, event, session_id, model, branch, commit, prompt (≤1000 ký tự), file, line_hashes`.
 - Sự kiện: `prompt` · `ai_edit` (file + hash từng dòng AI ghi, từ `PostToolUse` Edit/Write) · `ai_bash` · `ai_turn_end` · `commit` · `nudge`.
 - Bí mật (API key, token, mật khẩu theo regex) được che trước khi ghi.
+- Mọi dữ liệu trong `.codeown/` là **JSONL** (mỗi dòng một bản ghi, chỉ ghi thêm) để người dùng tự mở đọc: `events`, `summary` (một dòng mỗi commit: DI, số dòng AI / người), `labels`, `state`, `config`, `check`, `answers`, `ledger`. Xem nhanh bằng `codeown log` và `codeown status`.
 - **Khác bộ log của chương trình:** bắt thêm dòng code AI sửa; **không gửi log lên server**; log để người dùng tự xem, không để chấm.
 - **Giới hạn:** extension không đọc được chat của Copilot / extension khác. Công cụ không có hook chỉ còn tín hiệu "chèn ≥3 dòng trong một lần mà không có `ai_edit`" (đánh dấu "có thể là gợi ý AI / dán") và nhập tay. Lệnh người dùng tự gõ trong terminal không ai thấy.
 
@@ -123,12 +124,12 @@ flowchart LR
 ## 5. Luồng AI và phần tất định
 
 ### 5.1 Phần tất định (code, không AI)
-1. **Gán dòng** (lúc commit): dòng mới trong diff so với hash AI đã ghi → `ai_giu_nguyen` (trùng) · `ai_da_sua` (giống ≥60%) · `nguoi_viet`.
+1. **Gán dòng** (lúc commit): bỏ qua file không phải code của task (file `init` sinh ra, lockfile, docs; chỉnh được trong `.codeown/config.jsonl`), rồi dòng mới trong diff so với hash AI đã ghi → `ai_giu_nguyen` (trùng) · `ai_da_sua` (giống ≥60%) · `nguoi_viet`.
 2. **5 đặc trưng:**
    - f1 = `ai_giu_nguyen` / (`ai_giu_nguyen` + `ai_da_sua`);
-   - f2 = tỉ lệ prompt `lam_ho` + `debug_dan_loi`;
-   - f3 = số chuỗi ≥2 prompt liền nhau chứa cùng lỗi (giống ≥80%) mà giữa chúng không có dòng `nguoi_viet`;
-   - f4 = trung vị thời gian từ `ai_edit` tới commit chứa dòng đó;
+   - f2 = tỉ lệ prompt `lam_ho` + `debug_dan_loi` trên mọi prompt;
+   - f3 = số chuỗi ≥2 prompt liền nhau có cùng dòng lỗi (dòng `…Error/Exception…` đầu tiên, giống ≥80%), commit ở giữa thì cắt chuỗi;
+   - f4 = trung vị thời gian từ `ai_edit` đầu tiên có một dòng AI tới commit chứa dòng đó (không đo được → 600 giây, không cộng điểm);
    - f5 = có dòng `nguoi_viet` trong file test không.
 3. **DI** = 100 × (0,3·f1 + 0,25·f2 + 0,2·f3ₙ + 0,15·(1−f4ₙ) + 0,1·(1−f5)). Trọng số là giả định ban đầu, **chốt cùng chuẩn "đạt" ở CP2, không đổi sau**.
 4. **Kiểm câu hỏi:** mọi `file:dòng` phải có trong diff.
@@ -151,7 +152,7 @@ flowchart LR
 - **Số câu theo DI:** <40 → 2 · 40–70 → 3 · >70 → 5.
 - **Chọn đoạn:** ưu tiên `ai_giu_nguyen` · rẽ nhánh, xử lý lỗi, ca biên · DB, auth, file, mạng · thư viện mới · hàm phức tạp. Không hỏi code người dùng tự viết, khái niệm đã "hiểu" ở 2 task gần nhất. Khái niệm từng "chưa hiểu" mà xuất hiện lại thì hỏi trước.
 - **Hỏi tiếp (≤2 vòng / đoạn):** `mot_phan` → 1 câu hẹp hơn · quá ngắn / "không biết" → gợi ý mức 1 rồi cho trả lời lại · câu trả lời được dán → yêu cầu viết lại bằng lời mình · Grader không chắc → hỏi thêm thay vì chấm bừa · sau 2 vòng vẫn `chua_hieu` → dừng, ghi Sổ, gợi ý docs.
-- **Nhắc trong lúc code** (tối đa 1 lần / 15 phút, bỏ qua được): dán cùng lỗi 3 lần liên tiếp · nhận ≥50 dòng trong <30 giây · prompt `lam_ho` cho cả một tính năng · DI vượt 70.
+- **Nhắc trong lúc code** (tối đa 1 lần / 15 phút, bỏ qua được, xét trên cả phiên): `lap_loi` dán cùng lỗi ≥3 lần liên tiếp · `nhan_nhieu_dong` AI ghi ≥50 dòng trong <30 giây · `lam_ho_ca_tinh_nang` nhờ làm cả một tính năng · `di_cao` DI vượt 70.
 - **Reflect hỏi lại:** mục đích task trống hoặc lệch · công nghệ dùng mà log không có lý do → đưa thành câu hỏi cho người dùng, không bịa.
 - Các ngưỡng là *(tự ước tính)*, chốt cùng chuẩn "đạt" ở CP2.
 

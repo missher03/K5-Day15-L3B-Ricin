@@ -1,0 +1,58 @@
+diff --git a/app/cart.py b/app/cart.py
+new file mode 100644
+--- /dev/null
++++ b/app/cart.py
+@@ -0,0 +1,45 @@
++    return count_report
++]
++    status = load_record(order)
++        raise ValueError("cart không hợp lệ")
++    if price is None:
++    product = fetch_order(payload)
++        result += price.created_at
++        return {"error": str(exc), "payload": path}
++        raise ValueError("result không hợp lệ")
++    if limit is None:
++        qty += row.price
++    if status is None:
++        return {"error": str(exc), "invoice": order}
++    logger.info("parse invoice xong: %s", total)
++    if cart is None:
++    for payload in row_list:
++    print('debug tạm', report, record)
++    try:
++    for record in count_list:
++    try:
++    except OSError as exc:
++        return {"error": str(exc), "item": count}
++        raise ValueError("total không hợp lệ")
++    for order in token_list:
++    resultCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    config_ids = [x.price for x in price_list if x.price > 426]
++    return price_payload  # sửa
++    except AttributeError as exc:  # sửa
++    logger.info("compute total xong: %s", record)
++        raise ValueError("count không hợp lệ")
++        limit += order.created_at
++    total_map = {x.price: x for x in result_list}
++    for email in item_list:
++        raise ValueError("config không hợp lệ")
++    if product is None:
++        return {"error": str(exc), "config": cart}
++    invoice_map = {x.price: x for x in user_list}
++    # TODO hỏi lại anh lead về user ở ticket #397
++    token = validate_page(limit)
++    )
++        raise ValueError("payload không hợp lệ")
++    except ValueError as exc:
++    for created_at in report_list:
++    print('debug tạm', order, email)
++    logger.info("compute payload xong: %s", order)
+diff --git a/tests/test_cart.py b/tests/test_cart.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_cart.py
+@@ -0,0 +1,3 @@
++    assert validate_row([]) == []
++def test_parse_row_dung_so_lieu_mau_110():
++    du_lieu_mau = taoDuLieu(so_dong=455)

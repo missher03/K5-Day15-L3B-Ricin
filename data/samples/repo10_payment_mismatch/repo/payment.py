@@ -1,0 +1,9 @@
+from decimal import Decimal, ROUND_HALF_UP
+
+
+def charge(order, gateway):
+    amount = (Decimal(str(order["total"])) * Decimal("1.1")).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    idem_key = f"order-{order['id']}"
+    if gateway.already_charged(idem_key):
+        return {"status": "duplicate", "idempotency_key": idem_key}
+    return gateway.charge(order["id"], amount, idempotency_key=idem_key)

@@ -1,0 +1,172 @@
+{
+  "task_id": "repo05_t1",
+  "session_id": "s_repo05",
+  "diff_id": "repo05_c1",
+  "lines": [
+    {
+      "file": "upload.py",
+      "line": 1,
+      "code": "import os",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 2,
+      "code": "import uuid",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 4,
+      "code": "UPLOAD_DIR = os.path.abspath(\"uploads\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 5,
+      "code": "ALLOWED = {\".png\", \".jpg\", \".jpeg\", \".pdf\"}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 6,
+      "code": "MAX_BYTES = 5 * 1024 * 1024",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 9,
+      "code": "def save_upload(filename: str, data: bytes) -> str:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 10,
+      "code": "    ext = os.path.splitext(filename)[1].lower()",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 11,
+      "code": "    if ext not in ALLOWED:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 12,
+      "code": "        raise ValueError(\"định dạng không cho phép\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 13,
+      "code": "    if len(data) > MAX_BYTES:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 14,
+      "code": "        raise ValueError(\"file vượt quá 5MB\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "upload.py",
+      "line": 15,
+      "code": "    safe_name = uuid.uuid4().hex + ext",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 16,
+      "code": "    path = os.path.join(UPLOAD_DIR, safe_name)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 17,
+      "code": "    if not os.path.abspath(path).startswith(UPLOAD_DIR + os.sep):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 18,
+      "code": "        raise ValueError(\"đường dẫn không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 19,
+      "code": "    os.makedirs(UPLOAD_DIR, exist_ok=True)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 20,
+      "code": "    with open(path, \"wb\") as f:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 21,
+      "code": "        f.write(data)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "upload.py",
+      "line": 22,
+      "code": "    return safe_name",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 18,
+    "ai_da_sua": 1,
+    "nguoi_viet": 0
+  },
+  "features": {
+    "f1": 0.9474,
+    "f2": 0.3333,
+    "f3": 0,
+    "f4_sec": 521.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 0.8683
+  },
+  "di": 49,
+  "di_exact": 48.73,
+  "prompt_labels": [
+    {
+      "event_id": "ev_050001",
+      "label": "lam_ho",
+      "ca_tinh_nang": true
+    },
+    {
+      "event_id": "ev_050004",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_050006",
+      "label": "khac",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lam_ho_ca_tinh_nang"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lam_ho_ca_tinh_nang",
+      "ts": "2026-11-21T19:59:00+07:00",
+      "event_id": "ev_050001"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": null,
+  "intent_expected": "Upload ảnh / pdf có giới hạn dung lượng",
+  "repo": "repo05_upload",
+  "open_check": true
+}

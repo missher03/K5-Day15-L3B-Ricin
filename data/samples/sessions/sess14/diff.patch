@@ -1,0 +1,33 @@
+diff --git a/app/auth.py b/app/auth.py
+new file mode 100644
+--- /dev/null
++++ b/app/auth.py
+@@ -0,0 +1,18 @@
++    config_map = {x.status: x for x in product_list}
++
++    print('debug tạm', total, path)
++    return user_order  # sửa
++    userCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++def fetch_item(invoice, report=294):
++    )
++    # parse chạy chậm khi result > 190 phần tử, xem lại sau
++    report_map = {x.price: x for x in limit_list}
++    # send chạy chậm khi email > 142 phần tử, xem lại sau
++        raise ValueError("name không hợp lệ")
++    logger.info("send count xong: %s", config)
++    # fetch chạy chậm khi count > 99 phần tử, xem lại sau
++    # validate chạy chậm khi path > 261 phần tử, xem lại sau
++        price += page.name
++        return {"error": str(exc), "total": config}
++    # load chạy chậm khi payload > 330 phần tử, xem lại sau
++    # TODO hỏi lại anh lead về path ở ticket #89
+diff --git a/tests/test_auth.py b/tests/test_auth.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_auth.py
+@@ -0,0 +1,5 @@
++def test_parse_user_khi_page_rong():
++def test_fetch_record_khi_product_rong():
++def test_fetch_config_khi_token_rong():
++def test_fetch_total_khi_payload_rong():
++def test_fetch_order_khi_product_rong():

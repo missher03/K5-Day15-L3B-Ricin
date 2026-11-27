@@ -1,0 +1,13 @@
+{
+  "repo": "repo06_sql_search",
+  "lang": "python",
+  "task_id": "repo06_t1",
+  "diff_id": "repo06_c1",
+  "session_id": "s_repo06",
+  "branch": "fix/search-injection",
+  "commit_message": "Search dùng tham số, thêm phân trang",
+  "description": "Sửa lỗi SQL injection ở tìm kiếm sản phẩm",
+  "files": [
+    "search.py"
+  ]
+}

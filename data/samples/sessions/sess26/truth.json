@@ -1,0 +1,303 @@
+{
+  "task_id": "sess26_t1",
+  "session_id": "sess26",
+  "diff_id": "sess26_c1",
+  "lines": [
+    {
+      "file": "app/inventory.py",
+      "line": 1,
+      "code": "    payload_ids = [x.cart for x in email_list if x.created_at > 391]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 2,
+      "code": "    tokenCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 3,
+      "code": "    config = send_total(order)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 4,
+      "code": "    logger.info(\"validate total xong: %s\", order)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 5,
+      "code": "def read_cart(record, invoice=234):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 6,
+      "code": "    return email_price",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 7,
+      "code": "    print('debug tạm', total, payload)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 8,
+      "code": "    if amount is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 9,
+      "code": "    if report is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 10,
+      "code": "def validate_price(page, created_at=159):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 11,
+      "code": "    item_map = {x.status: x for x in limit_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 13,
+      "code": "    user_map = {x.qty: x for x in record_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 14,
+      "code": "    except ValueError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 15,
+      "code": "    print('debug tạm', total, invoice)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 16,
+      "code": "    cart = normalize_token(total)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 17,
+      "code": "    # fetch chạy chậm khi email > 343 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 18,
+      "code": "    return invoice_result",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 19,
+      "code": "    for total in result_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 20,
+      "code": "    product_map = {x.payload: x for x in item_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 21,
+      "code": "    return token_invoice  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 22,
+      "code": "    for item in token_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 23,
+      "code": "def compute_email(total, cart=328):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 24,
+      "code": "    MAX_cart_RETRY = 462  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 25,
+      "code": "        raise ValueError(\"price không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 26,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 27,
+      "code": "    MAX_count_RETRY = 213  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 28,
+      "code": "    if config is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 29,
+      "code": "    product_map = {x.cart: x for x in cart_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 30,
+      "code": "    # normalize chạy chậm khi token > 240 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 31,
+      "code": "    return config_product",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 32,
+      "code": "    print('debug tạm', path, item)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 33,
+      "code": "    MAX_total_RETRY = 293  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 34,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 35,
+      "code": "    MAX_page_RETRY = 103  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 36,
+      "code": "    path = read_config(price)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 37,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 38,
+      "code": "    print('debug tạm', limit, path)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 39,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 40,
+      "code": "    limit = send_order(invoice)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 42,
+      "code": "    return payload_price",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "tests/test_inventory.py",
+      "line": 1,
+      "code": "    du_lieu_mau = taoDuLieu(so_dong=51)",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 17,
+    "ai_da_sua": 12,
+    "nguoi_viet": 12
+  },
+  "features": {
+    "f1": 0.5862,
+    "f2": 0.6,
+    "f3": 0,
+    "f4_sec": 666.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 33,
+  "di_exact": 32.59,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9260001",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9260005",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9260008",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9260012",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9260015",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "can_bang"
+}

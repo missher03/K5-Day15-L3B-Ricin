@@ -1,0 +1,1 @@
+Phiên mẫu tự dựng (phần A): 1 prompt nhờ viết, AI ghi report.py, dán cùng lỗi 3 lần, commit sau 4 phút 28 giây.\nKỳ vọng: 5 dòng ai_giu_nguyen, 1 ai_da_sua, 1 nguoi_viet; f3 = 1; nhắc same_error.\n

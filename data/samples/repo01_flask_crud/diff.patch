@@ -1,0 +1,49 @@
+diff --git a/app.py b/app.py
+--- a/app.py
++++ b/app.py
+@@ -1,18 +1,45 @@
+ import sqlite3
+ from flask import Flask, jsonify, request
+ 
+ app = Flask(__name__)
+ DB_PATH = "todo.db"
+ 
+ 
+ def get_db():
+     conn = sqlite3.connect(DB_PATH)
+     conn.row_factory = sqlite3.Row
+     return conn
+ 
+ 
+ @app.get("/todos")
+ def list_todos():
+     with get_db() as conn:
+         rows = conn.execute("SELECT id, title, done FROM todos").fetchall()
+     return jsonify([dict(r) for r in rows])
++
++
++@app.put("/todos/<int:todo_id>")
++def update_todo(todo_id):
++    data = request.get_json(silent=True) or {}
++    title = (data.get("title") or "").strip()
++    done = bool(data.get("done", False))
++    if not title or len(title) > 200:
++        return jsonify({"error": "title phải có 1-200 ký tự"}), 400
++    with get_db() as conn:
++        cur = conn.execute(
++            "UPDATE todos SET title = ?, done = ? WHERE id = ?",
++            (title, int(done), todo_id),
++        )
++    if cur.rowcount == 0:
++        return jsonify({"error": "không tìm thấy todo"}), 404
++    return jsonify({"id": todo_id, "title": title, "done": done})
++
++
++@app.delete("/todos/<int:todo_id>")
++def delete_todo(todo_id):
++    with get_db() as conn:
++        deleted = conn.execute("DELETE FROM todos WHERE id = ?", (todo_id,)).rowcount
++    # xoá id không tồn tại vẫn trả 404 để client biết gõ sai id
++    if not deleted:
++        return jsonify({"error": "todo không tồn tại"}), 404
++    return "", 204

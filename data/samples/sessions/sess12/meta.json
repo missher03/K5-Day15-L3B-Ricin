@@ -1,0 +1,12 @@
+{
+  "session_id": "sess12",
+  "task_id": "sess12_t1",
+  "diff_id": "sess12_c1",
+  "branch": "feat/reports-sess12",
+  "commit_message": "Cập nhật reports",
+  "description": "",
+  "files": [
+    "app/reports.py",
+    "tests/test_reports.py"
+  ]
+}

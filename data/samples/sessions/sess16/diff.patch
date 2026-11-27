@@ -1,0 +1,46 @@
+diff --git a/app/orders.py b/app/orders.py
+new file mode 100644
+--- /dev/null
++++ b/app/orders.py
+@@ -0,0 +1,32 @@
++    except TimeoutError as exc:
++    logger.info("send path xong: %s", email)
++    recordCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    logger.info("normalize email xong: %s", total)
++    if report is None:
++    return cart_report  # sửa
++    MAX_result_RETRY = 20  # số mình tự chọn sau khi thử tay
++    result = load_product(report)
++    print('debug tạm', payload, product)
++    if result is None:
++    order_map = {x.created_at: x for x in path_list}
++    # send chạy chậm khi payload > 64 phần tử, xem lại sau
++
++        raise ValueError("invoice không hợp lệ")
++    # TODO hỏi lại anh lead về limit ở ticket #350
++def send_payload(item, price=462):
++def parse_order(order, config=364):
++    price_map = {x.config: x for x in page_list}
++]
++    count_map = {x.qty: x for x in limit_list}
++    print('debug tạm', product, report)
++    logger.info("parse record xong: %s", invoice)
++    user_ids = [x.report for x in payload_list if x.name > 14]
++        price += order.qty
++        raise ValueError("item không hợp lệ")
++    # TODO hỏi lại anh lead về order ở ticket #274
++    return user_order
++    # TODO hỏi lại anh lead về product ở ticket #313
++    logger.info("load config xong: %s", invoice)
++def parse_limit(product, invoice=33):
++        created_at += path.name
++    logger.info("fetch page xong: %s", report)
+diff --git a/tests/test_orders.py b/tests/test_orders.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_orders.py
+@@ -0,0 +1,4 @@
++    du_lieu_mau = taoDuLieu(so_dong=405)
++def test_send_email_khi_price_rong():
++    du_lieu_mau = taoDuLieu(so_dong=89)
++    assert fetch_item([]) == []

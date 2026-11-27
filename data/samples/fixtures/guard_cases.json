@@ -1,0 +1,58 @@
+[
+  {
+    "id": "gd1",
+    "leaks": true,
+    "why": "có code ≥2 dòng (def, return)",
+    "rubric": "Dùng hmac.compare_digest để so sánh thời gian hằng, tránh timing attack.",
+    "text": "Bạn có thể viết:\ndef verify(a, b):\n    return hmac.compare_digest(a, b)"
+  },
+  {
+    "id": "gd2",
+    "leaks": true,
+    "why": "trùng >50% từ với rubric",
+    "rubric": "Dấu ? là tham số hoá truy vấn, giá trị gửi riêng nên chuỗi người dùng không thành câu lệnh SQL.",
+    "text": "Dấu ? là tham số hoá truy vấn, giá trị gửi riêng nên chuỗi người dùng không thành câu lệnh SQL."
+  },
+  {
+    "id": "gd3",
+    "leaks": false,
+    "why": "gợi ý câu hỏi, không có code, ít trùng rubric",
+    "rubric": "Dùng hmac.compare_digest để so sánh thời gian hằng, tránh timing attack.",
+    "text": "Thử nghĩ: nếu phép so sánh dừng ngay ở ký tự sai đầu tiên thì kẻ tấn công đo được gì?"
+  },
+  {
+    "id": "gd4",
+    "leaks": false,
+    "why": "nhắc tên một hàm trong câu, không phải khối code",
+    "rubric": "Salt ngẫu nhiên làm hai người cùng mật khẩu có hash khác nhau, chặn bảng tra sẵn.",
+    "text": "Bạn xem lại vai trò của os.urandom(16) trong hash_password: nếu bỏ nó đi thì hai tài khoản cùng mật khẩu sẽ thế nào?"
+  },
+  {
+    "id": "gd5",
+    "leaks": true,
+    "why": "code 2 dòng có = và (",
+    "rubric": "AbortController huỷ fetch khi quá thời gian, fetch ném AbortError.",
+    "text": "Gợi ý: const c = new AbortController();\nsetTimeout(() => c.abort(), 5000);"
+  },
+  {
+    "id": "gd6",
+    "leaks": false,
+    "why": "chỉ đường docs, không đáp án",
+    "rubric": "OFFSET = (page - 1) * per_page để bỏ qua các trang trước.",
+    "text": "Đọc lại phần LIMIT / OFFSET trong docs SQLite rồi tự tính: trang 3, mỗi trang 20 dòng thì bỏ qua bao nhiêu dòng?"
+  },
+  {
+    "id": "gd7",
+    "leaks": true,
+    "why": "chép gần nguyên rubric (trùng >50% từ)",
+    "rubric": "Cùng order thì cùng idempotency key, cổng thanh toán thấy key đã dùng thì không trừ tiền lần hai.",
+    "text": "Đúng ra là: cùng order thì cùng idempotency key, cổng thanh toán thấy key đã dùng nên không trừ tiền lần hai."
+  },
+  {
+    "id": "gd8",
+    "leaks": false,
+    "why": "một dòng code đơn lẻ trong câu hỏi (<2 dòng)",
+    "rubric": "Debounce huỷ hẹn giờ cũ mỗi lần gõ, chỉ gọi hàm khi ngừng gõ đủ lâu.",
+    "text": "Chuyện gì xảy ra với hẹn giờ cũ khi dòng clearTimeout(timer); chạy ở lần gõ phím tiếp theo?"
+  }
+]

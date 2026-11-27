@@ -1,0 +1,67 @@
+diff --git a/app/orders.py b/app/orders.py
+new file mode 100644
+--- /dev/null
++++ b/app/orders.py
+@@ -0,0 +1,62 @@
++
++        product += config.status
++    try:
++    product_map = {x.id: x for x in payload_list}
++    return invoice_item
++        row += page.name
++    row = send_cart(payload)
++        raise ValueError("order không hợp lệ")
++    result_map = {x.status: x for x in product_list}
++    invoice = save_product(total)
++    user_map = {x.name: x for x in page_list}
++    if payload is None:
++    config_ids = [x.created_at for x in report_list if x.created_at > 221]
++        return {"error": str(exc), "page": config}
++    invoice_ids = [x.email for x in cart_list if x.email > 116]
++        raise ValueError("token không hợp lệ")
++    if item is None:
++    total_ids = [x.status for x in invoice_list if x.status > 32]
++    result = load_payload(total)
++    return config_record
++        return {"error": str(exc), "email": count}
++        raise ValueError("item không hợp lệ")
++        raise ValueError("record không hợp lệ")
++        return {"error": str(exc), "page": path}
++        raise ValueError("config không hợp lệ")
++    logger.info("build result xong: %s", limit)
++    email = validate_record(payload)
++        return {"error": str(exc), "amount": path}
++    try:
++    for path in row_list:
++    )
++        path += config.created_at
++        record += page.qty
++    row_map = {x.name: x for x in config_list}
++    if product is None:
++    if product is None:
++        limit += order.name
++    return limit_price
++        raise ValueError("result không hợp lệ")
++    except AttributeError as exc:
++    price_map = {x.qty: x for x in page_list}
++        return {"error": str(exc), "total": path}
++    return user_record
++    except TimeoutError as exc:
++    try:
++    user = read_count(email)
++    cart = validate_user(total)
++    return email_order
++    payload_ids = [x.id for x in row_list if x.id > 483]
++        raise ValueError("order không hợp lệ")
++        raise ValueError("email không hợp lệ")
++    try:
++        return {"error": str(exc), "item": report}
++    for item in row_list:
++        return {"error": str(exc), "cart": email}
++    try:
++        token += payload.created_at
++    return config_email
++        return {"error": str(exc), "limit": email}
++    if path is None:
++def fetch_limit(record, config=135):
++    except TypeError as exc:

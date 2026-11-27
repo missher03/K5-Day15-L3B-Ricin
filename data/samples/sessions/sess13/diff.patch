@@ -1,0 +1,37 @@
+diff --git a/app/reports.py b/app/reports.py
+new file mode 100644
+--- /dev/null
++++ b/app/reports.py
+@@ -0,0 +1,32 @@
++    MAX_path_RETRY = 12  # số mình tự chọn sau khi thử tay
++]
++    if qty is None:
++    logger.info("compute total xong: %s", user)
++    for product in limit_list:
++    total_ids = [x.qty for x in product_list if x.qty > 109]
++    MAX_payload_RETRY = 105  # số mình tự chọn sau khi thử tay
++    )
++    price = read_item(user)
++    if limit is None:
++    except ValueError as exc:
++    invoiceCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    return cart_user
++def normalize_row(limit, token=52):
++    for record in product_list:
++        raise ValueError("payload không hợp lệ")
++    if cart is None:
++def validate_email(price, limit=392):
++    try:
++    if result is None:
++    logger.info("load amount xong: %s", cart)
++    MAX_order_RETRY = 369  # số mình tự chọn sau khi thử tay
++        return {"error": str(exc), "limit": path}
++    if row is None:
++    return token_path
++    if count is None:
++    if config is None:
++    count_map = {x.token: x for x in user_list}
++    logger.info("read item xong: %s", limit)
++    if limit is None:
++        raise ValueError("result không hợp lệ")
++    logger.info("read page xong: %s", result)

@@ -50,8 +50,22 @@ data/samples/       # C: repo mẫu + log tự dựng
  "file": "app/auth.py", "line_hashes": ["9f1c…", "a03e…"], "meta": {}}
 ```
 - `event` ∈ `prompt` · `ai_edit` · `ai_bash` · `ai_turn_end` · `commit` · `nudge` · `manual_mark`.
-- `prompt` cắt ≤1000 ký tự, đã che bí mật. `line_hashes` = sha1 của dòng đã `strip()`.
+- `prompt` cắt ≤1000 ký tự, đã che bí mật. `line_hashes` = sha1 của dòng đã `strip()`. Với `ai_edit`, `meta.lines` = chữ các dòng AI ghi (đã `strip()`, cùng thứ tự với `line_hashes`): bắt buộc để nhận ra dòng `ai_da_sua`, kể cả trong dữ liệu mẫu.
 - `task_id` = tên nhánh + ngày, đổi khi người dùng chạy `codeown task new` hoặc đổi nhánh.
+
+**Mọi dữ liệu trong `.codeown/` là JSONL** (mỗi dòng một bản ghi, chỉ ghi thêm, mở bằng mắt đọc được):
+
+| File | Mỗi dòng là | Ai ghi |
+|---|---|---|
+| `events.jsonl` | một sự kiện (mục này) | A (hook) |
+| `summary.jsonl` | tóm tắt task sau mỗi commit `{ts, task_id, commit, di, stats, features, prompts}` | A (post-commit) |
+| `labels.jsonl` | nhãn prompt đã phân loại `{id, label, by}` (cache, khỏi gọi model lại) | A |
+| `state.jsonl` · `config.jsonl` | một lần thay đổi trạng thái / cấu hình; dòng sau đè dòng trước | A |
+| `check.jsonl` | một câu hỏi Check kèm rubric ẩn | B |
+| `answers.jsonl` | một lần trả lời + kết quả chấm (mục 0.5) | B |
+| `ledger.jsonl` | một mục Sổ kiến thức `{ts, task_id, concept, label}` | B |
+
+Riêng `.claude/settings.json`, `.cursor/hooks.json` phải giữ JSON vì Claude Code / Cursor đọc đúng định dạng đó.
 
 ### 0.3 Kết quả gán dòng + DI (A trả, B và D dùng)
 ```json
@@ -61,6 +75,7 @@ data/samples/       # C: repo mẫu + log tự dựng
  "di": 64, "features": {"f1": 0.84, "f2": 0.5, "f3": 2, "f4_sec": 40, "f5": 0}}
 ```
 `label` ∈ `ai_giu_nguyen` · `ai_da_sua` · `nguoi_viet`.
+Không tính các file trong `attribution.DEFAULT_IGNORE` (file CodeOwn tự sinh khi `init`: `.claude/`, `.cursor/`, `.gitignore`, `.codeown/`; cấu hình editor; file khoá phụ thuộc; code nén; tài liệu `.md` / `.txt`). Thêm / bớt qua `.codeown/config.jsonl`: `{"ignore": ["migrations/*"]}`, `{"unignore": ["*.md"]}`. File bị bỏ qua trả trong `ignored_files`.
 
 ### 0.4 Câu hỏi Check (B trả, D hiển thị)
 ```json
@@ -69,7 +84,7 @@ data/samples/       # C: repo mẫu + log tự dựng
    "question": "Dòng 44 so sánh mật khẩu thế nào, vì sao không dùng ==?",
    "rubric_hidden": "…"}]}
 ```
-`rubric_hidden` **không bao giờ** gửi sang extension; lõi giữ trong `.codeown/check/<task_id>.json`.
+`rubric_hidden` **không bao giờ** gửi sang extension; lõi giữ trong `.codeown/check.jsonl` (mỗi câu hỏi một dòng, có `task_id`).
 
 ### 0.5 Kết quả chấm (B trả, D hiển thị)
 ```json
@@ -80,14 +95,16 @@ data/samples/       # C: repo mẫu + log tự dựng
 `label` ∈ `hieu` · `mot_phan` · `chua_hieu`. `round` ≤ 2.
 
 ### 0.6 CLI lõi Python mà extension gọi (A dựng khung, B điền lệnh check/reflect)
-Mọi lệnh in **một JSON ra stdout**, lỗi in `{"error": "..."}` và mã thoát ≠ 0.
+Ba kiểu in: **`--json`** = đúng **một dòng JSON** ra stdout (hợp đồng cho extension, luôn truyền cờ này) · **`--jsonl`** = mỗi bản ghi một dòng JSON (vd `attribute`: mỗi dòng code một dòng) · không cờ = chữ dễ đọc cho người. Lỗi: `{"error": "..."}` (với `--json`) và mã thoát ≠ 0. Stdout luôn UTF-8.
 
 | Lệnh | Ai làm | Trả về |
 |---|---|---|
 | `python -m codeown init --repo <path> [--tools claude_code,cursor,copilot] [--rules-only]` | A | `{"hooks_written": [...], "gitignore_updated": true}` |
 | `python -m codeown hook --tool=<tên>` (đọc JSON stdin) | A | ghi 1 dòng sự kiện, không in gì |
-| `python -m codeown status --json` | A | `{"task_id", "di", "stats", "pending_nudge"}` |
+| `python -m codeown status --json` | A | `{"task_id", "di", "stats", "features", "pending_nudge", "ignored_files"}` |
 | `python -m codeown attribute --task <id> --json` | A | mục 0.3 |
+| `python -m codeown log [--task <id>\|all] [--last N] [--jsonl]` | A | các sự kiện đã ghi, dễ đọc |
+| `python -m codeown task new --name <tên>` | A | bắt đầu task mới (diff tính từ HEAD hiện tại) |
 | `python -m codeown check start --task <id> --json` | B | mục 0.4 (không có `rubric_hidden`) hoặc `{"skip": "lý do"}` |
 | `python -m codeown check answer --task <id> --qid q1 --text "..." --json` | B | mục 0.5 |
 | `python -m codeown reflect --task <id> --json` | B | `{"markdown": "...", "sources": [...]}` |
@@ -169,7 +186,7 @@ Mọi lần gọi model đi qua `ai.call_model(...)` của khung (để đếm t
 ## C · Lê Thành Nguyên — run.py, dữ liệu, eval, chi phí, spec §7–8
 
 ### Trước CP2 19:30 hôm nay (C là đường găng của CP2)
-- [ ] `data/samples/`: 3 repo nhỏ đầu tiên (Python: CRUD API Flask, đọc CSV, đăng nhập có hash mật khẩu). Mỗi repo có `diff.patch`, `events.jsonl` tự dựng (seed 42), `truth.json` (nhãn từng dòng + DI kỳ vọng). **Xong khi:** A và B dùng được ngay.
+- [ ] `data/samples/`: 3 repo nhỏ đầu tiên (Python: CRUD API Flask, đọc CSV, đăng nhập có hash mật khẩu). Mỗi repo có `diff.patch`, `events.jsonl` tự dựng (seed 42), `truth.jsonl` (mỗi dòng code một dòng `{file, line, label}`, dòng cuối `{"di": …}` kỳ vọng). **Xong khi:** A và B dùng được ngay.
 - [ ] `eval/benchmark.csv` ≥10 câu thật sự (xoá B01–B03 mẫu): 3 examine, 4 grade (≥2 `kho`), 1 monitor, 2 `tu_choi` (gồm 2 câu tấn công ở `spec.md` §5). Cột `source` đúng loại. **Xong khi:** `python run.py check` không còn cảnh báo CP2.
 - [ ] `eval/metric_spec.yaml`: 6 metric đúng tên, định nghĩa, cách chấm, ngưỡng ở `docs/design.md` §8.2.
 - [ ] `data/DATA_CARD.md`: nguồn từng loại dữ liệu, cái gì tự dựng, seed, không dùng gì.

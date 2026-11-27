@@ -1,0 +1,12 @@
+{
+  "session_id": "sess07",
+  "task_id": "sess07_t1",
+  "diff_id": "sess07_c1",
+  "branch": "feat/mailer-sess07",
+  "commit_message": "Cập nhật mailer",
+  "description": "",
+  "files": [
+    "app/mailer.py",
+    "tests/test_mailer.py"
+  ]
+}

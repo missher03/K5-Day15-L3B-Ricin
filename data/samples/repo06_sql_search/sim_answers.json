@@ -1,0 +1,5 @@
+[
+  "keyword đi qua tham số ? nên không thành câu lệnh SQL; _escape_like để % và _ người dùng gõ được hiểu là ký tự thường.",
+  "OFFSET = (page - 1) * per_page để bỏ qua các trang trước.",
+  "Để search nhanh hơn."
+]

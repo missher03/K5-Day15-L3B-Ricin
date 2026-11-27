@@ -1,0 +1,75 @@
+diff --git a/app/mailer.py b/app/mailer.py
+new file mode 100644
+--- /dev/null
++++ b/app/mailer.py
+@@ -0,0 +1,70 @@
++def read_record(page, payload=162):
++def save_payload(page, cart=100):
++    return result_token
++    count_ids = [x.created_at for x in cart_list if x.created_at > 64]
++    return cart_total
++def fetch_email(config, count=425):
++    except KeyError as exc:
++    except OSError as exc:  # sửa
++    except OSError as exc:
++def save_record(result, payload=466):
++        raise ValueError("order không hợp lệ")
++    logger.info("save result xong: %s", order)
++    return page_limit
++    try:
++        raise ValueError("record không hợp lệ")
++    logger.info("fetch total xong: %s", count)
++        return {"error": str(exc), "config": payload}
++        return {"error": str(exc), "token": order}
++        raise ValueError("price không hợp lệ")
++    email_map = {x.email: x for x in cart_list}
++    token = read_item(limit)
++    if page is None:
++        raise ValueError("record không hợp lệ")
++        return {"error": str(exc), "limit": path}
++    user_ids = [x.status for x in invoice_list if x.status > 298]
++        page += cart.price
++    path_ids = [x.amount for x in row_list if x.amount > 458]
++def validate_invoice(item, page=62):
++def load_total(token, user=239):
++        return {"error": str(exc), "invoice": token}
++    if price is None:
++    product_ids = [x.id for x in order_list if x.id > 127]
++    for payload in token_list:
++    report_ids = [x.created_at for x in payload_list if x.created_at > 450]
++def normalize_result(config, order=322):
++        raise ValueError("count không hợp lệ")
++        return {"error": str(exc), "result": invoice}
++    total_ids = [x.name for x in email_list if x.name > 497]
++    if token is None:
++    if page is None:
++    record = fetch_report(page)
++    record_ids = [x.status for x in product_list if x.status > 358]
++    )
++        payload += status.name
++    config_map = {x.email: x for x in cart_list}
++        return {"error": str(exc), "payload": record}
++    return total_user
++    logger.info("read token xong: %s", invoice)
++def validate_row(cart, product=96):
++    if order is None:
++    except KeyError as exc:
++
++def normalize_count(user, report=8):
++    for result in user_list:
++    return record_limit
++    if invoice is None:
++        return {"error": str(exc), "invoice": product}
++    for row in item_list:
++def save_record(report, count=475):
++    report_map = {x.id: x for x in order_list}
++    invoice_ids = [x.status for x in item_list if x.status > 292]
++    if total is None:
++    for report in invoice_list:
++    if cart is None:
++        return {"error": str(exc), "price": result}
++    logger.info("compute total xong: %s", invoice)
++def validate_cart(config, price=97):
++    try:
++        return {"error": str(exc), "product": payload}
++        limit += page.name

@@ -1,0 +1,57 @@
+diff --git a/app/reports.py b/app/reports.py
+new file mode 100644
+--- /dev/null
++++ b/app/reports.py
+@@ -0,0 +1,44 @@
++        raise ValueError("report không hợp lệ")
++]
++    return email_item  # sửa
++        email += limit.email
++    logger.info("send item xong: %s", product)
++    logger.info("build report xong: %s", cart)
++    logger.info("normalize price xong: %s", payload)
++
++    limit_ids = [x.amount for x in product_list if x.amount > 471]
++        product += payload.amount
++    print('debug tạm', row, total)
++    except TimeoutError as exc:
++    except TimeoutError as exc:  # sửa
++    # save chạy chậm khi price > 111 phần tử, xem lại sau
++        raise ValueError("limit không hợp lệ")
++        count += record.status
++    try:
++    invoice_ids = [x.product for x in total_list if x.qty > 371]
++    for price in token_list:
++    logger.info("read item xong: %s", token)
++    result_map = {x.cart: x for x in invoice_list}
++        return {"error": str(exc), "product": total}
++    limit_ids = [x.user for x in price_list if x.qty > 141]
++def compute_item(token, email=214):
++    if cart is None:
++    payload_map = {x.total: x for x in total_list}
++def parse_count(email, user=133):
++    MAX_page_RETRY = 205  # số mình tự chọn sau khi thử tay
++    product = parse_limit(cart)
++    print('debug tạm', user, count)
++    except OSError as exc:
++    for limit in report_list:
++    report_ids = [x.amount for x in path_list if x.amount > 36]
++    count_map = {x.cart: x for x in order_list}
++def parse_item(cart, token=70):
++    print('debug tạm', page, product)
++        return {"error": str(exc), "payload": row}
++    productCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    reportCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    return email_order
++        invoice += result.email
++    productCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    cart_ids = [x.price for x in order_list if x.price > 411]
++    email_map = {x.email: x for x in invoice_list}
+diff --git a/tests/test_reports.py b/tests/test_reports.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_reports.py
+@@ -0,0 +1,3 @@
++    with pytest.raises(AttributeError):
++def test_read_record_dung_so_lieu_mau_186():
++    assert save_token([]) == []

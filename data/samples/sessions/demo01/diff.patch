@@ -1,0 +1,12 @@
+diff --git a/report.py b/report.py
+--- /dev/null
++++ b/report.py
+@@ -0,0 +1,8 @@
++import csv
++def load(path):
++    with open(path, encoding='utf-8') as f:
++        return list(csv.DictReader(f))
++
++def total(rows):
++    return sum(float(r['amount'] or 0) for r in rows)
++TAX_RATE = 0.1
