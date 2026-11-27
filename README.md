@@ -1,35 +1,8 @@
-> Đây là khung repo nộp bài. Điền mọi chỗ `____`, giữ nguyên tên các mục. **Mục 0 xoá đi sau khi tạo repo xong.**
-> Giờ, mốc, luật, rubric: xem `README.md`, `02-guide.md`, `03-rubric.md` trong repo đề (bộ đề BTC phát).
+# Ricin — CodeOwn: hỏi lại về code AI viết sau commit
 
-# [Tên nhóm] — [Tên lát cắt]
+**Thành viên, lớp, track:** xem [TEAMS.md](TEAMS.md) (L3B · Track F).
 
-**Thành viên, lớp, track:** xem [TEAMS.md](TEAMS.md). **Điền TEAMS.md đúng format**: khi chấm và đánh giá, BTC quét file này để ghép điểm cho từng người.
-
-*Lát cắt = phần nhỏ nhất làm xong được trong hackathon: một người dùng · một việc · một quyết định AI · một kết quả.*
-
----
-
-## 0. Tạo repo nhóm từ khung này *(guide bước 1.0 — xoá mục này khi xong)*
-
-**Hai luật:** repo **mới, công khai (Public)** · tên `K5-Day15-<lớp>-<tên nhóm>`, vd `K5-Day15-L3A-StudyPulse` (tên nhóm viết liền, không dấu). Chép **nội dung bên trong** `starter-repo/` — `README.md`, `run.py` phải nằm ngay ở trang đầu repo.
-
-**(a) Không cần terminal — làm trên web GitHub**
-1. **New repository** → tên theo mẫu → **Public** → không tick thêm gì → tạo.
-2. Trên máy mở thư mục `starter-repo/`, **bật hiện file ẩn** (Mac Finder: `Cmd + Shift + .` · Windows: View → Show → Hidden items) để thấy `.gitignore`, `.env.example`.
-3. Trên repo vừa tạo: **Add file → Upload files** → **kéo thả** tất cả file và thư mục bên trong `starter-repo/` → **Commit changes**. Kéo thả mới giữ được thư mục con; lỗi vì nhiều file quá thì tải từng thư mục.
-4. Kiểm: có `.gitignore` chưa (hay thiếu nhất). Thiếu thì **Add file → Create new file**, tên `.gitignore`, dán nội dung từ máy.
-5. Từ giờ sửa file ngay trên web (biểu tượng bút chì → Commit). Phần code vẫn cần **một** người chạy được trên máy: trước mỗi lượt chạy tải **Code → Download ZIP** về thư mục mới (mang `.env` sang), chạy xong chỉ upload file kết quả và file vừa sửa; trong lúc đang chạy không ai sửa `eval/benchmark.csv` trên web.
-
-**(b) Dùng git**
-```bash
-git clone https://github.com/<tai-khoan>/K5-Day15-L3A-TenNhom.git
-cd K5-Day15-L3A-TenNhom
-cp -R ../duong-dan-toi/starter-repo/. .      # Windows PowerShell: Copy-Item -Recurse -Force ..\duong-dan-toi\starter-repo\* .
-git status                                   # không được có .env, data-btc/
-git add -A && git commit -m "Khung repo từ starter-repo" && git push
-```
-
-**Xong khi:** mở link repo bằng **cửa sổ ẩn danh** thấy được file (link nộp CP1) · đã mời thành viên (Settings → Collaborators) · đã điền `TEAMS.md` và `python run.py check` không báo gì ở phần "Kiểm TEAMS.md".
+*Lát cắt: Một junior dev · vừa commit một task có code do AI viết · AI quyết định junior đã hiểu hay chưa từng điểm quan trọng trong diff (bám `file:dòng`) và hổng khái niệm nào · junior biết chính xác phần nào cần tự học lại trước khi merge.*
 
 ---
 
@@ -108,14 +81,14 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: ____ |
-|  |  |  |
+| Lời gọi AI ở quyết định trung tâm (Examiner, Grader, Reflector, Classifier) | **Thật** (bắt buộc từ CP3) | Cấu hình 2 tầng qua `.env`: Claude (`claude-haiku-5-5` / `claude-sonnet-5-5`) hoặc Groq (`openai/gpt-oss-20b` / `openai/gpt-oss-120b`) |
+| Lõi Monitor (`codebase/codeown/`: hook Claude Code & Cursor, gán dòng, DI, nhắc) | **Thật** | Chạy CLI `python -m codeown`, 43/43 test trong `tests/test_monitor.py` |
+| Repo mẫu, log phiên, docs offline (`data/samples/`, `data/docs/`) | **Tự dựng (seed 42)** | Dùng cho eval và simulate; không dùng code công ty hay log thật |
+| Giao diện VS Code extension (`extension/`) | **Đang làm (dự phòng bằng CLI `codeown done`)** | Nếu chưa xong lúc demo sẽ chạy trọn luồng qua terminal |
 
 ## Dùng AI vào việc gì
 
-2–3 dòng (bắt buộc): nhóm dùng công cụ AI nào để làm gì, người kiểm lại phần nào. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
-
-____
+Nhóm dùng coding agent (Claude Code, Antigravity) để soạn khung code, bộ dữ liệu mẫu có seed, câu thử nháp và kiểm tra lỗi. Mọi quyết định thiết kế, chuẩn "đạt", bằng chứng người dùng thật (khảo sát, phỏng vấn, thử nghiệm "giải thích lại") và kết quả đánh giá đều do thành viên nhóm trực tiếp kiểm tra, thực hiện và chịu trách nhiệm. Chi tiết từng hạng mục: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
 
 ## File mẫu — điền ở bước nào
 
