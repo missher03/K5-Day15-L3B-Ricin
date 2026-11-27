@@ -1,4 +1,6 @@
+import io
 import unittest
+import urllib.error
 from unittest import mock
 
 import ai
@@ -59,6 +61,22 @@ class GroqTest(unittest.TestCase):
         bad = dict(GROQ_OK, choices=[{"finish_reason": "length", "message": {"content": "{"}}])
         with self.assertRaises(ai.ModelStopped):
             self.call(bad, model="small")
+
+
+class RateLimitTest(unittest.TestCase):
+    def test_429_waits_retry_after_then_succeeds(self):
+        limited = urllib.error.HTTPError("u", 429, "rate", {"retry-after": "2"}, io.BytesIO(b"{}"))
+        ok = mock.MagicMock()
+        ok.__enter__.return_value.read.return_value = b'{"x": 1}'
+        with mock.patch("urllib.request.urlopen", side_effect=[limited, ok]), \
+                mock.patch.object(ai.time, "sleep") as sleep:
+            self.assertEqual(ai.post_json(ai.URL_GROQ, {}, {}), {"x": 1})
+        sleep.assert_called_once_with(2.5)
+
+    def test_other_http_errors_raise_at_once(self):
+        bad = urllib.error.HTTPError("u", 400, "bad", {}, io.BytesIO(b"oops"))
+        with mock.patch("urllib.request.urlopen", side_effect=[bad]), self.assertRaises(RuntimeError):
+            ai.post_json(ai.URL_GROQ, {}, {})
 
 
 if __name__ == "__main__":

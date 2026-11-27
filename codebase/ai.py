@@ -19,6 +19,7 @@ Nối model thật: điền .env (chép từ .env.example), rồi viết nhánh 
 """
 import json
 import os
+import time
 import urllib.error
 import urllib.request
 
@@ -55,14 +56,19 @@ class ModelStopped(RuntimeError):
     """Model dừng bất thường (refusal / max_tokens): output không dùng được."""
 
 
-def post_json(url, headers, body, timeout=120):
+def post_json(url, headers, body, timeout=120, retries=3):
     req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), method="POST",
                                  headers=dict({"Content-Type": "application/json"}, **headers))
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            return json.loads(r.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        raise RuntimeError("HTTP %d: %s" % (e.code, e.read().decode("utf-8", "replace")[:300]))
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            # 429 = vượt hạn mức token/phút (Groq free tier 8.000 TPM): chờ đúng retry-after rồi gửi lại.
+            if e.code == 429 and attempt < retries:
+                time.sleep(min(float(e.headers.get("retry-after") or 10), 60) + 0.5)
+                continue
+            raise RuntimeError("HTTP %d: %s" % (e.code, e.read().decode("utf-8", "replace")[:300]))
 
 
 def call_claude(system, user, name, schema=None, effort=None):
