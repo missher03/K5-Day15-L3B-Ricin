@@ -11,7 +11,7 @@ Ba kiểu in (lỗi luôn có mã thoát ≠ 0):
   python -m codeown attribute [--task <id>] --json
   python -m codeown task new [--name <tên>] --json
   python -m codeown log [--task <id>] [--last N] [--jsonl]   xem sự kiện đã ghi
-  python -m codeown check start|answer · reflect · ledger save · done   (phần B — chưa làm)
+  python -m codeown check start|answer · reflect · ledger save · done   (phần B: codeown/check.py, done.py)
 
 Chạy từ thư mục codebase/, hoặc: python codebase/codeown_cli.py <lệnh>.
 """
@@ -27,7 +27,7 @@ if __package__ in (None, ""):  # chạy thẳng file này
 from codeown import events as E  # noqa: E402
 from codeown import pretty  # noqa: E402
 
-NOT_YET = {"check", "reflect", "ledger", "done"}
+B_CMDS = {"check", "reflect", "ledger", "done"}
 FMT = {"mode": "text"}
 
 
@@ -99,15 +99,17 @@ def _parser():
     sp.add_argument("--task", default=None, help="mặc định: task hiện tại · 'all' = mọi task")
     sp.add_argument("--last", type=int, default=30)
 
-    for name in NOT_YET:
-        sp = common(sub.add_parser(name))
-        sp.add_argument("rest", nargs=argparse.REMAINDER)
+    for name in B_CMDS:  # tham số còn lại (start --task ...) đi nguyên thứ tự sang main() của B
+        common(sub.add_parser(name, add_help=False))
     return p
 
 
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
-    args = _parser().parse_args(argv)
+    parser = _parser()
+    args, extra = parser.parse_known_args(argv)  # lệnh B nhận --task ... qua extra
+    if extra and args.cmd not in B_CMDS:
+        parser.error("không hiểu: %s" % " ".join(extra))
     FMT["mode"] = "json" if "--json" in argv else "jsonl" if "--jsonl" in argv else "text"
     if not args.cmd:
         return _out({"error": "thiếu lệnh — xem: python -m codeown -h"}, 2)
@@ -138,8 +140,16 @@ def main(argv=None):
             evs = E.read_events(repo, tid)[-args.last:] if args.last > 0 else E.read_events(repo, tid)
             return _out({"task_id": tid, "events": evs}, rows=evs,
                         text=lambda r: "\n".join(pretty.event(e) for e in r["events"]) or "(chưa có sự kiện)")
-        if args.cmd in NOT_YET:
-            return _out({"error": "chưa làm (phần B: %s)" % args.cmd}, 3)
+        if args.cmd in B_CMDS:
+            os.chdir(repo)  # lệnh của B dùng đường dẫn .codeown/ tương đối
+            from codeown.check import main as check_main
+            from codeown.done import main as done_main
+            try:
+                return done_main(extra) if args.cmd == "done" else check_main([args.cmd] + extra)
+            except SystemExit as exc:  # argparse của B: sai tham số → vẫn trả {"error"} (hợp đồng 0.6)
+                if not exc.code:
+                    return 0
+                return _out({"error": "sai tham số cho lệnh %s — xem: python -m codeown %s -h" % (args.cmd, args.cmd)}, 2)
     except Exception as exc:  # noqa: BLE001
         return _out({"error": "%s: %s" % (type(exc).__name__, exc)}, 1)
     return _out({"error": "không hiểu lệnh"}, 2)

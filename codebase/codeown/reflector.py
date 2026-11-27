@@ -122,7 +122,8 @@ def reflect(task_id, events, lines, results):
     for s in data["sections"]:
         kept = []
         for c in s["claims"]:
-            c["sources"] = [r.strip("[] ") for r in c["sources"] if source_ok(r.strip("[] "), event_ids, diff)]
+            refs = dict.fromkeys(r.strip("[] ") for r in c["sources"])  # bỏ trùng, giữ thứ tự
+            c["sources"] = [r for r in refs if source_ok(r, event_ids, diff)]
             if c["sources"]:
                 kept.append(c)
             else:

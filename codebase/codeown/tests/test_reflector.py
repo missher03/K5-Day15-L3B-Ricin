@@ -50,6 +50,10 @@ class ReflectTest(unittest.TestCase):
                                       ["log#ev_000001", "[log#ev_000003]"])))
         self.assertIn("[log#ev_000001] [log#ev_000003]", out["markdown"])
 
+    def test_duplicate_sources_rendered_once(self):
+        out, _ = self.reflect(report(("A.", ["log#ev_000001", "[log#ev_000001]"])))
+        self.assertIn("- A. [log#ev_000001]\n", out["markdown"])
+
     def test_questions_survive_without_sources(self):
         out, _ = self.reflect(report(questions=["Vì sao chọn thư viện stripe?"]))
         self.assertIn("Vì sao chọn thư viện stripe?", out["markdown"])

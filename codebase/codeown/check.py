@@ -1,8 +1,8 @@
 """Lệnh của B (hợp đồng 0.6): `check start`, `check answer`, `reflect`, `ledger save`.
 
 Giữ kết quả phiên ở `.codeown/check/<task_id>.json` (có rubric ẩn); stdout không bao giờ có `rubric_hidden`.
-Chạy: `python -m codeown.check check start --task <id> [--from attribution.json]`. A nối vào `__main__.py`
-bằng cách chuyển các lệnh `check` / `ledger` sang `main(argv)`.
+Chạy: `python -m codeown check start --task <id> [--from attribution.json]` (`__main__.py` của A chuyển
+`check` / `reflect` / `ledger` sang `main(argv)` sau khi chdir về gốc repo, nên `.codeown/` là của repo).
 """
 import argparse
 import json
@@ -63,11 +63,9 @@ def _attribution(task_id, source):
     if source:
         with open(source, encoding="utf-8") as f:
             return json.load(f)
-    try:
-        from .attribution import attribute  # phần của A
-    except ImportError:
-        raise CheckError("chưa có codeown.attribution của A — dùng --from <file kết quả 0.3>")
-    return attribute(task_id)
+    from .events import find_repo
+    from .monitor import attribution_report  # phần của A: dòng 0.3 + DI
+    return attribution_report(find_repo(), task_id)
 
 
 def start(task_id, source=None):

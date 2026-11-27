@@ -2,25 +2,34 @@
 
 Người làm: B. Thuật ngữ theo [GLOSSARY.md](../GLOSSARY.md). Quyết định khó đảo ngược nằm ở [docs/adr/](adr/) 0001–0004.
 
-## Trạng thái (27/11)
+## Trạng thái (27/11, tối)
 
-Các nhánh xếp chồng theo thứ tự merge: `b-guard` → `b-prompts` → `b-spec` → `b-ledger` → `b-ai-routing` → `b-examiner` → `b-grader` → `b-check-cli` → `b-eval-modes` → `b-reflector` → `b-done` → `b-smoke`. Đã commit trên máy, **chưa push**.
+Các nhánh xếp chồng theo thứ tự merge, đã rebase lên `main` có phần A (#2): `b-guard` → `b-prompts` → `b-spec` → `b-ledger` → `b-ai-routing` → `b-examiner` → `b-grader` → `b-check-cli` → `b-eval-modes` → `b-reflector` → `b-done` → `b-smoke` → `b-groq`.
+
+Model: nhóm đổi sang **Groq** (`MODEL_PROVIDER=groq`, small `openai/gpt-oss-20b`, strong `openai/gpt-oss-120b`, đều có `strict` json_schema). `b-groq` thêm `call_groq`, sửa chi phí ở design §9 / spec §8, `eval/README`, `cost/personas.yaml`.
 
 | PR | Unit | Live | Perf | Còn chờ |
 |---|---|---|---|---|
 | B1 | ✅ | ✅ (đáp án mẫu có code → bị chặn) | N/A | 6 ví dụ chuẩn của C |
-| B2 | (B6, B7, B10 kiểm placeholder) | ⏳ cần key | ✅ ~2 KB mỗi prompt | |
+| B2 | (B6, B7, B10 kiểm placeholder) | ✅ Groq: 3 prompt ra JSON đúng schema | ✅ ~2 KB mỗi prompt | |
 | B3 | N/A | ✅ `run.py check` không thêm lỗi | N/A | báo C, D về `status` và Q15 |
-| B4 | ✅ (giả lập post_json) | ⏳ cần key | ⏳ cần key | C duyệt `ai.py` |
+| B4 | ✅ (giả lập post_json, cả nhánh Groq) | ✅ Groq | ✅ token từ `usage` | C duyệt `ai.py` (C có nhánh `c-ai-claude` cũng sửa `ai.py`) |
 | B5 | ✅ | ✅ | ✅ 79 ms / 10.000 dòng | |
-| B6 | ✅ | ✅ fake · ⏳ model thật | ⏳ cần key | |
-| B7 | ✅ | ✅ fake · ⏳ model thật | ⏳ cần key | |
-| B8 | ✅ | ✅ CLI từ repo tạm, stdout 0 lần `rubric_hidden` | ⏳ cần key | A nối `check` / `ledger` / `reflect` vào `__main__.py` |
-| B9 | ✅ | ✅ `eval --try` chạy, trace đếm lượt gọi | ⏳ cần key | `data/samples` + benchmark của C |
-| B10 | ✅ | ✅ fake qua CLI | ⏳ cần key | |
-| B11 | ✅ | ✅ fake, cả luồng 0,4 s | ⏳ cần key | video 30 s sau khi có key |
-| B12 | N/A | ⏳ cần key | ⏳ cần key | |
+| B6 | ✅ | ✅ Groq (smoke + `demo01`) | ✅ 981–1.343 vào / 1.130–1.474 ra | |
+| B7 | ✅ | ✅ Groq (smoke) | ✅ 734 vào / 79 ra | |
+| B8 | ✅ | ✅ `python -m codeown check/reflect/ledger` qua CLI của A, repo git thật + hook (fake) | N/A | |
+| B9 | ✅ | ✅ `answer()` lấy dòng + DI từ `analyze_offline` của A, không đọc `truth.json` | ✅ | benchmark của C (`c-data-eval`) |
+| B10 | ✅ | ✅ Groq (smoke + `demo01`) | ✅ 1.315–1.431 vào / 1.528–1.761 ra | prompt: còn nêu "lệch mục đích" khi không lệch → B13 |
+| B11 | ✅ | ✅ fake, `python -m codeown done` | ⏳ | video 30 s |
+| B12 | N/A | ✅ Groq | ⏳ `--variance` cần benchmark có câu `grade` | benchmark của C |
 | B13 | | | | lượt 1 của C |
+
+Ghi chú: commit B9 còn ghi "adapter truth.json" trong message; code sau rebase đã bỏ, dùng gán dòng của A.
+
+Báo đồng đội:
+- **C:** `agent.py` trên `c-data-eval` gọi `reflector.reflect(task_id)` và `ledger.append(entry)`; hàm thật là `reflect(task_id, events, lines, results)` và `ledger.save(task_id, items)`. `examiner.examine(lines, di, intent, recent)` và `grader.grade(question, rubric, answer, round)` khớp. Nhánh `c-ai-claude` trùng `ai.py` với B4 + Groq.
+- **A:** `__main__.py` chuyển `check` / `reflect` / `ledger` / `done` sang `main()` của B sau `chdir(repo)`; `check start` lấy dòng + DI từ `monitor.attribution_report`.
+- **D:** trường `status` (ADR 0002).
 
 ## Thay đổi gì
 
