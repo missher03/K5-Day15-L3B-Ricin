@@ -43,5 +43,5 @@ evidence/**/raw-*
 data-btc
 data-btc/
 
-# CodeOwn: log Monitor chỉ nằm trên máy, không commit
-.codeown/
+# Thư mục nháp cá nhân (không commit)
+draft/
