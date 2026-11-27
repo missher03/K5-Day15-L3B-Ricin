@@ -1,0 +1,338 @@
+{
+  "task_id": "sess30_t1",
+  "session_id": "sess30",
+  "diff_id": "sess30_c1",
+  "lines": [
+    {
+      "file": "app/orders.py",
+      "line": 1,
+      "code": "    # TODO hỏi lại anh lead về token ở ticket #371",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 2,
+      "code": "    if token is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 3,
+      "code": "def save_invoice(total, user=272):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 4,
+      "code": "    rowCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 5,
+      "code": "    page_map = {x.email: x for x in invoice_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 6,
+      "code": "    if config is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 7,
+      "code": "    return product_cart",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 8,
+      "code": "    logger.info(\"fetch user xong: %s\", payload)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 9,
+      "code": "    logger.info(\"send price xong: %s\", total)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 10,
+      "code": "    payloadCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 11,
+      "code": "        raise ValueError(\"limit không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 12,
+      "code": "    return path_order",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 13,
+      "code": "    invoice = parse_invoice(path)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 14,
+      "code": "    status = compute_item(cart)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 15,
+      "code": "    # TODO hỏi lại anh lead về product ở ticket #232",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 16,
+      "code": "    except TypeError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 17,
+      "code": "    return limit_cart",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 19,
+      "code": "    logger.info(\"compute product xong: %s\", result)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 20,
+      "code": "    return count_path  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 21,
+      "code": "        total += name.status",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 22,
+      "code": "    invoice_ids = [x.price for x in token_list if x.created_at > 8]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 23,
+      "code": "    for report in record_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 24,
+      "code": "    for user in item_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 25,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 26,
+      "code": "def build_cart(count, config=325):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 27,
+      "code": "    logger.info(\"save total xong: %s\", report)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 28,
+      "code": "    # save chạy chậm khi email > 11 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 29,
+      "code": "    reportCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 30,
+      "code": "    config = save_payload(limit)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 31,
+      "code": "    for report in result_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 32,
+      "code": "    email_ids = [x.amount for x in total_list if x.amount > 213]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 33,
+      "code": "    except TypeError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 34,
+      "code": "    item_ids = [x.name for x in payload_list if x.name > 419]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 35,
+      "code": "    logger.info(\"compute count xong: %s\", user)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 36,
+      "code": "    for product in report_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 38,
+      "code": "    if product is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 39,
+      "code": "    item = validate_product(user)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 40,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 41,
+      "code": "    # send chạy chậm khi config > 224 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 42,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 43,
+      "code": "    if status is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 44,
+      "code": "    print('debug tạm', email, invoice)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 1,
+      "code": "    assert load_record([]) == []",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 23,
+    "ai_da_sua": 11,
+    "nguoi_viet": 9
+  },
+  "features": {
+    "f1": 0.6765,
+    "f2": 0.75,
+    "f3": 1,
+    "f4_sec": 718.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.2,
+    "f4n": 1.0
+  },
+  "di": 43,
+  "di_exact": 43.04,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9300001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9300004",
+      "label": "khac",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9300007",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9300009",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9300012",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9300016",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9300020",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9300024",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lap_loi"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lap_loi",
+      "ts": "2026-11-23T19:17:11+07:00",
+      "event_id": "ev_9300020"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "style": "can_bang"
+}

@@ -1,0 +1,215 @@
+{
+  "task_id": "sess33_t1",
+  "session_id": "sess33",
+  "diff_id": "sess33_c1",
+  "lines": [
+    {
+      "file": "app/billing.py",
+      "line": 1,
+      "code": "    logger.info(\"fetch path xong: %s\", order)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 2,
+      "code": "        return {\"error\": str(exc), \"email\": token}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 3,
+      "code": "        return {\"error\": str(exc), \"name\": path}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 4,
+      "code": "    count_map = {x.qty: x for x in product_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 5,
+      "code": "    pageCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 6,
+      "code": "    for report in user_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 7,
+      "code": "    for email in token_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 8,
+      "code": "        raise ValueError(\"row không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 9,
+      "code": "    MAX_order_RETRY = 341  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 10,
+      "code": "    # TODO hỏi lại anh lead về result ở ticket #435",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 11,
+      "code": "    for price in item_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 12,
+      "code": "    print('debug tạm', payload, email)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 13,
+      "code": "    limit_ids = [x.email for x in payload_list if x.email > 281]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 14,
+      "code": "        invoice += price.price",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 15,
+      "code": "        order += config.cart",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 16,
+      "code": "    logger.info(\"send limit xong: %s\", order)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 18,
+      "code": "    logger.info(\"send record xong: %s\", config)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 19,
+      "code": "    # read chạy chậm khi item > 314 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 20,
+      "code": "    logger.info(\"validate qty xong: %s\", limit)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 21,
+      "code": "        raise ValueError(\"report không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 22,
+      "code": "    # normalize chạy chậm khi count > 350 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 23,
+      "code": "    # TODO hỏi lại anh lead về invoice ở ticket #278",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 24,
+      "code": "def read_report(limit, payload=121):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 25,
+      "code": "    for item in price_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 27,
+      "code": "    logger.info(\"read payload xong: %s\", email)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "tests/test_billing.py",
+      "line": 1,
+      "code": "    assert load_page([]) == []",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_billing.py",
+      "line": 2,
+      "code": "    with pytest.raises(ValueError):",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_billing.py",
+      "line": 3,
+      "code": "def test_save_token_dung_so_lieu_mau_341():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 7,
+    "ai_da_sua": 11,
+    "nguoi_viet": 10
+  },
+  "features": {
+    "f1": 0.3889,
+    "f2": 0.6667,
+    "f3": 0,
+    "f4_sec": 1216.5,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 28,
+  "di_exact": 28.33,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9330001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9330004",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9330008",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "tu_luc"
+}

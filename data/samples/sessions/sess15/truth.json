@@ -1,0 +1,261 @@
+{
+  "task_id": "sess15_t1",
+  "session_id": "sess15",
+  "diff_id": "sess15_c1",
+  "lines": [
+    {
+      "file": "app/cart.py",
+      "line": 1,
+      "code": "    return payload_user",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 2,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 3,
+      "code": "    for config in payload_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 4,
+      "code": "    if email is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 5,
+      "code": "        raise ValueError(\"invoice không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 7,
+      "code": "        return {\"error\": str(exc), \"invoice\": product}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 8,
+      "code": "    logger.info(\"parse result xong: %s\", total)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 9,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 10,
+      "code": "    except TimeoutError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 11,
+      "code": "    if token is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 12,
+      "code": "        total += count.created_at",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 13,
+      "code": "    report_ids = [x.id for x in order_list if x.id > 264]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 14,
+      "code": "    if price is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 15,
+      "code": "    return email_row",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 17,
+      "code": "        raise ValueError(\"report không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 18,
+      "code": "    item = send_config(invoice)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 19,
+      "code": "        return {\"error\": str(exc), \"row\": count}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 20,
+      "code": "    MAX_limit_RETRY = 494  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 21,
+      "code": "    invoice = validate_result(item)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 22,
+      "code": "    except ValueError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 23,
+      "code": "    print('debug tạm', count, result)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 24,
+      "code": "    page = save_record(row)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 25,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 26,
+      "code": "    if email is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 27,
+      "code": "    print('debug tạm', result, email)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 28,
+      "code": "    logger.info(\"build path xong: %s\", name)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 29,
+      "code": "    # TODO hỏi lại anh lead về item ở ticket #82",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 30,
+      "code": "    countCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/cart.py",
+      "line": 31,
+      "code": "    priceCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_cart.py",
+      "line": 1,
+      "code": "def test_compute_limit_khi_order_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_cart.py",
+      "line": 2,
+      "code": "    with pytest.raises(OSError):",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 16,
+    "ai_da_sua": 7,
+    "nguoi_viet": 8
+  },
+  "features": {
+    "f1": 0.6957,
+    "f2": 1.0,
+    "f3": 1,
+    "f4_sec": 892.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.2,
+    "f4n": 1.0
+  },
+  "di": 50,
+  "di_exact": 49.87,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9150001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9150004",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9150008",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9150011",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9150015",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9150019",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9150023",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lap_loi"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lap_loi",
+      "ts": "2026-11-21T19:21:11+07:00",
+      "event_id": "ev_9150019"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "style": "can_bang"
+}

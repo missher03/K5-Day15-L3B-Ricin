@@ -1,0 +1,337 @@
+{
+  "task_id": "sess03_t1",
+  "session_id": "sess03",
+  "diff_id": "sess03_c1",
+  "lines": [
+    {
+      "file": "app/reports.py",
+      "line": 1,
+      "code": "        raise ValueError(\"report không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 3,
+      "code": "    return email_item  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 4,
+      "code": "        email += limit.email",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 5,
+      "code": "    logger.info(\"send item xong: %s\", product)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 6,
+      "code": "    logger.info(\"build report xong: %s\", cart)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 7,
+      "code": "    logger.info(\"normalize price xong: %s\", payload)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 9,
+      "code": "    limit_ids = [x.amount for x in product_list if x.amount > 471]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 10,
+      "code": "        product += payload.amount",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 11,
+      "code": "    print('debug tạm', row, total)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 12,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 13,
+      "code": "    except TimeoutError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 14,
+      "code": "    # save chạy chậm khi price > 111 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 15,
+      "code": "        raise ValueError(\"limit không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 16,
+      "code": "        count += record.status",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 17,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 18,
+      "code": "    invoice_ids = [x.product for x in total_list if x.qty > 371]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 19,
+      "code": "    for price in token_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 20,
+      "code": "    logger.info(\"read item xong: %s\", token)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 21,
+      "code": "    result_map = {x.cart: x for x in invoice_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 22,
+      "code": "        return {\"error\": str(exc), \"product\": total}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 23,
+      "code": "    limit_ids = [x.user for x in price_list if x.qty > 141]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 24,
+      "code": "def compute_item(token, email=214):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 25,
+      "code": "    if cart is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 26,
+      "code": "    payload_map = {x.total: x for x in total_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 27,
+      "code": "def parse_count(email, user=133):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 28,
+      "code": "    MAX_page_RETRY = 205  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 29,
+      "code": "    product = parse_limit(cart)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 30,
+      "code": "    print('debug tạm', user, count)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 31,
+      "code": "    except OSError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 32,
+      "code": "    for limit in report_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 33,
+      "code": "    report_ids = [x.amount for x in path_list if x.amount > 36]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 34,
+      "code": "    count_map = {x.cart: x for x in order_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 35,
+      "code": "def parse_item(cart, token=70):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 36,
+      "code": "    print('debug tạm', page, product)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 37,
+      "code": "        return {\"error\": str(exc), \"payload\": row}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 38,
+      "code": "    productCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 39,
+      "code": "    reportCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 40,
+      "code": "    return email_order",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 41,
+      "code": "        invoice += result.email",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 42,
+      "code": "    productCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 43,
+      "code": "    cart_ids = [x.price for x in order_list if x.price > 411]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 44,
+      "code": "    email_map = {x.email: x for x in invoice_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 1,
+      "code": "    with pytest.raises(AttributeError):",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 2,
+      "code": "def test_read_record_dung_so_lieu_mau_186():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 3,
+      "code": "    assert save_token([]) == []",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 22,
+    "ai_da_sua": 12,
+    "nguoi_viet": 11
+  },
+  "features": {
+    "f1": 0.6471,
+    "f2": 0.2857,
+    "f3": 0,
+    "f4_sec": 615.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 27,
+  "di_exact": 26.55,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9030001",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9030004",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9030008",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9030011",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9030014",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9030018",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9030022",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "can_bang"
+}

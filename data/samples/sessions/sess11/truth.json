@@ -1,0 +1,521 @@
+{
+  "task_id": "sess11_t1",
+  "session_id": "sess11",
+  "diff_id": "sess11_c1",
+  "lines": [
+    {
+      "file": "app/users.py",
+      "line": 1,
+      "code": "        raise ValueError(\"item không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 2,
+      "code": "        return {\"error\": str(exc), \"product\": report}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 3,
+      "code": "        return {\"error\": str(exc), \"result\": record}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 4,
+      "code": "    record = load_path(report)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 5,
+      "code": "    record_map = {x.created_at: x for x in result_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 7,
+      "code": "        raise ValueError(\"user không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 8,
+      "code": "    logger.info(\"read record xong: %s\", payload)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 9,
+      "code": "def compute_total(email, page=403):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 10,
+      "code": "    result_map = {x.id: x for x in report_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 11,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 12,
+      "code": "        return {\"error\": str(exc), \"product\": invoice}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 13,
+      "code": "    print('debug tạm', product, order)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 14,
+      "code": "    logger.info(\"parse order xong: %s\", config)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 15,
+      "code": "    result_map = {x.qty: x for x in record_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 16,
+      "code": "    for record in item_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 17,
+      "code": "    for config in count_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 18,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 19,
+      "code": "    product = read_item(payload)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 20,
+      "code": "def compute_report(result, record=100):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 21,
+      "code": "    payload = save_email(price)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 22,
+      "code": "        limit += product.status",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 23,
+      "code": "def validate_total(result, token=161):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 24,
+      "code": "    if email is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 25,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 26,
+      "code": "    # TODO hỏi lại anh lead về row ở ticket #256",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 27,
+      "code": "    if cart is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 28,
+      "code": "        raise ValueError(\"email không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 29,
+      "code": "    product_map = {x.qty: x for x in config_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 30,
+      "code": "    logger.info(\"load payload xong: %s\", email)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 31,
+      "code": "        return {\"error\": str(exc), \"email\": row}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 32,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 33,
+      "code": "    if path is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 34,
+      "code": "        raise ValueError(\"payload không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 35,
+      "code": "    logger.info(\"parse item xong: %s\", report)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 36,
+      "code": "    return row_result  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 37,
+      "code": "    count_map = {x.qty: x for x in order_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 38,
+      "code": "    for total in product_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 39,
+      "code": "    if record is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 40,
+      "code": "    return report_user  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 41,
+      "code": "    for page in order_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 42,
+      "code": "def compute_path(report, invoice=209):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 43,
+      "code": "    record_ids = [x.status for x in row_list if x.status > 286]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 44,
+      "code": "        raise ValueError(\"total không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 45,
+      "code": "    count_map = {x.qty: x for x in path_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 46,
+      "code": "    return product_path",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 47,
+      "code": "        return {\"error\": str(exc), \"token\": row}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 48,
+      "code": "        return {\"error\": str(exc), \"limit\": config}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 49,
+      "code": "    logger.info(\"parse cart xong: %s\", price)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 50,
+      "code": "    except OSError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 51,
+      "code": "    logger.info(\"build page xong: %s\", report)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 52,
+      "code": "        count += email.amount",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 53,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 55,
+      "code": "        raise ValueError(\"row không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 56,
+      "code": "        config += limit.qty",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 57,
+      "code": "    user_map = {x.qty: x for x in price_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 58,
+      "code": "    return row_config",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 59,
+      "code": "    except OSError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 60,
+      "code": "    email_map = {x.amount: x for x in row_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 61,
+      "code": "        return {\"error\": str(exc), \"price\": order}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 62,
+      "code": "    page = send_token(invoice)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 63,
+      "code": "    # TODO hỏi lại anh lead về page ở ticket #378",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 64,
+      "code": "    result_counts = [x.id for x in email_list if x.id > 51]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 65,
+      "code": "    except KeyError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 66,
+      "code": "    return report_invoice",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 67,
+      "code": "    except KeyError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 68,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 69,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 70,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 71,
+      "code": "        order += item.amount",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 72,
+      "code": "    logger.info(\"compute order xong: %s\", invoice)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 73,
+      "code": "    if item is None:",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 62,
+    "ai_da_sua": 6,
+    "nguoi_viet": 3
+  },
+  "features": {
+    "f1": 0.9118,
+    "f2": 0.8182,
+    "f3": 2,
+    "f4_sec": 736.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.4,
+    "f4n": 1.0
+  },
+  "di": 66,
+  "di_exact": 65.81,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9110001",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110005",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110009",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110013",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110017",
+      "label": "khac",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110019",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110023",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110027",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110030",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110034",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9110037",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lap_loi"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lap_loi",
+      "ts": "2026-11-22T20:50:07+07:00",
+      "event_id": "ev_9110013"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "style": "phu_thuoc"
+}

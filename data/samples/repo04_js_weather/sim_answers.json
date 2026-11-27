@@ -1,0 +1,5 @@
+[
+  "Hết timeoutMs thì controller.abort() làm fetch ném AbortError, catch bắt và thử lại hoặc trả timeout.",
+  "Chờ 500ms rồi gấp đôi mỗi lần để server đỡ bị dồn request.",
+  "finally để dọn timer."
+]

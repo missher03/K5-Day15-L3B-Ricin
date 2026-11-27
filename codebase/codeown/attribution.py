@@ -102,9 +102,10 @@ def _norm(path):
     return path
 
 
-def _best_ratio(code, candidates, floor=SIMILAR):
+def _best_match(code, candidates, floor=SIMILAR):
+    """→ (tỉ lệ giống cao nhất, dòng AI khớp nhất)."""
     code = code.strip()
-    best = 0.0
+    best, best_line = 0.0, None
     sm = difflib.SequenceMatcher(autojunk=False)
     sm.set_seq2(code)
     for cand in candidates:
@@ -113,28 +114,38 @@ def _best_ratio(code, candidates, floor=SIMILAR):
             continue
         r = sm.ratio()
         if r > best:
-            best = r
+            best, best_line = r, cand
             if best >= 0.999:
                 break
-    return best
+    return best, best_line
 
 
 def attribute_lines(added, ai_hashes, ai_by_file):
-    """Gán nhãn cho danh sách dòng thêm. Ưu tiên so với dòng AI cùng file, rồi mới tới file khác."""
+    """Gán nhãn cho danh sách dòng thêm. Ưu tiên so với dòng AI cùng file, rồi mới tới file khác.
+    Dòng AI có thêm "ai_hash" = hash của dòng AI gốc (để đo f4: AI ghi lúc nào)."""
     all_ai = [ln for lines in ai_by_file.values() for ln in lines]
     out = []
     for item in added:
         code = item["code"]
-        if E.line_hash(code) in ai_hashes:
-            label = "ai_giu_nguyen"
+        h = E.line_hash(code)
+        ai_hash = None
+        if h in ai_hashes:
+            label, ai_hash = "ai_giu_nguyen", h
         else:
             same = ai_by_file.get(_norm(item["file"]), [])
-            ratio = _best_ratio(code, same)
-            similar = ratio >= SIMILAR
-            if not similar and len(all_ai) != len(same):
-                similar = _best_ratio(code, all_ai, SIMILAR_OTHER_FILE) >= SIMILAR_OTHER_FILE
-            label = "ai_da_sua" if similar else "nguoi_viet"
-        out.append({"file": item["file"], "line": item["line"], "code": code, "label": label})
+            ratio, match = _best_match(code, same)
+            if ratio < SIMILAR and len(all_ai) != len(same):
+                r2, m2 = _best_match(code, all_ai, SIMILAR_OTHER_FILE)
+                if r2 >= SIMILAR_OTHER_FILE:
+                    ratio, match = r2, m2
+            if ratio >= SIMILAR:
+                label, ai_hash = "ai_da_sua", E.line_hash(match)
+            else:
+                label = "nguoi_viet"
+        row = {"file": item["file"], "line": item["line"], "code": code, "label": label}
+        if ai_hash:
+            row["ai_hash"] = ai_hash
+        out.append(row)
     return out
 
 

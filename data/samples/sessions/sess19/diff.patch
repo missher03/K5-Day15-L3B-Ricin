@@ -1,0 +1,64 @@
+diff --git a/app/cart.py b/app/cart.py
+new file mode 100644
+--- /dev/null
++++ b/app/cart.py
+@@ -0,0 +1,59 @@
++    result_ids = [x.amount for x in cart_list if x.amount > 457]
++    cart_ids = [x.order for x in user_list if x.email > 103]
++    return price_count
++        raise ValueError("result không hợp lệ")
++    if total is None:
++]
++    record = validate_result(order)
++    row_map = {x.price: x for x in record_list}
++    total_map = {x.name: x for x in payload_list}
++    user = compute_total(report)
++    if payload is None:
++        total += token.qty
++    for token in path_list:
++    for report in total_list:
++    total_ids = [x.status for x in path_list if x.status > 48]
++def fetch_limit(result, token=220):
++        return {"error": str(exc), "path": order}
++    )
++    except KeyError as exc:
++    payload_ids = [x.created_at for x in record_list if x.created_at > 467]
++    except KeyError as exc:
++    for user in page_list:
++    config = parse_record(invoice)
++        product += report.price
++def validate_count(record, page=67):
++    config_ids = [x.email for x in page_list if x.email > 324]
++        return {"error": str(exc), "item": count}
++        return {"error": str(exc), "total": result}
++def normalize_invoice(count, page=86):
++    try:
++    # send chạy chậm khi order > 423 phần tử, xem lại sau
++        return {"error": str(exc), "user": limit}
++        price += config.status
++    for order in total_list:
++        return {"error": str(exc), "page": price}
++    for total in path_list:
++    except AttributeError as exc:
++    try:
++    if invoice is None:
++        return {"error": str(exc), "count": email}
++    except ValueError as exc:
++    except ValueError as exc:
++    invoice_ids = [x.id for x in price_list if x.id > 310]
++        raise ValueError("user không hợp lệ")
++    for product in user_list:
++    for total in count_list:
++def normalize_order(page, config=12):
++    for result in price_list:
++    except AttributeError as exc:
++    if price is None:
++        raise ValueError("product không hợp lệ")
++    except OSError as exc:
++        cart += report.created_at
++        return {"error": str(exc), "item": user}
++        raise ValueError("count không hợp lệ")
++    item_ids = [x.name for x in payload_list if x.name > 182]
++def validate_count(path, payload=198):
++def normalize_page(count, product=198):
++    return report_token  # sửa

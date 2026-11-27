@@ -1,0 +1,84 @@
+{
+  "task_id": "repo12_t1",
+  "session_id": "s_repo12",
+  "diff_id": "repo12_c1",
+  "lines": [
+    {
+      "file": "README.md",
+      "line": 3,
+      "code": "## Cách chạy",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "README.md",
+      "line": 5,
+      "code": "1. Cài Flask: `pip install flask`",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "README.md",
+      "line": 6,
+      "code": "2. Chạy: `python app.py`",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "README.md",
+      "line": 7,
+      "code": "3. Mở http://localhost:8080/todos",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "config.yaml",
+      "line": 1,
+      "code": "port: 8080",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "config.yaml",
+      "line": 2,
+      "code": "debug: false",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 6,
+    "ai_da_sua": 0,
+    "nguoi_viet": 0
+  },
+  "features": {
+    "f1": 1.0,
+    "f2": 1.0,
+    "f3": 0,
+    "f4_sec": 143.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 0.2383
+  },
+  "di": 76,
+  "di_exact": 76.42,
+  "prompt_labels": [
+    {
+      "event_id": "ev_120001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "di_cao"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "di_cao",
+      "ts": "2026-11-23T20:12:32+07:00",
+      "event_id": "ev_120005"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 5,
+  "skip_reason": "docs_config",
+  "intent_expected": "Chỉ đổi docs + config",
+  "repo": "repo12_docs_only",
+  "open_check": false
+}

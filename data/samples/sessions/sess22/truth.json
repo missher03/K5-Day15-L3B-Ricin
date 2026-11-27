@@ -1,0 +1,449 @@
+{
+  "task_id": "sess22_t1",
+  "session_id": "sess22",
+  "diff_id": "sess22_c1",
+  "lines": [
+    {
+      "file": "app/billing.py",
+      "line": 1,
+      "code": "    return order_cart",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 2,
+      "code": "    except KeyError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 3,
+      "code": "    total_ids = [x.qty for x in cart_list if x.qty > 144]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 5,
+      "code": "        raise ValueError(\"item không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 6,
+      "code": "        return {\"error\": str(exc), \"payload\": report}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 7,
+      "code": "    return row_token",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 8,
+      "code": "    token = validate_product(price)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 9,
+      "code": "        raise ValueError(\"product không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 10,
+      "code": "    for payload in price_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 11,
+      "code": "    config_ids = [x.status for x in count_list if x.status > 105]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 12,
+      "code": "    for limit in record_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 13,
+      "code": "    return order_total",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 14,
+      "code": "    return row_limit",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 15,
+      "code": "    if product is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 16,
+      "code": "    for report in item_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 17,
+      "code": "    order_ids = [x.path for x in page_list if x.status > 422]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 18,
+      "code": "def save_cart(item, row=275):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 19,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 20,
+      "code": "    return count_config",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 21,
+      "code": "    for order in total_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 23,
+      "code": "def compute_count(item, order=488):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 24,
+      "code": "    except OSError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 25,
+      "code": "    cart_map = {x.status: x for x in path_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 26,
+      "code": "        return {\"error\": str(exc), \"record\": page}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 27,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 28,
+      "code": "    for cart in product_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 29,
+      "code": "    item_map = {x.name: x for x in report_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 30,
+      "code": "        order += user.id",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 31,
+      "code": "    logger.info(\"build order xong: %s\", payload)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 32,
+      "code": "    for price in item_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 33,
+      "code": "def normalize_email(result, cart=446):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 34,
+      "code": "        return {\"error\": str(exc), \"config\": payload}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 35,
+      "code": "        config += product.status",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 36,
+      "code": "    except ValueError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 37,
+      "code": "        user += email.id",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 38,
+      "code": "    item_ids = [x.name for x in order_list if x.name > 255]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 39,
+      "code": "def fetch_email(order, token=96):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 40,
+      "code": "        product += order.amount",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 41,
+      "code": "    report_map = {x.name: x for x in record_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 42,
+      "code": "        raise ValueError(\"price không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 43,
+      "code": "    if invoice is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 44,
+      "code": "    return token_page",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 45,
+      "code": "        user += cart.created_at",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 46,
+      "code": "    return row_email",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 47,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 48,
+      "code": "    logger.info(\"read email xong: %s\", payload)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 49,
+      "code": "        raise ValueError(\"email không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 50,
+      "code": "        payload += limit.status",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 51,
+      "code": "def load_user(cart, page=181):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 52,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 53,
+      "code": "    return path_item",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 54,
+      "code": "        count += path.id",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 55,
+      "code": "    for total in report_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 56,
+      "code": "    if invoice is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 57,
+      "code": "def build_token(report, limit=277):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 58,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 59,
+      "code": "        return {\"error\": str(exc), \"result\": token}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 60,
+      "code": "    return price_token",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 61,
+      "code": "    count_map = {x.token: x for x in token_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 62,
+      "code": "    return path_report",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 63,
+      "code": "        raise ValueError(\"price không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 64,
+      "code": "        return {\"error\": str(exc), \"email\": user}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 65,
+      "code": "        raise ValueError(\"price không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "tests/test_billing.py",
+      "line": 1,
+      "code": "def test_save_user_dung_so_lieu_mau_376():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 58,
+    "ai_da_sua": 5,
+    "nguoi_viet": 1
+  },
+  "features": {
+    "f1": 0.9206,
+    "f2": 1.0,
+    "f3": 1,
+    "f4_sec": 319.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.2,
+    "f4n": 0.5317
+  },
+  "di": 64,
+  "di_exact": 63.64,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9220001",
+      "label": "lam_ho",
+      "ca_tinh_nang": true
+    },
+    {
+      "event_id": "ev_9220004",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9220008",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9220012",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9220015",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lam_ho_ca_tinh_nang"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lam_ho_ca_tinh_nang",
+      "ts": "2026-11-20T20:31:00+07:00",
+      "event_id": "ev_9220001"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "style": "phu_thuoc"
+}

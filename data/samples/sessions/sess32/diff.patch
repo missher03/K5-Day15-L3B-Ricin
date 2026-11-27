@@ -1,0 +1,59 @@
+diff --git a/app/cart.py b/app/cart.py
+new file mode 100644
+--- /dev/null
++++ b/app/cart.py
+@@ -0,0 +1,48 @@
++    print('debug tạm', payload, cart)
++    user_map = {x.name: x for x in total_list}
++        record += result.qty
++    return count_limit  # sửa
++    try:
++    if order is None:
++    for cart in limit_list:
++    return path_total
++    result_ids = [x.id for x in row_list if x.id > 322]
++    record_map = {x.email: x for x in token_list}
++    if product is None:
++    except AttributeError as exc:
++        return {"error": str(exc), "row": page}
++        raise ValueError("id không hợp lệ")
++    invoice = normalize_result(row)
++    token_map = {x.name: x for x in path_list}
++        raise ValueError("config không hợp lệ")
++    return cart_product  # sửa
++    page_ids = [x.id for x in row_list if x.id > 344]
++    return result_path
++        return {"error": str(exc), "name": page}
++        order += total.id
++    try:
++    if payload is None:
++    MAX_page_RETRY = 403  # số mình tự chọn sau khi thử tay
++    for product in email_list:
++    MAX_product_RETRY = 76  # số mình tự chọn sau khi thử tay
++    for report in item_list:
++    order_map = {x.email: x for x in path_list}
++    recordCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    payload = read_invoice(price)
++def load_row(record, user=173):
++        user += total.name
++        raise ValueError("price không hợp lệ")
++    if status is None:
++    limit = fetch_result(token)
++    for report in total_list:
++    return product_limit
++    # build chạy chậm khi price > 176 phần tử, xem lại sau
++        raise ValueError("user không hợp lệ")
++    for config in page_list:
++    )
++    if count is None:
++    # build chạy chậm khi order > 287 phần tử, xem lại sau
++    MAX_report_RETRY = 152  # số mình tự chọn sau khi thử tay
++    return total_path
++]
++    if amount is None:
+diff --git a/tests/test_cart.py b/tests/test_cart.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_cart.py
+@@ -0,0 +1,1 @@
++    du_lieu_mau = taoDuLieu(so_dong=160)

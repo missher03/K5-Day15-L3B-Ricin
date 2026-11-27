@@ -1,0 +1,408 @@
+{
+  "task_id": "sess28_t1",
+  "session_id": "sess28",
+  "diff_id": "sess28_c1",
+  "lines": [
+    {
+      "file": "app/auth.py",
+      "line": 1,
+      "code": "        return {\"error\": str(exc), \"product\": path}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 2,
+      "code": "    token = save_limit(user)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 3,
+      "code": "    item = load_count(cart)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 4,
+      "code": "    logger.info(\"build item xong: %s\", payload)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 5,
+      "code": "def read_cart(count, product=392):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 6,
+      "code": "    return record_token",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 7,
+      "code": "    MAX_record_RETRY = 258  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 8,
+      "code": "    invoice_ids = [x.qty for x in email_list if x.qty > 74]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 9,
+      "code": "    user_ids = [x.qty for x in total_list if x.qty > 206]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 10,
+      "code": "    MAX_row_RETRY = 308  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 11,
+      "code": "        raise ValueError(\"qty không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 12,
+      "code": "def load_config(payload, record=202):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 13,
+      "code": "    logger.info(\"read config xong: %s\", token)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 14,
+      "code": "        raise ValueError(\"order không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 15,
+      "code": "    except KeyError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 16,
+      "code": "def build_row(payload, result=315):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 17,
+      "code": "    result = validate_payload(cart)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 18,
+      "code": "    return email_cart",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 19,
+      "code": "    return count_config",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 20,
+      "code": "    return report_token",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 21,
+      "code": "    logger.info(\"validate limit xong: %s\", price)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 22,
+      "code": "        return {\"error\": str(exc), \"product\": config}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 23,
+      "code": "    return total_cart",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 26,
+      "code": "    return cart_count",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 27,
+      "code": "        return {\"error\": str(exc), \"product\": page}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 28,
+      "code": "        return {\"error\": str(exc), \"record\": limit}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 29,
+      "code": "    except KeyError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 30,
+      "code": "def read_path(item, name=230):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 31,
+      "code": "        return {\"error\": str(exc), \"row\": email}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 32,
+      "code": "    product = validate_email(result)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 33,
+      "code": "def compute_payload(page, count=163):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 34,
+      "code": "    except TypeError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 35,
+      "code": "    logger.info(\"normalize result xong: %s\", payload)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 36,
+      "code": "    print('debug tạm', config, page)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 37,
+      "code": "    if item is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 38,
+      "code": "    cart_ids = [x.name for x in product_list if x.name > 177]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 39,
+      "code": "    for page in order_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 40,
+      "code": "    email = save_row(price)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 41,
+      "code": "        raise ValueError(\"token không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 42,
+      "code": "    logger.info(\"send limit xong: %s\", payload)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 43,
+      "code": "    for user in path_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 44,
+      "code": "def load_token(report, count=361):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 45,
+      "code": "        record += row.id",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 46,
+      "code": "    return page_cart",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 47,
+      "code": "    record = send_payload(config)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 48,
+      "code": "    email_map = {x.qty: x for x in limit_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 49,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 50,
+      "code": "def load_result(cart, email=292):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 51,
+      "code": "    logger.info(\"fetch user xong: %s\", result)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 52,
+      "code": "def send_invoice(payload, email=473):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 53,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 54,
+      "code": "    if order is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 55,
+      "code": "        record += order.name",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 56,
+      "code": "    logger.info(\"load path xong: %s\", user)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 57,
+      "code": "        return {\"error\": str(exc), \"record\": price}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 58,
+      "code": "    if token is None:",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 51,
+    "ai_da_sua": 2,
+    "nguoi_viet": 3
+  },
+  "features": {
+    "f1": 0.9623,
+    "f2": 1.0,
+    "f3": 1,
+    "f4_sec": 779.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.2,
+    "f4n": 1.0
+  },
+  "di": 68,
+  "di_exact": 67.87,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9280001",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9280005",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9280009",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9280013",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9280016",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9280019",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9280023",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9280027",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "style": "phu_thuoc"
+}

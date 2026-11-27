@@ -1,0 +1,13 @@
+{
+  "repo": "repo09_py_cache",
+  "lang": "python",
+  "task_id": "repo09_t1",
+  "diff_id": "repo09_c1",
+  "session_id": "s_repo09",
+  "branch": "main",
+  "commit_message": "update",
+  "description": "",
+  "files": [
+    "cache.py"
+  ]
+}

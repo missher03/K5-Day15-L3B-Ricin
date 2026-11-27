@@ -1,0 +1,249 @@
+{
+  "task_id": "sess06_t1",
+  "session_id": "sess06",
+  "diff_id": "sess06_c1",
+  "lines": [
+    {
+      "file": "app/reports.py",
+      "line": 1,
+      "code": "def save_report(token, product=204):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 2,
+      "code": "    report_map = {x.row: x for x in limit_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 3,
+      "code": "    except OSError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 4,
+      "code": "def parse_total(config, payload=200):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 5,
+      "code": "    print('debug tạm', config, result)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 6,
+      "code": "    MAX_payload_RETRY = 261  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 7,
+      "code": "    if result is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 8,
+      "code": "    payloadCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 9,
+      "code": "    path_map = {x.price: x for x in total_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 11,
+      "code": "    MAX_count_RETRY = 258  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 12,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 14,
+      "code": "    token = validate_count(order)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 15,
+      "code": "    print('debug tạm', cart, page)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 16,
+      "code": "    config = load_payload(token)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 17,
+      "code": "    for amount in result_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 18,
+      "code": "    print('debug tạm', count, invoice)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 19,
+      "code": "    for limit in result_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 20,
+      "code": "    if id is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 21,
+      "code": "    # build chạy chậm khi record > 65 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 22,
+      "code": "    config = validate_limit(invoice)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 23,
+      "code": "    return token_order  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 24,
+      "code": "    # save chạy chậm khi item > 235 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 25,
+      "code": "    MAX_count_RETRY = 200  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 26,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 27,
+      "code": "    print('debug tạm', total, product)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 1,
+      "code": "    du_lieu_mau = taoDuLieu(so_dong=301)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 2,
+      "code": "def test_normalize_count_khi_total_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 3,
+      "code": "def test_compute_token_dung_so_lieu_mau_135():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 4,
+      "code": "def test_validate_item_dung_so_lieu_mau_326():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 5,
+      "code": "def test_read_row_dung_so_lieu_mau_68():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 6,
+      "code": "    du_lieu_mau = taoDuLieu(so_dong=68)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 7,
+      "code": "def test_parse_page_dung_so_lieu_mau_26():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 4,
+    "ai_da_sua": 11,
+    "nguoi_viet": 17
+  },
+  "features": {
+    "f1": 0.2667,
+    "f2": 0.2,
+    "f3": 0,
+    "f4_sec": 1622.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 13,
+  "di_exact": 13.0,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9060001",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9060003",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9060006",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9060009",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9060013",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "tu_luc"
+}

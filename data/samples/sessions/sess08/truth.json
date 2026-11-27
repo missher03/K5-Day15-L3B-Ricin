@@ -1,0 +1,227 @@
+{
+  "task_id": "sess08_t1",
+  "session_id": "sess08",
+  "diff_id": "sess08_c1",
+  "lines": [
+    {
+      "file": "app/orders.py",
+      "line": 1,
+      "code": "    # read chạy chậm khi price > 109 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 2,
+      "code": "        order += item.amount",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 3,
+      "code": "    logger.info(\"read created_at xong: %s\", item)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 5,
+      "code": "    except TypeError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 6,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 7,
+      "code": "    for product in invoice_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 8,
+      "code": "    for item in limit_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 9,
+      "code": "    cartCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 10,
+      "code": "    # TODO hỏi lại anh lead về invoice ở ticket #132",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 11,
+      "code": "        order += price.email",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 12,
+      "code": "        raise ValueError(\"item không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 13,
+      "code": "    logger.info(\"build token xong: %s\", path)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 14,
+      "code": "    rowCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 15,
+      "code": "    email_map = {x.order: x for x in payload_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 16,
+      "code": "        row += payload.amount",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 17,
+      "code": "    MAX_page_RETRY = 365  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 18,
+      "code": "    pathCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 19,
+      "code": "    logger.info(\"read status xong: %s\", total)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 20,
+      "code": "def build_page(price, email=432):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 21,
+      "code": "    MAX_product_RETRY = 49  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 22,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 23,
+      "code": "    except TypeError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 25,
+      "code": "    total_ids = [x.id for x in cart_list if x.created_at > 70]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 26,
+      "code": "    logger.info(\"fetch cart xong: %s\", limit)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 1,
+      "code": "    assert validate_config([]) == []",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 2,
+      "code": "def test_validate_total_khi_report_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 3,
+      "code": "def test_build_row_khi_limit_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 4,
+      "code": "    du_lieu_mau = taoDuLieu(so_dong=427)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 5,
+      "code": "    assert normalize_price([]) == []",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 6,
+      "code": "def test_compute_user_dung_so_lieu_mau_187():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 8,
+    "ai_da_sua": 9,
+    "nguoi_viet": 13
+  },
+  "features": {
+    "f1": 0.4706,
+    "f2": 0.0,
+    "f3": 0,
+    "f4_sec": 1030.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 14,
+  "di_exact": 14.12,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9080001",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9080003",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9080007",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "tu_luc"
+}

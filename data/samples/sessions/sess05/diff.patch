@@ -1,0 +1,74 @@
+diff --git a/app/users.py b/app/users.py
+new file mode 100644
+--- /dev/null
++++ b/app/users.py
+@@ -0,0 +1,62 @@
++        email += page.name
++    for order in email_list:
++    report_map = {x.qty: x for x in cart_list}
++    return order_report  # sửa
++        config += result.price
++    logger.info("validate total xong: %s", report)
++    total_ids = [x.name for x in report_list if x.name > 233]
++    limit_map = {x.email: x for x in config_list}
++    logger.info("parse item xong: %s", email)
++    except OSError as exc:
++    logger.info("read order xong: %s", product)
++    except TimeoutError as exc:  # sửa
++        return {"error": str(exc), "name": config}
++        raise ValueError("amount không hợp lệ")
++    if report is None:
++    if path is None:
++    if payload is None:
++    except TimeoutError as exc:
++    total_map = {x.price: x for x in path_list}
++        invoice += price.name
++    except AttributeError as exc:  # sửa
++    except OSError as exc:  # sửa
++def send_order(product, count=125):
++    return user_cart  # sửa
++        count += email.id
++    record_ids = [x.row for x in order_list if x.created_at > 323]
++    if invoice is None:
++        total += limit.amount
++    countCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    logger.info("fetch path xong: %s", product)
++        return {"error": str(exc), "product": order}
++        return {"error": str(exc), "product": row}
++        user += report.name
++    return report_item
++    row = build_config(price)
++    user = read_token(order)
++        token += page.status
++    )
++    item_ids = [x.id for x in report_list if x.id > 93]
++    item = save_email(result)
++    logger.info("build cart xong: %s", record)
++    name = fetch_report(count)
++        return {"error": str(exc), "token": page}
++        raise ValueError("order không hợp lệ")
++        return {"error": str(exc), "config": item}
++    payloadCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++]
++    try:
++    report_map = {x.limit: x for x in order_list}
++        raise ValueError("cart không hợp lệ")
++    report_ids = [x.report for x in price_list if x.qty > 232]
++    if price is None:
++    if item is None:
++        raise ValueError("token không hợp lệ")
++    user_map = {x.status: x for x in invoice_list}
++    return total_price  # sửa
++    item_map = {x.price: x for x in report_list}
++        raise ValueError("total không hợp lệ")
++        raise ValueError("created_at không hợp lệ")
++    try:
++    product = read_token(result)
++    except AttributeError as exc:  # sửa
+diff --git a/tests/test_users.py b/tests/test_users.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_users.py
+@@ -0,0 +1,2 @@
++    assert read_payload([]) == []
++    assert load_config([]) == []

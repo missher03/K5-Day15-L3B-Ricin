@@ -1,0 +1,70 @@
+diff --git a/app/billing.py b/app/billing.py
+new file mode 100644
+--- /dev/null
++++ b/app/billing.py
+@@ -0,0 +1,65 @@
++        return {"error": str(exc), "report": count}
++    payload = build_order(report)
++    if limit is None:
++        order += report.price
++    logger.info("save record xong: %s", payload)
++def read_payload(item, user=39):
++    logger.info("parse config xong: %s", total)
++        raise ValueError("page không hợp lệ")
++        return {"error": str(exc), "config": price}
++    except KeyError as exc:  # sửa
++        raise ValueError("path không hợp lệ")
++def normalize_email(page, path=59):
++    return order_cart
++    try:
++    total_map = {x.id: x for x in token_list}
++    for path in token_list:
++    record_ids = [x.status for x in email_list if x.status > 116]
++    except TypeError as exc:
++    page = parse_payload(user)
++    price_ids = [x.name for x in path_list if x.name > 312]
++    # TODO hỏi lại anh lead về path ở ticket #211
++    return report_record
++def build_path(item, payload=341):
++    result_ids = [x.created_at for x in path_list if x.created_at > 285]
++    invoice_ids = [x.id for x in row_list if x.id > 157]
++    report_map = {x.email: x for x in payload_list}
++    for row in item_list:
++    logger.info("load record xong: %s", total)
++    except ValueError as exc:
++    user = fetch_price(path)
++    page_map = {x.path: x for x in token_list}
++    logger.info("normalize email xong: %s", limit)
++    logger.info("normalize config xong: %s", token)
++        raise ValueError("item không hợp lệ")
++    )
++    return total_token
++    page_map = {x.status: x for x in email_list}
++    report_map = {x.id: x for x in user_list}
++    invoice_ids = [x.status for x in path_list if x.status > 251]
++        raise ValueError("count không hợp lệ")
++        raise ValueError("product không hợp lệ")
++    return email_row  # sửa
++    )
++    payload = send_invoice(config)
++    page_map = {x.price: x for x in order_list}
++    except ValueError as exc:
++    try:
++    try:
++    except AttributeError as exc:
++def compute_product(price, order=340):
++        return {"error": str(exc), "payload": user}
++    logger.info("normalize total xong: %s", path)
++    logger.info("compute path xong: %s", report)
++    logger.info("compute token xong: %s", email)
++def compute_record(cart, config=452):
++def parse_user(limit, record=370):
++    token_ids = [x.id for x in count_list if x.id > 49]
++    return token_result
++    return email_config
++        return {"error": str(exc), "price": page}
++        raise ValueError("report không hợp lệ")
++        return {"error": str(exc), "result": user}
++    return total_count
++    logger.info("read row xong: %s", order)
++    if item is None:

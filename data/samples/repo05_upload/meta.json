@@ -1,0 +1,13 @@
+{
+  "repo": "repo05_upload",
+  "lang": "python",
+  "task_id": "repo05_t1",
+  "diff_id": "repo05_c1",
+  "session_id": "s_repo05",
+  "branch": "feat/upload",
+  "commit_message": "Upload ảnh / pdf giới hạn 5MB",
+  "description": "Cho người dùng tải ảnh hoặc pdf lên",
+  "files": [
+    "upload.py"
+  ]
+}

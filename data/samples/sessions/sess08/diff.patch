@@ -1,0 +1,42 @@
+diff --git a/app/orders.py b/app/orders.py
+new file mode 100644
+--- /dev/null
++++ b/app/orders.py
+@@ -0,0 +1,26 @@
++    # read chạy chậm khi price > 109 phần tử, xem lại sau
++        order += item.amount
++    logger.info("read created_at xong: %s", item)
++    )
++    except TypeError as exc:  # sửa
++    try:
++    for product in invoice_list:
++    for item in limit_list:
++    cartCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    # TODO hỏi lại anh lead về invoice ở ticket #132
++        order += price.email
++        raise ValueError("item không hợp lệ")
++    logger.info("build token xong: %s", path)
++    rowCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    email_map = {x.order: x for x in payload_list}
++        row += payload.amount
++    MAX_page_RETRY = 365  # số mình tự chọn sau khi thử tay
++    pathCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    logger.info("read status xong: %s", total)
++def build_page(price, email=432):
++    MAX_product_RETRY = 49  # số mình tự chọn sau khi thử tay
++    try:
++    except TypeError as exc:  # sửa
++    )
++    total_ids = [x.id for x in cart_list if x.created_at > 70]
++    logger.info("fetch cart xong: %s", limit)
+diff --git a/tests/test_orders.py b/tests/test_orders.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_orders.py
+@@ -0,0 +1,6 @@
++    assert validate_config([]) == []
++def test_validate_total_khi_report_rong():
++def test_build_row_khi_limit_rong():
++    du_lieu_mau = taoDuLieu(so_dong=427)
++    assert normalize_price([]) == []
++def test_compute_user_dung_so_lieu_mau_187():

@@ -63,9 +63,10 @@ class TestHashing(unittest.TestCase):
         self.assertEqual(E.line_hash("    return x"), E.line_hash("return x\t"))
 
     def test_trivial_lines(self):
-        for t in ["", "   ", "}", "});", ")", "]", "else:", "pass"]:
+        for t in ["", "   ", "}", "});", ")", "]", "    )"]:
             self.assertTrue(E.is_trivial(t), repr(t))
-        self.assertFalse(E.is_trivial("x = 1"))
+        for t in ["x = 1", "else:", "try:", "pass"]:   # khớp quy tắc của bộ sinh mẫu: chỉ bỏ dòng trống / ngoặc
+            self.assertFalse(E.is_trivial(t), repr(t))
 
     def test_meaningful_lines(self):
         self.assertEqual(E.meaningful_lines("def f():\n\n    return 1\n}\n"), ["def f():", "return 1"])
@@ -149,30 +150,38 @@ class TestDependence(unittest.TestCase):
         # 100 × (0,24 + 0,125 + 0,04 + 0,075 + 0,1) = 58
         self.assertEqual(D.di_from_features(f), 58)
 
-    def test_missing_f4_is_neutral(self):
+    def test_missing_f4_adds_nothing(self):
         f = {"f1": 0, "f2": 0, "f3": 0, "f4_sec": None, "f5": 1}
-        self.assertEqual(D.di_from_features(f), 8)  # 0,15 × 0,5
+        self.assertEqual(D.di_from_features(f), 0)  # như bộ sinh mẫu: không đo được thì f4 = 600 giây
 
     def test_features_from_session(self):
-        err = "Traceback ... KeyError: 'user_id' at line 12"
+        err = "Traceback (most recent call last):\nKeyError: 'user_id'"
         evs = [
             ev("prompt", ts(0), id="p1", prompt="viết hàm đọc CSV và tính tổng doanh thu"),
-            ev("ai_edit", ts(10), file="a.py", line_hashes=["h"] * 3),
+            ev("ai_edit", ts(10), file="a.py", line_hashes=["h1", "h2"]),
             ev("prompt", ts(60), id="p2", prompt=err),
-            ev("prompt", ts(90), id="p3", prompt=err + " "),
+            ev("prompt", ts(90), id="p3", prompt="vẫn lỗi\n" + err),
+            ev("ai_edit", ts(100), file="a.py", line_hashes=["h3"]),
             ev("commit", ts(130), commit="abc"),
         ]
         att = {"stats": {"ai_giu_nguyen": 8, "ai_da_sua": 2, "nguoi_viet": 1},
-               "lines": [{"file": "tests/test_a.py", "line": 1, "code": "x", "label": "nguoi_viet"}]}
+               "lines": [{"file": "a.py", "line": 1, "code": "x", "label": "ai_giu_nguyen", "ai_hash": "h1"},
+                         {"file": "a.py", "line": 2, "code": "y", "label": "ai_da_sua", "ai_hash": "h2"},
+                         {"file": "a.py", "line": 3, "code": "z", "label": "ai_giu_nguyen", "ai_hash": "h3"},
+                         {"file": "tests/test_a.py", "line": 1, "code": "x", "label": "nguoi_viet"}]}
         r = D.compute(evs, att, mode="rules")
         f = r["features"]
         self.assertAlmostEqual(f["f1"], 0.8)
         self.assertAlmostEqual(f["f2"], 1.0)
         self.assertEqual(f["f3"], 1)
-        self.assertEqual(f["f4_sec"], 120)
+        self.assertEqual(f["f4_sec"], 120)   # trung vị của 120, 120, 30
         self.assertEqual(f["f5"], 1)
         # 100 × (0,24 + 0,25 + 0,04 + 0,15×0,8 + 0) = 65
         self.assertEqual(r["di"], 65)
+
+    def test_small_talk_counts_in_f2(self):
+        evs = [ev("prompt", ts(0), id="a", prompt="chào bạn"), ev("prompt", ts(5), id="b", prompt="viết hàm sum")]
+        self.assertEqual(D.compute(evs, None, "rules")["features"]["f2"], 0.5)
 
     def test_commit_breaks_error_chain(self):
         err = "Error: connection refused port 5432"
@@ -197,7 +206,7 @@ class TestNudge(unittest.TestCase):
         err = "ModuleNotFoundError: No module named 'flask'"
         evs = [ev("prompt", ts(i * 20), id="p%d" % i, prompt=err) for i in range(3)]
         n = N.check_nudge(evs, 10, self._labels(evs), now=E.parse_ts(ts(100)))
-        self.assertEqual(n["rule"], "same_error")
+        self.assertEqual(n["rule"], "lap_loi")
 
     def test_two_times_not_enough(self):
         err = "ModuleNotFoundError: No module named 'flask'"
@@ -207,16 +216,16 @@ class TestNudge(unittest.TestCase):
     def test_bulk_accept(self):
         evs = [ev("prompt", ts(0), id="p", prompt="giải thích đoạn này"),
                ev("ai_edit", ts(20), file="a.py", line_hashes=["h"] * 55)]
-        self.assertEqual(N.check_nudge(evs, 10, self._labels(evs), now=E.parse_ts(ts(60)))["rule"], "bulk_accept")
+        self.assertEqual(N.check_nudge(evs, 10, self._labels(evs), now=E.parse_ts(ts(60)))["rule"], "nhan_nhieu_dong")
 
     def test_whole_feature(self):
         evs = [ev("prompt", ts(0), id="p", prompt="viết toàn bộ chức năng giỏ hàng cho tôi")]
-        self.assertEqual(N.check_nudge(evs, 10, self._labels(evs), now=E.parse_ts(ts(5)))["rule"], "whole_feature")
+        self.assertEqual(N.check_nudge(evs, 10, self._labels(evs), now=E.parse_ts(ts(5)))["rule"], "lam_ho_ca_tinh_nang")
 
     def test_high_di(self):
         evs = [ev("prompt", ts(0), id="p", prompt="ok")]
         n = N.check_nudge(evs, 75, {"f1": 0.85}, now=E.parse_ts(ts(5)))
-        self.assertEqual(n["rule"], "high_di")
+        self.assertEqual(n["rule"], "di_cao")
         self.assertIn("85%", n["message"])
 
     def test_cooldown_15_minutes(self):
@@ -433,8 +442,52 @@ class TestDemoScenario(unittest.TestCase):
             self.assertIn(".claude/settings.json", st["ignored_files"])
             self.assertIn(".gitignore", st["ignored_files"])
             self.assertEqual(st["features"]["f1"], 1.0)
-            self.assertEqual(st["features"]["f2"], 1.0)   # "chào bạn" (khac) không tính
-            # 100 × (0,3·1 + 0,25·1 + 0 + 0,15·(1 − f4/600) + 0,1) ≈ 79 khi commit ngay
-            self.assertGreaterEqual(st["di"], 70)
+            self.assertEqual(st["features"]["f2"], 0.5)   # 1 lam_ho / 2 prompt (định nghĩa của bộ câu thử)
+            # 100 × (0,3·1 + 0,25·0,5 + 0 + 0,15·(1 − f4/600) + 0,1) ≈ 67 khi commit ngay
+            self.assertGreaterEqual(st["di"], 60)
         finally:
             shutil.rmtree(repo, ignore_errors=True)
+
+
+class TestNudgeAnyTime(unittest.TestCase):
+    def test_repeated_error_early_in_session_still_counts(self):
+        err = "ValueError: could not convert string to float: ''"
+        evs = [ev("prompt", ts(i * 20), id="p%d" % i, prompt=("vẫn lỗi\n" if i else "") + err) for i in range(3)]
+        evs += [ev("prompt", ts(100), id="q", prompt="Vì sao nên dùng Decimal thay vì float?")]
+        n = N.check_nudge(evs, 10, D.compute(evs, None, "rules")["features"], now=E.parse_ts(ts(120)))
+        self.assertEqual(n["rule"], "lap_loi")
+
+    def test_feature_request(self):
+        for p in ["Làm giúp mình chức năng đăng nhập có hash mật khẩu", "Code hết chức năng giỏ hàng luôn nha",
+                  "Thêm giúp mình API sửa và xoá todo"]:
+            self.assertTrue(N.is_whole_feature(p, "lam_ho"), p)
+        self.assertFalse(N.is_whole_feature("Ô tìm kiếm gọi API mỗi lần gõ phím, làm debounce giúp", "lam_ho"))
+        self.assertFalse(N.is_whole_feature("Viết giúp mình hàm load_user trong users.py", "lam_ho"))
+
+
+FIXTURES = os.path.join(ROOT, "data", "samples", "fixtures")
+
+
+@unittest.skipUnless(os.path.exists(os.path.join(FIXTURES, "classifier_prompts.json")), "chưa có fixtures của C")
+class TestAgainstFixturesOfC(unittest.TestCase):
+    """Fixtures C sinh cho A (data/samples/fixtures). Không đọc truth.json."""
+
+    def test_classifier_rules_accuracy(self):
+        with open(os.path.join(FIXTURES, "classifier_prompts.json"), encoding="utf-8") as f:
+            items = json.load(f)
+        ok = sum(classify_rules(it["prompt"]) == it["label"] for it in items)
+        self.assertGreaterEqual(ok / len(items), 0.8, "%d/%d" % (ok, len(items)))
+
+    def test_di_sessions_within_tolerance(self):
+        with open(os.path.join(FIXTURES, "di_sessions.json"), encoding="utf-8") as f:
+            cases = json.load(f)
+        bad = []
+        for c in cases:
+            d = os.path.join(ROOT, "data", "samples", "sessions", c["session_id"])
+            evs = E.load_jsonl(os.path.join(d, "events.jsonl"))
+            with open(os.path.join(d, "diff.patch"), encoding="utf-8") as f:
+                patch = f.read()
+            res = M.analyze_offline(evs, patch, c["task_id"], mode="rules", now=E.parse_ts(evs[-1]["ts"]))
+            if abs(res["di"] - c["di_expected"]) > c.get("tolerance", 5):
+                bad.append((c["session_id"], res["di"], c["di_expected"]))
+        self.assertEqual(bad, [])

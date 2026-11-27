@@ -1,0 +1,260 @@
+{
+  "task_id": "sess39_t1",
+  "session_id": "sess39",
+  "diff_id": "sess39_c1",
+  "lines": [
+    {
+      "file": "app/billing.py",
+      "line": 1,
+      "code": "    # build chạy chậm khi cart > 99 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 2,
+      "code": "    pathCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 3,
+      "code": "    except OSError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 4,
+      "code": "    configCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 5,
+      "code": "        raise ValueError(\"id không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 6,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 7,
+      "code": "    for invoice in email_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 8,
+      "code": "        raise ValueError(\"item không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 9,
+      "code": "    pathCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 10,
+      "code": "    except TypeError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 11,
+      "code": "    for page in path_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 12,
+      "code": "        raise ValueError(\"result không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 13,
+      "code": "    priceCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 14,
+      "code": "    return token_price",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 15,
+      "code": "    user_map = {x.created_at: x for x in cart_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 16,
+      "code": "    result_ids = [x.id for x in count_list if x.id > 73]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 17,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 18,
+      "code": "        return {\"error\": str(exc), \"email\": result}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 19,
+      "code": "    # validate chạy chậm khi report > 333 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 20,
+      "code": "    limitCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 21,
+      "code": "    return order_config",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 22,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 23,
+      "code": "        raise ValueError(\"total không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 24,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 25,
+      "code": "    # fetch chạy chậm khi config > 11 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 26,
+      "code": "    logger.info(\"compute email xong: %s\", user)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 28,
+      "code": "def save_path(record, product=42):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 29,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 31,
+      "code": "        result += path.record",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/billing.py",
+      "line": 32,
+      "code": "    # TODO hỏi lại anh lead về invoice ở ticket #116",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_billing.py",
+      "line": 1,
+      "code": "    du_lieu_mau = taoDuLieu(so_dong=477)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_billing.py",
+      "line": 2,
+      "code": "def test_compute_order_dung_so_lieu_mau_71():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_billing.py",
+      "line": 3,
+      "code": "    with pytest.raises(ValueError):",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 16,
+    "ai_da_sua": 5,
+    "nguoi_viet": 12
+  },
+  "features": {
+    "f1": 0.7619,
+    "f2": 0.8333,
+    "f3": 0,
+    "f4_sec": 927.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 44,
+  "di_exact": 43.69,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9390001",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9390005",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9390009",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9390013",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9390016",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9390020",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "style": "can_bang"
+}

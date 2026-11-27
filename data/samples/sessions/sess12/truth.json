@@ -1,0 +1,249 @@
+{
+  "task_id": "sess12_t1",
+  "session_id": "sess12",
+  "diff_id": "sess12_c1",
+  "lines": [
+    {
+      "file": "app/reports.py",
+      "line": 1,
+      "code": "    logger.info(\"fetch record xong: %s\", token)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 2,
+      "code": "        raise ValueError(\"report không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 3,
+      "code": "    for invoice in cart_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 4,
+      "code": "    logger.info(\"build payload xong: %s\", total)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 5,
+      "code": "    email_map = {x.status: x for x in path_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 6,
+      "code": "    for product in row_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 7,
+      "code": "    for report in count_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 9,
+      "code": "    payload_ids = [x.qty for x in path_list if x.qty > 469]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 10,
+      "code": "    logger.info(\"normalize order xong: %s\", product)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 11,
+      "code": "    for price in email_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 12,
+      "code": "        raise ValueError(\"total không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 13,
+      "code": "    print('debug tạm', item, limit)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 14,
+      "code": "        raise ValueError(\"email không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 15,
+      "code": "def parse_cart(email, user=459):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 16,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 17,
+      "code": "    logger.info(\"compute payload xong: %s\", order)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 18,
+      "code": "def compute_product(order, limit=333):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 19,
+      "code": "    record_map = {x.cart: x for x in total_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 20,
+      "code": "    return token_payload",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 21,
+      "code": "    logger.info(\"normalize cart xong: %s\", price)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 22,
+      "code": "        raise ValueError(\"name không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 23,
+      "code": "    logger.info(\"validate result xong: %s\", item)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 24,
+      "code": "    logger.info(\"load total xong: %s\", cart)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 25,
+      "code": "    # TODO hỏi lại anh lead về path ở ticket #157",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 26,
+      "code": "    cart_map = {x.order: x for x in path_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 27,
+      "code": "    logger.info(\"send token xong: %s\", limit)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 28,
+      "code": "    report_map = {x.email: x for x in limit_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 29,
+      "code": "    pageCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 31,
+      "code": "    MAX_product_RETRY = 102  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 32,
+      "code": "        raise ValueError(\"result không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/reports.py",
+      "line": 33,
+      "code": "        raise ValueError(\"cart không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "tests/test_reports.py",
+      "line": 1,
+      "code": "    with pytest.raises(TimeoutError):",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 20,
+    "ai_da_sua": 7,
+    "nguoi_viet": 5
+  },
+  "features": {
+    "f1": 0.7407,
+    "f2": 0.2,
+    "f3": 0,
+    "f4_sec": 744.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 27,
+  "di_exact": 27.22,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9120001",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9120003",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9120007",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9120010",
+      "label": "khac",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9120012",
+      "label": "khac",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "can_bang"
+}

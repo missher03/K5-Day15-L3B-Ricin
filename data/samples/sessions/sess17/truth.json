@@ -1,0 +1,417 @@
+{
+  "task_id": "sess17_t1",
+  "session_id": "sess17",
+  "diff_id": "sess17_c1",
+  "lines": [
+    {
+      "file": "app/auth.py",
+      "line": 1,
+      "code": "    logger.info(\"compute product xong: %s\", result)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 2,
+      "code": "    logger.info(\"fetch token xong: %s\", user)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 3,
+      "code": "    config = send_invoice(record)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 4,
+      "code": "    for price in cart_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 5,
+      "code": "    for report in cart_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 6,
+      "code": "        raise ValueError(\"config không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 7,
+      "code": "    for cart in price_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 8,
+      "code": "        return {\"error\": str(exc), \"result\": email}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 9,
+      "code": "        return {\"error\": str(exc), \"item\": price}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 11,
+      "code": "def fetch_cart(payload, path=392):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 12,
+      "code": "def fetch_result(total, item=324):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 13,
+      "code": "        raise ValueError(\"report không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 15,
+      "code": "    return limit_invoice",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 16,
+      "code": "    except TypeError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 17,
+      "code": "    for report in order_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 18,
+      "code": "def build_result(path, invoice=480):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 19,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 20,
+      "code": "    order_ids = [x.amount for x in email_list if x.amount > 220]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 21,
+      "code": "    logger.info(\"compute user xong: %s\", cart)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 22,
+      "code": "    token_map = {x.price: x for x in config_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 23,
+      "code": "    return config_token",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 24,
+      "code": "    record_map = {x.created_at: x for x in payload_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 25,
+      "code": "    page_ids = [x.created_at for x in config_list if x.created_at > 423]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 26,
+      "code": "    for report in user_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 27,
+      "code": "    record_map = {x.email: x for x in count_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 28,
+      "code": "def send_item(payload, record=109):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 29,
+      "code": "    logger.info(\"build user xong: %s\", cart)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 30,
+      "code": "    return cart_payload",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 31,
+      "code": "    report_ids = [x.qty for x in user_list if x.qty > 489]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 32,
+      "code": "    return record_invoice",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 33,
+      "code": "    report = parse_email(result)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 34,
+      "code": "    for created_at in count_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 35,
+      "code": "        raise ValueError(\"token không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 36,
+      "code": "    logger.info(\"validate payload xong: %s\", path)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 37,
+      "code": "        raise ValueError(\"item không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 38,
+      "code": "        result += product.status",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 39,
+      "code": "def read_record(user, total=424):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 40,
+      "code": "        count += payload.email",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 41,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 42,
+      "code": "    for path in email_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 43,
+      "code": "    logger.info(\"save row xong: %s\", config)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 44,
+      "code": "    path_ids = [x.price for x in page_list if x.price > 388]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 45,
+      "code": "    except KeyError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 46,
+      "code": "        payload += email.status",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 47,
+      "code": "    recordCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 48,
+      "code": "def read_price(total, payload=238):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 49,
+      "code": "    token = read_email(total)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 50,
+      "code": "        raise ValueError(\"product không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 51,
+      "code": "        return {\"error\": str(exc), \"id\": user}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 52,
+      "code": "    order_ids = [x.id for x in page_list if x.id > 430]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 53,
+      "code": "    for result in email_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 54,
+      "code": "    return cart_token",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 55,
+      "code": "    record_ids = [x.qty for x in item_list if x.qty > 372]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 56,
+      "code": "    limit_ids = [x.status for x in price_list if x.status > 321]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 57,
+      "code": "    price_ids = [x.amount for x in token_list if x.amount > 167]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 58,
+      "code": "    except KeyError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 59,
+      "code": "    if product is None:",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 48,
+    "ai_da_sua": 8,
+    "nguoi_viet": 1
+  },
+  "features": {
+    "f1": 0.8571,
+    "f2": 1.0,
+    "f3": 2,
+    "f4_sec": 471.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.4,
+    "f4n": 0.785
+  },
+  "di": 72,
+  "di_exact": 71.94,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9170001",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9170005",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9170009",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9170013",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9170017",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9170021",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9170024",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "di_cao"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "di_cao",
+      "ts": "2026-11-21T20:11:32+07:00",
+      "event_id": "ev_9170028"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 5,
+  "style": "phu_thuoc"
+}

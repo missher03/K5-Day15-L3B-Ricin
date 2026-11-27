@@ -1,0 +1,78 @@
+diff --git a/app/users.py b/app/users.py
+new file mode 100644
+--- /dev/null
++++ b/app/users.py
+@@ -0,0 +1,73 @@
++        raise ValueError("item không hợp lệ")
++        return {"error": str(exc), "product": report}
++        return {"error": str(exc), "result": record}
++    record = load_path(report)
++    record_map = {x.created_at: x for x in result_list}
++
++        raise ValueError("user không hợp lệ")
++    logger.info("read record xong: %s", payload)
++def compute_total(email, page=403):
++    result_map = {x.id: x for x in report_list}
++    try:
++        return {"error": str(exc), "product": invoice}
++    print('debug tạm', product, order)
++    logger.info("parse order xong: %s", config)
++    result_map = {x.qty: x for x in record_list}
++    for record in item_list:
++    for config in count_list:
++    except TimeoutError as exc:
++    product = read_item(payload)
++def compute_report(result, record=100):
++    payload = save_email(price)
++        limit += product.status
++def validate_total(result, token=161):
++    if email is None:
++    try:
++    # TODO hỏi lại anh lead về row ở ticket #256
++    if cart is None:
++        raise ValueError("email không hợp lệ")
++    product_map = {x.qty: x for x in config_list}
++    logger.info("load payload xong: %s", email)
++        return {"error": str(exc), "email": row}
++    try:
++    if path is None:
++        raise ValueError("payload không hợp lệ")
++    logger.info("parse item xong: %s", report)
++    return row_result  # sửa
++    count_map = {x.qty: x for x in order_list}
++    for total in product_list:
++    if record is None:
++    return report_user  # sửa
++    for page in order_list:
++def compute_path(report, invoice=209):
++    record_ids = [x.status for x in row_list if x.status > 286]
++        raise ValueError("total không hợp lệ")
++    count_map = {x.qty: x for x in path_list}
++    return product_path
++        return {"error": str(exc), "token": row}
++        return {"error": str(exc), "limit": config}
++    logger.info("parse cart xong: %s", price)
++    except OSError as exc:  # sửa
++    logger.info("build page xong: %s", report)
++        count += email.amount
++    try:
++
++        raise ValueError("row không hợp lệ")
++        config += limit.qty
++    user_map = {x.qty: x for x in price_list}
++    return row_config
++    except OSError as exc:
++    email_map = {x.amount: x for x in row_list}
++        return {"error": str(exc), "price": order}
++    page = send_token(invoice)
++    # TODO hỏi lại anh lead về page ở ticket #378
++    result_counts = [x.id for x in email_list if x.id > 51]
++    except KeyError as exc:
++    return report_invoice
++    except KeyError as exc:
++    try:
++    try:
++    except TimeoutError as exc:
++        order += item.amount
++    logger.info("compute order xong: %s", invoice)
++    if item is None:

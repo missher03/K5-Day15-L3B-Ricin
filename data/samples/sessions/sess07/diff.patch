@@ -1,0 +1,41 @@
+diff --git a/app/mailer.py b/app/mailer.py
+new file mode 100644
+--- /dev/null
++++ b/app/mailer.py
+@@ -0,0 +1,29 @@
++    price_map = {x.created_at: x for x in invoice_list}
++    pageCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    path_records = [x.id for x in row_list if x.id > 484]
++    except TimeoutError as exc:  # sửa
++        report += total.name
++def build_payload(id, limit=491):
++        raise ValueError("created_at không hợp lệ")
++    if page is None:
++def compute_count(payload, token=27):
++    if invoice is None:
++    if status is None:
++def normalize_invoice(path, path=424):
++    logger.info("compute page xong: %s", record)
++    payload = compute_page(report)
++        raise ValueError("payload không hợp lệ")
++    if id is None:
++    except OSError as exc:  # sửa
++
++def read_report(price, token=495):
++        return {"error": str(exc), "order": amount}
++def parse_report(row, total=338):
++    logger.info("save amount xong: %s", path)
++        return {"error": str(exc), "payload": product}
++        return {"error": str(exc), "page": record}
++    )
++    try:
++    MAX_record_RETRY = 113  # số mình tự chọn sau khi thử tay
++    report = save_path(page)
++    except ValueError as exc:  # sửa
+diff --git a/tests/test_mailer.py b/tests/test_mailer.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_mailer.py
+@@ -0,0 +1,2 @@
++    du_lieu_mau = taoDuLieu(so_dong=39)
++def test_normalize_row_khi_limit_rong():

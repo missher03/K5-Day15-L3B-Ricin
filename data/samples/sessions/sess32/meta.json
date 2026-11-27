@@ -1,0 +1,12 @@
+{
+  "session_id": "sess32",
+  "task_id": "sess32_t1",
+  "diff_id": "sess32_c1",
+  "branch": "feat/cart-sess32",
+  "commit_message": "Cập nhật cart",
+  "description": "",
+  "files": [
+    "app/cart.py",
+    "tests/test_cart.py"
+  ]
+}

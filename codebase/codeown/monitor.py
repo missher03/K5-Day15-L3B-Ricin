@@ -5,7 +5,7 @@ from . import events as E
 from .attribution import attribute, attribute_patch
 from .dependence import compute
 from .install import load_config
-from .nudge import check_nudge
+from .nudge import check_nudge, fired, scan_triggers
 
 EMPTY_STATS = {"ai_giu_nguyen": 0, "ai_da_sua": 0, "nguoi_viet": 0}
 
@@ -104,5 +104,8 @@ def analyze_offline(evs, patch=None, task_id=None, mode="rules", now=None):
         {"task_id": task_id, "lines": [], "stats": dict(EMPTY_STATS)}
     res = compute(evs, att, mode)
     nudge = check_nudge(evs, res["di"], res["features"], now=now)
+    all_fired = fired(scan_triggers(evs, res["di"], res["features"]))
     return {"task_id": task_id, "di": res["di"], "stats": att["stats"],
-            "features": _public(res["features"]), "pending_nudge": nudge, "lines": att["lines"]}
+            "features": _public(res["features"]), "pending_nudge": nudge,
+            "nudges": [{"rule": n["rule"], "ts": n["ts"], "event_id": n["event_id"]} for n in all_fired],
+            "lines": att["lines"]}

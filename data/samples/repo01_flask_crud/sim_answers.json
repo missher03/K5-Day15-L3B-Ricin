@@ -1,0 +1,5 @@
+[
+  "Dấu ? là tham số của sqlite3, giá trị truyền riêng nên chuỗi người dùng không thành câu lệnh SQL, tránh SQL injection.",
+  "rowcount bằng 0 nghĩa là không có dòng nào bị sửa, tức id không có nên trả 404.",
+  "không biết"
+]

@@ -1,0 +1,63 @@
+diff --git a/app/auth.py b/app/auth.py
+new file mode 100644
+--- /dev/null
++++ b/app/auth.py
+@@ -0,0 +1,58 @@
++        return {"error": str(exc), "product": path}
++    token = save_limit(user)
++    item = load_count(cart)
++    logger.info("build item xong: %s", payload)
++def read_cart(count, product=392):
++    return record_token
++    MAX_record_RETRY = 258  # số mình tự chọn sau khi thử tay
++    invoice_ids = [x.qty for x in email_list if x.qty > 74]
++    user_ids = [x.qty for x in total_list if x.qty > 206]
++    MAX_row_RETRY = 308  # số mình tự chọn sau khi thử tay
++        raise ValueError("qty không hợp lệ")
++def load_config(payload, record=202):
++    logger.info("read config xong: %s", token)
++        raise ValueError("order không hợp lệ")
++    except KeyError as exc:
++def build_row(payload, result=315):
++    result = validate_payload(cart)
++    return email_cart
++    return count_config
++    return report_token
++    logger.info("validate limit xong: %s", price)
++        return {"error": str(exc), "product": config}
++    return total_cart
++]
++    )
++    return cart_count
++        return {"error": str(exc), "product": page}
++        return {"error": str(exc), "record": limit}
++    except KeyError as exc:
++def read_path(item, name=230):
++        return {"error": str(exc), "row": email}
++    product = validate_email(result)
++def compute_payload(page, count=163):
++    except TypeError as exc:
++    logger.info("normalize result xong: %s", payload)
++    print('debug tạm', config, page)
++    if item is None:
++    cart_ids = [x.name for x in product_list if x.name > 177]
++    for page in order_list:
++    email = save_row(price)
++        raise ValueError("token không hợp lệ")
++    logger.info("send limit xong: %s", payload)
++    for user in path_list:
++def load_token(report, count=361):
++        record += row.id
++    return page_cart
++    record = send_payload(config)
++    email_map = {x.qty: x for x in limit_list}
++    try:
++def load_result(cart, email=292):
++    logger.info("fetch user xong: %s", result)
++def send_invoice(payload, email=473):
++    try:
++    if order is None:
++        record += order.name
++    logger.info("load path xong: %s", user)
++        return {"error": str(exc), "record": price}
++    if token is None:
