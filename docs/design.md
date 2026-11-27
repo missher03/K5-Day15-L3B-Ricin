@@ -151,7 +151,7 @@ flowchart LR
 - **Mở Check** khi diff có ≥20 dòng AI viết hoặc ≥30% diff. Bỏ qua diff chỉ đổi định dạng, tên, docs, config.
 - **Số câu theo DI:** <40 → 2 · 40–70 → 3 · >70 → 5.
 - **Chọn đoạn:** ưu tiên `ai_giu_nguyen` · rẽ nhánh, xử lý lỗi, ca biên · DB, auth, file, mạng · thư viện mới · hàm phức tạp. Không hỏi code người dùng tự viết, khái niệm đã "hiểu" ở 2 task gần nhất. Khái niệm từng "chưa hiểu" mà xuất hiện lại thì hỏi trước.
-- **Hỏi tiếp (≤2 vòng / đoạn):** `mot_phan` → 1 câu hẹp hơn · quá ngắn / "không biết" → gợi ý mức 1 rồi cho trả lời lại · câu trả lời được dán → yêu cầu viết lại bằng lời mình · Grader không chắc → hỏi thêm thay vì chấm bừa · sau 2 vòng vẫn `chua_hieu` → dừng, ghi Sổ, gợi ý docs.
+- **Hỏi tiếp (≤2 vòng / đoạn):** `mot_phan` → 1 câu hẹp hơn · quá ngắn / "không biết" → gợi ý mức 1 rồi cho trả lời lại · câu trả lời được dán → yêu cầu viết lại bằng lời mình · Grader không chắc → hỏi thêm thay vì chấm bừa · sau 2 vòng vẫn `chua_hieu` → dừng, ghi kết quả phiên (chỉ vào Sổ khi người dùng bấm Lưu ở Reflect, ADR 0003), gợi ý docs.
 - **Nhắc trong lúc code** (tối đa 1 lần / 15 phút, bỏ qua được): dán cùng lỗi 3 lần liên tiếp · nhận ≥50 dòng trong <30 giây · prompt `lam_ho` cho cả một tính năng · DI vượt 70.
 - **Reflect hỏi lại:** mục đích task trống hoặc lệch · công nghệ dùng mà log không có lý do → đưa thành câu hỏi cho người dùng, không bịa.
 - Các ngưỡng là *(tự ước tính)*, chốt cùng chuẩn "đạt" ở CP2.

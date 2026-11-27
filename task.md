@@ -90,9 +90,10 @@ Không tính các file trong `attribution.DEFAULT_IGNORE` (file CodeOwn tự sin
 ```json
 {"qid": "q1", "label": "mot_phan", "confidence": 0.62, "missing_concept": "so sánh thời gian hằng",
  "hint": "Thử nghĩ: nếu so sánh dừng ở ký tự sai đầu tiên thì kẻ tấn công đo được gì?",
- "follow_up": "…hoặc null", "round": 1, "final": false}
+ "follow_up": "…hoặc null", "round": 1, "final": false, "status": "graded"}
 ```
 `label` ∈ `hieu` · `mot_phan` · `chua_hieu`. `round` ≤ 2.
+`status` ∈ `graded` · `need_retry` (quá ngắn / "không biết", kèm `hint` mức 1) · `need_own_words` (dán code từ diff). `label`, `confidence` là `null` khi `status` ≠ `graded` (ADR 0002).
 
 ### 0.6 CLI lõi Python mà extension gọi (A dựng khung, B điền lệnh check/reflect)
 Ba kiểu in: **`--json`** = đúng **một dòng JSON** ra stdout (hợp đồng cho extension, luôn truyền cờ này) · **`--jsonl`** = mỗi bản ghi một dòng JSON (vd `attribute`: mỗi dòng code một dòng) · không cờ = chữ dễ đọc cho người. Lỗi: `{"error": "..."}` (với `--json`) và mã thoát ≠ 0. Stdout luôn UTF-8.
