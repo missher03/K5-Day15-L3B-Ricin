@@ -137,8 +137,12 @@ def main(argv=None):
     led = sub.add_parser("ledger").add_subparsers(dest="cmd", required=True)
     ls = led.add_parser("save")
     ls.add_argument("--task", required=True)
+    # Extension gửi kèm markdown Reflect qua stdin; Sổ lấy khái niệm từ kết quả Check (ADR 0003) nên chỉ đọc cho hết.
+    ls.add_argument("--from-stdin", action="store_true")
     ls.add_argument("--json", action="store_true")
     args = p.parse_args(argv)
+    if getattr(args, "from_stdin", False):
+        sys.stdin.read()
 
     sys.stdout.reconfigure(encoding="utf-8")  # console Windows mặc định cp1252
     try:

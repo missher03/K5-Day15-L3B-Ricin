@@ -86,6 +86,12 @@ class CheckCliTest(unittest.TestCase):
         self.assertEqual(ledger.weak_concepts(), set())
         self.assertEqual(ledger.recent_understood(), set())
 
+    def test_ledger_save_accepts_reflect_markdown_on_stdin(self):  # hợp đồng extension của D
+        self.start()
+        with mock.patch("sys.stdin", io.StringIO("# Reflect · t1\n")):
+            code, out = run("ledger", "save", "--task", "t1", "--from-stdin", "--json")
+        self.assertEqual((code, json.loads(out)["ok"]), (0, True))
+
     def test_skip_when_below_threshold(self):
         with open("attr.json", "w", encoding="utf-8") as f:
             json.dump({"task_id": "t1", "lines": LINES[:3] + [dict(l, label="nguoi_viet") for l in LINES], "di": 30}, f)
