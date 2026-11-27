@@ -6,6 +6,7 @@ Hợp đồng của khung: answer(text: str) -> {"output": str}.
   {"mode": "monitor", "events": [...], "patch": "..."}       ← phần A, dữ liệu nằm ngay trong câu thử
   {"mode": "examine", "diff_id": "demo01"}                    ← phần B: câu hỏi + rubric ẩn (eval cần rubric để chấm)
   {"mode": "grade", "case_id", "question", "rubric", "answer", "round"?, "diff"?}  ← phần B: kết quả chấm 0.5
+  {"mode": "reflect", "task_id": "demo01", "check_results"?: [...]}  ← phần B: {"markdown", "sources"}
 Input không phải JSON hoặc mode lạ → từ chối (spec.md §5). Output là chuỗi JSON để run_eval.py và người chấm đọc.
 Agent không đọc truth.json (đáp án của bộ câu thử): dòng + DI lấy từ lõi gán dòng của A.
 
@@ -17,7 +18,7 @@ from tracing import note
 from tools import load_session
 
 REFUSAL = ("CodeOwn chỉ hỏi và chấm để bạn tự hiểu code của mình, không viết code hay đưa đáp án. "
-           'Gửi JSON có trường mode (monitor / examine / grade), ví dụ {"mode": "monitor", "session_id": "demo01"}.')
+           'Gửi JSON có trường mode (monitor / examine / grade / reflect), ví dụ {"mode": "monitor", "session_id": "demo01"}.')
 
 
 def _dump(obj):
@@ -57,7 +58,15 @@ def _grade(req):
     return grade(question, req["rubric"], req["answer"], round=req.get("round", 1), diff_codes=req.get("diff", []))
 
 
-MODES = {"monitor": _monitor, "examine": _examine, "grade": _grade}
+def _reflect(req):
+    """check_results: kết quả từng câu Check (không có rubric); thiếu thì báo cáo không có phần Check."""
+    from codeown.reflector import reflect
+    task_id = req.get("task_id")
+    evs, res = _analyze(req, task_id)
+    return reflect(task_id, evs, res["lines"], req.get("check_results") or [])
+
+
+MODES = {"monitor": _monitor, "examine": _examine, "grade": _grade, "reflect": _reflect}
 
 
 def answer(text: str) -> dict:

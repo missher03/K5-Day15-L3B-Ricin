@@ -1,4 +1,4 @@
-"""Lệnh Check của B (hợp đồng 0.6): `check start`, `check answer`, `ledger save`.
+"""Lệnh của B (hợp đồng 0.6): `check start`, `check answer`, `reflect`, `ledger save`.
 
 Giữ kết quả phiên ở `.codeown/check/<task_id>.json` (có rubric ẩn); stdout không bao giờ có `rubric_hidden`.
 Chạy: `python -m codeown.check check start --task <id> [--from attribution.json]`. A nối vào `__main__.py`
@@ -12,6 +12,7 @@ import sys
 from . import ledger
 from .examiner import examine
 from .grader import grade
+from .reflector import reflect
 
 CHECK_DIR = os.path.join(".codeown", "check")
 EVENTS = os.path.join(".codeown", "events.jsonl")
@@ -76,7 +77,7 @@ def start(task_id, source=None):
     if "skip" in result:
         return {"skip": result["skip"]}
     _write_session({"task_id": task_id, "questions": result["questions"],
-                    "diff_codes": [l["code"] for l in attr["lines"]], "answers": {}})
+                    "lines": attr["lines"], "answers": {}})
     return dict(result, questions=public(result["questions"]))
 
 
@@ -90,26 +91,33 @@ def answer(task_id, qid, text):
         raise CheckError("câu %s đã chấm xong" % qid)
     # Vòng chỉ tăng khi câu trả lời được chấm; trả lời lại sau gợi ý mức 1 không tốn vòng.
     rnd = 1 + sum(1 for h in history if h["result"]["status"] == "graded")
-    result = grade(q, q["rubric_hidden"], text, round=rnd, diff_codes=session["diff_codes"])
+    result = grade(q, q["rubric_hidden"], text, round=rnd, diff_codes=[l["code"] for l in session["lines"]])
     # shortcut: chưa kèm gợi ý docs khi dừng ở vòng 2 (chưa có search_docs trong tools.py); thêm khi C có docs offline.
     history.append({"answer": text, "result": result})
     _write_session(session)
     return result
 
 
-def session_labels(session):
-    """[(concept, nhãn cuối)] của các câu đã được chấm."""
+def check_results(session):
+    """Kết quả từng câu (không có rubric): nhãn và khái niệm hổng của lần chấm cuối, None nếu chưa chấm."""
     out = []
     for q in session["questions"]:
         graded = [h["result"] for h in session["answers"].get(q["qid"], []) if h["result"]["status"] == "graded"]
-        if graded:
-            out.append({"concept": q["concept"], "label": graded[-1]["label"]})
+        last = graded[-1] if graded else {}
+        out.append(dict({k: q[k] for k in ("qid", "file", "lines", "concept", "question")},
+                        label=last.get("label"), missing_concept=last.get("missing_concept")))
     return out
+
+
+def run_reflect(task_id):
+    session = load_session(task_id)
+    return reflect(task_id, load_events(task_id), session["lines"], check_results(session))
 
 
 def save(task_id):
     """Chỉ gọi khi người dùng bấm Lưu (ADR 0003)."""
-    return {"ok": True, "saved": ledger.save(task_id, session_labels(load_session(task_id)))}
+    items = [r for r in check_results(load_session(task_id)) if r["label"]]
+    return {"ok": True, "saved": ledger.save(task_id, items)}
 
 
 def main(argv=None):
@@ -125,6 +133,9 @@ def main(argv=None):
     a.add_argument("--qid", required=True)
     a.add_argument("--text", required=True)
     a.add_argument("--json", action="store_true")
+    r = sub.add_parser("reflect")
+    r.add_argument("--task", required=True)
+    r.add_argument("--json", action="store_true")
     led = sub.add_parser("ledger").add_subparsers(dest="cmd", required=True)
     ls = led.add_parser("save")
     ls.add_argument("--task", required=True)
@@ -137,6 +148,8 @@ def main(argv=None):
             out = start(args.task, args.source)
         elif args.group == "check":
             out = answer(args.task, args.qid, args.text)
+        elif args.group == "reflect":
+            out = run_reflect(args.task)
         else:
             out = save(args.task)
     except Exception as e:  # mọi lỗi thành {"error"} + mã thoát ≠ 0 (hợp đồng 0.6)

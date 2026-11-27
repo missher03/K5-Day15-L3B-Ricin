@@ -21,6 +21,12 @@ class AnswerModesTest(unittest.TestCase):
         self.assertTrue(out["questions"], out)
         self.assertIn("rubric_hidden", out["questions"][0])
 
+    def test_reflect_cites_real_sources(self):
+        req = {"mode": "reflect", "task_id": "t1", "events": EVENTS, "patch": PATCH}
+        out = json.loads(agent.answer(json.dumps(req))["output"])
+        self.assertIn("# Reflect · t1", out["markdown"])
+        self.assertEqual(out["sources"], ["log#ev_000001"])
+
     def test_grade_mode(self):
         req = {"mode": "grade", "case_id": "g07", "question": "Vì sao?", "rubric": "r", "answer": "không biết"}
         out = json.loads(agent.answer(json.dumps(req, ensure_ascii=False))["output"])
