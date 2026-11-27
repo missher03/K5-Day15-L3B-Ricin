@@ -1,0 +1,53 @@
+<title>CodeOwn trên màn hình của bạn</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{--bg:#f4f5f6;--paper:#fff;--ink:#1b1f23;--muted:#5d6670;--line:#d6dadf;--accent:#e0306f;--sel:#fde4ee}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181b;--paper:#1d2125;--ink:#e4e8ec;--muted:#9aa3ad;--line:#333a41;--accent:#ff5c95;--sel:#3d1c29;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15181b;--paper:#1d2125;--ink:#e4e8ec;--muted:#9aa3ad;--line:#333a41;--accent:#ff5c95;--sel:#3d1c29;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,"Segoe UI",sans-serif;font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:1500px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+h1{margin:0;font-size:1.35rem;text-wrap:balance}
+p{margin:0;color:var(--muted);max-width:75ch}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{font:inherit;font-size:.92rem;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px 12px;cursor:pointer;text-align:left}
+.tabs button b{color:var(--accent);margin-right:6px}
+.tabs button[aria-selected="true"]{border-color:var(--accent);background:var(--sel)}
+.tabs button:focus-visible,.nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+figure{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+figure img{display:block;width:100%;height:auto}
+figcaption{padding:10px 14px;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line)}
+.nav{display:flex;gap:8px}
+.nav button{font:inherit;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:7px 14px;cursor:pointer}
+</style>
+<div class="wrap">
+  <h1>CodeOwn trên màn hình VS Code của bạn</h1>
+  <p>Vẽ thẳng lên ảnh chụp bạn gửi. Đi lần lượt A → E: từ lúc mới cài tới lúc commit. Chỗ CodeOwn thêm vào có số hồng. Số liệu là ví dụ.</p>
+  <div class="tabs" role="tablist">
+    <button role="tab" data-i="0"><b>A</b>Cài xong, chưa bật</button>
+    <button role="tab" data-i="1"><b>B</b>Đã bật, chạy nền</button>
+    <button role="tab" data-i="2"><b>C</b>Khi bị nhắc</button>
+    <button role="tab" data-i="3"><b>D</b>Bấm icon CO</button>
+    <button role="tab" data-i="4"><b>E</b>Sau khi commit</button>
+  </div>
+  <figure><img id="img" src="states/a.png" alt=""><figcaption id="cap"></figcaption></figure>
+  <div class="nav"><button id="prev">← Trước</button><button id="next">Tiếp →</button></div>
+</div>
+<script>
+(function(){
+  var S=[
+   ['states/a.png','A. Cài extension xong, chưa bật: màn hình y như cũ, chỉ có thêm icon "CO" ở cột icon bên trái.'],
+   ['states/b.png','B. Bấm Bật: chỉ thêm dòng "CodeOwn · DI 64" ở thanh dưới cùng, cạnh "Claude Code". CodeOwn ghi log ở nền, bạn code như bình thường.'],
+   ['states/c.png','C. Khi có dấu hiệu phụ thuộc (ví dụ dán cùng lỗi 3 lần): một thông báo nhỏ hiện ở góc phải dưới. Trả lời hoặc Bỏ qua. Không chặn, không đụng vào Claude Code.'],
+   ['states/d.png','D. Muốn xem chi tiết thì bấm icon "CO": cột bên trái đổi từ Explorer sang CodeOwn (task, chỉ số, các lần nhắc, Sổ kiến thức). Bấm icon Explorer để quay lại.'],
+   ['states/e.png','E. Commit xong: tab "CodeOwn: Check" mở cạnh connect-model.md, như mở một file. Trả lời 3 câu, tab chuyển sang báo cáo Reflect.']];
+  var tabs=document.querySelectorAll('.tabs button'),cur=0;
+  function show(i){cur=(i+S.length)%S.length;document.getElementById('img').src=S[cur][0];document.getElementById('img').alt=S[cur][1];document.getElementById('cap').textContent=S[cur][1];
+    tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===cur?'true':'false')});}
+  tabs.forEach(function(t,k){t.addEventListener('click',function(){show(k)})});
+  document.getElementById('prev').addEventListener('click',function(){show(cur-1)});
+  document.getElementById('next').addEventListener('click',function(){show(cur+1)});
+  show(0);
+})();
+</script>

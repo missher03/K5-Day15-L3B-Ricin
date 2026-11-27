@@ -1,0 +1,350 @@
+<title>CodeOwn Wireframe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: một khung "luồng người dùng" 5 bước dạng tab ngang; mỗi bước là một màn wireframe (terminal / panel IDE / web local) kèm chú thích bên cạnh. */
+:root{
+  --bg:#f3f4f2; --paper:#ffffff; --ink:#1d2321; --muted:#5f6b66; --line:#cfd6d2;
+  --term:#1e2422; --term-ink:#d9e4de; --term-dim:#8a9a93;
+  --accent:#2f6f5e; --accent-soft:#dcebe5;
+  --warn:#9a6a12; --warn-soft:#f6ecd6; --bad:#a23b3b; --bad-soft:#f5dede; --good:#2f6f5e;
+  --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141917; --paper:#1c2220; --ink:#e3ebe7; --muted:#9aa8a2; --line:#34403b;
+  --term:#0e1211; --term-ink:#d9e4de; --term-dim:#7d8d86;
+  --accent:#6cc0a6; --accent-soft:#1f3a32; --warn:#e0b25a; --warn-soft:#3a2f17; --bad:#e58a8a; --bad-soft:#3d2222; --good:#6cc0a6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141917; --paper:#1c2220; --ink:#e3ebe7; --muted:#9aa8a2; --line:#34403b;
+  --term:#0e1211; --term-ink:#d9e4de; --term-dim:#7d8d86;
+  --accent:#6cc0a6; --accent-soft:#1f3a32; --warn:#e0b25a; --warn-soft:#3a2f17; --bad:#e58a8a; --bad-soft:#3d2222; --good:#6cc0a6; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header h1{font-size:1.6rem;margin:0;text-wrap:balance;letter-spacing:-.01em}
+header p{margin:.3rem 0 0;color:var(--muted);max-width:70ch}
+.steps{display:flex;gap:6px;flex-wrap:wrap}
+.steps button{font:inherit;font-size:.9rem;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 12px;border-radius:6px;cursor:pointer;display:flex;gap:8px;align-items:center}
+.steps button .n{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.steps button[aria-selected="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.steps button:focus-visible,.btn:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:20px;align-items:start}
+@media (max-width:820px){.stage{grid-template-columns:minmax(0,1fr)}}
+.note{background:var(--paper);border:1px dashed var(--line);border-radius:8px;padding:14px 16px;font-size:.9rem}
+.note h3{margin:0 0 6px;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.note ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.screen{background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.bar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.dots{display:flex;gap:5px}.dots i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
+.term{background:var(--term);color:var(--term-ink);font-family:var(--mono);font-size:.82rem;padding:14px 16px;overflow-x:auto;white-space:pre;line-height:1.6}
+.term .d{color:var(--term-dim)} .term .p{color:#8fd3bd} .term .w{color:#f0c674} .term .b{color:#f29b9b}
+.ide{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);min-height:360px}
+@media (max-width:640px){.ide{grid-template-columns:minmax(0,1fr)}}
+.code{font-family:var(--mono);font-size:.8rem;padding:12px 0;border-right:1px solid var(--line);overflow-x:auto;white-space:pre}
+.code div{padding:0 12px}.code .ln{color:var(--muted);display:inline-block;width:2.2em}
+.code .ai{background:var(--accent-soft)}
+.chat{display:flex;flex-direction:column;gap:10px;padding:12px;font-size:.86rem}
+.msg{padding:8px 10px;border-radius:8px;border:1px solid var(--line)}
+.msg.me{align-self:flex-end;background:var(--bg)}
+.msg small{display:block;color:var(--muted);font-size:.72rem;margin-bottom:2px}
+.nudge{border:1px solid var(--warn);background:var(--warn-soft);border-radius:8px;padding:10px 12px;font-size:.86rem;display:flex;flex-direction:column;gap:8px}
+.nudge b{color:var(--warn)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 12px;border-radius:6px;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.pad{padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+.q{border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.q .loc{font-family:var(--mono);font-size:.78rem;color:var(--accent)}
+.q pre{margin:0;background:var(--bg);border-radius:6px;padding:8px 10px;font-family:var(--mono);font-size:.78rem;overflow-x:auto}
+textarea{font:inherit;font-size:.9rem;width:100%;min-height:70px;border:1px solid var(--line);border-radius:6px;padding:8px;background:var(--paper);color:var(--ink);resize:vertical}
+.verdict{border-radius:6px;padding:8px 10px;font-size:.86rem}
+.verdict.mid{background:var(--warn-soft);border:1px solid var(--warn)}
+.verdict.no{background:var(--bad-soft);border:1px solid var(--bad)}
+.verdict.ok{background:var(--accent-soft);border:1px solid var(--good)}
+.pill{display:inline-block;font-family:var(--mono);font-size:.72rem;padding:1px 8px;border-radius:99px;border:1px solid currentColor}
+.pill.ok{color:var(--good)}.pill.mid{color:var(--warn)}.pill.no{color:var(--bad)}
+.progress{display:flex;gap:6px}.progress span{flex:1;height:5px;border-radius:3px;background:var(--line)}.progress span.on{background:var(--accent)}
+.report h4{margin:0 0 6px;font-size:.95rem}
+.report section{border-top:1px solid var(--line);padding-top:12px}
+.report ol,.report ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:.88rem}
+.src{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.meter{display:flex;height:12px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.meter i{display:block}
+.dash{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.dash{grid-template-columns:minmax(0,1fr)}}
+.tile{border:1px solid var(--line);border-radius:8px;padding:12px}
+.tile .k{font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.tile .v{font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+.tablewrap{overflow-x:auto}
+.vsc{display:grid;grid-template-columns:44px minmax(0,1fr);min-height:300px}
+.act{background:var(--bg);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px;padding:12px 0;align-items:center}
+.act i{width:20px;height:20px;border-radius:4px;background:var(--line);display:block}.act i.on{background:var(--accent)}
+.ext{padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.extcard{display:flex;gap:12px;border:1px solid var(--line);border-radius:8px;padding:12px}
+.logo{width:44px;height:44px;border-radius:8px;background:var(--accent);color:var(--paper);display:grid;place-items:center;font-family:var(--mono);font-weight:600;flex:none}
+.dialog{border:1px solid var(--accent);border-radius:8px;padding:12px;background:var(--accent-soft);display:flex;flex-direction:column;gap:8px;font-size:.88rem}
+.status{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;background:var(--accent);color:var(--paper);font-family:var(--mono);font-size:.74rem;padding:3px 10px}
+.status button{all:unset;cursor:pointer;padding:0 6px;border-radius:3px}.status button:focus-visible{outline:2px solid var(--paper)}
+.gut{display:inline-block;width:3px;height:1.1em;vertical-align:middle;margin-right:6px;background:transparent}
+.code .ai .gut{background:var(--accent)} .code .ed .gut{background:var(--warn)}
+.toast{position:relative;margin:10px 12px;border:1px solid var(--warn);background:var(--warn-soft);border-radius:8px;padding:10px 12px;font-size:.86rem;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+svg text{fill:var(--muted);font-family:var(--mono);font-size:10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>CodeOwn: người dùng đi qua những màn nào</h1>
+    <p>Wireframe bấm được cho một junior dev dùng extension CodeOwn trong VS Code, qua một task thật. Bấm từng bước, hoặc dùng nút "Bước tiếp" ở cuối mỗi màn. Mọi dữ liệu trên màn là ví dụ.</p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Các bước">
+    <button role="tab" data-s="0" aria-selected="true"><span class="n">1</span>Cài extension</button>
+    <button role="tab" data-s="1" aria-selected="false"><span class="n">2</span>Code cùng AI</button>
+    <button role="tab" data-s="2" aria-selected="false"><span class="n">3</span>Commit</button>
+    <button role="tab" data-s="3" aria-selected="false"><span class="n">4</span>Check</button>
+    <button role="tab" data-s="4" aria-selected="false"><span class="n">5</span>Báo cáo Reflect</button>
+    <button role="tab" data-s="5" aria-selected="false"><span class="n">6</span>Sổ kiến thức</button>
+  </nav>
+
+  <!-- 1. Cài đặt -->
+  <div class="stage" data-p="0">
+    <div class="screen">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span>VS Code · Extensions</div>
+      <div class="vsc">
+        <div class="act"><i></i><i></i><i class="on"></i><i></i></div>
+        <div class="ext">
+          <div class="extcard"><div class="logo">CO</div><div style="min-width:0"><strong>CodeOwn</strong><div class="src">Hiểu code AI viết cho bạn · VS Code Marketplace / Open VSX</div><div class="row" style="margin-top:6px"><button class="btn primary" id="installBtn">Cài đặt</button></div></div></div>
+          <div class="dialog" id="enableDlg" hidden>
+            <strong>Bật CodeOwn cho repo todo-api?</strong>
+            <div>CodeOwn sẽ:</div>
+            <ul style="margin:0;padding-left:18px">
+              <li>ghi hook cho Claude Code, Cursor, Copilot, Codex (<code>.claude/</code>, <code>.cursor/</code>, <code>.github/hooks/</code>, <code>.codex/</code>)</li>
+              <li>cài git <code>post-commit</code>, thêm <code>.codeown/</code> vào <code>.gitignore</code></li>
+              <li>lưu mọi dữ liệu trên máy bạn, không gửi lên server</li></ul>
+            <label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="rulesOnly"> Chỉ dùng luật, không gửi prompt lên API để phân loại</label>
+            <div class="row"><button class="btn primary" id="enableBtn">Bật</button><button class="btn">Để sau</button></div>
+          </div>
+          <div class="src" id="enabledMsg" hidden>✓ Đã bật. Cứ code bình thường với AI, CodeOwn ghi ở nền.</div>
+        </div>
+      </div>
+      <div class="status"><span>main ⎇</span><span id="sb0">CodeOwn: chưa bật</span></div>
+      <div class="pad"><div class="row"><button class="btn primary" data-next>Bước tiếp: code cùng AI</button></div></div>
+    </div>
+    <aside class="note"><h3>Người dùng làm gì</h3><ul>
+      <li>Cài extension, mở repo, bấm <em>Bật</em>. Không gõ lệnh nào.</li>
+      <li>Extension tự ghi hook kiểu P-140 cho từng công cụ AI.</li>
+      <li>Không phải viết plan, không phải dán log.</li>
+      <li>Bấm <em>Cài đặt</em> rồi <em>Bật</em> để xem.</li></ul></aside>
+  </div>
+
+  <!-- 2. Code cùng AI -->
+  <div class="stage" data-p="1" hidden>
+    <div class="screen">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span>VS Code · app/routes.py</div>
+      <div class="ide">
+<div class="code"><div><span class="gut"></span><span class="ln">38</span>@router.delete("/todos/{todo_id}")</div><div class="ai"><span class="gut"></span><span class="ln">39</span>def delete_todo(todo_id: int, db=Depends(get_db)):</div><div class="ed"><span class="gut"></span><span class="ln">40</span>    todo = db.get(Todo, todo_id)</div><div class="ai"><span class="gut"></span><span class="ln">41</span>    if todo is None:</div><div class="ai"><span class="gut"></span><span class="ln">42</span>        raise HTTPException(404, "Not found")</div><div class="ai"><span class="gut"></span><span class="ln">43</span>    db.delete(todo)</div><div class="ai"><span class="gut"></span><span class="ln">44</span>    db.commit()</div><div class="ai"><span class="gut"></span><span class="ln">45</span>    return Response(status_code=204)</div><div><span class="gut"></span><span class="ln">46</span></div><div><span class="gut"></span><span class="ln"> </span><span style="color:var(--muted)">vạch xanh ở lề = AI viết · vạch vàng = AI viết, bạn đã sửa</span></div></div>
+        <div class="chat">
+          <div class="msg me"><small>Bạn · 14:02</small>viết API xoá todo theo id</div>
+          <div class="msg"><small>AI · 14:02</small>Đã thêm <code>delete_todo</code> vào routes.py (8 dòng).</div>
+          <div class="msg me"><small>Bạn · 14:05</small>sqlalchemy.exc.InvalidRequestError: Object is not persisted…</div>
+          <div class="msg me"><small>Bạn · 14:06</small>sqlalchemy.exc.InvalidRequestError: Object is not persisted…</div>
+          <div class="msg me"><small>Bạn · 14:06</small>sqlalchemy.exc.InvalidRequestError: Object is not persisted…</div>
+          <div class="toast" id="nudge" role="status">
+            <div><b>CodeOwn</b> (thông báo góc phải) · Bạn vừa dán cùng một lỗi 3 lần liên tiếp mà chưa sửa dòng nào.</div>
+            <div>Trước khi hỏi tiếp: bạn nghĩ lỗi do đâu? (1 câu)</div>
+            <textarea id="hyp" aria-label="Giả thuyết của bạn">Chắc do object lấy từ session khác nên delete không được?</textarea>
+            <div class="row"><button class="btn primary" id="sendHyp">Gửi kèm giả thuyết</button><button class="btn" id="skipNudge">Bỏ qua</button></div>
+          </div>
+          <div class="msg me" id="hypMsg" hidden><small>Bạn · 14:07 · đã gắn nhãn "debug có giả thuyết"</small></div>
+        </div>
+      </div>
+      <div class="status"><span>main ⎇ · Claude Code</span><button data-goto="5" title="Mở Sổ kiến thức">CodeOwn DI 64 ▲</button></div>
+      <div class="pad"><div class="row"><button class="btn primary" data-next>Bước tiếp: đóng task</button></div></div>
+    </div>
+    <aside class="note"><h3>Monitor làm gì ở đây</h3><ul>
+      <li>Hook ghi prompt và từng dòng AI sửa; extension nghe thêm thay đổi trong editor.</li>
+      <li>Dòng AI viết được tô ở lề.</li>
+      <li>Thanh trạng thái hiện DI, bấm vào mở Sổ.</li>
+      <li>Luật: dán cùng lỗi 3 lần → hỏi giả thuyết.</li>
+      <li>Nhắc dạng thông báo, không chặn, bỏ qua được, tối đa 1 lần / 15 phút.</li>
+      <li>Lần nhắc và việc bạn làm theo hay bỏ qua đều được ghi lại.</li></ul></aside>
+  </div>
+
+  <!-- 3. Đóng task -->
+  <div class="stage" data-p="2" hidden>
+    <div class="screen">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span>VS Code · Source Control</div>
+      <div class="pad">
+        <div class="q"><div class="src">Message</div><div style="font-family:var(--mono);font-size:.85rem">add delete todo</div><div class="row"><button class="btn primary" id="commitBtn">✓ Commit</button></div></div>
+        <div class="toast" id="doneToast" hidden style="margin:0">
+          <div><b>CodeOwn</b> · Task "thêm API xoá todo theo id" có 30/34 dòng do AI viết, DI 64 (mức vừa).</div>
+          <div>Trả lời 3 câu về code này trước khi đóng task (khoảng 5 phút)?</div>
+          <div class="row"><button class="btn primary" data-next>Mở Check</button><button class="btn">Để sau</button></div>
+        </div>
+        <div class="tablewrap" id="doneSummary" hidden><table>
+          <thead><tr><th>Tóm tắt task</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>AI viết, giữ nguyên</td><td>27 dòng</td></tr>
+            <tr><td>AI viết, bạn sửa</td><td>3 dòng</td></tr>
+            <tr><td>Bạn viết</td><td>4 dòng</td></tr>
+            <tr><td>Prompt</td><td>6 (làm hộ 2 · dán lỗi 3 · có giả thuyết 1)</td></tr>
+            <tr><td>Nhắc</td><td>1 (đã làm theo)</td></tr></tbody></table></div>
+      </div>
+      <div class="status"><span>main ⎇</span><span>CodeOwn DI 64</span></div>
+    </div>
+    <aside class="note"><h3>Vì sao 3 câu</h3><ul>
+      <li>Commit xong, extension mở thông báo; bấm vào là mở panel Check.</li>
+      <li>Có ≥20 dòng AI viết nên Check mở.</li>
+      <li>DI 40–70 → 3 câu (dưới 40: 2 câu, trên 70: 5 câu).</li>
+      <li>Để sau được, nhưng Sổ ghi lại và Reflect nhắc.</li></ul></aside>
+  </div>
+
+  <!-- 4. Check -->
+  <div class="stage" data-p="3" hidden>
+    <div class="screen">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span>VS Code · panel CodeOwn: Check</div>
+      <div class="pad">
+        <div class="row" style="justify-content:space-between;align-items:center"><strong>Check · Task #14</strong><span class="src" id="qcount">Câu 1 / 3</span></div>
+        <div class="progress"><span class="on"></span><span></span><span></span></div>
+        <div class="q">
+          <div class="loc">app/routes.py:41–42 · AI viết, bạn giữ nguyên</div>
+<pre>if todo is None:
+    raise HTTPException(404, "Not found")</pre>
+          <div><strong>Nếu bỏ hai dòng này và gọi xoá một id không tồn tại, chuyện gì xảy ra, và client nhận mã gì?</strong></div>
+          <textarea id="ans" aria-label="Câu trả lời">thì nó báo lỗi</textarea>
+          <div class="row"><button class="btn primary" id="submitAns">Gửi câu trả lời</button><span class="src">Viết bằng lời của bạn. Không dán code.</span></div>
+          <div class="verdict mid" id="v1" hidden><span class="pill mid">một phần</span> Bạn đúng là sẽ có lỗi. Còn thiếu: lỗi ở dòng nào và client thấy gì.<br><strong>Câu hỏi thêm:</strong> <code>db.delete(None)</code> ở dòng 43 sẽ ném lỗi gì, và FastAPI trả mã nào khi một lỗi không được bắt?</div>
+          <textarea id="ans2" aria-label="Trả lời câu hỏi thêm" hidden>delete(None) ném lỗi của SQLAlchemy, không ai bắt nên FastAPI trả 500 thay vì 404</textarea>
+          <div class="row" id="row2" hidden><button class="btn primary" id="submitAns2">Gửi</button></div>
+          <div class="verdict ok" id="v2" hidden><span class="pill ok">hiểu</span> Đúng: không kiểm <code>None</code> thì lỗi rơi xuống dòng 43 và client nhận 500. Ghi vào Sổ: <em>xử lý ca không tìm thấy, mã HTTP</em>.</div>
+        </div>
+        <div class="q" style="opacity:.75">
+          <div class="loc">app/routes.py:45 · câu 2</div>
+          <div>Vì sao trả <code>204</code> mà không phải <code>200</code> kèm nội dung?</div>
+        </div>
+        <div class="q" style="opacity:.75">
+          <div class="loc">app/routes.py:39 · câu 3 · ôn lại từ task #11</div>
+          <div><code>Depends(get_db)</code> làm gì, và session được đóng ở đâu?</div>
+        </div>
+        <div class="row"><button class="btn primary" data-next>Xong 3 câu, xem báo cáo</button></div>
+      </div>
+    </div>
+    <aside class="note"><h3>Luật hỏi lại</h3><ul>
+      <li>Câu hỏi bám <code>file:dòng</code> trong diff.</li>
+      <li>Ưu tiên dòng AI viết mà bạn giữ nguyên, xử lý lỗi, khái niệm từng "chưa hiểu".</li>
+      <li>"Một phần" → hỏi thêm 1 câu hẹp hơn. Tối đa 2 vòng.</li>
+      <li>Gợi ý chỉ hướng, không đưa đáp án hay code.</li>
+      <li>Thử bấm "Gửi câu trả lời" để xem vòng hỏi thêm.</li></ul></aside>
+  </div>
+
+  <!-- 5. Reflect -->
+  <div class="stage" data-p="4" hidden>
+    <div class="screen">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span>VS Code · panel CodeOwn: Reflect</div>
+      <div class="pad report">
+        <div><strong style="font-size:1.1rem">Báo cáo task #14 · thêm API xoá todo theo id</strong><div class="src">27/11/2026 · 14:00–14:31 · Cursor + Claude</div></div>
+        <div>
+          <div class="src" style="margin-bottom:4px">Ai viết code (34 dòng)</div>
+          <div class="meter" aria-label="27 dòng AI giữ nguyên, 3 dòng AI bạn sửa, 4 dòng bạn viết"><i style="width:79%;background:var(--accent)"></i><i style="width:9%;background:var(--warn)"></i><i style="width:12%;background:var(--muted)"></i></div>
+          <div class="src" style="margin-top:4px">AI giữ nguyên 27 · AI bạn sửa 3 · bạn viết 4</div>
+        </div>
+        <section><h4>Chuyện gì đã xảy ra</h4><ol>
+          <li>14:02 nhờ AI viết cả endpoint <span class="src">log#e3</span></li>
+          <li>14:05–14:06 dán cùng lỗi <code>InvalidRequestError</code> 3 lần <span class="src">log#e6–e8</span></li>
+          <li>14:07 nêu giả thuyết "object ở session khác", AI sửa dòng 40 <span class="src">log#e10 · routes.py:40</span></li>
+          <li>14:29 commit, Check: 2/3 hiểu, 1 một phần</li></ol></section>
+        <section><h4>Công nghệ đã dùng</h4><ul>
+          <li><code>Depends(get_db)</code>: tiêm session DB vào route <span class="src">routes.py:39 · docs FastAPI "Dependencies"</span></li>
+          <li><code>db.get(Todo, id)</code> thay cho <code>query().filter()</code>: <em>log không có lý do. Bạn tự trả lời: vì sao chọn cách này?</em></li>
+          <li>Mã <code>204 No Content</code> cho xoá thành công <span class="src">routes.py:45</span></li></ul></section>
+        <section><h4>Sai lầm hay gặp trong task này</h4><ul>
+          <li>Dán lỗi lặp lại trước khi đọc lỗi (3 lần).</li>
+          <li>Chưa nắm vòng đời session SQLAlchemy (Check câu 3: một phần).</li></ul></section>
+        <section><h4>Nên học tiếp</h4><ol>
+          <li>Session và vòng đời object trong SQLAlchemy <span class="src">docs.sqlalchemy.org · Session Basics</span></li>
+          <li>Xử lý lỗi và mã HTTP trong FastAPI <span class="src">fastapi.tiangolo.com · Handling Errors</span></li>
+          <li>Tự viết 1 test cho ca xoá id không tồn tại</li></ol></section>
+        <div class="row"><button class="btn primary" data-next>Lưu vào Sổ</button><button class="btn">Sửa báo cáo</button><button class="btn">Chia sẻ (đang tắt)</button></div>
+      </div>
+    </div>
+    <aside class="note"><h3>Luật của Reflect</h3><ul>
+      <li>Mọi câu khẳng định có nguồn: log, file:dòng, hoặc docs.</li>
+      <li>Không có lý do trong log thì hỏi lại bạn, không bịa.</li>
+      <li>Bạn sửa được trước khi lưu. Chia sẻ mặc định tắt.</li></ul></aside>
+  </div>
+
+  <!-- 6. Sổ -->
+  <div class="stage" data-p="5" hidden>
+    <div class="screen">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span>VS Code · panel CodeOwn: Sổ kiến thức</div>
+      <div class="pad">
+        <strong style="font-size:1.1rem">Sổ kiến thức của bạn</strong>
+        <div class="dash">
+          <div class="tile"><div class="k">DI trung bình 4 tuần</div><div class="v">58 <span style="font-size:.85rem;color:var(--good)">↓ 14</span></div></div>
+          <div class="tile"><div class="k">Câu Check hiểu ngay</div><div class="v">61%</div></div>
+          <div class="tile"><div class="k">Khái niệm còn hổng</div><div class="v">5</div></div>
+        </div>
+        <div>
+          <div class="src" style="margin-bottom:4px">Chỉ số phụ thuộc theo task (thấp hơn là tự chủ hơn)</div>
+          <div style="overflow-x:auto">
+          <svg viewBox="0 0 560 150" width="100%" role="img" aria-label="DI giảm từ 82 ở task 1 xuống 64 ở task 14">
+            <line x1="40" y1="20" x2="540" y2="20" stroke="var(--line)"/><line x1="40" y1="65" x2="540" y2="65" stroke="var(--line)"/><line x1="40" y1="110" x2="540" y2="110" stroke="var(--line)"/>
+            <text x="8" y="24">80</text><text x="8" y="69">60</text><text x="8" y="114">40</text>
+            <polyline fill="none" stroke="var(--accent)" stroke-width="2" points="40,15.5 117,20 194,29 271,24.5 348,42.5 425,51.5 502,60.5 540,56"/>
+            <circle cx="540" cy="56" r="4" fill="var(--accent)"/>
+            <text x="40" y="135">#1</text><text x="271" y="135">#7</text><text x="520" y="135">#14</text>
+          </svg></div>
+        </div>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Khái niệm</th><th>Lần gần nhất</th><th>Trạng thái</th><th>Việc tiếp</th></tr></thead>
+          <tbody>
+            <tr><td>Vòng đời session SQLAlchemy</td><td>task #14</td><td><span class="pill mid">một phần</span></td><td>Đọc Session Basics</td></tr>
+            <tr><td>Xử lý lỗi, mã HTTP</td><td>task #14</td><td><span class="pill ok">hiểu</span></td><td>Ôn lại sau 3 task</td></tr>
+            <tr><td>async / await trong FastAPI</td><td>task #12</td><td><span class="pill no">chưa hiểu</span></td><td>Bài tập nhỏ 15 phút</td></tr>
+            <tr><td>Tham số hoá truy vấn SQL</td><td>task #9</td><td><span class="pill no">chưa hiểu</span></td><td>Sẽ hỏi lại khi gặp</td></tr>
+          </tbody></table></div>
+        <div class="row"><button class="btn" data-goto="0">Làm lại từ đầu</button></div>
+      </div>
+    </div>
+    <aside class="note"><h3>Sổ dùng để làm gì</h3><ul>
+      <li>Cho bạn thấy mình tự chủ hơn qua từng task.</li>
+      <li>Khái niệm "chưa hiểu" được Check hỏi lại khi xuất hiện lần sau.</li>
+      <li>Chỉ bạn xem. Không bảng xếp hạng, không gửi cho quản lý.</li></ul></aside>
+  </div>
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.steps button'));
+  var panes=[].slice.call(document.querySelectorAll('[data-p]'));
+  function show(i){
+    tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===i?'true':'false')});
+    panes.forEach(function(p,k){p.hidden=k!==i});
+    try{localStorage.setItem('codeown-step',String(i))}catch(e){}
+  }
+  tabs.forEach(function(t,k){t.addEventListener('click',function(){show(k)})});
+  document.querySelectorAll('[data-next]').forEach(function(b){
+    b.addEventListener('click',function(){var cur=panes.findIndex(function(p){return !p.hidden});show(Math.min(cur+1,panes.length-1));window.scrollTo({top:0,behavior:'smooth'})})});
+  document.querySelectorAll('[data-goto]').forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.goto)})});
+  var start=0;try{var s=+localStorage.getItem('codeown-step');if(s>=0&&s<panes.length)start=s}catch(e){}
+  show(start);
+
+  var $=function(id){return document.getElementById(id)};
+  $('installBtn').addEventListener('click',function(){$('enableDlg').hidden=false;this.textContent='Đã cài';this.disabled=true});
+  $('enableBtn').addEventListener('click',function(){$('enableDlg').hidden=true;$('enabledMsg').hidden=false;$('sb0').textContent='CodeOwn DI —'});
+  $('commitBtn').addEventListener('click',function(){$('doneToast').hidden=false;$('doneSummary').hidden=false});
+  $('sendHyp').addEventListener('click',function(){
+    var m=$('hypMsg'); m.hidden=false;
+    m.innerHTML='<small>Bạn · 14:07 · đã gắn nhãn "debug có giả thuyết"</small>'+($('hyp').value||'').replace(/</g,'&lt;');
+    $('nudge').hidden=true;});
+  $('skipNudge').addEventListener('click',function(){$('nudge').hidden=true});
+  $('submitAns').addEventListener('click',function(){$('v1').hidden=false;$('ans2').hidden=false;$('row2').hidden=false;});
+  $('submitAns2').addEventListener('click',function(){$('v2').hidden=false;$('row2').hidden=true;
+    var bars=document.querySelectorAll('.progress span');bars[1].classList.add('on');$('qcount').textContent='Câu 2 / 3';});
+})();
+</script>
