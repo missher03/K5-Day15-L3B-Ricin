@@ -1,1 +1,2 @@
 {"ts":"2026-11-27T10:00:00Z","commit":"init-ext","files":["extension/package.json","extension/tsconfig.json","extension/eslint.config.mjs","extension/.vscodeignore","extension/media/codeown-icon.svg","extension/scripts/check-lines.mjs"],"change":"khoi tao cau truc extension va cau hinh lint","why":"thiet lap nen mvc cho extension mvp"}
+{"ts":"2026-11-27T10:05:00Z","commit":"step2","files":["extension/src/types.ts","extension/src/secrets.ts"],"change":"dinh nghia types contract va secret storage","why":"ho tro quan ly api key va kieu du lieu chuan"}\n
