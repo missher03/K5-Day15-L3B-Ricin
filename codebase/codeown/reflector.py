@@ -48,7 +48,8 @@ def source_ok(ref, event_ids, diff, root=ROOT):
         return ref[4:] in event_ids
     if ref.startswith("docs:"):
         path = ref[5:]
-        return path.startswith(DOCS_DIR.replace(os.sep, "/") + "/") and os.path.isfile(os.path.join(root, path))
+        return (path.startswith(DOCS_DIR.replace(os.sep, "/") + "/") and ".." not in path.split("/")
+                and os.path.isfile(os.path.join(root, path)))
     m = _LINE_REF.match(ref)
     if not m:
         return False

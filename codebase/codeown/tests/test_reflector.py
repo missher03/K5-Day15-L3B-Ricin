@@ -75,6 +75,8 @@ class ReflectTest(unittest.TestCase):
             self.assertTrue(reflector.source_ok("docs:data/docs/hmac.md", set(), {}, root))
             self.assertFalse(reflector.source_ok("docs:data/docs/nope.md", set(), {}, root))
             self.assertFalse(reflector.source_ok("docs:../secret.md", set(), {}, root))
+            open(os.path.join(root, "secret.md"), "w").close()
+            self.assertFalse(reflector.source_ok("docs:data/docs/../../secret.md", set(), {}, root))
 
     def test_prompt_has_no_unfilled_placeholders(self):
         self.assertNotIn("{{", llm.load_prompt("reflector", FENCE="DATA_0000"))
