@@ -1,76 +1,55 @@
-import * as vscode from "vscode";
 import * as crypto from "crypto";
+import * as vscode from "vscode";
 import { ICodeOwnClient } from "../client/interface";
 import { getSidebarHtml } from "./views/sidebarHtml";
 
+interface SidebarMsg {
+  command?: string;
+}
+
+// Quan ly Sidebar CodeOwn o Activity Bar
 export class CodeOwnSidebarProvider implements vscode.WebviewViewProvider {
   private view?: vscode.WebviewView;
 
   constructor(
     private readonly extensionUri: vscode.Uri,
-    private clientProvider: () => ICodeOwnClient,
-    private workspaceRoot: string
+    private clientProvider: () => ICodeOwnClient
   ) {}
 
-  public resolveWebviewView(
-    webviewView: vscode.WebviewView,
-    _context: vscode.WebviewViewResolveContext,
-    _token: vscode.CancellationToken
-  ) {
+  public resolveWebviewView(webviewView: vscode.WebviewView): void {
     this.view = webviewView;
-
     webviewView.webview.options = {
       enableScripts: true,
       localResourceRoots: [this.extensionUri]
     };
 
-    this.update();
-
-    webviewView.webview.onDidReceiveMessage(async (data) => {
-      const client = this.clientProvider();
-      switch (data.command) {
-        case "openCheck":
-          vscode.commands.executeCommand("codeown.openCheck");
-          break;
-        case "refresh":
-          vscode.commands.executeCommand("codeown.refresh");
-          break;
-        case "setApiKey":
-          vscode.commands.executeCommand("codeown.setApiKey");
-          break;
-        case "replyNudge":
-          try {
-            const status = await client.status();
-            if (status.pending_nudge) {
-              const text = await vscode.window.showInputBox({
-                prompt: `Trả lời Nudge: ${status.pending_nudge.question}`,
-                placeHolder: "Nhập giải thích ngắn gọn..."
-              });
-              if (text !== undefined) {
-                await client.ackNudge(status.pending_nudge.id, "reply", text.trim());
-                vscode.window.showInformationMessage("Đã gửi phản hồi Nudge.");
-                this.update();
-              }
-            }
-          } catch (e: any) {
-            vscode.window.showErrorMessage(`Lỗi phản hồi Nudge: ${e.message}`);
-          }
-          break;
+    webviewView.webview.onDidReceiveMessage((msg: SidebarMsg) => {
+      if (msg.command === "openCheck") {
+        void vscode.commands.executeCommand("codeown.openCheck");
+      } else if (msg.command === "refresh") {
+        void vscode.commands.executeCommand("codeown.refresh");
+      } else if (msg.command === "setApiKey") {
+        void vscode.commands.executeCommand("codeown.setApiKey");
       }
     });
+
+    void this.update();
   }
 
-  public async update() {
-    if (!this.view) return;
+  public async update(): Promise<void> {
+    if (!this.view) {
+      return;
+    }
+    const nonce = crypto.randomBytes(16).toString("hex");
     try {
       const client = this.clientProvider();
-      const status = await client.status();
-      const ledger = await client.ledgerList();
-      const nonce = crypto.randomBytes(16).toString("hex");
-
-      this.view.webview.html = getSidebarHtml(nonce, status, ledger.items || []);
+      const [status, ledger] = await Promise.all([
+        client.status().catch(() => null),
+        client.ledgerList().catch(() => ({ items: [], recent_nudges: [] }))
+      ]);
+      this.view.webview.html = getSidebarHtml(nonce, status, ledger.items, ledger.recent_nudges);
     } catch {
-      this.view.webview.html = `<!DOCTYPE html><html><body><p>Đang kết nối tới CodeOwn CLI...</p></body></html>`;
+      this.view.webview.html = getSidebarHtml(nonce, null, [], []);
     }
   }
 }

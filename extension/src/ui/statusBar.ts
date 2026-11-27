@@ -1,91 +1,91 @@
 import * as vscode from "vscode";
 import { ICodeOwnClient } from "../client/interface";
+import { StatusResult } from "../types";
 import { showNudgeToast } from "./nudgeToast";
 
+// Quan ly thanh trang thai DI va polling dinh ky
 export class StatusBarController {
   private statusBarItem: vscode.StatusBarItem;
   private timer: NodeJS.Timeout | undefined;
   private seenNudgeIds = new Set<string>();
   private seenCheckCommits = new Set<string>();
+  private lastStatus: StatusResult | undefined;
   private onStateUpdated?: () => void;
 
-  constructor(private context: vscode.ExtensionContext, private clientProvider: () => ICodeOwnClient) {
-    this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
-    this.statusBarItem.command = "codeown.openCheck";
-    this.statusBarItem.text = "CodeOwn · DI 0";
+  constructor(
+    private context: vscode.ExtensionContext,
+    private clientProvider: () => ICodeOwnClient
+  ) {
+    this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+    this.statusBarItem.command = "codeown.openLedger";
+    this.statusBarItem.text = "CodeOwn · DI --";
+    this.statusBarItem.tooltip = "Bấm để mở Sổ kiến thức CodeOwn";
     this.statusBarItem.show();
     context.subscriptions.push(this.statusBarItem);
   }
 
-  public setOnStateUpdated(callback: () => void) {
+  public getLastTaskId(): string {
+    return this.lastStatus?.task_id || "current";
+  }
+
+  public setOnStateUpdated(callback: () => void): void {
     this.onStateUpdated = callback;
   }
 
-  public startPolling() {
+  public startPolling(): void {
     const config = vscode.workspace.getConfiguration("codeown");
-    const intervalSec = config.get<number>("pollIntervalSec") || 10;
+    const intervalSec = Math.max(3, config.get<number>("pollIntervalSec") ?? 10);
 
-    this.poll();
+    void this.poll();
     this.timer = setInterval(() => {
-      this.poll();
+      void this.poll();
     }, intervalSec * 1000);
 
     this.context.subscriptions.push({
-      dispose: () => {
-        if (this.timer) clearInterval(this.timer);
-      }
+      dispose: () => this.dispose()
     });
   }
 
-  public async poll() {
+  public async poll(): Promise<void> {
     try {
       const client = this.clientProvider();
       const status = await client.status();
-      if (!status || !status.enabled) {
-        this.statusBarItem.text = "CodeOwn (Tắt)";
-        this.statusBarItem.backgroundColor = undefined;
-        return;
-      }
+      this.lastStatus = status;
 
-      const di = status.line_stats?.di || 0;
-      this.statusBarItem.text = `CodeOwn · DI ${di.toFixed(0)}`;
-      
-      if (di > 70) {
-        this.statusBarItem.backgroundColor = new vscode.ThemeColor("statusBarItem.warningBackground");
-      } else {
-        this.statusBarItem.backgroundColor = undefined;
-      }
+      const di = Math.round(status.di ?? 0);
+      this.statusBarItem.text = `CodeOwn · DI ${di}`;
+      this.statusBarItem.tooltip =
+        `Task: ${status.task_title || status.task_id}\n` +
+        `AI giữ nguyên: ${status.stats.ai_giu_nguyen} · AI sửa: ${status.stats.ai_da_sua} · Bạn viết: ${status.stats.nguoi_viet}`;
+      this.statusBarItem.backgroundColor =
+        di > 70 ? new vscode.ThemeColor("statusBarItem.warningBackground") : undefined;
 
-      // Check pending nudge
       if (status.pending_nudge && !this.seenNudgeIds.has(status.pending_nudge.id)) {
         this.seenNudgeIds.add(status.pending_nudge.id);
         await showNudgeToast(client, status.pending_nudge);
       }
 
-      // Check pending check
-      if (status.pending_check && !this.seenCheckCommits.has(status.pending_check.commit_sha)) {
-        this.seenCheckCommits.add(status.pending_check.commit_sha);
-        const actionOpen = "Mở Check";
-        const actionLater = "Để sau";
-        const sel = await vscode.window.showInformationMessage(
-          `CodeOwn: Có Check mới cho commit ${status.pending_check.commit_sha.substring(0, 7)} (${status.pending_check.reason})`,
-          actionOpen,
-          actionLater
-        );
-        if (sel === actionOpen) {
-          vscode.commands.executeCommand("codeown.openCheck");
+      if (status.pending_check && !this.seenCheckCommits.has(status.pending_check.commit)) {
+        const pc = status.pending_check;
+        this.seenCheckCommits.add(pc.commit);
+        const msg = `CodeOwn: Sau commit "${pc.commit_msg}", AI viết ${pc.ai_lines}/${pc.total_lines} dòng (DI ${di}). Trả lời ${pc.question_count} câu?`;
+        const choice = await vscode.window.showInformationMessage(msg, "Mở Check", "Để sau");
+        if (choice === "Mở Check") {
+          void vscode.commands.executeCommand("codeown.openCheck");
         }
       }
 
-      if (this.onStateUpdated) {
-        this.onStateUpdated();
-      }
+      this.onStateUpdated?.();
     } catch {
-      this.statusBarItem.text = "CodeOwn (Lỗi kết nối)";
+      this.statusBarItem.text = "CodeOwn · Chưa bật";
+      this.statusBarItem.backgroundColor = undefined;
     }
   }
 
-  public dispose() {
-    if (this.timer) clearInterval(this.timer);
+  public dispose(): void {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = undefined;
+    }
   }
 }

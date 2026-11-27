@@ -1,93 +1,99 @@
+// Kieu du lieu khop hop dong task.md muc 0.3-0.6 va Contract Addendum
+
 export type GradeLabel = "hieu" | "mot_phan" | "chua_hieu";
 
 export interface LineStats {
-  total: number;
-  covered: number;
-  uncovered: number;
-  di: number; // Deficit Index 0-100
+  ai_giu_nguyen: number;
+  ai_da_sua: number;
+  nguoi_viet: number;
 }
 
 export interface PendingNudge {
   id: string;
-  commit_sha: string;
-  file: string;
-  line: number;
-  question: string;
-  timestamp: string;
+  rule: string;
+  message: string;
+  metric_text?: string;
+  ts: string;
 }
 
 export interface PendingCheck {
-  commit_sha: string;
-  files: string[];
-  reason: string;
+  task_id: string;
+  commit: string;
+  commit_msg: string;
+  ai_lines: number;
+  total_lines: number;
+  question_count: number;
 }
 
 export interface StatusResult {
-  enabled: boolean;
-  repo: string;
-  commit: string;
-  line_stats: LineStats;
+  task_id: string;
+  task_title?: string;
+  di: number;
+  stats: LineStats;
   pending_nudge: PendingNudge | null;
   pending_check: PendingCheck | null;
 }
 
 export interface InitResult {
-  status: string;
-  repo: string;
-  rules_only?: boolean;
+  hooks_written: string[];
+  gitignore_updated: boolean;
 }
 
 export interface CheckQuestion {
-  question_id: string;
+  qid: string;
   file: string;
-  start_line: number;
-  end_line: number;
+  lines: [number, number];
+  concept: string;
   question: string;
-  context_hint?: string;
 }
 
-export interface CheckStartResult {
-  session_id: string;
-  commit_sha: string;
+export interface CheckQuestionsPayload {
+  task_id: string;
   questions: CheckQuestion[];
 }
 
+export interface CheckSkipPayload {
+  skip: string;
+}
+
+export type CheckStartResult = CheckQuestionsPayload | CheckSkipPayload;
+
 export interface CheckAnswerResult {
-  grade: GradeLabel;
-  feedback: string;
-  missing_concept?: string;
-  hint?: string;
+  qid: string;
+  label: GradeLabel;
+  confidence: number;
+  missing_concept: string | null;
+  hint: string;
+  follow_up: string | null;
   round: number;
+  final: boolean;
 }
 
 export interface ReflectResult {
-  reflect_markdown: string;
+  markdown: string;
   sources: string[];
 }
 
 export interface LedgerItem {
-  id: string;
-  timestamp: string;
+  ts: string;
   task_id: string;
-  summary: string;
-  details?: string;
+  concept: string;
+  label: GradeLabel;
+  next_step?: string;
 }
 
 export interface NudgeHistoryItem {
-  id: string;
-  timestamp: string;
-  file: string;
-  line: number;
-  question: string;
-  ack_type: "reply" | "dismiss";
-  reply_text?: string;
+  ts: string;
+  rule: string;
+  summary: string;
+  action: "reply" | "dismiss";
 }
 
 export interface LedgerListResult {
   items: LedgerItem[];
+  recent_nudges: NudgeHistoryItem[];
 }
 
 export interface OkResult {
-  status: string;
-  [key: string]: any;
+  ok: boolean;
 }

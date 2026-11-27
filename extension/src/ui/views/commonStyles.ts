@@ -1,87 +1,94 @@
+// CSS toi gian dung bien --vscode-* goc, tu dong an Dark va Light theme
 export const commonStyles = `
-  :root {
-    --container-padding: 16px;
-    --spacing-unit: 8px;
-    --border-radius: 4px;
-  }
+  * { box-sizing: border-box; }
   body {
     font-family: var(--vscode-font-family);
     font-size: var(--vscode-font-size);
     color: var(--vscode-foreground);
     background-color: var(--vscode-editor-background);
-    padding: var(--container-padding);
+    padding: 14px;
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.5;
   }
-  h1, h2, h3, h4 {
-    color: var(--vscode-editor-foreground);
-    margin-top: 0;
+  body.sidebar-body {
+    background-color: var(--vscode-sideBar-background);
+    padding: 10px 12px;
   }
+  h2, h3, h4 {
+    color: var(--vscode-foreground);
+    margin: 0 0 8px 0;
+    font-weight: 600;
+  }
+  p { margin: 0 0 8px 0; }
+  .muted { color: var(--vscode-descriptionForeground); font-size: 12px; }
+  .card {
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .between { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
   button {
     font-family: var(--vscode-font-family);
     font-size: var(--vscode-font-size);
     background-color: var(--vscode-button-background);
     color: var(--vscode-button-foreground);
     border: 1px solid var(--vscode-contrastBorder, transparent);
-    border-radius: var(--border-radius);
-    padding: 6px 12px;
+    border-radius: 3px;
+    padding: 5px 10px;
     cursor: pointer;
-    font-weight: 500;
   }
-  button:hover {
-    background-color: var(--vscode-button-hoverBackground);
-  }
+  button:hover:not(:disabled) { background-color: var(--vscode-button-hoverBackground); }
+  button:disabled { opacity: 0.55; cursor: not-allowed; }
   button.secondary {
     background-color: var(--vscode-button-secondaryBackground);
     color: var(--vscode-button-secondaryForeground);
   }
-  button.secondary:hover {
-    background-color: var(--vscode-button-secondaryHoverBackground);
-  }
-  input, textarea, select {
+  button.secondary:hover:not(:disabled) { background-color: var(--vscode-button-secondaryHoverBackground); }
+  textarea {
     font-family: var(--vscode-font-family);
     font-size: var(--vscode-font-size);
     background-color: var(--vscode-input-background);
     color: var(--vscode-input-foreground);
     border: 1px solid var(--vscode-input-border);
-    border-radius: var(--border-radius);
+    border-radius: 3px;
     padding: 6px 8px;
     width: 100%;
-    box-sizing: border-box;
-    margin-top: 4px;
-    margin-bottom: 8px;
+    resize: vertical;
   }
-  input:focus, textarea:focus, select:focus {
-    outline: 1px solid var(--vscode-focusBorder);
-    border-color: var(--vscode-focusBorder);
-  }
+  textarea:focus { outline: 1px solid var(--vscode-focusBorder); }
   pre, code {
     font-family: var(--vscode-editor-font-family);
     font-size: var(--vscode-editor-font-size);
     background-color: var(--vscode-textCodeBlock-background);
-    color: var(--vscode-editor-foreground);
-    border-radius: var(--border-radius);
+    border-radius: 3px;
   }
+  code { padding: 1px 4px; }
   pre {
-    padding: 10px;
+    padding: 8px 10px;
     overflow-x: auto;
     border: 1px solid var(--vscode-panel-border);
+    margin: 6px 0 10px 0;
   }
-  .card {
-    background-color: var(--vscode-sideBar-background);
-    border: 1px solid var(--vscode-panel-border);
-    border-radius: var(--border-radius);
-    padding: 12px;
-    margin-bottom: 12px;
-  }
-  .badge {
+  .prog { display: flex; gap: 4px; margin: 8px 0 12px 0; }
+  .prog span { flex: 1; height: 4px; border-radius: 2px; background: var(--vscode-panel-border); }
+  .prog span.on { background: var(--vscode-button-background); }
+  .split { display: flex; height: 7px; border-radius: 3px; overflow: hidden; border: 1px solid var(--vscode-panel-border); margin: 6px 0; }
+  .split .ai { background: var(--vscode-testing-iconPassed, #2ea043); }
+  .split .ed { background: var(--vscode-editorWarning-foreground, #d29922); }
+  .split .me { background: var(--vscode-descriptionForeground); }
+  .chip {
     display: inline-block;
-    padding: 2px 6px;
-    border-radius: 3px;
     font-size: 11px;
-    font-weight: bold;
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid currentColor;
   }
-  .badge-hieu { background-color: rgba(0, 200, 0, 0.2); color: var(--vscode-charts-green); }
-  .badge-mot-phan { background-color: rgba(200, 200, 0, 0.2); color: var(--vscode-charts-yellow); }
-  .badge-chua-hieu { background-color: rgba(200, 0, 0, 0.2); color: var(--vscode-charts-red); }
+  .chip.hieu { color: var(--vscode-testing-iconPassed, #2ea043); }
+  .chip.mot_phan { color: var(--vscode-editorWarning-foreground, #d29922); }
+  .chip.chua_hieu { color: var(--vscode-errorForeground, #f85149); }
+  .src { font-family: var(--vscode-editor-font-family); font-size: 11px; color: var(--vscode-descriptionForeground); }
+  ul.clean { margin: 4px 0 8px 0; padding-left: 18px; }
+  .hidden { display: none; }
 `;

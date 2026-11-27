@@ -1,61 +1,110 @@
+import { CheckAnswerResult, CheckQuestion, GradeLabel } from "../../types";
+import { escapeHtml } from "../../utils/html";
 import { commonStyles } from "./commonStyles";
 
-export function getCheckHtml(nonce: string, sessionId: string, commitSha: string, question: any, snippet: string, round: number): string {
+function labelText(label: GradeLabel): string {
+  if (label === "hieu") return "Hiểu";
+  if (label === "mot_phan") return "Một phần";
+  return "Chưa hiểu";
+}
+
+// Render man hinh thong bao bo qua neu diff chua dat nguong Check
+export function getCheckSkipHtml(reason: string): string {
+  return `<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><style>${commonStyles}</style></head>
+<body><div class="card"><h3>CodeOwn: Bỏ qua Check</h3><p>${escapeHtml(reason)}</p></div></body></html>`;
+}
+
+// Render man hinh cau hoi Check (ho tro nhieu cau va vong 2 follow-up)
+export function getCheckHtml(params: {
+  nonce: string;
+  taskId: string;
+  index: number;
+  total: number;
+  question: CheckQuestion;
+  snippet: string;
+  lastResult?: CheckAnswerResult;
+}): string {
+  const { nonce, taskId, index, total, question, snippet, lastResult } = params;
+  const bars = Array.from({ length: total }, (_, i) => `<span class="${i <= index ? "on" : ""}"></span>`).join("");
+  const [startL, endL] = question.lines;
+  const isFollowUp = Boolean(lastResult && !lastResult.final && lastResult.follow_up);
+  const canContinue = Boolean(lastResult && lastResult.final);
+
+  let feedbackBlock = "";
+  if (lastResult) {
+    const missing = lastResult.missing_concept
+      ? `<p><strong>Khái niệm còn hổng:</strong> ${escapeHtml(lastResult.missing_concept)}</p>`
+      : "";
+    const followUp = isFollowUp && lastResult.follow_up
+      ? `<p><strong>Câu hỏi thêm (vòng 2):</strong> ${escapeHtml(lastResult.follow_up)}</p>`
+      : "";
+    feedbackBlock = `<div class="card">
+      <div class="between">
+        <strong>Kết quả chấm (Vòng ${lastResult.round}/2)</strong>
+        <span class="chip ${lastResult.label}">${labelText(lastResult.label)}</span>
+      </div>
+      <p style="margin-top:6px">${escapeHtml(lastResult.hint)}</p>
+      ${missing}
+      ${followUp}
+    </div>`;
+  }
+
+  const primaryAction = canContinue
+    ? `<button id="nextBtn">${index + 1 < total ? "Câu tiếp theo" : "Xem báo cáo Reflect"}</button>`
+    : `<button id="submitBtn">${isFollowUp ? "Gửi câu trả lời vòng 2" : "Gửi câu trả lời"}</button>
+       <button id="deferBtn" class="secondary">Để sau</button>`;
+
+  const inputSection = canContinue
+    ? `<div class="row">${primaryAction}</div>`
+    : `<label for="answerText"><strong>Trả lời bằng lời của bạn (không dán code):</strong></label>
+       <textarea id="answerText" rows="4" placeholder="Giải thích ngắn gọn cơ chế đoạn code này..."></textarea>
+       <div class="row" style="margin-top:6px">${primaryAction}</div>`;
+
   return `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-${nonce}';">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodeOwn Check</title>
+  <title>CodeOwn: Check</title>
   <style>${commonStyles}</style>
 </head>
 <body>
-  <div class="card">
-    <h3>Kiểm tra hiểu biết · Commit ${commitSha.substring(0, 7)}</h3>
-    <p><strong>Phiên ID:</strong> ${sessionId} | <strong>Vòng:</strong> ${round}/2</p>
-    <p><strong>Câu hỏi (${question.question_id}):</strong> ${question.question}</p>
-    <p><code>${question.file}:${question.start_line}-${question.end_line}</code></p>
-    <pre><code>${snippet}</code></pre>
-    ${question.context_hint ? `<p><em>Gợi ý: ${question.context_hint}</em></p>` : ""}
+  <div class="between">
+    <h3>CodeOwn: Check · ${escapeHtml(taskId)}</h3>
+    <span class="muted">Câu ${index + 1} / ${total}</span>
   </div>
-
+  <div class="prog">${bars}</div>
   <div class="card">
-    <label for="answerText"><strong>Giải thích / Trả lời của bạn:</strong></label>
-    <textarea id="answerText" rows="5" placeholder="Nhập câu trả lời chi tiết..."></textarea>
-    <div style="display: flex; gap: 8px; margin-top: 8px;">
-      <button id="submitBtn">Nộp câu trả lời</button>
-      <button id="deferBtn" class="secondary">Để sau</button>
+    <div class="between">
+      <span class="src">${escapeHtml(question.file)}:${startL}-${endL}</span>
+      <span class="muted">${escapeHtml(question.concept)}</span>
     </div>
+    <pre><code>${escapeHtml(snippet)}</code></pre>
+    <p><strong>${escapeHtml(question.question)}</strong></p>
   </div>
-
-  <div id="resultArea"></div>
-
+  ${feedbackBlock}
+  <div class="card">${inputSection}</div>
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     const submitBtn = document.getElementById('submitBtn');
     const deferBtn = document.getElementById('deferBtn');
-    const answerText = document.getElementById('answerText');
-
-    submitBtn.addEventListener('click', () => {
-      const text = answerText.value.trim();
-      if (!text) {
-        alert('Vui lòng nhập câu trả lời.');
-        return;
-      }
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Đang chấm...';
-      vscode.postMessage({
-        command: 'submitAnswer',
-        sessionId: '${sessionId}',
-        questionId: '${question.question_id}',
-        answer: text
+    const nextBtn = document.getElementById('nextBtn');
+    const answerEl = document.getElementById('answerText');
+    if (submitBtn && answerEl) {
+      submitBtn.addEventListener('click', () => {
+        const text = answerEl.value.trim();
+        if (!text) return;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Đang chấm...';
+        vscode.postMessage({ command: 'submitAnswer', qid: '${escapeHtml(question.qid)}', text });
       });
-    });
-
-    deferBtn.addEventListener('click', () => {
-      vscode.postMessage({ command: 'deferCheck' });
-    });
+    }
+    if (deferBtn) {
+      deferBtn.addEventListener('click', () => vscode.postMessage({ command: 'deferCheck' }));
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => vscode.postMessage({ command: 'nextQuestion' }));
+    }
   </script>
 </body>
 </html>`;

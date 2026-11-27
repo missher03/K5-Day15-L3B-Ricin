@@ -1,123 +1,151 @@
-import * as vscode from "vscode";
 import { spawn } from "child_process";
-import { ICodeOwnClient } from "./interface";
-import {
-  InitResult,
-  StatusResult,
-  CheckStartResult,
-  CheckAnswerResult,
-  ReflectResult,
-  LedgerListResult,
-  OkResult
-} from "../types";
+import * as vscode from "vscode";
 import { buildProcessEnv, getApiKey } from "../secrets";
+import {
+  CheckAnswerResult,
+  CheckStartResult,
+  InitResult,
+  LedgerListResult,
+  OkResult,
+  ReflectResult,
+  StatusResult
+} from "../types";
+import { ICodeOwnClient } from "./interface";
 import { readLocalFallbackLedger } from "./localFallback";
 
+// Goi loi Python qua python -m codeown <lenh> --json
 export class CliCodeOwnClient implements ICodeOwnClient {
   constructor(private context: vscode.ExtensionContext, private workspaceRoot: string) {}
 
-  private async runPython(args: string[], timeoutMs: number = 10000, stdinData?: string): Promise<any> {
+  private async runPython<T>(args: string[], timeoutMs = 10000, stdinData?: string): Promise<T> {
     const apiKey = await getApiKey(this.context);
-    const env = buildProcessEnv(this.context, this.workspaceRoot, apiKey);
-    const pythonExec = env["PYTHON_EXECUTABLE"] || "python3";
+    const { pythonPath, env } = buildProcessEnv(this.workspaceRoot, apiKey);
 
-    return new Promise((resolve, reject) => {
-      const child = spawn(pythonExec, ["-m", "codeown", ...args, "--json"], {
+    return new Promise<T>((resolve, reject) => {
+      const child = spawn(pythonPath, ["-m", "codeown", ...args], {
         cwd: this.workspaceRoot,
-        env,
-        timeout: timeoutMs
+        env
       });
 
       let stdout = "";
       let stderr = "";
+      let timedOut = false;
 
-      if (stdinData && child.stdin) {
-        child.stdin.write(stdinData);
+      const timer = setTimeout(() => {
+        timedOut = true;
+        child.kill();
+        reject(new Error(`Lệnh CodeOwn quá thời gian (${timeoutMs / 1000}s).`));
+      }, timeoutMs);
+
+      if (stdinData !== undefined && child.stdin) {
+        child.stdin.write(stdinData, "utf8");
         child.stdin.end();
       }
 
-      child.stdout.on("data", (data) => {
-        stdout += data.toString();
+      child.stdout.on("data", (chunk: Buffer) => {
+        stdout += chunk.toString("utf8");
       });
 
-      child.stderr.on("data", (data) => {
-        stderr += data.toString();
+      child.stderr.on("data", (chunk: Buffer) => {
+        stderr += chunk.toString("utf8");
       });
 
       child.on("error", (err) => {
-        reject(new Error(`Khong the chay Python CLI (${pythonExec}): ${err.message}`));
+        clearTimeout(timer);
+        reject(new Error(`Không chạy được ${pythonPath}: ${err.message}`));
       });
 
       child.on("close", (code) => {
-        if (code !== 0) {
-          reject(new Error(`Python CLI loi (code ${code}): ${stderr || stdout || "Unknown error"}`));
+        clearTimeout(timer);
+        if (timedOut) {
           return;
         }
-        try {
-          // Find last line or valid JSON in stdout
-          const lines = stdout.trim().split("\n");
-          let jsonParsed: any = null;
-          for (let i = lines.length - 1; i >= 0; i--) {
-            try {
-              jsonParsed = JSON.parse(lines[i]);
-              break;
-            } catch {
-              // try next
-            }
-          }
-          if (!jsonParsed) {
-            jsonParsed = JSON.parse(stdout);
-          }
-          resolve(jsonParsed);
-        } catch (e: any) {
-          reject(new Error(`Khong the parse JSON tu CLI: ${e.message}. Output: ${stdout}`));
+        const parsed = this.parseJsonOutput(stdout);
+        if (code !== 0) {
+          const errMsg = parsed && typeof parsed === "object" && "error" in parsed
+            ? String((parsed as { error: unknown }).error)
+            : (stderr.trim() || stdout.trim() || `Mã thoát ${code}`);
+          reject(new Error(errMsg));
+          return;
         }
+        if (parsed === null) {
+          reject(new Error(`CLI trả dữ liệu không hợp lệ: ${stdout.slice(0, 120)}`));
+          return;
+        }
+        resolve(parsed as T);
       });
     });
   }
 
-  async init(rulesOnly?: boolean): Promise<InitResult> {
-    const args = ["init"];
+  private parseJsonOutput(raw: string): unknown {
+    const trimmed = raw.trim();
+    if (!trimmed) {
+      return null;
+    }
+    try {
+      return JSON.parse(trimmed);
+    } catch {
+      const lines = trimmed.split("\n").reverse();
+      for (const line of lines) {
+        try {
+          return JSON.parse(line);
+        } catch {
+          // Thu dong truoc do
+        }
+      }
+      return null;
+    }
+  }
+
+  init(repoPath: string, rulesOnly?: boolean): Promise<InitResult> {
+    const args = ["init", "--repo", repoPath];
     if (rulesOnly) {
       args.push("--rules-only");
     }
-    return await this.runPython(args, 15000);
+    return this.runPython<InitResult>(args, 10000);
   }
 
-  async status(): Promise<StatusResult> {
-    return await this.runPython(["status"], 10000);
+  status(): Promise<StatusResult> {
+    return this.runPython<StatusResult>(["status", "--json"], 5000);
   }
 
-  async ackNudge(nudgeId: string, action: "reply" | "dismiss", replyText?: string): Promise<OkResult> {
-    const args = ["nudge", "ack", nudgeId, "--action", action];
+  ackNudge(nudgeId: string, action: "reply" | "dismiss", replyText?: string): Promise<OkResult> {
+    const args = ["nudge", "ack", "--id", nudgeId, "--action", action];
     if (replyText) {
       args.push("--text", replyText);
     }
-    return await this.runPython(args, 10000);
+    args.push("--json");
+    return this.runPython<OkResult>(args, 5000);
   }
 
-  async checkStart(): Promise<CheckStartResult> {
-    return await this.runPython(["check", "start"], 30000);
+  checkStart(taskId: string): Promise<CheckStartResult> {
+    return this.runPython<CheckStartResult>(["check", "start", "--task", taskId, "--json"], 30000);
   }
 
-  async checkAnswer(sessionId: string, questionId: string, answer: string): Promise<CheckAnswerResult> {
-    return await this.runPython(["check", "answer", sessionId, "--qid", questionId, "--answer", answer], 30000);
+  checkAnswer(taskId: string, qid: string, text: string): Promise<CheckAnswerResult> {
+    return this.runPython<CheckAnswerResult>(
+      ["check", "answer", "--task", taskId, "--qid", qid, "--text", text, "--json"],
+      30000
+    );
   }
 
-  async reflect(): Promise<ReflectResult> {
-    return await this.runPython(["reflect"], 30000);
+  reflect(taskId: string): Promise<ReflectResult> {
+    return this.runPython<ReflectResult>(["reflect", "--task", taskId, "--json"], 30000);
   }
 
-  async ledgerSave(taskId: string, summary: string, details?: string): Promise<OkResult> {
-    const payload = JSON.stringify({ task_id: taskId, summary, details: details || "" });
-    return await this.runPython(["ledger", "save", "--task", taskId, "--from-stdin"], 15000, payload);
+  ledgerSave(taskId: string, markdown?: string): Promise<OkResult> {
+    const args = ["ledger", "save", "--task", taskId];
+    if (markdown !== undefined) {
+      args.push("--from-stdin");
+    }
+    args.push("--json");
+    return this.runPython<OkResult>(args, 10000, markdown);
   }
 
   async ledgerList(): Promise<LedgerListResult> {
     try {
-      return await this.runPython(["ledger", "list"], 10000);
+      return await this.runPython<LedgerListResult>(["ledger", "list", "--json"], 5000);
     } catch {
-      // Fallback to local fallback ledger if CLI ledger list fails
       return readLocalFallbackLedger(this.workspaceRoot);
     }
   }

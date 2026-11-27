@@ -1,84 +1,69 @@
 import * as vscode from "vscode";
-import { ICodeOwnClient } from "./client/interface";
 import { CliCodeOwnClient } from "./client/cliClient";
+import { ICodeOwnClient } from "./client/interface";
 import { MockCodeOwnClient } from "./client/mockClient";
 import { promptSetApiKey } from "./secrets";
-import { StatusBarController } from "./ui/statusBar";
-import { CodeOwnSidebarProvider } from "./ui/sidebarProvider";
 import { CheckPanel } from "./ui/checkPanel";
+import { CodeOwnSidebarProvider } from "./ui/sidebarProvider";
+import { StatusBarController } from "./ui/statusBar";
+import { formatError } from "./utils/html";
 
 let clientInstance: ICodeOwnClient | undefined;
 let statusBarController: StatusBarController | undefined;
 let sidebarProvider: CodeOwnSidebarProvider | undefined;
 
-export function activate(context: vscode.ExtensionContext) {
-  const workspaceFolders = vscode.workspace.workspaceFolders;
-  const workspaceRoot = workspaceFolders && workspaceFolders.length > 0 
-    ? workspaceFolders[0].uri.fsPath 
-    : process.cwd();
+export function activate(context: vscode.ExtensionContext): void {
+  const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath ?? process.cwd();
 
   const getClient = (): ICodeOwnClient => {
     if (!clientInstance) {
-      const config = vscode.workspace.getConfiguration("codeown");
-      const mockMode = config.get<boolean>("mockMode") || false;
-      if (mockMode) {
-        clientInstance = new MockCodeOwnClient();
-      } else {
-        clientInstance = new CliCodeOwnClient(context, workspaceRoot);
-      }
+      const mockMode = vscode.workspace.getConfiguration("codeown").get<boolean>("mockMode") ?? false;
+      clientInstance = mockMode
+        ? new MockCodeOwnClient()
+        : new CliCodeOwnClient(context, workspaceRoot);
     }
     return clientInstance;
   };
 
-  // Reset client on config change
-  context.subscriptions.push(
-    vscode.workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration("codeown")) {
-        clientInstance = undefined;
-        if (statusBarController) {
-          statusBarController.poll();
-        }
-        if (sidebarProvider) {
-          sidebarProvider.update();
-        }
-      }
-    })
-  );
-
-  // Sidebar provider
-  sidebarProvider = new CodeOwnSidebarProvider(context.extensionUri, getClient, workspaceRoot);
+  sidebarProvider = new CodeOwnSidebarProvider(context.extensionUri, getClient);
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider("codeown.sidebarView", sidebarProvider)
   );
 
-  // Status bar controller
   statusBarController = new StatusBarController(context, getClient);
   statusBarController.setOnStateUpdated(() => {
-    if (sidebarProvider) {
-      sidebarProvider.update();
-    }
+    void sidebarProvider?.update();
   });
   statusBarController.startPolling();
 
-  // Register commands
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration("codeown")) {
+        clientInstance = undefined;
+        void statusBarController?.poll();
+        void sidebarProvider?.update();
+      }
+    })
+  );
+
   context.subscriptions.push(
     vscode.commands.registerCommand("codeown.enable", async () => {
-      const actionRulesOnly = "Chỉ rules (--rules-only)";
-      const actionFull = "Khởi tạo đầy đủ";
-      const choice = await vscode.window.showQuickPick([actionFull, actionRulesOnly], {
-        placeHolder: "Chọn chế độ khởi tạo CodeOwn cho repo này"
+      const modeFull = "Bật đầy đủ (gồm AI phân loại prompt)";
+      const modeRules = "Chỉ dùng luật (--rules-only, không gửi prompt)";
+      const choice = await vscode.window.showQuickPick([modeFull, modeRules], {
+        placeHolder: "Sẽ ghi hook vào .claude/, .git/hooks/post-commit và thêm .codeown/ vào .gitignore"
       });
       if (!choice) return;
-      const rulesOnly = choice === actionRulesOnly;
 
       try {
-        const client = getClient();
-        const res = await client.init(rulesOnly);
-        vscode.window.showInformationMessage(`CodeOwn đã được bật thành công cho ${res.repo || workspaceRoot}!`);
-        statusBarController?.poll();
-        sidebarProvider?.update();
-      } catch (e: any) {
-        vscode.window.showErrorMessage(`Lỗi khởi tạo CodeOwn: ${e.message}`);
+        const res = await getClient().init(workspaceRoot, choice === modeRules);
+        vscode.window.showInformationMessage(
+          `Đã bật CodeOwn (${res.hooks_written.length} hook).`
+        );
+        await statusBarController?.poll();
+        await sidebarProvider?.update();
+      } catch (err) {
+        vscode.window.showErrorMessage(`Lỗi bật CodeOwn: ${formatError(err)}`);
       }
     })
   );
@@ -91,17 +76,16 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand("codeown.openCheck", async () => {
-      await CheckPanel.createOrShow(context.extensionUri, getClient(), workspaceRoot, () => {
-        sidebarProvider?.update();
+      const taskId = statusBarController?.getLastTaskId() ?? "current";
+      await CheckPanel.createOrShow(getClient(), workspaceRoot, taskId, () => {
+        void sidebarProvider?.update();
       });
     })
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand("codeown.openLedger", async () => {
-      await CheckPanel.createOrShow(context.extensionUri, getClient(), workspaceRoot, () => {
-        sidebarProvider?.update();
-      });
+      await vscode.commands.executeCommand("codeown.sidebarView.focus");
     })
   );
 
@@ -110,16 +94,11 @@ export function activate(context: vscode.ExtensionContext) {
       clientInstance = undefined;
       await statusBarController?.poll();
       await sidebarProvider?.update();
-      vscode.window.showInformationMessage("Đã làm mới trạng thái CodeOwn.");
     })
   );
 }
 
-export function deactivate() {
-  if (statusBarController) {
-    statusBarController.dispose();
-  }
-  if (CheckPanel.currentPanel) {
-    CheckPanel.currentPanel.dispose();
-  }
+export function deactivate(): void {
+  statusBarController?.dispose();
+  CheckPanel.currentPanel?.dispose();
 }
