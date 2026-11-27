@@ -9,37 +9,46 @@ import re
 
 LABELS = ("lam_ho", "hoi_khai_niem", "debug_co_gia_thuyet", "debug_dan_loi", "khac")
 
-_ERROR = re.compile(
-    r"(?i)traceback|exception|error\b|lỗi|\bfailed\b|\bfail\b|undefined|cannot |can't |not found|"
-    r"segmentation fault|stack ?trace|\bat .+:\d+|line \d+|warning:|panic:|errno|status code [45]\d\d|"
-    r"\b[A-Z][a-zA-Z]+Error\b|không chạy|bị crash|crash")
+# Lỗi "rõ": traceback, tên lỗi kiểu KeyError / OperationalError, mã lỗi HTTP… → đang gỡ lỗi
+_STRONG_ERR = re.compile(
+    r"(?i)traceback|\b[A-Za-z_.]*(?:Error|Exception)\b|segmentation fault|stack ?trace|panic:|errno|"
+    r"status code [45]\d\d|\bfailed\b|\bcrash")
+# Dấu hiệu gỡ lỗi "nhẹ": chỉ tính khi đi kèm giả thuyết, hoặc khi không khớp nhóm nào khác
+_WEAK_ERR = re.compile(r"(?i)\blỗi\b|\bsai\b|\bhỏng\b|\bbug\b|\bfail|\bchậm\b|không chạy|\b[45]\d\d\b|\berror\b|undefined|not found")
 _HYPO = re.compile(
-    r"(?i)tôi nghĩ|mình nghĩ|em nghĩ|có phải|có lẽ|chắc là|nghi là|hình như|liệu có|do (?:mình|tôi|em)|"
-    r"\bi think\b|\bmaybe\b|\bprobably\b|\bsuspect\b|\bbecause\b|\bis it because\b|vì (?:mình|tôi|em)|"
-    r"đã thử|i tried|tried to")
+    r"(?i)(?:tôi|mình|em) (?:nghĩ|đoán|nghi)|có phải|có lẽ|chắc là|nghi là|hình như|liệu có|giả thuyết|"
+    r"\bi think\b|\bmaybe\b|\bprobably\b|\bsuspect\b|\bis it because\b|đã thử|i tried|tried to")
 _CONCEPT = re.compile(
-    r"(?i)là gì|tại sao|vì sao|khác gì|khác nhau|giải thích|nghĩa là|hoạt động (?:thế|như) nào|"
-    r"khi nào (?:nên|dùng)|có nên|\bwhy\b|\bwhat is\b|\bwhat are\b|\bhow does\b|\bexplain\b|"
-    r"difference between|\bwhen should\b")
+    r"(?i)là gì|tại sao|vì sao|^\s*sao\b|sao (?:lại|phải)|khác gì|khác nhau|ở chỗ nào|giải thích|nghĩa là|"
+    r"(?:như |ra )?thế nào\s*\??\s*$|hoạt động (?:thế|như) nào|khi nào|có nên|\bwhy\b|\bwhat is\b|"
+    r"\bwhat are\b|\bhow does\b|\bexplain\b|difference between|\bwhen should\b")
 _DO = re.compile(
     r"(?i)^\s*(?:hãy |giúp (?:tôi|mình|em) |please |pls |can you |could you )?"
     r"(?:viết|tạo|làm|code|thêm|sửa|fix|implement|build|create|write|add|generate|refactor|"
     r"convert|chuyển|dựng|xây|hoàn thiện|update|cập nhật|đổi|make)\b")
-_DO_ANY = re.compile(r"(?i)\b(?:viết giúp|làm giúp|code giúp|làm hộ|viết hộ|implement|generate)\b")
+_DO_ANY = re.compile(
+    r"(?i)\b(?:làm|sửa|viết|code|thêm|tạo)\b[^.?!\n]*\bgiúp\b|\b(?:làm hộ|viết hộ|code hộ|implement|generate)\b")
+_SMALL_TALK = re.compile(r"(?i)^\s*(?:làm tiếp|tiếp tục|tiếp đi|ok\b|oke|okay|cảm ơn|thanks|thank you|chào)")
 
 
 def classify_rules(prompt):
     p = (prompt or "").strip()
     if not p:
         return "khac"
-    if _ERROR.search(p):
-        return "debug_co_gia_thuyet" if _HYPO.search(p) else "debug_dan_loi"
-    if _CONCEPT.search(p) and not _DO.search(p):
+    strong = bool(_STRONG_ERR.search(p))
+    if _SMALL_TALK.match(p) and not strong and not _CONCEPT.search(p):
+        return "khac"
+    if _HYPO.search(p) and (strong or _WEAK_ERR.search(p)):
+        return "debug_co_gia_thuyet"
+    if strong:
+        return "debug_dan_loi"
+    do = bool(_DO.search(p))
+    if _CONCEPT.search(p) and not do:
         return "hoi_khai_niem"
-    if _DO.search(p) or _DO_ANY.search(p):
+    if do or _DO_ANY.search(p):
         return "lam_ho"
-    if _CONCEPT.search(p):
-        return "hoi_khai_niem"
+    if _WEAK_ERR.search(p):
+        return "debug_dan_loi"
     return "khac"
 
 

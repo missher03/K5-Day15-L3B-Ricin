@@ -50,7 +50,7 @@ data/samples/       # C: repo mẫu + log tự dựng
  "file": "app/auth.py", "line_hashes": ["9f1c…", "a03e…"], "meta": {}}
 ```
 - `event` ∈ `prompt` · `ai_edit` · `ai_bash` · `ai_turn_end` · `commit` · `nudge` · `manual_mark`.
-- `prompt` cắt ≤1000 ký tự, đã che bí mật. `line_hashes` = sha1 của dòng đã `strip()`.
+- `prompt` cắt ≤1000 ký tự, đã che bí mật. `line_hashes` = sha1 của dòng đã `strip()`. Với `ai_edit`, `meta.lines` = chữ các dòng AI ghi (đã `strip()`, cùng thứ tự với `line_hashes`): bắt buộc để nhận ra dòng `ai_da_sua`, kể cả trong dữ liệu mẫu.
 - `task_id` = tên nhánh + ngày, đổi khi người dùng chạy `codeown task new` hoặc đổi nhánh.
 
 **Mọi dữ liệu trong `.codeown/` là JSONL** (mỗi dòng một bản ghi, chỉ ghi thêm, mở bằng mắt đọc được):

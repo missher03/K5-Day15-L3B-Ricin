@@ -768,7 +768,8 @@ def build_events(rng, prefix, task_id, session_id, tool, branch, prompts, edits,
         for _, path, ai_lines in mine:
             clock.add(rng.randint(4, 25))
             add("ai_edit", file=path, line_hashes=[sha1(l) for l in ai_lines],
-                meta={"tool_name": rng.choice(["Write", "Edit", "MultiEdit"]), "n_lines": len(ai_lines)})
+                meta={"tool_name": rng.choice(["Write", "Edit", "MultiEdit"]), "n_lines": len(ai_lines),
+                      "lines": [l.strip() for l in ai_lines]})   # chữ dòng AI ghi, như hook thật (task.md 0.2)
         if label.startswith("debug") or rng.random() < 0.4:
             clock.add(rng.randint(3, 15))
             add("ai_bash", meta={"command": rng.choice(["python -m pytest -q", "python app.py", "npm test", "node index.js"])})

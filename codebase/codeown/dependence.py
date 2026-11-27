@@ -1,16 +1,19 @@
 """Chỉ số phụ thuộc DI (docs/design.md §5.1). Toàn bộ là code tất định, không gọi AI ngoài Classifier.
 
   f1 = ai_giu_nguyen / (ai_giu_nguyen + ai_da_sua)            — nhận code AI mà không sửa
-  f2 = tỉ lệ prompt lam_ho + debug_dan_loi trong các prompt về code (bỏ nhãn khac: chào hỏi, cảm ơn…)
-  f3 = số chuỗi ≥2 prompt liền nhau chứa cùng lỗi (giống ≥0,8), không có dòng tự viết xen giữa
-  f4 = trung vị số giây từ ai_edit tới commit kế tiếp          — commit vội
+  f2 = tỉ lệ prompt lam_ho + debug_dan_loi trên mọi prompt      — giao việc / dán lỗi
+  f3 = số chuỗi ≥2 prompt liền nhau có cùng dòng lỗi (dòng "...Error/Exception..." đầu tiên, giống ≥0,8);
+       commit / đánh dấu tay ở giữa thì cắt chuỗi
+  f4 = trung vị số giây từ lúc AI ghi một dòng (ai_edit đầu tiên có dòng đó) tới commit kế tiếp,
+       tính trên các dòng AI có trong diff (giữ nguyên hoặc đã sửa)  — commit vội
   f5 = 1 nếu có dòng nguoi_viet trong file test
 
   DI = 100 × (0,3·f1 + 0,25·f2 + 0,2·f3ₙ + 0,15·(1−f4ₙ) + 0,1·(1−f5))
   f3ₙ = min(f3, F3_CAP)/F3_CAP · f4ₙ = min(f4, F4_CAP)/F4_CAP
 
 Trọng số và mức chặn là giả định ban đầu, chốt cùng chuẩn "đạt" ở CP2 rồi không đổi.
-Thiếu dữ liệu cho f4 (chưa commit) thì f4ₙ = 0,5 (trung tính) và ghi vào "missing".
+Không đo được f4 (chưa commit / không có dòng AI) thì f4 = F4_CAP, tức không cộng điểm phụ thuộc, và ghi vào "missing".
+Định nghĩa khớp bộ sinh mẫu của C (data/samples/build_samples.py) để eval so được.
 """
 import difflib
 import re
@@ -40,49 +43,69 @@ def label_prompts(evs, mode=None):
     return out
 
 
-def _error_text(prompt):
-    return re.sub(r"\s+", " ", (prompt or "")).strip().lower()[:600]
+_ERR_SIG = re.compile(r"[A-Za-z_.]*(?:Error|Exception)\b[^\n]*")
 
 
-def repeated_error_chains(evs, labels):
-    """f3: đếm chuỗi ≥2 prompt debug liền nhau mà cùng lỗi. commit / manual_mark / sửa tay cắt chuỗi."""
-    chains, run, prev = 0, 0, None
+def error_signature(prompt):
+    """Dòng lỗi đầu tiên trong prompt ("KeyError: 'id'"…), hoặc None."""
+    m = _ERR_SIG.search(prompt or "")
+    return m.group(0).strip() if m else None
+
+
+def same_error(a, b):
+    return bool(a and b) and difflib.SequenceMatcher(None, a, b).ratio() >= SAME_ERROR
+
+
+def error_runs(evs):
+    """Các chuỗi prompt liền nhau cùng lỗi → [(độ dài, sự kiện prompt cuối)]. commit / manual_mark cắt chuỗi."""
+    runs, run, prev, last = [], 0, None, None
     for ev in evs:
         kind = ev.get("event")
         if kind in ("commit", "manual_mark"):
+            if run:
+                runs.append((run, last))
             run, prev = 0, None
             continue
         if kind != "prompt":
             continue
-        lab = labels.get(ev.get("id"))
-        if lab not in ("debug_dan_loi", "debug_co_gia_thuyet"):
-            run, prev = 0, None
-            continue
-        cur = _error_text(ev.get("prompt"))
-        if prev is not None and difflib.SequenceMatcher(None, prev, cur).ratio() >= SAME_ERROR:
+        sig = error_signature(ev.get("prompt"))
+        if prev is not None and same_error(prev, sig):
             run += 1
-            if run == 2:
-                chains += 1
         else:
+            if run:
+                runs.append((run, last))
             run = 1
-        prev = cur
-    return chains
+        prev, last = sig, ev
+    if run:
+        runs.append((run, last))
+    return runs
 
 
-def edit_to_commit_seconds(evs):
-    """Danh sách số giây từ mỗi ai_edit tới commit kế tiếp sau nó."""
-    out, pending = [], []
+def repeated_error_chains(evs, labels=None):
+    """f3: số chuỗi ≥2 prompt liền nhau cùng lỗi."""
+    return sum(1 for n, _ in error_runs(evs) if n >= 2)
+
+
+def line_waits(evs, lines):
+    """Số giây từ lúc AI ghi mỗi dòng AI trong diff tới commit kế tiếp sau đó."""
+    first_edit, commits = {}, []
     for ev in evs:
-        kind = ev.get("event")
-        if kind == "ai_edit":
-            t = E.parse_ts(ev.get("ts"))
-            if t:
-                pending.append(t)
-        elif kind == "commit":
-            t = E.parse_ts(ev.get("ts"))
-            if t:
-                out.extend(max(0.0, (t - p).total_seconds()) for p in pending)
-            pending = []
+        t = E.parse_ts(ev.get("ts"))
+        if t is None:
+            continue
+        if ev.get("event") == "ai_edit":
+            for h in ev.get("line_hashes") or []:
+                first_edit.setdefault(h, t)
+        elif ev.get("event") == "commit":
+            commits.append(t)
+    out = []
+    for ln in lines or []:
+        t0 = first_edit.get(ln.get("ai_hash"))
+        if ln.get("label") == "nguoi_viet" or t0 is None:
+            continue
+        after = [c for c in commits if c >= t0]
+        if after:
+            out.append((after[0] - t0).total_seconds())
     return out
 
 
@@ -97,14 +120,13 @@ def features(evs, attribution=None, mode=None):
         missing.append("f1")
 
     labels = label_prompts(evs, mode)
-    coding = [v for v in labels.values() if v != "khac"]
-    f2 = (sum(1 for v in coding if v in ("lam_ho", "debug_dan_loi")) / len(coding)) if coding else 0.0
-    if not coding:
+    f2 = (sum(1 for v in labels.values() if v in ("lam_ho", "debug_dan_loi")) / len(labels)) if labels else 0.0
+    if not labels:
         missing.append("f2")
 
-    f3 = repeated_error_chains(evs, labels)
+    f3 = repeated_error_chains(evs)
 
-    secs = edit_to_commit_seconds(evs)
+    secs = line_waits(evs, lines)
     f4 = statistics.median(secs) if secs else None
     if f4 is None:
         missing.append("f4")
@@ -118,7 +140,7 @@ def features(evs, attribution=None, mode=None):
 
 def di_from_features(f):
     f3n = min(f["f3"], F3_CAP) / F3_CAP
-    f4n = 0.5 if f["f4_sec"] is None else min(f["f4_sec"], F4_CAP) / F4_CAP
+    f4n = 1.0 if f["f4_sec"] is None else min(f["f4_sec"], F4_CAP) / F4_CAP
     score = (WEIGHTS["f1"] * f["f1"] + WEIGHTS["f2"] * f["f2"] + WEIGHTS["f3"] * f3n
              + WEIGHTS["f4"] * (1 - f4n) + WEIGHTS["f5"] * (1 - f["f5"]))
     return int(round(100 * score))
