@@ -45,9 +45,10 @@ MODEL_PROVIDER = (os.environ.get("MODEL_PROVIDER") or "fake").strip().lower()
 MODEL_NAME = (os.environ.get("MODEL_NAME") or "").strip()
 API_KEY = (os.environ.get("API_KEY") or "").strip()
 # CodeOwn cần 2 tầng model (ADR 0001): "small" cho Grader, "strong" cho Examiner / Reflector / giám khảo thứ hai.
-TIERS = {"small": os.environ.get("CODEOWN_MODEL_SMALL") or "claude-haiku-5-5",
-         "strong": os.environ.get("CODEOWN_MODEL_STRONG") or "claude-sonnet-5-5"}
+TIERS = {"small": os.environ.get("CODEOWN_MODEL_SMALL") or "openai/gpt-oss-20b",
+         "strong": os.environ.get("CODEOWN_MODEL_STRONG") or "openai/gpt-oss-120b"}
 URL_CLAUDE = "https://api.anthropic.com/v1/messages"
+URL_GROQ = "https://api.groq.com/openai/v1/chat/completions"
 
 
 class ModelStopped(RuntimeError):
@@ -83,6 +84,25 @@ def call_claude(system, user, name, schema=None, effort=None):
     return {"text": text, "tokens_in": u["input_tokens"], "tokens_out": u["output_tokens"]}
 
 
+def call_groq(system, user, name, schema=None, effort=None):
+    # API định dạng OpenAI (connect-model §2.1). strict = constrained decoding, chỉ gpt-oss / qwen3.8 hỗ trợ.
+    body = {"model": name, "max_completion_tokens": 4000,
+            "messages": [{"role": "system", "content": system or ""}, {"role": "user", "content": user}]}
+    if schema:
+        body["response_format"] = {"type": "json_schema",
+                                   "json_schema": {"name": "out", "strict": True, "schema": schema}}
+    if effort:
+        body["reasoning_effort"] = effort  # gpt-oss nhận low / medium / high
+    # Cloudflare của Groq chặn User-Agent mặc định của urllib (403, error code 1010).
+    data = post_json(URL_GROQ, {"Authorization": "Bearer " + API_KEY, "User-Agent": "codeown/0.1"}, body)
+    choice = data["choices"][0]
+    if choice.get("finish_reason") == "length":
+        raise ModelStopped("finish_reason=length")
+    u = data["usage"]
+    return {"text": choice["message"].get("content") or "", "tokens_in": u["prompt_tokens"],
+            "tokens_out": u["completion_tokens"]}
+
+
 @model_call
 def call_model(system: str, user: str, model=None, schema=None, effort=None) -> dict:
     """model: None (MODEL_NAME của .env) · "small" · "strong". schema: JSON schema ép output (structured outputs)."""
@@ -90,8 +110,9 @@ def call_model(system: str, user: str, model=None, schema=None, effort=None) -> 
         last = (user.strip().splitlines() or [""])[-1]
         return {"text": "[câu trả lời giả — chưa nối model] " + last[:60], "model": "fake", "tokens_in": 0, "tokens_out": 0}
     name = TIERS[model] if model else MODEL_NAME
-    if MODEL_PROVIDER == "anthropic":
-        r = call_claude(system, user, name, schema, effort)
+    if MODEL_PROVIDER in ("anthropic", "groq"):
+        call = call_claude if MODEL_PROVIDER == "anthropic" else call_groq
+        r = call(system, user, name, schema, effort)
         return {"text": r["text"], "model": name, "tokens_in": int(r["tokens_in"]), "tokens_out": int(r["tokens_out"])}
     raise NotImplementedError(
         "chưa viết phần gọi model thật cho MODEL_PROVIDER=%s trong codebase/ai.py — xem docs/connect-model.md"

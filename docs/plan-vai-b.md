@@ -156,7 +156,7 @@ Mọi đường dẫn module dưới đây hiểu là `codebase/codeown/…`. Mo
 - [ ] **Chờ:** C đồng ý sửa `ai.py`. Nhánh rẽ từ trunk ngay, chỉ merge khi C OK.
 - [ ] **File:** `codebase/ai.py`, `.env.example`.
 - [ ] **Thay đổi:** đổi chữ ký thành `call_model(system, user, model=None, schema=None)`.
-  - `model`: `"small"` / `"strong"` → `CODEOWN_MODEL_SMALL` / `CODEOWN_MODEL_STRONG`, mặc định Haiku 5.5 / Sonnet 5.5. Không truyền thì dùng `MODEL_NAME` như cũ.
+  - `model`: `"small"` / `"strong"` → `CODEOWN_MODEL_SMALL` / `CODEOWN_MODEL_STRONG`, mặc định `openai/gpt-oss-20b` / `openai/gpt-oss-120b` (Groq, đổi từ Claude ngày 27/11). Không truyền thì dùng `MODEL_NAME` như cũ.
   - `schema`: gửi `output_config.format = json_schema` và `output_config.effort`. `max_tokens` là 4000. **Không** gửi `temperature`.
   - Kiểm `stop_reason`: `refusal` / `max_tokens` → raise lỗi có tên.
   - Token lấy từ `usage.input_tokens` / `usage.output_tokens`.

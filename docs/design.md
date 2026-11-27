@@ -244,14 +244,16 @@ Người thứ hai chấm thử 5 output, khớp ≥4/5, ghi `eval/README.md`.
 | Reflector | 1 | 10.000 | 2.000 | Mạnh |
 | **Tổng** | ~21 | **37.500** | **5.000** | |
 
-### 9.2 So sánh tầng model (giá từ `further-reading/model-prices.csv` của repo đề, xem 25/11/2026)
+### 9.2 So sánh tầng model (nhóm dùng Groq; giá từ https://console.groq.com/docs/models · xem 27/11/2026)
 | Cấu hình | Chi phí / task |
 |---|---|
-| Toàn Claude Haiku 5.5 (0,10 / 0,50 USD mỗi 1M token) | ≈ 0,006 USD |
-| **Trộn: Sonnet 5.5 cho Examiner + Reflector, Haiku 5.5 cho Classifier + Grader** (cơ sở) | ≈ 0,074 USD |
-| Toàn Claude Sonnet 5.5 (2,00 / 10,00 USD) | ≈ 0,13 USD |
+| Toàn `openai/gpt-oss-20b` (0,075 / 0,30 USD mỗi 1M token) | ≈ 0,0043 USD |
+| **Trộn: gpt-oss-120b cho Examiner + Reflector, gpt-oss-20b cho Classifier + Grader** (cơ sở) | ≈ 0,0067 USD |
+| Toàn `openai/gpt-oss-120b` (0,15 / 0,60 USD) | ≈ 0,0086 USD |
 
-Lượt 2 nên thử thêm cấu hình rẻ: nếu toàn Haiku vẫn giữ `bo_sot_chua_hieu` ≤10% thì chi phí giảm khoảng 12 lần. Chi phí / task thành công = chi phí / task ÷ tỉ lệ đạt lượt 2 cùng model.
+gpt-oss là model suy luận: token suy luận tính vào token ra, nên số ra ở 9.1 có thể thấp hơn thực tế. Lần gọi thật đầu tiên (`python -m codeown.smoke`, 27/11): Examiner 1.343 vào / 1.130 ra, Grader 734 / 79, Reflector 1.431 / 1.761.
+
+Lượt 2 nên thử thêm cấu hình rẻ: nếu toàn gpt-oss-20b vẫn giữ `bo_sot_chua_hieu` ≤10% thì chi phí giảm khoảng 1,6 lần. Chi phí / task thành công = chi phí / task ÷ tỉ lệ đạt lượt 2 cùng model.
 
 ### 9.3 Persona và kịch bản
 | Persona | Tỉ lệ | Task / tháng | Nguồn |
@@ -262,11 +264,11 @@ Lượt 2 nên thử thêm cấu hình rẻ: nếu toàn Haiku vẫn giữ `bo_s
 
 | Kịch bản | Người dùng | Task / tháng | Chi phí / tháng (cơ sở) |
 |---|---|---|---|
-| Thấp | 1.000 *(tự ước tính)* | ~26.000 | ~1.900 USD |
-| Cơ sở | 10.000 *(tự ước tính)* | ~260.000 | ~19.200 USD |
-| Cao | 50.000 *(tự ước tính)* | ~1.300.000 | ~96.000 USD |
+| Thấp | 1.000 *(tự ước tính)* | ~26.000 | ~175 USD |
+| Cơ sở | 10.000 *(tự ước tính)* | ~260.000 | ~1.750 USD |
+| Cao | 50.000 *(tự ước tính)* | ~1.300.000 | ~8.700 USD |
 
-→ khoảng **1,9 USD / người / tháng** so với impact **6 giờ / người bị ảnh hưởng / tháng**. Người dùng tự trả API key nên chi phí model nằm ở phía người dùng; con số này dùng để chứng minh đáng làm. `python run.py simulate` ≥50 phiên, seed 42, chạy thật qua lõi Python.
+→ khoảng **0,17 USD / người / tháng** so với impact **6 giờ / người bị ảnh hưởng / tháng**. Người dùng tự trả API key nên chi phí model nằm ở phía người dùng; con số này dùng để chứng minh đáng làm. `python run.py simulate` ≥50 phiên, seed 42, chạy thật qua lõi Python.
 
 ---
 

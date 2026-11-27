@@ -38,14 +38,14 @@ personas:           # ≥3 kiểu người dùng; share cộng lại = 1
 #     inputs: ["câu hỏi kiểu 1", "câu hỏi kiểu 2"]
 
 prices:             # USD / 1 triệu token — chép từ further-reading/model-prices.md của repo đề. ≥2 mức model
-  - model: gemini-3.1-flash-lite
-    input: 0.25
-    output: 1.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
-  - model: gemini-4-hydrogen
-    input: 1.50
-    output: 7.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+  - model: openai/gpt-oss-20b
+    input: 0.075
+    output: 0.30
+    source: "https://console.groq.com/docs/models · xem 27/11/2026"
+  - model: openai/gpt-oss-120b
+    input: 0.15
+    output: 0.60
+    source: "https://console.groq.com/docs/models · xem 27/11/2026"
 
 usd_to_vnd:         # tuỳ chọn: điền thì bản tóm tắt in thêm tiền Việt
   rate:
