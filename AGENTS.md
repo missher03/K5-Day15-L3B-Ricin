@@ -40,6 +40,6 @@ Khung chỉ dùng thư viện chuẩn của Python. Thêm thư viện thì ghi v
 
 ## Quy ước của nhóm
 
-- Ngôn ngữ trả lời người dùng: __
-- Phong cách code / đặt tên: __
-- Ai duyệt thay đổi do agent tạo trước khi commit: __
+- Ngôn ngữ trả lời người dùng: Tiếng Việt
+- Phong cách code / đặt tên: Python 3.10+ chỉ thư viện chuẩn; lưu dữ liệu cục bộ dạng JSONL trong `.codeown/`; mỗi thành viên làm trên nhánh `a-*`, `b-*`, `c-*`, `d-*`
+- Ai duyệt thay đổi do agent tạo trước khi commit: thành viên phụ trách phần đó tự đọc và chạy test trước khi mở PR vào `main`; 1 thành viên khác xem nhanh rồi merge
