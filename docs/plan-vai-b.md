@@ -2,6 +2,26 @@
 
 Người làm: B. Thuật ngữ theo [GLOSSARY.md](../GLOSSARY.md). Quyết định khó đảo ngược nằm ở [docs/adr/](adr/) 0001–0004.
 
+## Trạng thái (27/11)
+
+Các nhánh xếp chồng theo thứ tự merge: `b-guard` → `b-prompts` → `b-spec` → `b-ledger` → `b-ai-routing` → `b-examiner` → `b-grader` → `b-check-cli` → `b-eval-modes` → `b-reflector` → `b-done` → `b-smoke`. Đã commit trên máy, **chưa push**.
+
+| PR | Unit | Live | Perf | Còn chờ |
+|---|---|---|---|---|
+| B1 | ✅ | ✅ (đáp án mẫu có code → bị chặn) | N/A | 6 ví dụ chuẩn của C |
+| B2 | (B6, B7, B10 kiểm placeholder) | ⏳ cần key | ✅ ~2 KB mỗi prompt | |
+| B3 | N/A | ✅ `run.py check` không thêm lỗi | N/A | báo C, D về `status` và Q15 |
+| B4 | ✅ (giả lập post_json) | ⏳ cần key | ⏳ cần key | C duyệt `ai.py` |
+| B5 | ✅ | ✅ | ✅ 79 ms / 10.000 dòng | |
+| B6 | ✅ | ✅ fake · ⏳ model thật | ⏳ cần key | |
+| B7 | ✅ | ✅ fake · ⏳ model thật | ⏳ cần key | |
+| B8 | ✅ | ✅ CLI từ repo tạm, stdout 0 lần `rubric_hidden` | ⏳ cần key | A nối `check` / `ledger` / `reflect` vào `__main__.py` |
+| B9 | ✅ | ✅ `eval --try` chạy, trace đếm lượt gọi | ⏳ cần key | `data/samples` + benchmark của C |
+| B10 | ✅ | ✅ fake qua CLI | ⏳ cần key | |
+| B11 | ✅ | ✅ fake, cả luồng 0,4 s | ⏳ cần key | video 30 s sau khi có key |
+| B12 | N/A | ⏳ cần key | ⏳ cần key | |
+| B13 | | | | lượt 1 của C |
+
 ## Thay đổi gì
 
 Sau plan này, CodeOwn có đủ nửa sau của luồng:
