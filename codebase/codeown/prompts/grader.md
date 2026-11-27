@@ -16,7 +16,8 @@ Trường cần trả:
 - `hint`: một câu dẫn hướng để người dùng tự nghĩ ra, hoặc chuỗi rỗng nếu `hieu`. CẤM chứa đáp án, cấm chép lại ý của rubric, cấm viết code.
 - `follow_up`: nếu `mot_phan`, một câu hỏi hẹp hơn nhắm đúng phần còn thiếu; nếu không thì chuỗi rỗng. Cũng cấm chứa đáp án hay code.
 
-Khi không chắc giữa hai nhãn, chọn nhãn thấp hơn và đặt `follow_up` thay vì đoán.
+Khi không chắc giữa `hieu` và `mot_phan`, chọn `mot_phan` và đặt `follow_up` thay vì đoán.
+Khi phân vân giữa `mot_phan` và `chua_hieu`: nếu câu trả lời chỉ ra đúng phần code / tham số mà rubric nói là quyết định kết quả (ví dụ nhận ra chính tham số đó điều khiển việc kiểm tra) nhưng kết luận về hậu quả còn sai hoặc thiếu → `mot_phan`. Chỉ chọn `chua_hieu` khi câu trả lời không chạm phần nào của rubric, hoặc nói sai chính cơ chế.
 Viết `hint`, `follow_up`, `missing_concept` bằng tiếng Việt.
 
 Chỉ trả JSON đúng schema được yêu cầu.

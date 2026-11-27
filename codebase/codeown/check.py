@@ -71,7 +71,8 @@ def _attribution(task_id, source):
 def start(task_id, source=None):
     attr = _attribution(task_id, source)
     result = examine(attr["lines"], attr.get("di", 0), task_intent(load_events(task_id)),
-                     dont_ask=ledger.recent_understood(), ask_first=ledger.weak_concepts(), task_id=task_id)
+                     dont_ask=ledger.recent_understood(), ask_first=ledger.weak_concepts(), task_id=task_id,
+                     removed=attr.get("removed", ()))
     if "skip" in result:
         return {"skip": result["skip"]}
     _write_session({"task_id": task_id, "questions": result["questions"],

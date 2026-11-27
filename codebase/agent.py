@@ -102,7 +102,8 @@ def do_examine(req):
     if examiner is not None:
         ledger_mod = core("ledger")
         recent, weak = (ledger_mod.recent_understood(2), ledger_mod.weak_concepts()) if ledger_mod else ((), ())
-        res = examiner.examine(diff["lines"], di, intent["summary"], recent, weak, task_id=diff["task_id"])
+        res = examiner.examine(diff["lines"], di, intent["summary"], recent, weak, task_id=diff["task_id"],
+                               removed=diff.get("removed", ()))
         res.setdefault("di", di)
         return res
     return fake_examine(diff, di)

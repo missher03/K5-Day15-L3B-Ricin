@@ -123,6 +123,16 @@ class TestAttribution(unittest.TestCase):
         self.assertEqual(res["stats"]["nguoi_viet"], 7)
 
 
+class TestRemovedLines(unittest.TestCase):
+    def test_removed_lines_for_examiner(self):
+        patch = ("diff --git a/q.sql b/q.sql\n--- a/q.sql\n+++ b/q.sql\n@@ -1,2 +1,2 @@\n"
+                 "--- old comment\n-select 1;\n+select 2;\n"
+                 "diff --git a/n.py b/n.py\n--- /dev/null\n+++ b/n.py\n@@ -0,0 +1 @@\n+x = 1\n")
+        self.assertEqual(A.parse_removed(patch), [{"file": "q.sql", "code": "-- old comment"},
+                                                  {"file": "q.sql", "code": "select 1;"}])
+        self.assertEqual(len(A.attribute_patch(patch, [])["removed"]), 2)
+
+
 class TestClassifierRules(unittest.TestCase):
     def test_labels(self):
         cases = {

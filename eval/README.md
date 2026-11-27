@@ -53,7 +53,7 @@ Cấu hình cố định cho **cả lượt 1 và lượt 2** (để hai lượt
 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
-| 1 | | | | __/28 | | |
+| 1 | `run-4@20261127-192716` | claude-haiku-5-5 (nhỏ) + claude-sonnet-5-5 (mạnh) | cấu hình §4, giám khảo thứ hai bật, Grader bỏ phiếu 3 lần; code `main` 27/11 | 25/28 | 89% | đạt (6/6 metric) |
 | 2 | | | | __/28 | | |
 
 *Lượt thử khung 27/11 (không tính, không nộp): `eval --fake` 28/28 chạy hết · `eval --try 3` không lỗi · `eval` chạy hết 28 câu nhưng mọi nhánh còn giả → khung ghi `run-mock.csv`, không tạo `run-1.csv`.*
@@ -62,4 +62,8 @@ Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, k
 
 ## 6. Lỗi chính
 
-*(điền sau lượt 1 từ `eval/report.md`)*
+Lượt 1 (`run-4`) trượt 3 câu, chi tiết ở `eval/report.md` §2:
+
+- **G06** — câu trả lời là code dán lại nhưng vẫn được chấm (`mot_phan`), vì luật dán code chỉ chạy khi có `diff`.
+- **M05** — diff chỉ đổi định dạng / tên biến vẫn mở Check, vì Examiner thật không nhận dòng bị xoá.
+- **G10** — ca biên bị chấm `chua_hieu` thay vì `mot_phan`, do prompt Grader ưu tiên nhãn thấp hơn khi phân vân.

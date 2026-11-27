@@ -39,11 +39,33 @@ def is_dont_know(answer):
     return len((answer or "").strip()) < 15 or bool(_DONT_KNOW.match(s))
 
 
+_STRING = re.compile(r"\"[^\"]*\"|'[^']*'|`[^`]*`")
+_VI_LETTER = re.compile(r"[à-ỹÀ-Ỹđ]")
+_CODE_START = re.compile(r"^(if|elif|else|for|while|def|class|return|raise|throw|try|except|catch|finally|import|from|"
+                         r"const|let|var|function|async|await|with)\b")
+_CODE_END = re.compile(r"[:;{}()\[\]]$")
+
+
+def looks_like_code(row):
+    """Một dòng trông như code: bỏ chuỗi trong nháy, không còn chữ tiếng Việt có dấu, và mở đầu bằng từ khoá
+    + có dấu code, hoặc kết thúc bằng : ; { } ( ) [ ] và có = hay (."""
+    bare = _STRING.sub('""', row.strip())
+    if not bare or _VI_LETTER.search(bare):
+        return False
+    if _CODE_START.match(bare) and re.search(r"[=(){}:;<>\[]", bare):
+        return True
+    return bool(_CODE_END.search(bare) and re.search(r"[=(]", bare))
+
+
 def is_pasted(answer, diff_codes):
-    """≥2 dòng và ≥80% số dòng không rỗng của câu trả lời có nguyên văn trong diff (Q17)."""
+    """≥2 dòng và ≥80% số dòng không rỗng của câu trả lời có nguyên văn trong diff (Q17).
+    Không có diff (vd gọi grade riêng như câu thử G06) → đếm dòng trông như code thay cho dòng trùng diff."""
     diff = {_norm_line(c) for c in diff_codes if c.strip()}
     rows = [_norm_line(r) for r in (answer or "").splitlines() if r.strip()]
-    hits = sum(1 for r in rows if r in diff)
+    if diff:
+        hits = sum(1 for r in rows if r in diff)
+    else:
+        hits = sum(1 for r in rows if looks_like_code(r))
     return hits >= 2 and hits >= 0.8 * len(rows)
 
 

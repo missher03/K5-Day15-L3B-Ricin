@@ -83,6 +83,25 @@ def parse_patch(patch):
     return out
 
 
+def parse_removed(patch):
+    """unified diff → [{"file", "code"}] cho các dòng XOÁ (bỏ dòng trơ) — để Examiner nhận diff chỉ đổi định dạng / tên."""
+    out, file, in_hunk = [], None, False
+    for raw in (patch or "").splitlines():
+        if raw.startswith("diff --git"):
+            in_hunk = False
+            continue
+        if not in_hunk and raw.startswith("--- "):
+            path = raw[4:].strip()
+            file = None if path == "/dev/null" else (path[2:] if path.startswith("a/") else path)
+            continue
+        if _HUNK.match(raw):
+            in_hunk = True
+            continue
+        if in_hunk and file is not None and raw.startswith("-") and not E.is_trivial(raw[1:]):
+            out.append({"file": file, "code": raw[1:]})
+    return out
+
+
 def ai_lines_from_events(evs):
     """Từ sự kiện ai_edit → (tập hash, {file: [chữ dòng]})."""
     hashes, by_file = set(), {}
@@ -168,7 +187,9 @@ def attribute_patch(patch, evs, task_id=None, patterns=None):
         else:
             added.append(item)
     lines = attribute_lines(added, hashes, by_file)
-    return {"task_id": task_id, "lines": lines, "stats": summarize(lines), "ignored_files": sorted(ignored)}
+    removed = [r for r in parse_removed(patch) if not is_ignored(r["file"], patterns)]
+    return {"task_id": task_id, "lines": lines, "stats": summarize(lines), "ignored_files": sorted(ignored),
+            "removed": removed}
 
 
 # --- phần dùng git -----------------------------------------------------------------
