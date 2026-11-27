@@ -1,0 +1,4 @@
+src/
+scripts/
+*.map
+node_modules/

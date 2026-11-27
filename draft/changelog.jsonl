@@ -1,0 +1,1 @@
+{"ts":"2026-11-27T10:00:00Z","commit":"init-ext","files":["extension/package.json","extension/tsconfig.json","extension/eslint.config.mjs","extension/.vscodeignore","extension/media/codeown-icon.svg","extension/scripts/check-lines.mjs"],"change":"khoi tao cau truc extension va cau hinh lint","why":"thiet lap nen mvc cho extension mvp"}

@@ -1,0 +1,108 @@
+{
+  "name": "codeown",
+  "displayName": "CodeOwn",
+  "version": "0.1.0",
+  "description": "CodeOwn VS Code Extension",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeown.enable",
+        "title": "CodeOwn: Bật cho repo này"
+      },
+      {
+        "command": "codeown.setApiKey",
+        "title": "CodeOwn: Nhập API Key"
+      },
+      {
+        "command": "codeown.openCheck",
+        "title": "CodeOwn: Mở Check"
+      },
+      {
+        "command": "codeown.openLedger",
+        "title": "CodeOwn: Mở Sổ kiến thức"
+      },
+      {
+        "command": "codeown.refresh",
+        "title": "CodeOwn: Làm mới trạng thái"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeown",
+          "title": "CodeOwn",
+          "icon": "media/codeown-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "codeown": [
+        {
+          "type": "webview",
+          "id": "codeown.sidebarView",
+          "name": "CodeOwn"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "CodeOwn",
+      "properties": {
+        "codeown.pythonPath": {
+          "type": "string",
+          "default": "python3",
+          "description": "Duong dan den Python interpreter"
+        },
+        "codeown.corePath": {
+          "type": "string",
+          "default": "",
+          "description": "Duong dan tuyet doi den thu muc codebase (neu khac default)"
+        },
+        "codeown.modelProvider": {
+          "type": "string",
+          "default": "anthropic",
+          "description": "Nha cung cap mo hinh AI (anthropic, openai, ollama)"
+        },
+        "codeown.modelSmall": {
+          "type": "string",
+          "default": "",
+          "description": "Ten mo hinh nho"
+        },
+        "codeown.modelStrong": {
+          "type": "string",
+          "default": "",
+          "description": "Ten mo hinh manh"
+        },
+        "codeown.mockMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Bat che do gia lap (mock mode)"
+        },
+        "codeown.pollIntervalSec": {
+          "type": "number",
+          "default": 10,
+          "description": "Thoi gian polling (giay)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src",
+    "check-lines": "node scripts/check-lines.mjs",
+    "test": "npm run compile && node --test dist/test/*.test.js",
+    "package": "npx @vscode/vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0",
+    "@eslint/js": "^8.56.0",
+    "typescript-eslint": "^7.0.0"
+  }
+}
