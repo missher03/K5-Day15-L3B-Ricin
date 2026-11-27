@@ -46,8 +46,8 @@ MODEL_PROVIDER = (os.environ.get("MODEL_PROVIDER") or "fake").strip().lower()
 MODEL_NAME = (os.environ.get("MODEL_NAME") or "").strip()
 API_KEY = (os.environ.get("API_KEY") or "").strip()
 # CodeOwn cần 2 tầng model (ADR 0001): "small" cho Grader, "strong" cho Examiner / Reflector / giám khảo thứ hai.
-TIERS = {"small": os.environ.get("CODEOWN_MODEL_SMALL") or "openai/gpt-oss-20b",
-         "strong": os.environ.get("CODEOWN_MODEL_STRONG") or "openai/gpt-oss-120b"}
+TIERS = {"small": os.environ.get("CODEOWN_MODEL_SMALL") or "claude-haiku-5-5",
+         "strong": os.environ.get("CODEOWN_MODEL_STRONG") or "claude-sonnet-5-5"}
 URL_CLAUDE = "https://api.anthropic.com/v1/messages"
 URL_GROQ = "https://api.groq.com/openai/v1/chat/completions"
 
