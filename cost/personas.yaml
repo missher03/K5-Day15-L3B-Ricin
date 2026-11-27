@@ -34,15 +34,15 @@ personas:
     source: "(tự ước tính) docs/design.md §9.3 — chờ số task / tuần từ khảo sát của D"
     inputs: ['{"mode": "task", "diff_id": "repo02_c1"}', '{"mode": "task", "diff_id": "repo03_c1"}', '{"mode": "task", "diff_id": "repo04_c1"}', '{"mode": "task", "diff_id": "repo06_c1"}', '{"mode": "task", "diff_id": "repo08_c1"}', '{"mode": "task", "diff_id": "repo09_c1"}']
 
-prices:             # USD / 1 triệu token — chép từ further-reading/model-prices.md của repo đề. ≥2 mức model
-  - model: openai/gpt-oss-20b
-    input: 0.075
-    output: 0.30
-    source: "https://console.groq.com/docs/models · xem 27/11/2026"
-  - model: openai/gpt-oss-120b
-    input: 0.15
-    output: 0.60
-    source: "https://console.groq.com/docs/models · xem 27/11/2026"
+prices:             # USD / 1 triệu token, giá Anthropic. ≥2 mức model
+  - model: claude-haiku-5-5
+    input: 0.10
+    output: 0.50
+    source: "https://platform.claude.com/docs/en/about-claude/pricing · xem 27/11/2026"
+  - model: claude-sonnet-5-5
+    input: 2.00
+    output: 10.00
+    source: "https://platform.claude.com/docs/en/about-claude/pricing · xem 27/11/2026"
 
 usd_to_vnd:
   rate:

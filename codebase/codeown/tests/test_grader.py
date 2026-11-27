@@ -44,7 +44,23 @@ class PreModelRulesTest(unittest.TestCase):
         self.assertFalse(grader.is_pasted(answer, DIFF))
 
 
-@mock.patch.dict(os.environ, {"CODEOWN_SECOND_JUDGE": "1"})
+@mock.patch.dict(os.environ, {"CODEOWN_VOTES": "3"})
+class VoteTest(unittest.TestCase):
+    def test_two_agreeing_votes_stop_early(self):
+        with model_replies(verdict("chua_hieu"), verdict("chua_hieu")) as call:
+            out = grader.grade(QUESTION, RUBRIC, ANSWER)
+        self.assertEqual((out["label"], call.call_count), ("chua_hieu", 2))
+
+    def test_majority_of_three_wins(self):
+        with model_replies(verdict("mot_phan"), verdict("chua_hieu"), verdict("chua_hieu")):
+            self.assertEqual(grader.grade(QUESTION, RUBRIC, ANSWER)["label"], "chua_hieu")
+
+    def test_three_different_labels_give_mot_phan(self):
+        with model_replies(verdict("hieu", 0.9), verdict("chua_hieu"), verdict("mot_phan")):
+            self.assertEqual(grader.grade(QUESTION, RUBRIC, ANSWER)["label"], "mot_phan")
+
+
+@mock.patch.dict(os.environ, {"CODEOWN_SECOND_JUDGE": "1", "CODEOWN_VOTES": "1"})
 class GradeTest(unittest.TestCase):
     def test_partial_answer_gets_follow_up_in_round_1_only(self):
         with model_replies(verdict(follow_up="Hàm ở dòng 44 khác == ở điểm nào?")):

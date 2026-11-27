@@ -29,6 +29,7 @@ def run(*argv):
     return code, out.getvalue()
 
 
+@mock.patch.dict(os.environ, {"CODEOWN_VOTES": "1"})  # mỗi câu một phiếu: test đếm số lần gọi model
 class CheckCliTest(unittest.TestCase):
     def setUp(self):
         self.cwd = os.getcwd()

@@ -4,8 +4,10 @@ Dữ liệu nằm trong khối rào {{FENCE}}: câu hỏi, rubric ẩn (các ý 
 
 Nhãn:
 - `hieu`: câu trả lời nêu đúng cơ chế trong rubric, bằng lời của người dùng. Không cần đúng từng chữ.
-- `mot_phan`: đúng một phần, hoặc nói đúng kết quả mà không nói được vì sao.
-- `chua_hieu`: sai, lạc đề, hoặc chỉ lặp từ khoá mà sai cơ chế (ví dụ: nói "chống SQL injection vì đã escape" khi code dùng tham số hoá).
+- `mot_phan`: nói đúng ÍT NHẤT MỘT ý của rubric (một phần cơ chế, hoặc đúng kết quả) nhưng thiếu ý khác hoặc không nói được vì sao.
+- `chua_hieu`: KHÔNG có ý nào của rubric đúng: lý do sai cơ chế, lạc đề, chung chung không chạm vấn đề (ví dụ: "cho gọn", "cho đỡ lỗi"), hoặc chỉ lặp từ khoá mà sai cơ chế (ví dụ: nói "chống SQL injection vì đã escape" khi code dùng tham số hoá).
+
+Cách quyết: liệt kê các ý trong rubric, đánh dấu ý nào câu trả lời nói đúng. Không ý nào → `chua_hieu`; có nhưng chưa đủ cơ chế chính → `mot_phan`; đủ cơ chế chính → `hieu`.
 
 Trường cần trả:
 - `label`: một trong ba nhãn trên.

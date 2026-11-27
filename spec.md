@@ -111,10 +111,10 @@ flowchart LR
 - Kết quả: lượt 1 __/28 (__%) · lượt 2 __/28 (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` (3 persona, mỗi phiên = 1 task trọn vẹn qua `agent.py` mode `task`; giá Groq gpt-oss-20b / gpt-oss-120b) · lượt mô phỏng: `cost/simulate-__.csv` (≥50 phiên, seed 42) — chưa chạy được: cần model thật
-- Chi phí / task *(ước tính ~37.500 token vào, 5.000 ra)*: ≈0,0067 USD (Groq, trộn gpt-oss-120b cho Examiner + Reflector, gpt-oss-20b cho Classifier + Grader) · ≈0,0043 USD (toàn gpt-oss-20b) · ≈0,0086 USD (toàn gpt-oss-120b). Chi phí / task thành công = chi phí ÷ tỉ lệ đạt lượt 2.
-- Chi phí / tháng (cấu hình trộn, 26 task / người): thấp 1.000 người ~175 USD · cơ sở 10.000 ~1.750 USD · cao 50.000 ~8.700 USD → chi tiết `cost/cost-estimate.md`
-- So với impact: ~0,17 USD / người / tháng so với ~6 giờ / người bị ảnh hưởng / tháng → đáng làm. Người dùng tự dùng API key nên chi phí model nằm ở phía họ.
+- Persona + giá: `cost/personas.yaml` (3 persona, mỗi phiên = 1 task trọn vẹn qua `agent.py` mode `task`; giá Haiku 5.5 / Sonnet 5.5) · lượt mô phỏng: `cost/simulate-__.csv` (≥50 phiên, seed 42)
+- Chi phí / task *(ước tính ~37.500 token vào, 5.000 ra)*: ≈0,074 USD (trộn Sonnet 5.5 cho Examiner + Reflector, Haiku 5.5 cho Classifier + Grader) · ≈0,006 USD (toàn Haiku 5.5) · ≈0,13 USD (toàn Sonnet 5.5). Chi phí / task thành công = chi phí ÷ tỉ lệ đạt lượt 2.
+- Chi phí / tháng (cấu hình trộn, 26 task / người): thấp 1.000 người ~1.900 USD · cơ sở 10.000 ~19.200 USD · cao 50.000 ~96.000 USD → chi tiết `cost/cost-estimate.md`
+- So với impact: ~1,9 USD / người / tháng so với ~6 giờ / người bị ảnh hưởng / tháng → đáng làm. Người dùng tự dùng API key nên chi phí model nằm ở phía họ.
 
 ## §9. Rủi ro & an toàn
 - Dữ liệu: log, code, Sổ nằm ở `.codeown/` trên máy người dùng, không commit, không gửi server; bí mật (key, token, mật khẩu) che bằng regex trước khi ghi; câu giải thích thật trong bộ câu thử đã bỏ tên, viết lại. Có chế độ chỉ dùng luật cho Classifier để prompt không rời máy.

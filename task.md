@@ -123,7 +123,7 @@ Ba kiểu in: **`--json`** = đúng **một dòng JSON** ra stdout (hợp đồn
 `answer()` trả `{"output": "<JSON kết quả dạng chuỗi>"}` để `run_eval.py` và người chấm đọc được.
 
 ### 0.8 Gọi model
-Mọi lần gọi model đi qua `ai.call_model(...)` của khung (để đếm token). Tên model đọc từ biến môi trường `CODEOWN_MODEL_SMALL` / `CODEOWN_MODEL_STRONG`, mặc định `openai/gpt-oss-20b` / `openai/gpt-oss-120b` trên Groq (`MODEL_PROVIDER=groq`). Key nằm trong `.env` trên máy từng người, **không commit**.
+Mọi lần gọi model đi qua `ai.call_model(...)` của khung (để đếm token). Tên model đọc từ biến môi trường `CODEOWN_MODEL_SMALL` / `CODEOWN_MODEL_STRONG`, mặc định Haiku 5.5 / Sonnet 5.5. Key nằm trong `.env` trên máy từng người, **không commit**.
 
 ---
 
@@ -207,7 +207,7 @@ Mọi lần gọi model đi qua `ai.call_model(...)` của khung (để đếm t
 ### Trước CP4 14:30
 - [ ] **Lượt 2** trên **cùng** 28 câu → `eval/run-2.csv`; so lượt 1 / lượt 2 trong `eval/report.md`; `eval/README.md` một trang.
 - [ ] `cost/personas.yaml`: 3 persona (`sinh_vien_do_an` 0,4 × 15 · `junior_di_lam` 0,4 × 40 · `tu_hoc_chuyen_nganh` 0,2 × 20), số task / tháng thay bằng số khảo sát của D nếu đã có.
-- [ ] `python run.py simulate` ≥50 phiên, seed 42, với ≥2 cấu hình model (trộn và toàn gpt-oss-20b), `--rate-from eval/run-2.csv`. **Xong khi:** có `cost/simulate-N.csv`.
+- [ ] `python run.py simulate` ≥50 phiên, seed 42, với ≥2 cấu hình model (trộn và toàn Haiku), `--rate-from eval/run-2.csv`. **Xong khi:** có `cost/simulate-N.csv`.
 - [ ] `cost/cost-estimate.md`: chi phí / task, chi phí / task thành công, 3 kịch bản 1.000 / 10.000 / 50.000 người, link giá + ngày xem; `spec.md` §8.
 
 ---

@@ -95,7 +95,7 @@ def render(task_id, sections):
             md.append("- %s %s" % (c["text"].strip(), " ".join("[%s]" % r for r in c["sources"])))
             sources += [r for r in c["sources"] if r not in sources]
         if s["questions"]:
-            md.append("\n**Câu hỏi cho bạn:**")
+            md.append("\n### Câu hỏi cho bạn")  # tiêu đề, không phải câu khẳng định cần nguồn
             md += ["- %s" % q for q in s["questions"]]
     return "\n".join(md) + "\n", sources
 

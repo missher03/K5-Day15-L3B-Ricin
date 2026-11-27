@@ -64,6 +64,27 @@ def _judge(model, question, rubric, answer):
     return llm.ask_json(llm.load_prompt("grader", FENCE=fence), user, model, SCHEMA, "low", _check, FAKE)
 
 
+def _vote(question, rubric, answer):
+    """Model nhỏ chấm tới CODEOWN_VOTES lần (mặc định 3), dừng khi một nhãn đã quá nửa.
+    Lý do: chấm 1 lần đổi nhãn 3/14 câu (21%) giữa hai lần chạy (smoke --variance, 27/11)."""
+    n = max(1, int(os.environ.get("CODEOWN_VOTES", "3")))
+    votes = []
+    for _ in range(n):
+        data, errors = _judge("small", question, rubric, answer)
+        if errors:
+            return data, errors
+        votes.append(data)
+        labels = [v["label"] for v in votes]
+        top = max(labels, key=labels.count)
+        if labels.count(top) * 2 > n:
+            break
+    else:  # ba nhãn khác nhau → lấy mức giữa
+        top = "mot_phan"
+    if len(votes) > 1:
+        note("bỏ phiếu %s → %s" % ("/".join(v["label"] for v in votes), top))
+    return next(v for v in votes if v["label"] == top), []
+
+
 def _second_judge_on():
     return os.environ.get("CODEOWN_SECOND_JUDGE", "1") == "1"
 
@@ -80,7 +101,7 @@ def grade(question, rubric, answer, round=1, diff_codes=()):
         return dict(base, status="need_own_words",
                     hint="Hãy giải thích bằng lời của bạn: đoạn này làm gì và vì sao cần nó, thay vì dán lại code.")
 
-    data, errors = _judge("small", question["question"], rubric, answer)
+    data, errors = _vote(question["question"], rubric, answer)
     if errors:
         raise GradeError("; ".join(errors))
     label, confidence = data["label"], float(data["confidence"])

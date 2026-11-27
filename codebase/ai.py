@@ -92,7 +92,8 @@ def call_claude(system, user, name, schema=None, effort=None):
 
 def call_groq(system, user, name, schema=None, effort=None):
     # API định dạng OpenAI (connect-model §2.1). strict = constrained decoding, chỉ gpt-oss / qwen3.8 hỗ trợ.
-    body = {"model": name, "max_completion_tokens": 4000,
+    # temperature 0: chấm cùng câu cho cùng nhãn (để mặc định 1 thì Grader đổi nhãn 21% giữa hai lần chạy).
+    body = {"model": name, "max_completion_tokens": 4000, "temperature": 0,
             "messages": [{"role": "system", "content": system or ""}, {"role": "user", "content": user}]}
     if schema:
         body["response_format"] = {"type": "json_schema",
@@ -100,7 +101,14 @@ def call_groq(system, user, name, schema=None, effort=None):
     if effort:
         body["reasoning_effort"] = effort  # gpt-oss nhận low / medium / high
     # Cloudflare của Groq chặn User-Agent mặc định của urllib (403, error code 1010).
-    data = post_json(URL_GROQ, {"Authorization": "Bearer " + API_KEY, "User-Agent": "codeown/0.1"}, body)
+    for attempt in range(2):
+        try:
+            data = post_json(URL_GROQ, {"Authorization": "Bearer " + API_KEY, "User-Agent": "codeown/0.1"}, body)
+            break
+        except RuntimeError as e:
+            # strict decoding của Groq thỉnh thoảng sinh JSON sai schema → 400 json_validate_failed; gửi lại một lần.
+            if attempt or "json_validate_failed" not in str(e):
+                raise
     choice = data["choices"][0]
     if choice.get("finish_reason") == "length":
         raise ModelStopped("finish_reason=length")

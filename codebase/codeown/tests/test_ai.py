@@ -53,9 +53,17 @@ class GroqTest(unittest.TestCase):
         self.assertEqual(body["messages"][0], {"role": "system", "content": "sys"})
         self.assertEqual(body["response_format"]["json_schema"], {"name": "out", "strict": True,
                                                                   "schema": {"type": "object"}})
-        self.assertEqual(body["reasoning_effort"], "medium")
+        self.assertEqual((body["reasoning_effort"], body["temperature"]), ("medium", 0))
         self.assertEqual((res["text"], res["model"], res["tokens_in"], res["tokens_out"]),
                          ("{}", ai.TIERS["strong"], 20, 7))
+
+    def test_json_validate_failed_is_retried_once(self):
+        bad = RuntimeError('HTTP 400: {"error":{"code":"json_validate_failed"}}')
+        with mock.patch.object(ai, "MODEL_PROVIDER", "groq"),                 mock.patch.object(ai, "post_json", side_effect=[bad, GROQ_OK]) as post:
+            self.assertEqual(ai.call_model("s", "u", model="small")["text"], "{}")
+        self.assertEqual(post.call_count, 2)
+        with mock.patch.object(ai, "MODEL_PROVIDER", "groq"),                 mock.patch.object(ai, "post_json", side_effect=[bad, bad]), self.assertRaises(RuntimeError):
+            ai.call_model("s", "u", model="small")
 
     def test_truncated_output_raises(self):
         bad = dict(GROQ_OK, choices=[{"finish_reason": "length", "message": {"content": "{"}}])
