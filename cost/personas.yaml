@@ -1,6 +1,7 @@
 # Mô phỏng chi phí khi dùng thật — Nhóm Ricin · CodeOwn. Nguồn số: docs/design.md §9.3 (C điền).
 # Chạy: python run.py simulate --try        (10 phiên, kiểm khung)
-#       python run.py simulate --rate-from eval/run-2.csv   (bản nộp CP4, sau khi lượt 2 đã chấm)
+#       python run.py simulate --rate-from eval/run-3.csv   (cấu hình trộn — đã chạy: simulate-1)
+#       CODEOWN_MODEL_STRONG=claude-haiku-5-5 python run.py simulate --rate-from eval/run-4.csv   (toàn Haiku — simulate-2)
 # Một phiên = MỘT TASK đầy đủ: agent.py mode "task" chạy monitor → examine → grade từng câu (câu trả lời giả lập
 # trong data/samples/<repo>/sim_answers.json) → reflect. Vì vậy uses_per_month = số task / người / tháng.
 # Số có nhãn (tự ước tính) phải thay bằng số khảo sát của D ("tuần qua bạn làm bao nhiêu task có dùng AI?") trước CP4.

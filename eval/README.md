@@ -47,14 +47,16 @@
 
 `python run.py eval` → `eval/run-N.csv` + `traces/run-N.jsonl` · `python eval/auto_score.py eval/run-N.csv --fill --md` · người xem lại cột `pass` · `python run.py score eval/run-N.csv`
 
-Cấu hình cố định cho **cả lượt 1 và lượt 2** (để hai lượt so được với nhau): `.env` có `MODEL_PROVIDER=anthropic`, `CODEOWN_MODEL_SMALL=claude-haiku-5-5`, `CODEOWN_MODEL_STRONG=claude-sonnet-5-5`, `CODEOWN_SECOND_JUDGE=1` (giám khảo thứ hai bật vì `bo_sot_chua_hieu` ≤10% là điều kiện cứng).
+Cấu hình dự định là cố định cho cả hai lượt, nhưng **thực tế khác**: lượt 1 (`run-2`) chạy Groq gpt-oss-20b / 120b; Groq hết hạn mức ngày nên lượt 2 (`run-3`) chạy Claude: `.env` có `MODEL_PROVIDER=anthropic`, `CODEOWN_MODEL_SMALL=claude-haiku-5-5`, `CODEOWN_MODEL_STRONG=claude-sonnet-5-5`, `CODEOWN_SECOND_JUDGE=1` (giám khảo thứ hai bật vì `bo_sot_chua_hieu` ≤10% là điều kiện cứng). Hai lượt vì vậy khác cả code lẫn model — xem `eval/report.md` mục 1.
 
 ## 5. Đã chạy gì
 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
-| 1 | | | | __/28 | | |
-| 2 | | | | __/28 | | |
+| *(lỗi kỹ thuật)* | run-1@20261127-173949 | Groq gpt-oss-20b / 120b | lõi A + B, trước B13 | 15/28 | 54% | không dùng — 10 câu lỗi HTTP 429, chạy lại thành `run-2` |
+| 1 | run-2@20261127-174051 | Groq gpt-oss-20b / 120b | như `run-1`, `post_json` chờ `retry-after` | 21/28 | 75% | chưa (`cham_khop_nguoi` 78%) |
+| 2 | run-3@20261127-181857 | Claude Haiku 5.5 / Sonnet 5.5 | B13 Reflector + Grader bỏ phiếu + đổi model | 25/28 | 89% | **đạt** |
+| *(so cấu hình)* | run-4@20261127-193252 | Claude Haiku 5.5 (cả hai tầng) | cùng code lượt 2, chỉ đổi `CODEOWN_MODEL_STRONG` — để có tỉ lệ đạt cho cấu hình rẻ khi tính chi phí | 24/28 | 86% | đạt |
 
 *Lượt thử khung 27/11 (không tính, không nộp): `eval --fake` 28/28 chạy hết · `eval --try 3` không lỗi · `eval` chạy hết 28 câu nhưng mọi nhánh còn giả → khung ghi `run-mock.csv`, không tạo `run-1.csv`.*
 
@@ -62,4 +64,4 @@ Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, k
 
 ## 6. Lỗi chính
 
-*(điền sau lượt 1 từ `eval/report.md`)*
+Từ `eval/report.md`: lượt 1 trượt nhiều nhất ở **Reflect thiếu nguồn** (R01–R03, 0/3) → B sửa Reflector (B13) + Grader bỏ phiếu + đổi sang Claude → 3/3, tổng 75% → 89%; mức tăng không tách được giữa sửa code và đổi model. Còn lại: **M05** (diff chỉ đổi định dạng vẫn mở Check — luật chưa cài), **G06** (câu trả lời dán code vẫn được chấm — câu thử thiếu `diff_id`), **G10** (nhãn biên, tệ đi ở lượt 2).

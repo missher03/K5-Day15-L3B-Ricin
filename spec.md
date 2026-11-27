@@ -108,13 +108,13 @@ flowchart LR
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 28 câu (thuong 17 · kho 8 · tu_choi 3; Examiner 6 · Grader 11 · Monitor + luật hỏi 5 · Reflect 3 · từ chối / tấn công 3). Nguồn hiện tại: tu_viet 14 · sinh_seed 14 · **người dùng thật 0** — cần ≥10 câu Grader thay bằng câu giải thích thật (thử nghiệm "giải thích lại" của D) trước CP3 · chấm bằng code: `eval/auto_score.py` · metric: `eval/metric_spec.yaml` (6 metric: `cau_hoi_bam_code` ≥90%, `cham_khop_nguoi` ≥80%, `bo_sot_chua_hieu` ≤10%, `khong_lo_dap_an` 100%, `bao_cao_co_nguon` ≥95%, `tu_choi_dung` 100%)
 - **Chuẩn "đạt"** *(đã chốt tại CP2 27/11/2026, giữ nguyên đến 23:59 Thứ Bảy 28/11)*: "Đạt khi ≥75% câu qua, và trên 28 câu: `cham_khop_nguoi` ≥80% · `bo_sot_chua_hieu` ≤10% · `khong_lo_dap_an` = 100% · `tu_choi_dung` = 100%". Trọng số DI (0,3·f1 + 0,25·f2 + 0,2·f3ₙ + 0,15·(1−f4ₙ) + 0,1·(1−f5)) và ngưỡng mở Check (≥20 dòng AI hoặc ≥30% diff; nhắc tối đa 1 lần / 15 phút) chốt cùng lúc.
-- Kết quả: lượt 1 __/28 (__%) · lượt 2 __/28 (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 21/28 (75%, chưa đạt: `cham_khop_nguoi` 78%) · lượt 2 25/28 (89%, đạt cả 6 metric) — run ID: run-2@20261127-174051 (Groq) / run-3@20261127-181857 (Claude Haiku 5.5 + Sonnet 5.5); `run-1` là lượt lỗi kỹ thuật (10 câu HTTP 429), chạy lại thành `run-2`. Giữa hai lượt đổi cả code lẫn model nên mức tăng không tách được → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` (3 persona, mỗi phiên = 1 task trọn vẹn qua `agent.py` mode `task`; giá Haiku 5.5 / Sonnet 5.5) · lượt mô phỏng: `cost/simulate-__.csv` (≥50 phiên, seed 42)
-- Chi phí / task *(ước tính ~37.500 token vào, 5.000 ra)*: ≈0,074 USD (trộn Sonnet 5.5 cho Examiner + Reflector, Haiku 5.5 cho Classifier + Grader) · ≈0,006 USD (toàn Haiku 5.5) · ≈0,13 USD (toàn Sonnet 5.5). Chi phí / task thành công = chi phí ÷ tỉ lệ đạt lượt 2.
-- Chi phí / tháng (cấu hình trộn, 26 task / người): thấp 1.000 người ~1.900 USD · cơ sở 10.000 ~19.200 USD · cao 50.000 ~96.000 USD → chi tiết `cost/cost-estimate.md`
-- So với impact: ~1,9 USD / người / tháng so với ~6 giờ / người bị ảnh hưởng / tháng → đáng làm. Người dùng tự dùng API key nên chi phí model nằm ở phía họ.
+- Persona + giá: `cost/personas.yaml` (3 persona *(tự ước tính)*, mỗi phiên = 1 task trọn vẹn qua `agent.py` mode `task`; giá Haiku 5.5 / Sonnet 5.5, platform.claude.com/docs/en/about-claude/pricing, xem 27/11) · lượt mô phỏng: `cost/simulate-1.csv` (trộn, 50 phiên, 0 lỗi) và `cost/simulate-2.csv` (toàn Haiku, 50 phiên, 1 lỗi `max_tokens`), seed 42
+- Chi phí / task **đo được** (~16.400 token vào, 2.900 ra): **0,0314 USD** trộn (Sonnet 5.5 cho Examiner + Reflector, Haiku 5.5 cho Grader) · **0,0040 USD** toàn Haiku 5.5. Chi phí / task thành công: 0,0352 USD (÷ 89%, `run-3`) · 0,0047 USD (÷ 86%, `run-4`). Monitor phân loại prompt bằng luật nên chưa có chi phí Classifier gọi model (≈0,0009 USD / task, *tự ước tính*).
+- Chi phí / tháng (26 task / người), trộn: thấp 1.000 người ~794 USD · cơ sở 10.000 ~7.937 USD · cao 50.000 ~39.687 USD; toàn Haiku: ~99 · ~986 · ~4.930 USD → chi tiết `cost/cost-estimate.md`
+- So với impact: ~0,79 USD (trộn) hoặc ~0,10 USD (toàn Haiku) / người / tháng so với ~6 giờ / người bị ảnh hưởng / tháng *(tự ước tính)* → đáng làm. Người dùng tự dùng API key nên chi phí model nằm ở phía họ. Ước tính trước khi đo (0,074 USD / task) cao hơn số đo ~2,4 lần.
 
 ## §9. Rủi ro & an toàn
 - Dữ liệu: log, code, Sổ nằm ở `.codeown/` trên máy người dùng, không commit, không gửi server; bí mật (key, token, mật khẩu) che bằng regex trước khi ghi; câu giải thích thật trong bộ câu thử đã bỏ tên, viết lại. Có chế độ chỉ dùng luật cho Classifier để prompt không rời máy.
@@ -136,6 +136,9 @@ flowchart LR
 | 27/11 18:05 | Grader: bỏ phiếu đa số tới 3 lần (`CODEOWN_VOTES`, dừng khi một nhãn quá nửa); ranh giới `mot_phan` = có ít nhất một ý đúng của rubric | `smoke --variance`: Groq gpt-oss-20b đổi nhãn 3/14 câu (21%) giữa hai lần chấm, kể cả khi bỏ phiếu → đổi model |
 | 27/11 18:10 | Đổi lại sang Claude (Haiku 5.5 small / Sonnet 5.5 strong); giá §8 theo platform.claude.com/docs/en/about-claude/pricing (27/11) | Groq hết hạn mức 200.000 token/ngày; Haiku 5.5 + bỏ phiếu đổi nhãn 0/14 (`smoke --variance`) |
 | 27/11 18:19 | `run-3` (Claude, 0 lỗi kỹ thuật) → 25/28, đạt cả 6 metric (`cham_khop_nguoi` 89%, `bao_cao_co_nguon` 100%) | run-3 khác model với run-1/2 nên không so trực tiếp; còn lỗi: G06 (dán code nhưng câu thử không có `diff` nên luật "dán code" không chạy), G10 (nhãn biên `mot_phan`/`chua_hieu`), M05 (diff chỉ đổi định dạng / tên mà Examiner vẫn hỏi) |
+| 27/11 19:33 | `run-4`: cùng code `run-3`, toàn Claude Haiku 5.5 → 24/28 (86%), đạt cả 6 metric — lượt so cấu hình, không phải lượt cải tiến (C) | cần tỉ lệ đạt thật của cấu hình rẻ để tính chi phí / task thành công (`docs/design.md` §9.2); chỉ trượt thêm R03 so với `run-3` |
+| 27/11 19:33–20:15 | `simulate-1` (trộn, 50 phiên, `--rate-from eval/run-3.csv`) 0,0314 USD / task · `simulate-2` (toàn Haiku, `--rate-from eval/run-4.csv`) 0,0040 USD / task; §8 + `cost/cost-estimate.md` thay ước tính bằng số đo (C) | guide 4.2; `simulate-2` có 1/50 phiên Haiku chạm `max_tokens` → nếu chọn toàn Haiku phải nâng `max_tokens` tầng mạnh |
+| 27/11 20:15 | `eval/report.md` (3 nhóm lỗi lượt 1, 4 lỗi cụ thể, cải tiến, câu tệ đi G10), `eval/README.md` §4–§6, §7 dòng kết quả (C) | ghi rõ lượt 1 = `run-2` (`run-1` lỗi kỹ thuật) và lượt 1 → 2 đổi cả code lẫn model nên mức tăng không tách được |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)**
 
