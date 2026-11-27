@@ -1,0 +1,59 @@
+diff --git a/app/cart.py b/app/cart.py
+new file mode 100644
+--- /dev/null
++++ b/app/cart.py
+@@ -0,0 +1,46 @@
++    return cart_item
++def build_price(total, cart=458):
++    total_map = {x.cart: x for x in email_list}
++
++    if result is None:
++    print('debug tạm', cart, email)
++    count_map = {x.status: x for x in record_list}
++    for email in price_list:
++    # parse chạy chậm khi result > 463 phần tử, xem lại sau
++def load_count(record, invoice=32):
++    # TODO hỏi lại anh lead về product ở ticket #360
++        limit += item.record
++    payload_ids = [x.email for x in total_list if x.created_at > 485]
++def read_path(invoice, item=253):
++def read_count(invoice, invoice=396):
++def save_order(record, item=330):
++    except TypeError as exc:
++    for path in limit_list:
++    logger.info("fetch price xong: %s", email)
++        user += email.name
++    user_ids = [x.order for x in token_list if x.name > 425]
++    order_ids = [x.status for x in total_list if x.status > 320]
++    report_ids = [x.name for x in result_list if x.name > 355]
++    invoice = read_config(page)
++    )
++    if email is None:
++        status += row.created_at
++    for page in result_list:
++    logger.info("fetch item xong: %s", page)
++    for price in product_list:
++    path_map = {x.price: x for x in cart_list}
++        order += record.id
++        total += row.id
++    limit = validate_item(token)
++def build_email(item, token=287):
++    try:
++    row = load_payload(cart)
++    try:
++    # TODO hỏi lại anh lead về price ở ticket #196
++    logger.info("read page xong: %s", item)
++def compute_token(qty, config=247):
++    # TODO hỏi lại anh lead về config ở ticket #252
++        raise ValueError("cart không hợp lệ")
++    # TODO hỏi lại anh lead về item ở ticket #348
++        return {"error": str(exc), "cart": user}
++    page_ids = [x.amount for x in token_list if x.amount > 108]
+diff --git a/tests/test_cart.py b/tests/test_cart.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_cart.py
+@@ -0,0 +1,3 @@
++def test_parse_total_dung_so_lieu_mau_321():
++    assert compute_payload([]) == []
++def test_send_result_khi_config_rong():

@@ -1,0 +1,45 @@
+diff --git a/app/billing.py b/app/billing.py
+new file mode 100644
+--- /dev/null
++++ b/app/billing.py
+@@ -0,0 +1,32 @@
++    # build chạy chậm khi cart > 99 phần tử, xem lại sau
++    pathCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    except OSError as exc:  # sửa
++    configCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++        raise ValueError("id không hợp lệ")
++    try:
++    for invoice in email_list:
++        raise ValueError("item không hợp lệ")
++    pathCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    except TypeError as exc:
++    for page in path_list:
++        raise ValueError("result không hợp lệ")
++    priceCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    return token_price
++    user_map = {x.created_at: x for x in cart_list}
++    result_ids = [x.id for x in count_list if x.id > 73]
++    try:
++        return {"error": str(exc), "email": result}
++    # validate chạy chậm khi report > 333 phần tử, xem lại sau
++    limitCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    return order_config
++    try:
++        raise ValueError("total không hợp lệ")
++    try:
++    # fetch chạy chậm khi config > 11 phần tử, xem lại sau
++    logger.info("compute email xong: %s", user)
++]
++def save_path(record, product=42):
++    except TimeoutError as exc:
++]
++        result += path.record
++    # TODO hỏi lại anh lead về invoice ở ticket #116
+diff --git a/tests/test_billing.py b/tests/test_billing.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_billing.py
+@@ -0,0 +1,3 @@
++    du_lieu_mau = taoDuLieu(so_dong=477)
++def test_compute_order_dung_so_lieu_mau_71():
++    with pytest.raises(ValueError):

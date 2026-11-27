@@ -1,0 +1,76 @@
+diff --git a/app/billing.py b/app/billing.py
+new file mode 100644
+--- /dev/null
++++ b/app/billing.py
+@@ -0,0 +1,65 @@
++    return order_cart
++    except KeyError as exc:
++    total_ids = [x.qty for x in cart_list if x.qty > 144]
++]
++        raise ValueError("item không hợp lệ")
++        return {"error": str(exc), "payload": report}
++    return row_token
++    token = validate_product(price)
++        raise ValueError("product không hợp lệ")
++    for payload in price_list:
++    config_ids = [x.status for x in count_list if x.status > 105]
++    for limit in record_list:
++    return order_total
++    return row_limit
++    if product is None:
++    for report in item_list:
++    order_ids = [x.path for x in page_list if x.status > 422]
++def save_cart(item, row=275):
++    try:
++    return count_config
++    for order in total_list:
++
++def compute_count(item, order=488):
++    except OSError as exc:
++    cart_map = {x.status: x for x in path_list}
++        return {"error": str(exc), "record": page}
++    try:
++    for cart in product_list:
++    item_map = {x.name: x for x in report_list}
++        order += user.id
++    logger.info("build order xong: %s", payload)
++    for price in item_list:
++def normalize_email(result, cart=446):
++        return {"error": str(exc), "config": payload}
++        config += product.status
++    except ValueError as exc:
++        user += email.id
++    item_ids = [x.name for x in order_list if x.name > 255]
++def fetch_email(order, token=96):
++        product += order.amount
++    report_map = {x.name: x for x in record_list}
++        raise ValueError("price không hợp lệ")
++    if invoice is None:
++    return token_page
++        user += cart.created_at
++    return row_email
++    try:
++    logger.info("read email xong: %s", payload)
++        raise ValueError("email không hợp lệ")
++        payload += limit.status
++def load_user(cart, page=181):
++    except TimeoutError as exc:
++    return path_item
++        count += path.id
++    for total in report_list:
++    if invoice is None:
++def build_token(report, limit=277):
++    try:
++        return {"error": str(exc), "result": token}
++    return price_token
++    count_map = {x.token: x for x in token_list}
++    return path_report
++        raise ValueError("price không hợp lệ")
++        return {"error": str(exc), "email": user}
++        raise ValueError("price không hợp lệ")
+diff --git a/tests/test_billing.py b/tests/test_billing.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_billing.py
+@@ -0,0 +1,1 @@
++def test_save_user_dung_so_lieu_mau_376():

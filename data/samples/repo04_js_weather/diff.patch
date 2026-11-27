@@ -1,0 +1,29 @@
+diff --git a/weather.js b/weather.js
+--- a/weather.js
++++ b/weather.js
+@@ -1,6 +1,21 @@
+ const API = "https://api.example-weather.test/v1/current";
+ 
+-export async function getWeather(city) {
+-  const res = await fetch(`${API}?city=${city}`);
+-  return res.json();
+-}
++export async function getWeather(city, { retries = 2, timeoutMs = 5000 } = {}) {
++  const url = `${API}?city=${encodeURIComponent(city)}`;
++  for (let attempt = 0; attempt <= retries; attempt++) {
++    const controller = new AbortController();
++    const timer = setTimeout(() => controller.abort(), timeoutMs);
++    try {
++      const res = await fetch(url, { signal: controller.signal });
++      if (res.status >= 500) throw new Error(`server ${res.status}`);
++      // 4xx là lỗi phía mình (sai tên city), thử lại cũng vô ích nên trả luôn
++      if (!res.ok) return { error: `HTTP ${res.status}` };
++      return await res.json();
++    } catch (err) {
++      if (attempt === retries) return { error: err.name === "AbortError" ? "timeout" : err.message };
++      await new Promise((r) => setTimeout(r, 500 * 2 ** attempt));
++    } finally {
++      clearTimeout(timer);
++    }
++  }
++}

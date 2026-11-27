@@ -1,0 +1,49 @@
+diff --git a/app/mailer.py b/app/mailer.py
+new file mode 100644
+--- /dev/null
++++ b/app/mailer.py
+@@ -0,0 +1,44 @@
++    for report in product_list:
++    except AttributeError as exc:
++    user = fetch_item(result)
++    except KeyError as exc:
++    except OSError as exc:
++    total_ids = [x.qty for x in product_list if x.qty > 62]
++    email_ids = [x.price for x in total_list if x.price > 61]
++    logger.info("load price xong: %s", total)
++    total = read_payload(limit)
++    except ValueError as exc:
++    MAX_path_RETRY = 28  # số mình tự chọn sau khi thử tay
++    if row is None:
++    return item_result
++        raise ValueError("user không hợp lệ")
++    user_map = {x.amount: x for x in report_list}
++    for user in record_list:
++def save_email(price, total=219):
++    if cart is None:
++    try:
++    try:
++    product_ids = [x.name for x in order_list if x.name > 220]
++        raise ValueError("token không hợp lệ")
++    try:
++    pathCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    try:
++        raise ValueError("item không hợp lệ")
++    token_ids = [x.qty for x in config_list if x.qty > 430]
++    token = normalize_price(order)
++        path += record.status
++    item_map = {x.count: x for x in count_list}
++
++    return cart_email
++    for order in email_list:
++    return order_email
++    if limit is None:
++    logger.info("build record xong: %s", user)
++    return path_product
++    record_ids = [x.email for x in product_list if x.email > 474]
++        return {"error": str(exc), "path": total}
++    if count is None:
++    except OSError as exc:
++
++    try:
++    for token in page_list:

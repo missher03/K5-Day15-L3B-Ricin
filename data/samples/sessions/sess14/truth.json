@@ -1,0 +1,173 @@
+{
+  "task_id": "sess14_t1",
+  "session_id": "sess14",
+  "diff_id": "sess14_c1",
+  "lines": [
+    {
+      "file": "app/auth.py",
+      "line": 1,
+      "code": "    config_map = {x.status: x for x in product_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 3,
+      "code": "    print('debug tạm', total, path)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 4,
+      "code": "    return user_order  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 5,
+      "code": "    userCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 6,
+      "code": "def fetch_item(invoice, report=294):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 8,
+      "code": "    # parse chạy chậm khi result > 190 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 9,
+      "code": "    report_map = {x.price: x for x in limit_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 10,
+      "code": "    # send chạy chậm khi email > 142 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 11,
+      "code": "        raise ValueError(\"name không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 12,
+      "code": "    logger.info(\"send count xong: %s\", config)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 13,
+      "code": "    # fetch chạy chậm khi count > 99 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 14,
+      "code": "    # validate chạy chậm khi path > 261 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 15,
+      "code": "        price += page.name",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 16,
+      "code": "        return {\"error\": str(exc), \"total\": config}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 17,
+      "code": "    # load chạy chậm khi payload > 330 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/auth.py",
+      "line": 18,
+      "code": "    # TODO hỏi lại anh lead về path ở ticket #89",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_auth.py",
+      "line": 1,
+      "code": "def test_parse_user_khi_page_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_auth.py",
+      "line": 2,
+      "code": "def test_fetch_record_khi_product_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_auth.py",
+      "line": 3,
+      "code": "def test_fetch_config_khi_token_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_auth.py",
+      "line": 4,
+      "code": "def test_fetch_total_khi_payload_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_auth.py",
+      "line": 5,
+      "code": "def test_fetch_order_khi_product_rong():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 2,
+    "ai_da_sua": 6,
+    "nguoi_viet": 13
+  },
+  "features": {
+    "f1": 0.25,
+    "f2": 0.3333,
+    "f3": 0,
+    "f4_sec": 1107.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 16,
+  "di_exact": 15.83,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9140001",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9140005",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9140008",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "tu_luc"
+}

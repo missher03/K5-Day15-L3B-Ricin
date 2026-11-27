@@ -1,0 +1,219 @@
+{
+  "task_id": "repo03_t1",
+  "session_id": "s_repo03",
+  "diff_id": "repo03_c1",
+  "lines": [
+    {
+      "file": "auth.py",
+      "line": 1,
+      "code": "import hashlib",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 2,
+      "code": "import hmac",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 3,
+      "code": "import os",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 4,
+      "code": "import time",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 6,
+      "code": "ITERATIONS = 200_000",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 7,
+      "code": "MAX_ATTEMPTS = 5",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 8,
+      "code": "LOCK_SECONDS = 300",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 9,
+      "code": "_failed = {}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 12,
+      "code": "def hash_password(password: str) -> str:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 13,
+      "code": "    salt = os.urandom(16)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 14,
+      "code": "    digest = hashlib.pbkdf2_hmac(\"sha256\", password.encode(), salt, ITERATIONS)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 15,
+      "code": "    return salt.hex() + \"$\" + digest.hex()",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 18,
+      "code": "def verify_password(password: str, stored: str) -> bool:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 19,
+      "code": "    salt_hex, digest_hex = stored.split(\"$\", 1)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 20,
+      "code": "    digest = hashlib.pbkdf2_hmac(\"sha256\", password.encode(), bytes.fromhex(salt_hex), ITERATIONS)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 21,
+      "code": "    return hmac.compare_digest(digest.hex(), digest_hex)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 24,
+      "code": "def login(username: str, password: str, users: dict) -> bool:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 25,
+      "code": "    count, since = _failed.get(username, (0, 0.0))",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 26,
+      "code": "    if count >= MAX_ATTEMPTS and time.monotonic() - since < LOCK_SECONDS:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 27,
+      "code": "        raise PermissionError(\"tài khoản tạm khoá, thử lại sau\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 28,
+      "code": "    stored = users.get(username)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 29,
+      "code": "    if stored is None or not verify_password(password, stored):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 30,
+      "code": "        _failed[username] = (count + 1, time.monotonic())",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 31,
+      "code": "        return False",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 32,
+      "code": "    _failed.pop(username, None)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth.py",
+      "line": 33,
+      "code": "    return True",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 26,
+    "ai_da_sua": 0,
+    "nguoi_viet": 0
+  },
+  "features": {
+    "f1": 1.0,
+    "f2": 0.75,
+    "f3": 1,
+    "f4_sec": 403.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.2,
+    "f4n": 0.6717
+  },
+  "di": 68,
+  "di_exact": 67.67,
+  "prompt_labels": [
+    {
+      "event_id": "ev_030001",
+      "label": "lam_ho",
+      "ca_tinh_nang": true
+    },
+    {
+      "event_id": "ev_030004",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_030007",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_030010",
+      "label": "khac",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lam_ho_ca_tinh_nang"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lam_ho_ca_tinh_nang",
+      "ts": "2026-11-25T19:58:00+07:00",
+      "event_id": "ev_030001"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": null,
+  "intent_expected": "Đăng nhập có hash mật khẩu và khoá tài khoản khi sai nhiều lần",
+  "repo": "repo03_auth_login",
+  "open_check": true
+}

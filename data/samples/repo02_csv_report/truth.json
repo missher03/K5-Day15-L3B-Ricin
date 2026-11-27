@@ -1,0 +1,229 @@
+{
+  "task_id": "repo02_t1",
+  "session_id": "s_repo02",
+  "diff_id": "repo02_c1",
+  "lines": [
+    {
+      "file": "report.py",
+      "line": 2,
+      "code": "from collections import defaultdict",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 3,
+      "code": "from decimal import Decimal, InvalidOperation",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 7,
+      "code": "    with open(path, newline=\"\", encoding=\"utf-8-sig\") as f:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 8,
+      "code": "        reader = csv.DictReader(f)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 9,
+      "code": "        rows = []",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 10,
+      "code": "        for i, row in enumerate(reader, start=2):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 11,
+      "code": "            amount = (row.get(\"amount\") or \"\").strip()",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 12,
+      "code": "            if not amount:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 13,
+      "code": "                continue",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 14,
+      "code": "            try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 15,
+      "code": "                row[\"amount\"] = Decimal(amount.replace(\",\", \"\"))",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 16,
+      "code": "            except InvalidOperation:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 17,
+      "code": "                raise ValueError(f\"dòng {i}: amount không hợp lệ: {amount!r}\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 18,
+      "code": "            rows.append(row)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 19,
+      "code": "        return rows",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 22,
+      "code": "def total_by_category(rows):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 23,
+      "code": "    totals = defaultdict(Decimal)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 24,
+      "code": "    for row in rows:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "report.py",
+      "line": 25,
+      "code": "        totals[row.get(\"category\") or \"khac\"] += row[\"amount\"]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "report.py",
+      "line": 26,
+      "code": "    return dict(totals)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "tests/test_report.py",
+      "line": 1,
+      "code": "import report",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_report.py",
+      "line": 4,
+      "code": "def test_bo_qua_dong_thieu_amount(tmp_path):",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_report.py",
+      "line": 5,
+      "code": "    p = tmp_path / \"data.csv\"",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_report.py",
+      "line": 6,
+      "code": "    p.write_text(\"category,amount\\nan,1000\\nan,\\n\", encoding=\"utf-8\")",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_report.py",
+      "line": 7,
+      "code": "    assert len(report.load_rows(str(p))) == 1",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_report.py",
+      "line": 10,
+      "code": "def test_cong_theo_nhom(tmp_path):",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_report.py",
+      "line": 11,
+      "code": "    p = tmp_path / \"data.csv\"",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_report.py",
+      "line": 12,
+      "code": "    p.write_text('category,amount\\nan,\"1,000\"\\nan,500\\n', encoding=\"utf-8\")",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_report.py",
+      "line": 13,
+      "code": "    assert report.total_by_category(report.load_rows(str(p))) == {\"an\": 1500}",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 19,
+    "ai_da_sua": 1,
+    "nguoi_viet": 9
+  },
+  "features": {
+    "f1": 0.95,
+    "f2": 0.5,
+    "f3": 0,
+    "f4_sec": 1816.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 41,
+  "di_exact": 41.0,
+  "prompt_labels": [
+    {
+      "event_id": "ev_020001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_020005",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_020008",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_020010",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": null,
+  "intent_expected": "Đọc CSV từ Excel và cộng tổng theo nhóm",
+  "repo": "repo02_csv_report",
+  "open_check": true
+}

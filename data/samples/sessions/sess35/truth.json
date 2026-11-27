@@ -1,0 +1,317 @@
+{
+  "task_id": "sess35_t1",
+  "session_id": "sess35",
+  "diff_id": "sess35_c1",
+  "lines": [
+    {
+      "file": "app/mailer.py",
+      "line": 1,
+      "code": "    for report in product_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 2,
+      "code": "    except AttributeError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 3,
+      "code": "    user = fetch_item(result)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 4,
+      "code": "    except KeyError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 5,
+      "code": "    except OSError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 6,
+      "code": "    total_ids = [x.qty for x in product_list if x.qty > 62]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 7,
+      "code": "    email_ids = [x.price for x in total_list if x.price > 61]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 8,
+      "code": "    logger.info(\"load price xong: %s\", total)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 9,
+      "code": "    total = read_payload(limit)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 10,
+      "code": "    except ValueError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 11,
+      "code": "    MAX_path_RETRY = 28  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 12,
+      "code": "    if row is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 13,
+      "code": "    return item_result",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 14,
+      "code": "        raise ValueError(\"user không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 15,
+      "code": "    user_map = {x.amount: x for x in report_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 16,
+      "code": "    for user in record_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 17,
+      "code": "def save_email(price, total=219):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 18,
+      "code": "    if cart is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 19,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 20,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 21,
+      "code": "    product_ids = [x.name for x in order_list if x.name > 220]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 22,
+      "code": "        raise ValueError(\"token không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 23,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 24,
+      "code": "    pathCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 25,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 26,
+      "code": "        raise ValueError(\"item không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 27,
+      "code": "    token_ids = [x.qty for x in config_list if x.qty > 430]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 28,
+      "code": "    token = normalize_price(order)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 29,
+      "code": "        path += record.status",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 30,
+      "code": "    item_map = {x.count: x for x in count_list}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 32,
+      "code": "    return cart_email",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 33,
+      "code": "    for order in email_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 34,
+      "code": "    return order_email",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 35,
+      "code": "    if limit is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 36,
+      "code": "    logger.info(\"build record xong: %s\", user)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 37,
+      "code": "    return path_product",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 38,
+      "code": "    record_ids = [x.email for x in product_list if x.email > 474]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 39,
+      "code": "        return {\"error\": str(exc), \"path\": total}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 40,
+      "code": "    if count is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 41,
+      "code": "    except OSError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 43,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 44,
+      "code": "    for token in page_list:",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 38,
+    "ai_da_sua": 2,
+    "nguoi_viet": 2
+  },
+  "features": {
+    "f1": 0.95,
+    "f2": 1.0,
+    "f3": 1,
+    "f4_sec": 435.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.2,
+    "f4n": 0.725
+  },
+  "di": 72,
+  "di_exact": 71.62,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9350001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9350004",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9350008",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9350012",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9350016",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "di_cao"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "di_cao",
+      "ts": "2026-11-25T20:50:29+07:00",
+      "event_id": "ev_9350020"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 5,
+  "style": "phu_thuoc"
+}

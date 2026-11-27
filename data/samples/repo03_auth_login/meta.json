@@ -1,0 +1,13 @@
+{
+  "repo": "repo03_auth_login",
+  "lang": "python",
+  "task_id": "repo03_t1",
+  "diff_id": "repo03_c1",
+  "session_id": "s_repo03",
+  "branch": "feat/login",
+  "commit_message": "Đăng nhập có hash mật khẩu và khoá tài khoản",
+  "description": "",
+  "files": [
+    "auth.py"
+  ]
+}

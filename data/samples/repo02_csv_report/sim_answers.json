@@ -1,0 +1,5 @@
+[
+  "utf-8-sig bỏ ký tự BOM mà Excel ghi ở đầu file, nếu không cột đầu sẽ có tên lạ.",
+  "Decimal giữ đúng số thập phân, float cộng tiền bị sai số kiểu 0.1 + 0.2.",
+  "Dòng trống thì bỏ qua để khỏi lỗi."
+]

@@ -1,0 +1,5 @@
+[
+  "compare_digest so sánh hết chuỗi trong thời gian như nhau nên không đo được thời gian để đoán hash.",
+  "Salt ngẫu nhiên để hai người cùng mật khẩu có hash khác nhau.",
+  "Hash mật khẩu cho an toàn."
+]

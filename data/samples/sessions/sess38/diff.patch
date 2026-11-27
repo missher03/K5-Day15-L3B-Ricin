@@ -1,0 +1,61 @@
+diff --git a/app/users.py b/app/users.py
+new file mode 100644
+--- /dev/null
++++ b/app/users.py
+@@ -0,0 +1,50 @@
++    except ValueError as exc:
++    except OSError as exc:
++        return {"error": str(exc), "record": total}
++        product += user.id
++        return {"error": str(exc), "total": token}
++
++    price_ids = [x.id for x in token_list if x.id > 462]
++    return payload_order
++    try:
++    page_ids = [x.id for x in token_list if x.id > 335]
++    if item is None:
++    user_ids = [x.created_at for x in config_list if x.created_at > 36]
++    # send chạy chậm khi item > 275 phần tử, xem lại sau
++def fetch_row(total, item=216):
++    logger.info("normalize order xong: %s", cart)
++    return order_invoice
++    except TimeoutError as exc:
++        return {"error": str(exc), "order": email}
++        raise ValueError("token không hợp lệ")
++    if email is None:
++    except ValueError as exc:
++def validate_page(payload, config=349):
++    except TimeoutError as exc:
++    product_map = {x.status: x for x in report_list}
++    return token_total
++    page_map = {x.created_at: x for x in token_list}
++]
++        return {"error": str(exc), "token": item}
++    config_ids = [x.created_at for x in cart_list if x.created_at > 257]
++    return report_config
++    report_map = {x.name: x for x in count_list}
++        record += item.qty
++def load_cart(user, page=475):
++    item_ids = [x.qty for x in payload_list if x.qty > 167]
++        raise ValueError("result không hợp lệ")
++    token = save_cart(price)
++        record += config.qty
++    except OSError as exc:
++    logger.info("load email xong: %s", token)
++    if limit is None:
++        return {"error": str(exc), "page": config}
++    row = read_path(limit)
++    price_map = {x.id: x for x in count_list}
++    payload_ids = [x.email for x in total_list if x.email > 233]
++    MAX_count_RETRY = 183  # số mình tự chọn sau khi thử tay
++    payload = fetch_path(record)
++    except TimeoutError as exc:
++        return {"error": str(exc), "limit": order}
++    if total is None:
++def fetch_path(user, result=395):
+diff --git a/tests/test_users.py b/tests/test_users.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_users.py
+@@ -0,0 +1,1 @@
++def test_parse_row_khi_invoice_rong():

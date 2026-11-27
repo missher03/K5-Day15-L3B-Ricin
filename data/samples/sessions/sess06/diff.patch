@@ -1,0 +1,44 @@
+diff --git a/app/reports.py b/app/reports.py
+new file mode 100644
+--- /dev/null
++++ b/app/reports.py
+@@ -0,0 +1,27 @@
++def save_report(token, product=204):
++    report_map = {x.row: x for x in limit_list}
++    except OSError as exc:  # sửa
++def parse_total(config, payload=200):
++    print('debug tạm', config, result)
++    MAX_payload_RETRY = 261  # số mình tự chọn sau khi thử tay
++    if result is None:
++    payloadCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    path_map = {x.price: x for x in total_list}
++    )
++    MAX_count_RETRY = 258  # số mình tự chọn sau khi thử tay
++    try:
++    )
++    token = validate_count(order)
++    print('debug tạm', cart, page)
++    config = load_payload(token)
++    for amount in result_list:
++    print('debug tạm', count, invoice)
++    for limit in result_list:
++    if id is None:
++    # build chạy chậm khi record > 65 phần tử, xem lại sau
++    config = validate_limit(invoice)
++    return token_order  # sửa
++    # save chạy chậm khi item > 235 phần tử, xem lại sau
++    MAX_count_RETRY = 200  # số mình tự chọn sau khi thử tay
++    try:
++    print('debug tạm', total, product)
+diff --git a/tests/test_reports.py b/tests/test_reports.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_reports.py
+@@ -0,0 +1,7 @@
++    du_lieu_mau = taoDuLieu(so_dong=301)
++def test_normalize_count_khi_total_rong():
++def test_compute_token_dung_so_lieu_mau_135():
++def test_validate_item_dung_so_lieu_mau_326():
++def test_read_row_dung_so_lieu_mau_68():
++    du_lieu_mau = taoDuLieu(so_dong=68)
++def test_parse_page_dung_so_lieu_mau_26():

@@ -1,0 +1,102 @@
+[
+  {
+    "id": "p01",
+    "prompt": "Viết giúp mình API đăng ký tài khoản bằng Flask, có kiểm email trùng",
+    "label": "lam_ho"
+  },
+  {
+    "id": "p02",
+    "prompt": "Làm hết phần giỏ hàng luôn, mình cần nộp tối nay",
+    "label": "lam_ho"
+  },
+  {
+    "id": "p03",
+    "prompt": "Sửa file này cho chạy được giúp mình",
+    "label": "lam_ho"
+  },
+  {
+    "id": "p04",
+    "prompt": "Thêm validate cho form đăng nhập vào code dưới",
+    "label": "lam_ho"
+  },
+  {
+    "id": "p05",
+    "prompt": "Vì sao nên dùng bcrypt thay vì sha256 để lưu mật khẩu?",
+    "label": "hoi_khai_niem"
+  },
+  {
+    "id": "p06",
+    "prompt": "async/await khác Promise.then ở chỗ nào?",
+    "label": "hoi_khai_niem"
+  },
+  {
+    "id": "p07",
+    "prompt": "Index trong database giúp truy vấn nhanh hơn như thế nào?",
+    "label": "hoi_khai_niem"
+  },
+  {
+    "id": "p08",
+    "prompt": "CORS là gì, sao trình duyệt chặn request của mình?",
+    "label": "hoi_khai_niem"
+  },
+  {
+    "id": "p09",
+    "prompt": "Mình nghĩ lỗi KeyError là do API trả thiếu trường price khi hết hàng, đúng không?",
+    "label": "debug_co_gia_thuyet"
+  },
+  {
+    "id": "p10",
+    "prompt": "Có phải test fail vì mình chưa reset database giữa các test không?",
+    "label": "debug_co_gia_thuyet"
+  },
+  {
+    "id": "p11",
+    "prompt": "Mình đoán vòng lặp bị chậm vì gọi query trong mỗi lần lặp (N+1), kiểm giúp",
+    "label": "debug_co_gia_thuyet"
+  },
+  {
+    "id": "p12",
+    "prompt": "Hình như 401 là do token hết hạn chứ không phải sai secret, mình kiểm thế nào?",
+    "label": "debug_co_gia_thuyet"
+  },
+  {
+    "id": "p13",
+    "prompt": "Traceback (most recent call last):\n  File \"app.py\", line 12, in <module>\nKeyError: 'price'",
+    "label": "debug_dan_loi"
+  },
+  {
+    "id": "p14",
+    "prompt": "TypeError: Cannot read properties of undefined (reading 'map')",
+    "label": "debug_dan_loi"
+  },
+  {
+    "id": "p15",
+    "prompt": "lỗi nè\nsqlite3.OperationalError: database is locked",
+    "label": "debug_dan_loi"
+  },
+  {
+    "id": "p16",
+    "prompt": "vẫn lỗi\nModuleNotFoundError: No module named 'flask'",
+    "label": "debug_dan_loi"
+  },
+  {
+    "id": "p17",
+    "prompt": "ok cảm ơn",
+    "label": "khac"
+  },
+  {
+    "id": "p18",
+    "prompt": "commit giúp mình với message hợp lý",
+    "label": "khac"
+  },
+  {
+    "id": "p19",
+    "prompt": "chạy test lại đi",
+    "label": "khac"
+  },
+  {
+    "id": "p20",
+    "prompt": "Đổi theme VS Code sang màu tối thế nào?",
+    "label": "khac"
+  }
+]

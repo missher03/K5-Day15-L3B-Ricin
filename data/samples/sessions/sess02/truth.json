@@ -1,0 +1,260 @@
+{
+  "task_id": "sess02_t1",
+  "session_id": "sess02",
+  "diff_id": "sess02_c1",
+  "lines": [
+    {
+      "file": "app/users.py",
+      "line": 1,
+      "code": "    totalCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 2,
+      "code": "    MAX_item_RETRY = 233  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 3,
+      "code": "    # TODO hỏi lại anh lead về payload ở ticket #490",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 4,
+      "code": "    except KeyError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 6,
+      "code": "    logger.info(\"send result xong: %s\", token)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 7,
+      "code": "    tokenCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 8,
+      "code": "    return row_result",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 9,
+      "code": "        raise ValueError(\"name không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 10,
+      "code": "    for row in item_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 11,
+      "code": "    print('debug tạm', total, path)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 12,
+      "code": "    except OSError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 13,
+      "code": "        return {\"error\": str(exc), \"page\": item}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 14,
+      "code": "    # TODO hỏi lại anh lead về item ở ticket #286",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 16,
+      "code": "    # read chạy chậm khi record > 213 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 17,
+      "code": "    # TODO hỏi lại anh lead về token ở ticket #61",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 18,
+      "code": "    for config in email_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 19,
+      "code": "    # TODO hỏi lại anh lead về limit ở ticket #247",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 20,
+      "code": "    # TODO hỏi lại anh lead về config ở ticket #347",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 21,
+      "code": "    except TimeoutError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 22,
+      "code": "    MAX_price_RETRY = 200  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 23,
+      "code": "        user += invoice.qty",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 24,
+      "code": "    MAX_email_RETRY = 35  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 25,
+      "code": "    except AttributeError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 26,
+      "code": "    emailCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 27,
+      "code": "    if item is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 28,
+      "code": "    # normalize chạy chậm khi price > 60 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 29,
+      "code": "def validate_result(config, path=69):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/users.py",
+      "line": 30,
+      "code": "    print('debug tạm', product, page)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 31,
+      "code": "    # TODO hỏi lại anh lead về payload ở ticket #260",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_users.py",
+      "line": 1,
+      "code": "    with pytest.raises(ValueError):",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_users.py",
+      "line": 2,
+      "code": "def test_load_token_dung_so_lieu_mau_137():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_users.py",
+      "line": 3,
+      "code": "    assert build_path([]) == []",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_users.py",
+      "line": 4,
+      "code": "def test_build_user_khi_row_rong():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 4,
+    "ai_da_sua": 9,
+    "nguoi_viet": 20
+  },
+  "features": {
+    "f1": 0.3077,
+    "f2": 0.0,
+    "f3": 0,
+    "f4_sec": 2059.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 9,
+  "di_exact": 9.23,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9020001",
+      "label": "khac",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9020003",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9020007",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9020009",
+      "label": "khac",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9020012",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9020015",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "tu_luc"
+}

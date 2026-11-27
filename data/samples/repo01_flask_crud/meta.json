@@ -1,0 +1,13 @@
+{
+  "repo": "repo01_flask_crud",
+  "lang": "python",
+  "task_id": "repo01_t1",
+  "diff_id": "repo01_c1",
+  "session_id": "s_repo01",
+  "branch": "feat/todo-update-delete",
+  "commit_message": "Thêm PUT và DELETE cho /todos",
+  "description": "Thêm API sửa và xoá todo",
+  "files": [
+    "app.py"
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "task_id": "repo09_t1",
+  "session_id": "s_repo09",
+  "diff_id": "repo09_c1",
+  "lines": [
+    {
+      "file": "cache.py",
+      "line": 1,
+      "code": "import threading",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 2,
+      "code": "import time",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 5,
+      "code": "class TTLCache:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 6,
+      "code": "    def __init__(self, ttl_seconds: float = 60.0, max_items: int = 1000):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 7,
+      "code": "        self.ttl = ttl_seconds",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 8,
+      "code": "        self.max_items = max_items",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 9,
+      "code": "        self._data = {}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 10,
+      "code": "        self._lock = threading.Lock()",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 12,
+      "code": "    def get(self, key):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 13,
+      "code": "        with self._lock:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 14,
+      "code": "            item = self._data.get(key)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 15,
+      "code": "            if item is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 16,
+      "code": "                return None",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 17,
+      "code": "            value, expires_at = item",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 18,
+      "code": "            if time.monotonic() >= expires_at:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 19,
+      "code": "                del self._data[key]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 20,
+      "code": "                return None",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 21,
+      "code": "            return value",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 23,
+      "code": "    def set(self, key, value):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 24,
+      "code": "        with self._lock:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 25,
+      "code": "            if len(self._data) >= self.max_items:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 26,
+      "code": "                oldest = min(self._data, key=lambda k: self._data[k][1])",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 27,
+      "code": "                del self._data[oldest]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "cache.py",
+      "line": 28,
+      "code": "            self._data[key] = (value, time.monotonic() + self.ttl)",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 24,
+    "ai_da_sua": 0,
+    "nguoi_viet": 0
+  },
+  "features": {
+    "f1": 1.0,
+    "f2": 0.3333,
+    "f3": 0,
+    "f4_sec": 141.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 0.235
+  },
+  "di": 60,
+  "di_exact": 59.81,
+  "prompt_labels": [
+    {
+      "event_id": "ev_090001",
+      "label": "khac",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_090003",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_090007",
+      "label": "khac",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": null,
+  "intent_expected": "chưa rõ (nhánh main, commit 'update', prompt mơ hồ)",
+  "repo": "repo09_py_cache",
+  "open_check": true
+}

@@ -1,0 +1,13 @@
+{
+  "repo": "repo11_js_jwt",
+  "lang": "javascript",
+  "task_id": "repo11_t1",
+  "diff_id": "repo11_c1",
+  "session_id": "s_repo11",
+  "branch": "feat/auth-middleware",
+  "commit_message": "Middleware kiểm JWT",
+  "description": "Bảo vệ các route cần đăng nhập",
+  "files": [
+    "auth-middleware.js"
+  ]
+}

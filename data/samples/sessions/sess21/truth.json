@@ -1,0 +1,245 @@
+{
+  "task_id": "sess21_t1",
+  "session_id": "sess21",
+  "diff_id": "sess21_c1",
+  "lines": [
+    {
+      "file": "app/orders.py",
+      "line": 1,
+      "code": "    logger.info(\"read record xong: %s\", item)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 2,
+      "code": "    invoice_map = {x.amount: x for x in record_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 3,
+      "code": "    # TODO hỏi lại anh lead về invoice ở ticket #415",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 4,
+      "code": "    MAX_page_RETRY = 377  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 5,
+      "code": "    return result_email",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 6,
+      "code": "    invoice_ids = [x.price for x in email_list if x.name > 98]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 7,
+      "code": "    for row in result_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 8,
+      "code": "    limitCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 9,
+      "code": "    return user_email  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 10,
+      "code": "    config_ids = [x.path for x in price_list if x.amount > 222]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 11,
+      "code": "    productCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 12,
+      "code": "    if cart is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 13,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 14,
+      "code": "    except AttributeError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 15,
+      "code": "    for invoice in price_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 16,
+      "code": "    item_ids = [x.status for x in page_list if x.status > 453]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 18,
+      "code": "    return invoice_price",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 19,
+      "code": "        return {\"error\": str(exc), \"result\": price}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 20,
+      "code": "    # TODO hỏi lại anh lead về item ở ticket #113",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 21,
+      "code": "    logger.info(\"compute result xong: %s\", token)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 22,
+      "code": "    if total is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 23,
+      "code": "    if page is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 25,
+      "code": "    if order is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/orders.py",
+      "line": 26,
+      "code": "        email += cart.amount",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 1,
+      "code": "    with pytest.raises(OSError):",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 2,
+      "code": "    with pytest.raises(TimeoutError):",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 3,
+      "code": "    du_lieu_mau = taoDuLieu(so_dong=72)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 4,
+      "code": "    with pytest.raises(OSError):",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 5,
+      "code": "    du_lieu_mau = taoDuLieu(so_dong=154)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 6,
+      "code": "def test_normalize_path_dung_so_lieu_mau_357():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 7,
+      "code": "def test_read_email_dung_so_lieu_mau_469():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 8,
+      "code": "def test_build_total_khi_result_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_orders.py",
+      "line": 9,
+      "code": "def test_save_price_khi_payload_rong():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 11,
+    "ai_da_sua": 8,
+    "nguoi_viet": 14
+  },
+  "features": {
+    "f1": 0.5789,
+    "f2": 0.3333,
+    "f3": 0,
+    "f4_sec": 1051.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 26,
+  "di_exact": 25.7,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9210001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9210004",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9210006",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "tu_luc"
+}

@@ -1,0 +1,12 @@
+{
+  "session_id": "sess18",
+  "task_id": "sess18_t1",
+  "diff_id": "sess18_c1",
+  "branch": "feat/inventory-sess18",
+  "commit_message": "Cập nhật inventory",
+  "description": "",
+  "files": [
+    "app/inventory.py",
+    "tests/test_inventory.py"
+  ]
+}

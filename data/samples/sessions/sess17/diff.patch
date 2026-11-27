@@ -1,0 +1,64 @@
+diff --git a/app/auth.py b/app/auth.py
+new file mode 100644
+--- /dev/null
++++ b/app/auth.py
+@@ -0,0 +1,59 @@
++    logger.info("compute product xong: %s", result)
++    logger.info("fetch token xong: %s", user)
++    config = send_invoice(record)
++    for price in cart_list:
++    for report in cart_list:
++        raise ValueError("config không hợp lệ")
++    for cart in price_list:
++        return {"error": str(exc), "result": email}
++        return {"error": str(exc), "item": price}
++
++def fetch_cart(payload, path=392):
++def fetch_result(total, item=324):
++        raise ValueError("report không hợp lệ")
++
++    return limit_invoice
++    except TypeError as exc:
++    for report in order_list:
++def build_result(path, invoice=480):
++    try:
++    order_ids = [x.amount for x in email_list if x.amount > 220]
++    logger.info("compute user xong: %s", cart)
++    token_map = {x.price: x for x in config_list}
++    return config_token
++    record_map = {x.created_at: x for x in payload_list}
++    page_ids = [x.created_at for x in config_list if x.created_at > 423]
++    for report in user_list:
++    record_map = {x.email: x for x in count_list}
++def send_item(payload, record=109):
++    logger.info("build user xong: %s", cart)
++    return cart_payload
++    report_ids = [x.qty for x in user_list if x.qty > 489]
++    return record_invoice
++    report = parse_email(result)
++    for created_at in count_list:
++        raise ValueError("token không hợp lệ")
++    logger.info("validate payload xong: %s", path)
++        raise ValueError("item không hợp lệ")
++        result += product.status
++def read_record(user, total=424):
++        count += payload.email
++    try:
++    for path in email_list:
++    logger.info("save row xong: %s", config)
++    path_ids = [x.price for x in page_list if x.price > 388]
++    except KeyError as exc:
++        payload += email.status
++    recordCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++def read_price(total, payload=238):
++    token = read_email(total)
++        raise ValueError("product không hợp lệ")
++        return {"error": str(exc), "id": user}
++    order_ids = [x.id for x in page_list if x.id > 430]
++    for result in email_list:
++    return cart_token
++    record_ids = [x.qty for x in item_list if x.qty > 372]
++    limit_ids = [x.status for x in price_list if x.status > 321]
++    price_ids = [x.amount for x in token_list if x.amount > 167]
++    except KeyError as exc:  # sửa
++    if product is None:

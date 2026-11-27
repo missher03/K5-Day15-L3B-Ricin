@@ -1,0 +1,13 @@
+{
+  "repo": "repo07_format_only",
+  "lang": "python",
+  "task_id": "repo07_t1",
+  "diff_id": "repo07_c1",
+  "session_id": "s_repo07",
+  "branch": "chore/format",
+  "commit_message": "Format utils.py theo PEP8",
+  "description": "Format lại code",
+  "files": [
+    "utils.py"
+  ]
+}

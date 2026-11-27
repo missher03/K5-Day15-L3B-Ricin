@@ -1,0 +1,148 @@
+{
+  "task_id": "repo08_t1",
+  "session_id": "s_repo08",
+  "diff_id": "repo08_c1",
+  "lines": [
+    {
+      "file": "search-box.js",
+      "line": 1,
+      "code": "export function debounce(fn, waitMs = 300) {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 2,
+      "code": "  let timer = null;",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 3,
+      "code": "  return (...args) => {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 4,
+      "code": "    clearTimeout(timer);",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 5,
+      "code": "    timer = setTimeout(() => fn(...args), waitMs);",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 9,
+      "code": "let latestRequest = 0;",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 11,
+      "code": "export async function onSearchInput(query, render) {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 12,
+      "code": "  const requestId = ++latestRequest;",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 13,
+      "code": "  if (query.trim().length < 2) return render([]);",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 14,
+      "code": "  const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 15,
+      "code": "  const items = await res.json();",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 16,
+      "code": "  if (requestId !== latestRequest) return;",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 17,
+      "code": "  render(items);",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search-box.js",
+      "line": 20,
+      "code": "export const searchHandler = debounce(onSearchInput, 300);",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 14,
+    "ai_da_sua": 0,
+    "nguoi_viet": 0
+  },
+  "features": {
+    "f1": 1.0,
+    "f2": 1.0,
+    "f3": 1,
+    "f4_sec": 456.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.2,
+    "f4n": 0.76
+  },
+  "di": 73,
+  "di_exact": 72.6,
+  "prompt_labels": [
+    {
+      "event_id": "ev_080001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_080004",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_080007",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_080010",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "di_cao",
+    "lap_loi"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lap_loi",
+      "ts": "2026-11-24T20:10:00+07:00",
+      "event_id": "ev_080010"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 5,
+  "skip_reason": null,
+  "intent_expected": "Debounce ô tìm kiếm, bỏ kết quả cũ",
+  "repo": "repo08_js_debounce",
+  "open_check": true
+}

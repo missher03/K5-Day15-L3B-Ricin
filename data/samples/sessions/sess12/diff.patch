@@ -1,0 +1,44 @@
+diff --git a/app/reports.py b/app/reports.py
+new file mode 100644
+--- /dev/null
++++ b/app/reports.py
+@@ -0,0 +1,33 @@
++    logger.info("fetch record xong: %s", token)
++        raise ValueError("report không hợp lệ")
++    for invoice in cart_list:
++    logger.info("build payload xong: %s", total)
++    email_map = {x.status: x for x in path_list}
++    for product in row_list:
++    for report in count_list:
++    )
++    payload_ids = [x.qty for x in path_list if x.qty > 469]
++    logger.info("normalize order xong: %s", product)
++    for price in email_list:
++        raise ValueError("total không hợp lệ")
++    print('debug tạm', item, limit)
++        raise ValueError("email không hợp lệ")
++def parse_cart(email, user=459):
++    try:
++    logger.info("compute payload xong: %s", order)
++def compute_product(order, limit=333):
++    record_map = {x.cart: x for x in total_list}
++    return token_payload
++    logger.info("normalize cart xong: %s", price)
++        raise ValueError("name không hợp lệ")
++    logger.info("validate result xong: %s", item)
++    logger.info("load total xong: %s", cart)
++    # TODO hỏi lại anh lead về path ở ticket #157
++    cart_map = {x.order: x for x in path_list}
++    logger.info("send token xong: %s", limit)
++    report_map = {x.email: x for x in limit_list}
++    pageCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    )
++    MAX_product_RETRY = 102  # số mình tự chọn sau khi thử tay
++        raise ValueError("result không hợp lệ")
++        raise ValueError("cart không hợp lệ")
+diff --git a/tests/test_reports.py b/tests/test_reports.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_reports.py
+@@ -0,0 +1,1 @@
++    with pytest.raises(TimeoutError):

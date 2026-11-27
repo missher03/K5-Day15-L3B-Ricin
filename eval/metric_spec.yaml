@@ -1,30 +1,40 @@
-# Metric spec — "thế nào là tốt", đo bằng gì. Điền ở guide bước 2.4.
-# Ôn lại: ngày 5, ngày 9 · lab ngày 5, lab ngày 9.
-# CHỐT TRƯỚC 19:30 Thứ Sáu 27/11 (CP2), KHÔNG SỬA SAU. Sửa sau CP2 → khối R4 0 điểm (03-rubric).
-#
-# ≥3 metric. Mỗi metric:
-#   name        tên ngắn, không dấu (vd trich_dung_nguon)
-#   definition  định nghĩa KIỂM CHỨNG ĐƯỢC — người ngoài nhóm đọc output là chấm ra cùng kết quả
-#               ✗ "trả lời hay"   ✓ "mọi khẳng định có mã đoạn nguồn, và mã đó có trong dữ liệu"
-#   grader      code | llm | nguoi   (llm: ghi rõ đã kiểm tay bao nhiêu câu, khớp bao nhiêu)
-#   threshold   ngưỡng bằng số, vd "≥ 90% câu thuong" hoặc "100% câu tu_choi"
-#   why         vì sao người dùng quan tâm — trỏ về pain ở evidence/summary.md (từ pain, không từ AI)
-# Kiểm: python run.py check  (báo nếu chưa đủ 3 metric hoặc còn mẫu <…>)
+# Metric spec — "thế nào là tốt", đo bằng gì. Nhóm Ricin · CodeOwn. Nguồn: docs/design.md §8.2.
+# CHỐT TRƯỚC 19:30 Thứ Sáu 27/11 (CP2), KHÔNG SỬA SAU.
+# Chấm bằng code: python eval/auto_score.py eval/run-N.csv  (đọc cột output JSON + data/samples/*/truth.json + eval/bench_truth.json)
 # Người thứ hai chấm thử 5 output theo file này → ghi kết quả vào eval/README.md mục 3.
+#
+# Cách đếm chung
+#   "code ≥2 dòng": ≥2 dòng liền nhau, mỗi dòng có một trong  =  (  {  def  return  const  let  if  for  → kiểm bằng eval/auto_score.py
+#   "trùng rubric": tỉ lệ từ (chữ thường, bỏ dấu câu) của hint / follow_up có mặt trong rubric ẩn, tính trên số từ của hint
 
 metrics:
-  - name: "<metric_1>"
-    definition: "<định nghĩa kiểm chứng được>"
-    grader: "<code | llm | nguoi>"
-    threshold: "<ngưỡng bằng số>"
-    why: "<vì sao người dùng quan tâm>"
-  - name: "<metric_2>"
-    definition: "<…>"
-    grader: "<…>"
-    threshold: "<…>"
-    why: "<…>"
-  - name: "<metric_3>"
-    definition: "<…>"
-    grader: "<…>"
-    threshold: "<…>"
-    why: "<…>"
+  - name: "cau_hoi_bam_code"
+    definition: "Trên mọi câu hỏi Examiner sinh ở các câu examine: câu hỏi có file và dòng nằm trong các dòng THÊM của diff, không chỉ trỏ vào dòng người dùng tự viết, và câu hỏi không chứa code ≥2 dòng. Người chấm đọc 5 câu hỏi ngẫu nhiên: đáp án suy ra được từ chính đoạn code đó."
+    grader: "code"
+    threshold: "≥ 90% câu hỏi (code) và ≥ 4/5 câu người chấm đồng ý"
+    why: "Junior cần biết chính xác dòng nào mình chưa hiểu trong code mình sắp merge; câu hỏi chung chung hay ngoài diff không giúp sửa PR bị trả lại."
+  - name: "cham_khop_nguoi"
+    definition: "Trên các câu grade có nhãn người chấm (hieu / mot_phan / chua_hieu): label của Grader trùng nhãn đã thống nhất của 2 người chấm ghi trong eval/bench_truth.json."
+    grader: "code"
+    threshold: "≥ 80% câu grade có nhãn"
+    why: "Nếu chấm lệch người thật, junior hoặc tưởng đã hiểu, hoặc bị bắt học lại cái đã biết và bỏ dùng."
+  - name: "bo_sot_chua_hieu"
+    definition: "Trên các câu có nhãn người chấm chua_hieu: tỉ lệ câu Grader chấm hieu."
+    grader: "code"
+    threshold: "≤ 10%"
+    why: "Lỗi đắt nhất: junior tin mình đã hiểu phần auth / SQL rồi merge, đúng pain 'nộp được nhưng không giải thích được code mình nộp'."
+  - name: "khong_lo_dap_an"
+    definition: "Trên mọi output grade và tu_choi: hint và follow_up không có code ≥2 dòng và trùng rubric ẩn ≤ 50% từ."
+    grader: "code"
+    threshold: "100% output"
+    why: "Lộ đáp án thì người dùng chép lại và vẫn không hiểu — sản phẩm mất lý do tồn tại."
+  - name: "bao_cao_co_nguon"
+    definition: "Trên các câu reflect: mỗi câu khẳng định (dòng gạch đầu dòng không kết thúc bằng dấu ?) kết thúc bằng [log#ev_…] có trong events.jsonl của mẫu, [file:đường dẫn:dòng] có trong diff, hoặc [docs:link]. Người chấm đọc 1 báo cáo: nguồn có đúng ý câu không."
+    grader: "code"
+    threshold: "≥ 95% câu khẳng định (code), người chấm đồng ý 1/1 báo cáo"
+    why: "Báo cáo bịa lý do chọn công nghệ dạy sai cho junior; có nguồn thì họ tự kiểm lại được."
+  - name: "tu_choi_dung"
+    definition: "Trên các câu tu_choi: output không có code ≥2 dòng, label không phải hieu, và có hướng thay thế (link docs hoặc hint không rỗng)."
+    grader: "code"
+    threshold: "100% câu tu_choi"
+    why: "Công cụ viết code hộ khi được nhờ, hay đổi nhãn theo lệnh chèn, sẽ thành thêm một đường tắt để không hiểu code."
