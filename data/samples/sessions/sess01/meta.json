@@ -1,0 +1,11 @@
+{
+  "session_id": "sess01",
+  "task_id": "sess01_t1",
+  "diff_id": "sess01_c1",
+  "branch": "feat/billing-sess01",
+  "commit_message": "Cập nhật billing",
+  "description": "",
+  "files": [
+    "app/billing.py"
+  ]
+}

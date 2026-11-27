@@ -1,0 +1,5 @@
+[
+  "Mỗi lần gõ thì clearTimeout hẹn giờ cũ, chỉ gọi khi ngừng gõ 300ms.",
+  "requestId để bỏ kết quả của request cũ về muộn.",
+  "không biết"
+]

@@ -1,0 +1,142 @@
+{
+  "task_id": "repo11_t1",
+  "session_id": "s_repo11",
+  "diff_id": "repo11_c1",
+  "lines": [
+    {
+      "file": "auth-middleware.js",
+      "line": 1,
+      "code": "const jwt = require(\"jsonwebtoken\");",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 3,
+      "code": "function requireAuth(req, res, next) {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 4,
+      "code": "  const header = req.headers.authorization || \"\";",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 5,
+      "code": "  const [scheme, token] = header.split(\" \");",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 6,
+      "code": "  if (scheme !== \"Bearer\" || !token) {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 7,
+      "code": "    return res.status(401).json({ error: \"thiếu token\" });",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 9,
+      "code": "  try {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 10,
+      "code": "    // chỉ nhận HS256 để chặn token giả mạo kiểu alg none",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 11,
+      "code": "    req.user = jwt.verify(token, process.env.JWT_SECRET, { algorithms: [\"HS256\"] });",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 12,
+      "code": "    return next();",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 13,
+      "code": "  } catch (err) {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 14,
+      "code": "    const msg = err.name === \"TokenExpiredError\" ? \"token đã hết hạn\" : \"token không hợp lệ\";",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 15,
+      "code": "    return res.status(401).json({ error: msg });",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "auth-middleware.js",
+      "line": 19,
+      "code": "module.exports = { requireAuth };",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 12,
+    "ai_da_sua": 1,
+    "nguoi_viet": 1
+  },
+  "features": {
+    "f1": 0.9231,
+    "f2": 0.3333,
+    "f3": 0,
+    "f4_sec": 664.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 46,
+  "di_exact": 46.03,
+  "prompt_labels": [
+    {
+      "event_id": "ev_110001",
+      "label": "lam_ho",
+      "ca_tinh_nang": true
+    },
+    {
+      "event_id": "ev_110005",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_110008",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lam_ho_ca_tinh_nang"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lam_ho_ca_tinh_nang",
+      "ts": "2026-11-20T20:16:00+07:00",
+      "event_id": "ev_110001"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": null,
+  "intent_expected": "Middleware kiểm JWT cho Express",
+  "repo": "repo11_js_jwt",
+  "open_check": true
+}

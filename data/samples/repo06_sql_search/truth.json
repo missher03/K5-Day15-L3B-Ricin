@@ -1,0 +1,116 @@
+{
+  "task_id": "repo06_t1",
+  "session_id": "s_repo06",
+  "diff_id": "repo06_c1",
+  "lines": [
+    {
+      "file": "search.py",
+      "line": 4,
+      "code": "def _escape_like(text: str) -> str:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search.py",
+      "line": 5,
+      "code": "    return text.replace(\"\\\\\", \"\\\\\\\\\").replace(\"%\", \"\\\\%\").replace(\"_\", \"\\\\_\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search.py",
+      "line": 8,
+      "code": "def search_products(conn: sqlite3.Connection, keyword: str, page: int = 1, per_page: int = 20):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search.py",
+      "line": 9,
+      "code": "    page = max(page, 1)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search.py",
+      "line": 10,
+      "code": "    per_page = min(max(per_page, 1), 100)  # chặn client xin cả triệu dòng một lần",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "search.py",
+      "line": 11,
+      "code": "    pattern = \"%\" + _escape_like(keyword.strip()) + \"%\"",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search.py",
+      "line": 12,
+      "code": "    sql = (",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search.py",
+      "line": 13,
+      "code": "        \"SELECT id, name, price FROM products \"",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search.py",
+      "line": 14,
+      "code": "        \"WHERE name LIKE ? ESCAPE '\\\\' \"",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search.py",
+      "line": 15,
+      "code": "        \"ORDER BY name LIMIT ? OFFSET ?\"",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "search.py",
+      "line": 17,
+      "code": "    return conn.execute(sql, (pattern, per_page, (page - 1) * per_page)).fetchall()",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 10,
+    "ai_da_sua": 0,
+    "nguoi_viet": 1
+  },
+  "features": {
+    "f1": 1.0,
+    "f2": 0.3333,
+    "f3": 0,
+    "f4_sec": 1103.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 48,
+  "di_exact": 48.33,
+  "prompt_labels": [
+    {
+      "event_id": "ev_060001",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_060004",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_060007",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": null,
+  "intent_expected": "Chặn SQL injection ở tìm kiếm + phân trang",
+  "repo": "repo06_sql_search",
+  "open_check": true
+}

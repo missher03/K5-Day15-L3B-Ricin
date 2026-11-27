@@ -50,12 +50,12 @@ def redact(text):
 
 
 # --- hash dòng ------------------------------------------------------------------
-_TRIVIAL = re.compile(r"^[\s{}\[\]();,:.]*$|^(?:end|else:?|try:|finally:|pass|\"\"\"|''')$")
+_TRIVIAL = re.compile(r"^[\s()\[\]{};,]*$")
 
 
 def is_trivial(line):
-    """Dòng trống hoặc chỉ có dấu ngoặc / từ khoá trơ: không dùng để gán AI / người."""
-    return bool(_TRIVIAL.match(line.strip()))
+    """Dòng trống hoặc chỉ có dấu ngoặc / chấm phẩy: không dùng để gán AI / người (task.md mục A)."""
+    return bool(_TRIVIAL.match(line))
 
 
 def line_hash(line):

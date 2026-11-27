@@ -1,0 +1,364 @@
+{
+  "task_id": "sess38_t1",
+  "session_id": "sess38",
+  "diff_id": "sess38_c1",
+  "lines": [
+    {
+      "file": "app/users.py",
+      "line": 1,
+      "code": "    except ValueError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 2,
+      "code": "    except OSError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 3,
+      "code": "        return {\"error\": str(exc), \"record\": total}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 4,
+      "code": "        product += user.id",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 5,
+      "code": "        return {\"error\": str(exc), \"total\": token}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 7,
+      "code": "    price_ids = [x.id for x in token_list if x.id > 462]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 8,
+      "code": "    return payload_order",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 9,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 10,
+      "code": "    page_ids = [x.id for x in token_list if x.id > 335]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 11,
+      "code": "    if item is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 12,
+      "code": "    user_ids = [x.created_at for x in config_list if x.created_at > 36]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 13,
+      "code": "    # send chạy chậm khi item > 275 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 14,
+      "code": "def fetch_row(total, item=216):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 15,
+      "code": "    logger.info(\"normalize order xong: %s\", cart)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 16,
+      "code": "    return order_invoice",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 17,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 18,
+      "code": "        return {\"error\": str(exc), \"order\": email}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 19,
+      "code": "        raise ValueError(\"token không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 20,
+      "code": "    if email is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 21,
+      "code": "    except ValueError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 22,
+      "code": "def validate_page(payload, config=349):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 23,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 24,
+      "code": "    product_map = {x.status: x for x in report_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 25,
+      "code": "    return token_total",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 26,
+      "code": "    page_map = {x.created_at: x for x in token_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 28,
+      "code": "        return {\"error\": str(exc), \"token\": item}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 29,
+      "code": "    config_ids = [x.created_at for x in cart_list if x.created_at > 257]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 30,
+      "code": "    return report_config",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 31,
+      "code": "    report_map = {x.name: x for x in count_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 32,
+      "code": "        record += item.qty",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 33,
+      "code": "def load_cart(user, page=475):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 34,
+      "code": "    item_ids = [x.qty for x in payload_list if x.qty > 167]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 35,
+      "code": "        raise ValueError(\"result không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 36,
+      "code": "    token = save_cart(price)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 37,
+      "code": "        record += config.qty",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 38,
+      "code": "    except OSError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 39,
+      "code": "    logger.info(\"load email xong: %s\", token)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 40,
+      "code": "    if limit is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 41,
+      "code": "        return {\"error\": str(exc), \"page\": config}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 42,
+      "code": "    row = read_path(limit)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 43,
+      "code": "    price_map = {x.id: x for x in count_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 44,
+      "code": "    payload_ids = [x.email for x in total_list if x.email > 233]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 45,
+      "code": "    MAX_count_RETRY = 183  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/users.py",
+      "line": 46,
+      "code": "    payload = fetch_path(record)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 47,
+      "code": "    except TimeoutError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 48,
+      "code": "        return {\"error\": str(exc), \"limit\": order}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 49,
+      "code": "    if total is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/users.py",
+      "line": 50,
+      "code": "def fetch_path(user, result=395):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "tests/test_users.py",
+      "line": 1,
+      "code": "def test_parse_row_khi_invoice_rong():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 46,
+    "ai_da_sua": 0,
+    "nguoi_viet": 3
+  },
+  "features": {
+    "f1": 1.0,
+    "f2": 0.8333,
+    "f3": 0,
+    "f4_sec": 641.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 51,
+  "di_exact": 50.83,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9380001",
+      "label": "lam_ho",
+      "ca_tinh_nang": true
+    },
+    {
+      "event_id": "ev_9380005",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9380008",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9380011",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9380015",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9380018",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lam_ho_ca_tinh_nang"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lam_ho_ca_tinh_nang",
+      "ts": "2026-11-23T20:36:00+07:00",
+      "event_id": "ev_9380001"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "style": "phu_thuoc"
+}

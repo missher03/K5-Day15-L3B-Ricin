@@ -1,0 +1,14 @@
+{
+  "repo": "repo12_docs_only",
+  "lang": "markdown",
+  "task_id": "repo12_t1",
+  "diff_id": "repo12_c1",
+  "session_id": "s_repo12",
+  "branch": "docs/readme",
+  "commit_message": "Cập nhật README và cổng chạy",
+  "description": "Viết hướng dẫn chạy",
+  "files": [
+    "README.md",
+    "config.yaml"
+  ]
+}

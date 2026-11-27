@@ -1,0 +1,195 @@
+{
+  "task_id": "repo01_t1",
+  "session_id": "s_repo01",
+  "diff_id": "repo01_c1",
+  "lines": [
+    {
+      "file": "app.py",
+      "line": 21,
+      "code": "@app.put(\"/todos/<int:todo_id>\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 22,
+      "code": "def update_todo(todo_id):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 23,
+      "code": "    data = request.get_json(silent=True) or {}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 24,
+      "code": "    title = (data.get(\"title\") or \"\").strip()",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 25,
+      "code": "    done = bool(data.get(\"done\", False))",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 26,
+      "code": "    if not title or len(title) > 200:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 27,
+      "code": "        return jsonify({\"error\": \"title phải có 1-200 ký tự\"}), 400",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 28,
+      "code": "    with get_db() as conn:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 29,
+      "code": "        cur = conn.execute(",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 30,
+      "code": "            \"UPDATE todos SET title = ?, done = ? WHERE id = ?\",",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 31,
+      "code": "            (title, int(done), todo_id),",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 33,
+      "code": "    if cur.rowcount == 0:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 34,
+      "code": "        return jsonify({\"error\": \"không tìm thấy todo\"}), 404",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app.py",
+      "line": 35,
+      "code": "    return jsonify({\"id\": todo_id, \"title\": title, \"done\": done})",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 38,
+      "code": "@app.delete(\"/todos/<int:todo_id>\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 39,
+      "code": "def delete_todo(todo_id):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 40,
+      "code": "    with get_db() as conn:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 41,
+      "code": "        deleted = conn.execute(\"DELETE FROM todos WHERE id = ?\", (todo_id,)).rowcount",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 42,
+      "code": "    # xoá id không tồn tại vẫn trả 404 để client biết gõ sai id",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app.py",
+      "line": 43,
+      "code": "    if not deleted:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 44,
+      "code": "        return jsonify({\"error\": \"todo không tồn tại\"}), 404",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app.py",
+      "line": 45,
+      "code": "    return \"\", 204",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 20,
+    "ai_da_sua": 1,
+    "nguoi_viet": 1
+  },
+  "features": {
+    "f1": 0.9524,
+    "f2": 0.5,
+    "f3": 0,
+    "f4_sec": 818.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 51,
+  "di_exact": 51.07,
+  "prompt_labels": [
+    {
+      "event_id": "ev_010001",
+      "label": "lam_ho",
+      "ca_tinh_nang": true
+    },
+    {
+      "event_id": "ev_010005",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_010008",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_010011",
+      "label": "khac",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lam_ho_ca_tinh_nang"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lam_ho_ca_tinh_nang",
+      "ts": "2026-11-25T19:14:00+07:00",
+      "event_id": "ev_010001"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": null,
+  "intent_expected": "Thêm API sửa / xoá todo (khớp nhánh, commit, prompt đầu)",
+  "repo": "repo01_flask_crud",
+  "open_check": true
+}

@@ -12,6 +12,13 @@ __pycache__/
 venv/
 node_modules/
 .DS_Store
+# CodeOwn: log / Sổ trên máy người dùng, thư mục tạm của run_snippet
+.codeown/
+.codeown-tmp/
+# Bản chấm tự động của lượt không tính
+eval/auto-score-run-try.md
+eval/auto-score-run-mock.md
+eval/auto-score-run-fake.md
 # Lượt KHÔNG được tính (không nộp). eval/run-1.csv, run-2.csv…, cost/simulate-N.csv, traces/run-N.jsonl PHẢI commit.
 eval/run-fake.csv
 eval/run-try.csv

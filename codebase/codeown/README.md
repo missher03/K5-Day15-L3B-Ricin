@@ -4,7 +4,7 @@ Chỉ dùng thư viện chuẩn, Python 3.10+. Hợp đồng dữ liệu và l�
 
 ## Chạy thử nhanh
 ```bash
-python -m unittest discover -s tests -v                        # 38 test phần A
+python -m unittest discover -s tests -v                        # 43 test phần A (gồm so với fixtures của C)
 python codebase/codeown_cli.py init --repo <repo-của-bạn>        # ghi hook Claude Code + git post-commit + .gitignore
 python codebase/codeown_cli.py status --repo <repo>              # chữ dễ đọc: task, DI, số dòng AI / người, nhắc
 python codebase/codeown_cli.py status --repo <repo> --json       # một dòng JSON cho extension
@@ -27,7 +27,7 @@ Eval: `{"mode": "monitor", "session_id": "demo01"}` → `agent.answer()` đọc 
 | `attribution.py` | bỏ qua file không phải code của task (`DEFAULT_IGNORE`: file `init` sinh ra, lockfile, docs…; chỉnh bằng `{"ignore": [...]}` / `{"unignore": [...]}` trong `.codeown/config.jsonl`), rồi gán `ai_giu_nguyen` (trùng hash) / `ai_da_sua` (giống ≥0,6 cùng file, ≥0,8 khác file) / `nguoi_viet` |
 | `classifier.py` | AI 1: luật regex (`--rules-only`) hoặc gọi model qua `ai.call_model`, lỗi thì lùi về luật |
 | `dependence.py` | f1–f5 và DI theo `docs/design.md` §5.1 |
-| `nudge.py` | 4 luật nhắc, tối đa 1 lần / 15 phút |
+| `nudge.py` | 4 luật nhắc `lap_loi`, `nhan_nhieu_dong`, `lam_ho_ca_tinh_nang`, `di_cao`, xét trên cả phiên, tối đa 1 lần / 15 phút |
 | `monitor.py` | ghép lại: `status`, `attribution_report`, `write_summary`, `analyze_offline` (cho eval) |
 | `pretty.py` | in chữ dễ đọc cho CLI |
 

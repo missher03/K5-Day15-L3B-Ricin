@@ -1,0 +1,146 @@
+{
+  "task_id": "repo04_t1",
+  "session_id": "s_repo04",
+  "diff_id": "repo04_c1",
+  "lines": [
+    {
+      "file": "weather.js",
+      "line": 3,
+      "code": "export async function getWeather(city, { retries = 2, timeoutMs = 5000 } = {}) {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 4,
+      "code": "  const url = `${API}?city=${encodeURIComponent(city)}`;",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 5,
+      "code": "  for (let attempt = 0; attempt <= retries; attempt++) {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 6,
+      "code": "    const controller = new AbortController();",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 7,
+      "code": "    const timer = setTimeout(() => controller.abort(), timeoutMs);",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 8,
+      "code": "    try {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 9,
+      "code": "      const res = await fetch(url, { signal: controller.signal });",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 10,
+      "code": "      if (res.status >= 500) throw new Error(`server ${res.status}`);",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 11,
+      "code": "      // 4xx là lỗi phía mình (sai tên city), thử lại cũng vô ích nên trả luôn",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "weather.js",
+      "line": 12,
+      "code": "      if (!res.ok) return { error: `HTTP ${res.status}` };",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 13,
+      "code": "      return await res.json();",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 14,
+      "code": "    } catch (err) {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 15,
+      "code": "      if (attempt === retries) return { error: err.name === \"AbortError\" ? \"timeout\" : err.message };",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 16,
+      "code": "      await new Promise((r) => setTimeout(r, 500 * 2 ** attempt));",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "weather.js",
+      "line": 17,
+      "code": "    } finally {",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "weather.js",
+      "line": 18,
+      "code": "      clearTimeout(timer);",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 14,
+    "ai_da_sua": 1,
+    "nguoi_viet": 1
+  },
+  "features": {
+    "f1": 0.9333,
+    "f2": 0.3333,
+    "f3": 0,
+    "f4_sec": 980.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 1.0
+  },
+  "di": 46,
+  "di_exact": 46.33,
+  "prompt_labels": [
+    {
+      "event_id": "ev_040001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_040005",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_040008",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": null,
+  "intent_expected": "Gọi API thời tiết có timeout và retry khi lỗi mạng",
+  "repo": "repo04_js_weather",
+  "open_check": true
+}

@@ -1,0 +1,75 @@
+{
+  "task_id": "repo10_t1",
+  "session_id": "s_repo10",
+  "diff_id": "repo10_c1",
+  "lines": [
+    {
+      "file": "payment.py",
+      "line": 5,
+      "code": "    amount = (Decimal(str(order[\"total\"])) * Decimal(\"1.1\")).quantize(Decimal(\"0.01\"), rounding=ROUND_HALF_UP)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "payment.py",
+      "line": 6,
+      "code": "    idem_key = f\"order-{order['id']}\"",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "payment.py",
+      "line": 7,
+      "code": "    if gateway.already_charged(idem_key):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "payment.py",
+      "line": 8,
+      "code": "        return {\"status\": \"duplicate\", \"idempotency_key\": idem_key}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "payment.py",
+      "line": 9,
+      "code": "    return gateway.charge(order[\"id\"], amount, idempotency_key=idem_key)",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 5,
+    "ai_da_sua": 0,
+    "nguoi_viet": 0
+  },
+  "features": {
+    "f1": 1.0,
+    "f2": 0.5,
+    "f3": 0,
+    "f4_sec": 447.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 0.745
+  },
+  "di": 56,
+  "di_exact": 56.33,
+  "prompt_labels": [
+    {
+      "event_id": "ev_100001",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_100005",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": null,
+  "intent_expected": "LỆCH: nhánh + commit nói sửa login, nhưng prompt và diff đổi thanh toán (làm tròn tiền, idempotency)",
+  "repo": "repo10_payment_mismatch",
+  "open_check": true
+}

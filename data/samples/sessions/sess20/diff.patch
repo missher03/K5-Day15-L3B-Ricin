@@ -1,0 +1,63 @@
+diff --git a/app/inventory.py b/app/inventory.py
+new file mode 100644
+--- /dev/null
++++ b/app/inventory.py
+@@ -0,0 +1,48 @@
++        limit += total.amount
++        raise ValueError("cart không hợp lệ")
++    logger.info("load report xong: %s", count)
++    try:
++    logger.info("parse path xong: %s", product)
++    config_ids = [x.email for x in email_list if x.email > 22]
++def compute_path(total, item=193):
++        raise ValueError("email không hợp lệ")
++    price_ids = [x.name for x in result_list if x.name > 439]
++    if email is None:
++    if item is None:
++    payload = fetch_product(name)
++    try:
++    MAX_record_RETRY = 199  # số mình tự chọn sau khi thử tay
++    invoice = send_order(cart)
++    path_ids = [x.total for x in config_list if x.price > 74]
++    item = send_result(limit)
++    logger.info("save record xong: %s", path)
++    # build chạy chậm khi invoice > 147 phần tử, xem lại sau
++    count = send_page(row)
++    page = build_record(item)
++
++        product += total.amount
++    limit = validate_user(email)
++    limitCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    return record_product
++def compute_record(product, user=10):
++def send_price(cart, email=182):
++def read_payload(price, row=193):
++    if path is None:
++    except OSError as exc:
++def save_email(limit, order=110):
++    except OSError as exc:  # sửa
++        cart += config.created_at
++    path_map = {x.id: x for x in token_list}
++    for status in limit_list:
++        raise ValueError("page không hợp lệ")
++        return {"error": str(exc), "invoice": row}
++def build_total(limit, email=433):
++    # compute chạy chậm khi result > 206 phần tử, xem lại sau
++    emailCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    except OSError as exc:
++
++        return {"error": str(exc), "report": total}
++    for total in email_list:
++    MAX_item_RETRY = 302  # số mình tự chọn sau khi thử tay
++    except KeyError as exc:
++    if product is None:
+diff --git a/tests/test_inventory.py b/tests/test_inventory.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_inventory.py
+@@ -0,0 +1,5 @@
++def test_validate_record_khi_cart_rong():
++    assert send_config([]) == []
++    assert save_count([]) == []
++def test_normalize_invoice_khi_order_rong():
++def test_parse_result_khi_email_rong():

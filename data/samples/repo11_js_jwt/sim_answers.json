@@ -1,0 +1,5 @@
+[
+  "Không chỉ định algorithms thì token giả có thể khai alg khác; khoá HS256 để chỉ nhận đúng kiểu ký mình dùng.",
+  "Header phải dạng 'Bearer <token>', thiếu thì trả 401.",
+  "không biết"
+]

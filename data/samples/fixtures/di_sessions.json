@@ -1,0 +1,67 @@
+[
+  {
+    "session_id": "sess01",
+    "task_id": "sess01_t1",
+    "di_expected": 71,
+    "features_expected": {
+      "f1": 0.9194,
+      "f2": 1.0,
+      "f3": 2,
+      "f4_sec": 963.5,
+      "f5": 0
+    },
+    "tolerance": 5
+  },
+  {
+    "session_id": "sess02",
+    "task_id": "sess02_t1",
+    "di_expected": 9,
+    "features_expected": {
+      "f1": 0.3077,
+      "f2": 0.0,
+      "f3": 0,
+      "f4_sec": 2059.0,
+      "f5": 1
+    },
+    "tolerance": 5
+  },
+  {
+    "session_id": "sess03",
+    "task_id": "sess03_t1",
+    "di_expected": 27,
+    "features_expected": {
+      "f1": 0.6471,
+      "f2": 0.2857,
+      "f3": 0,
+      "f4_sec": 615.0,
+      "f5": 1
+    },
+    "tolerance": 5
+  },
+  {
+    "session_id": "sess04",
+    "task_id": "sess04_t1",
+    "di_expected": 69,
+    "features_expected": {
+      "f1": 0.9265,
+      "f2": 0.9286,
+      "f3": 2,
+      "f4_sec": 970.0,
+      "f5": 0
+    },
+    "tolerance": 5
+  },
+  {
+    "session_id": "sess05",
+    "task_id": "sess05_t1",
+    "di_expected": 28,
+    "features_expected": {
+      "f1": 0.5862,
+      "f2": 0.4286,
+      "f3": 0,
+      "f4_sec": 961.0,
+      "f5": 1
+    },
+    "tolerance": 5
+  }
+]

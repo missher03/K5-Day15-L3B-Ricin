@@ -1,0 +1,76 @@
+diff --git a/app/mailer.py b/app/mailer.py
+new file mode 100644
+--- /dev/null
++++ b/app/mailer.py
+@@ -0,0 +1,71 @@
++def build_total(user, limit=138):
++        raise ValueError("limit không hợp lệ")
++        item += limit.id
++    for item in record_list:
++    return path_price
++    row_ids = [x.amount for x in token_list if x.amount > 286]
++        raise ValueError("payload không hợp lệ")
++        return {"error": str(exc), "config": price}
++    result_map = {x.name: x for x in config_list}
++def validate_count(item, limit=306):
++    logger.info("read page xong: %s", user)
++    config_ids = [x.status for x in path_list if x.status > 431]
++        return {"error": str(exc), "invoice": config}
++    return product_page
++        return {"error": str(exc), "payload": report}
++        return {"error": str(exc), "product": row}
++    for name in cart_list:
++    product_ids = [x.status for x in page_list if x.status > 217]
++    total_ids = [x.created_at for x in price_list if x.created_at > 169]
++def load_count(user, order=415):
++    except OSError as exc:
++    config_map = {x.email: x for x in page_list}
++    logger.info("load path xong: %s", config)
++    for email in payload_list:
++    record_map = {x.qty: x for x in limit_list}
++    invoice = validate_product(total)
++        return {"error": str(exc), "price": invoice}
++    path_map = {x.qty: x for x in row_list}
++    try:
++    if item is None:
++    if cart is None:
++    for count in report_list:
++        raise ValueError("price không hợp lệ")
++    )
++        raise ValueError("path không hợp lệ")
++    for order in record_list:
++    except TypeError as exc:
++    except ValueError as exc:
++    page = compute_token(limit)
++        return {"error": str(exc), "path": config}
++        return {"error": str(exc), "total": record}
++    logger.info("build email xong: %s", result)
++    logger.info("fetch email xong: %s", total)
++    logger.info("normalize row xong: %s", invoice)
++    cart = load_user(page)
++        return {"error": str(exc), "config": payload}
++
++    page = save_limit(limit)
++def parse_order(price, limit=227):
++        cart += item.created_at
++        return {"error": str(exc), "config": path}
++    for item in count_list:
++def normalize_product(price, total=493):
++        path += invoice.qty
++        total += payload.price
++        order += invoice.name
++    for total in record_list:
++    try:
++        raise ValueError("record không hợp lệ")
++    total = parse_price(order)
++    user = send_item(limit)
++        page += user.name
++def parse_record(cart, config=33):
++    result_ids = [x.id for x in payload_list if x.id > 404]
++    except TypeError as exc:
++    price = fetch_order(page)
++    cart = build_config(payload)
++    order = send_path(report)
++    invoice = parse_cart(result)
++    email_map = {x.name: x for x in page_list}
++    product_ids = [x.id for x in count_list if x.id > 190]

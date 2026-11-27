@@ -1,0 +1,55 @@
+diff --git a/app/orders.py b/app/orders.py
+new file mode 100644
+--- /dev/null
++++ b/app/orders.py
+@@ -0,0 +1,44 @@
++    # TODO hỏi lại anh lead về token ở ticket #371
++    if token is None:
++def save_invoice(total, user=272):
++    rowCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    page_map = {x.email: x for x in invoice_list}
++    if config is None:
++    return product_cart
++    logger.info("fetch user xong: %s", payload)
++    logger.info("send price xong: %s", total)
++    payloadCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++        raise ValueError("limit không hợp lệ")
++    return path_order
++    invoice = parse_invoice(path)
++    status = compute_item(cart)
++    # TODO hỏi lại anh lead về product ở ticket #232
++    except TypeError as exc:
++    return limit_cart
++]
++    logger.info("compute product xong: %s", result)
++    return count_path  # sửa
++        total += name.status
++    invoice_ids = [x.price for x in token_list if x.created_at > 8]
++    for report in record_list:
++    for user in item_list:
++    try:
++def build_cart(count, config=325):
++    logger.info("save total xong: %s", report)
++    # save chạy chậm khi email > 11 phần tử, xem lại sau
++    reportCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    config = save_payload(limit)
++    for report in result_list:
++    email_ids = [x.amount for x in total_list if x.amount > 213]
++    except TypeError as exc:
++    item_ids = [x.name for x in payload_list if x.name > 419]
++    logger.info("compute count xong: %s", user)
++    for product in report_list:
++
++    if product is None:
++    item = validate_product(user)
++    except TimeoutError as exc:
++    # send chạy chậm khi config > 224 phần tử, xem lại sau
++    try:
++    if status is None:
++    print('debug tạm', email, invoice)
+diff --git a/tests/test_orders.py b/tests/test_orders.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_orders.py
+@@ -0,0 +1,1 @@
++    assert load_record([]) == []

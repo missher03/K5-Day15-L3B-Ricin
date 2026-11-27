@@ -1,0 +1,353 @@
+{
+  "task_id": "sess20_t1",
+  "session_id": "sess20",
+  "diff_id": "sess20_c1",
+  "lines": [
+    {
+      "file": "app/inventory.py",
+      "line": 1,
+      "code": "        limit += total.amount",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 2,
+      "code": "        raise ValueError(\"cart không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 3,
+      "code": "    logger.info(\"load report xong: %s\", count)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 4,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 5,
+      "code": "    logger.info(\"parse path xong: %s\", product)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 6,
+      "code": "    config_ids = [x.email for x in email_list if x.email > 22]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 7,
+      "code": "def compute_path(total, item=193):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 8,
+      "code": "        raise ValueError(\"email không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 9,
+      "code": "    price_ids = [x.name for x in result_list if x.name > 439]",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 10,
+      "code": "    if email is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 11,
+      "code": "    if item is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 12,
+      "code": "    payload = fetch_product(name)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 13,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 14,
+      "code": "    MAX_record_RETRY = 199  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 15,
+      "code": "    invoice = send_order(cart)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 16,
+      "code": "    path_ids = [x.total for x in config_list if x.price > 74]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 17,
+      "code": "    item = send_result(limit)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 18,
+      "code": "    logger.info(\"save record xong: %s\", path)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 19,
+      "code": "    # build chạy chậm khi invoice > 147 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 20,
+      "code": "    count = send_page(row)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 21,
+      "code": "    page = build_record(item)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 23,
+      "code": "        product += total.amount",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 24,
+      "code": "    limit = validate_user(email)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 25,
+      "code": "    limitCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 26,
+      "code": "    return record_product",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 27,
+      "code": "def compute_record(product, user=10):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 28,
+      "code": "def send_price(cart, email=182):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 29,
+      "code": "def read_payload(price, row=193):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 30,
+      "code": "    if path is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 31,
+      "code": "    except OSError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 32,
+      "code": "def save_email(limit, order=110):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 33,
+      "code": "    except OSError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 34,
+      "code": "        cart += config.created_at",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 35,
+      "code": "    path_map = {x.id: x for x in token_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 36,
+      "code": "    for status in limit_list:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 37,
+      "code": "        raise ValueError(\"page không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 38,
+      "code": "        return {\"error\": str(exc), \"invoice\": row}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 39,
+      "code": "def build_total(limit, email=433):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 40,
+      "code": "    # compute chạy chậm khi result > 206 phần tử, xem lại sau",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 41,
+      "code": "    emailCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 42,
+      "code": "    except OSError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 44,
+      "code": "        return {\"error\": str(exc), \"report\": total}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 45,
+      "code": "    for total in email_list:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 46,
+      "code": "    MAX_item_RETRY = 302  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 47,
+      "code": "    except KeyError as exc:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/inventory.py",
+      "line": 48,
+      "code": "    if product is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "tests/test_inventory.py",
+      "line": 1,
+      "code": "def test_validate_record_khi_cart_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_inventory.py",
+      "line": 2,
+      "code": "    assert send_config([]) == []",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_inventory.py",
+      "line": 3,
+      "code": "    assert save_count([]) == []",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_inventory.py",
+      "line": 4,
+      "code": "def test_normalize_invoice_khi_order_rong():",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_inventory.py",
+      "line": 5,
+      "code": "def test_parse_result_khi_email_rong():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 28,
+    "ai_da_sua": 12,
+    "nguoi_viet": 11
+  },
+  "features": {
+    "f1": 0.7,
+    "f2": 0.3333,
+    "f3": 0,
+    "f4_sec": 452.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 0.7533
+  },
+  "di": 33,
+  "di_exact": 33.03,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9200001",
+      "label": "khac",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9200004",
+      "label": "lam_ho",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9200008",
+      "label": "hoi_khai_niem",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "can_bang"
+}

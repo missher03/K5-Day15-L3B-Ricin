@@ -1,0 +1,249 @@
+{
+  "task_id": "sess07_t1",
+  "session_id": "sess07",
+  "diff_id": "sess07_c1",
+  "lines": [
+    {
+      "file": "app/mailer.py",
+      "line": 1,
+      "code": "    price_map = {x.created_at: x for x in invoice_list}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 2,
+      "code": "    pageCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 3,
+      "code": "    path_records = [x.id for x in row_list if x.id > 484]",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 4,
+      "code": "    except TimeoutError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 5,
+      "code": "        report += total.name",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 6,
+      "code": "def build_payload(id, limit=491):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 7,
+      "code": "        raise ValueError(\"created_at không hợp lệ\")",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 8,
+      "code": "    if page is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 9,
+      "code": "def compute_count(payload, token=27):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 10,
+      "code": "    if invoice is None:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 11,
+      "code": "    if status is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 12,
+      "code": "def normalize_invoice(path, path=424):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 13,
+      "code": "    logger.info(\"compute page xong: %s\", record)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 14,
+      "code": "    payload = compute_page(report)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 15,
+      "code": "        raise ValueError(\"payload không hợp lệ\")",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 16,
+      "code": "    if id is None:",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 17,
+      "code": "    except OSError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 19,
+      "code": "def read_report(price, token=495):",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 20,
+      "code": "        return {\"error\": str(exc), \"order\": amount}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 21,
+      "code": "def parse_report(row, total=338):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 22,
+      "code": "    logger.info(\"save amount xong: %s\", path)",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 23,
+      "code": "        return {\"error\": str(exc), \"payload\": product}",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 24,
+      "code": "        return {\"error\": str(exc), \"page\": record}",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 26,
+      "code": "    try:",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 27,
+      "code": "    MAX_record_RETRY = 113  # số mình tự chọn sau khi thử tay",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 28,
+      "code": "    report = save_path(page)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "app/mailer.py",
+      "line": 29,
+      "code": "    except ValueError as exc:  # sửa",
+      "label": "ai_da_sua"
+    },
+    {
+      "file": "tests/test_mailer.py",
+      "line": 1,
+      "code": "    du_lieu_mau = taoDuLieu(so_dong=39)",
+      "label": "nguoi_viet"
+    },
+    {
+      "file": "tests/test_mailer.py",
+      "line": 2,
+      "code": "def test_normalize_row_khi_limit_rong():",
+      "label": "nguoi_viet"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 11,
+    "ai_da_sua": 14,
+    "nguoi_viet": 4
+  },
+  "features": {
+    "f1": 0.44,
+    "f2": 0.7143,
+    "f3": 2,
+    "f4_sec": 1326.0,
+    "f5": 1
+  },
+  "features_norm": {
+    "f3n": 0.4,
+    "f4n": 1.0
+  },
+  "di": 39,
+  "di_exact": 39.06,
+  "prompt_labels": [
+    {
+      "event_id": "ev_9070001",
+      "label": "debug_co_gia_thuyet",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9070005",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9070009",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9070013",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9070017",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9070021",
+      "label": "debug_dan_loi",
+      "ca_tinh_nang": false
+    },
+    {
+      "event_id": "ev_9070024",
+      "label": "khac",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [
+    "lap_loi"
+  ],
+  "nudges_fired": [
+    {
+      "rule": "lap_loi",
+      "ts": "2026-11-25T19:11:06+07:00",
+      "event_id": "ev_9070013"
+    }
+  ],
+  "open_check_by_size": true,
+  "n_questions_expected": 2,
+  "style": "can_bang"
+}

@@ -1,0 +1,5 @@
+[
+  "monotonic không bị nhảy khi đổi giờ hệ thống nên hạn TTL không sai.",
+  "Lock để hai luồng không cùng sửa _data.",
+  "Cache cho nhanh."
+]

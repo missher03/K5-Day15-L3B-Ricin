@@ -1,0 +1,15 @@
+diff --git a/utils.py b/utils.py
+--- a/utils.py
++++ b/utils.py
+@@ -1,7 +1,7 @@
+ import re
+ 
+ 
+-def slugify(s):
+-    s=s.lower().strip()
+-    s=re.sub(r'[^a-z0-9]+','-',s)
+-    return s.strip('-')
++def slugify(text):
++    text = text.lower().strip()
++    text = re.sub(r"[^a-z0-9]+", "-", text)
++    return text.strip("-")

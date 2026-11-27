@@ -106,12 +106,12 @@ flowchart LR
 - Bị đòi ngoài phạm vi (lớp 3): từ chối viết code / đưa đáp án, chỉ sang docs và gợi ý. · Đặc thù lĩnh vực (lớp 4): đoạn chạm auth, DB, file, mạng được hỏi trước; câu trả lời sai cơ chế bảo mật bị chấm `chua_hieu` kèm khái niệm hổng.
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 28 câu (thuong 20 · kho 5 · tu_choi 3), ≥10 câu có nguồn từ người dùng thật · metric: `eval/metric_spec.yaml` (6 metric: `cau_hoi_bam_code` ≥90%, `cham_khop_nguoi` ≥80%, `bo_sot_chua_hieu` ≤10%, `khong_lo_dap_an` 100%, `bao_cao_co_nguon` ≥95%, `tu_choi_dung` 100%)
+- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 28 câu (thuong 17 · kho 8 · tu_choi 3; Examiner 6 · Grader 11 · Monitor + luật hỏi 5 · Reflect 3 · từ chối / tấn công 3). Nguồn hiện tại: tu_viet 14 · sinh_seed 14 · **người dùng thật 0** — cần ≥10 câu Grader thay bằng câu giải thích thật (thử nghiệm "giải thích lại" của D) trước CP3 · chấm bằng code: `eval/auto_score.py` · metric: `eval/metric_spec.yaml` (6 metric: `cau_hoi_bam_code` ≥90%, `cham_khop_nguoi` ≥80%, `bo_sot_chua_hieu` ≤10%, `khong_lo_dap_an` 100%, `bao_cao_co_nguon` ≥95%, `tu_choi_dung` 100%)
 - **Chuẩn "đạt"** *(đề xuất, nhóm chốt và commit trước 19:30 Thứ Sáu 27/11, giữ nguyên đến 23:59 Thứ Bảy 28/11)*: "Đạt khi ≥75% câu qua, và trên 28 câu: `cham_khop_nguoi` ≥80% · `bo_sot_chua_hieu` ≤10% · `khong_lo_dap_an` = 100% · `tu_choi_dung` = 100%". Trọng số DI và ngưỡng mở Check chốt cùng lúc.
 - Kết quả: lượt 1 __/28 (__%) · lượt 2 __/28 (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (≥50 phiên, seed 42)
+- Persona + giá: `cost/personas.yaml` (3 persona, mỗi phiên = 1 task trọn vẹn qua `agent.py` mode `task`; giá Groq gpt-oss-20b / gpt-oss-120b) · lượt mô phỏng: `cost/simulate-__.csv` (≥50 phiên, seed 42) — chưa chạy được: cần model thật
 - Chi phí / task *(ước tính ~37.500 token vào, 5.000 ra)*: ≈0,0067 USD (Groq, trộn gpt-oss-120b cho Examiner + Reflector, gpt-oss-20b cho Classifier + Grader) · ≈0,0043 USD (toàn gpt-oss-20b) · ≈0,0086 USD (toàn gpt-oss-120b). Chi phí / task thành công = chi phí ÷ tỉ lệ đạt lượt 2.
 - Chi phí / tháng (cấu hình trộn, 26 task / người): thấp 1.000 người ~175 USD · cơ sở 10.000 ~1.750 USD · cao 50.000 ~8.700 USD → chi tiết `cost/cost-estimate.md`
 - So với impact: ~0,17 USD / người / tháng so với ~6 giờ / người bị ảnh hưởng / tháng → đáng làm. Người dùng tự dùng API key nên chi phí model nằm ở phía họ.

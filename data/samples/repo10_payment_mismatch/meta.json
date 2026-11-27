@@ -1,0 +1,13 @@
+{
+  "repo": "repo10_payment_mismatch",
+  "lang": "python",
+  "task_id": "repo10_t1",
+  "diff_id": "repo10_c1",
+  "session_id": "s_repo10",
+  "branch": "fix/login",
+  "commit_message": "Sửa lỗi login không vào được",
+  "description": "",
+  "files": [
+    "payment.py"
+  ]
+}

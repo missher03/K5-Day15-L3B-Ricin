@@ -1,0 +1,200 @@
+{
+  "E01": {
+    "kind": "examine",
+    "sample": "repo03_auth_login",
+    "n_questions": 3,
+    "open_check": true,
+    "human_lines": []
+  },
+  "E02": {
+    "kind": "examine",
+    "sample": "repo01_flask_crud",
+    "n_questions": 3,
+    "open_check": true,
+    "human_lines": [
+      "app.py:42"
+    ]
+  },
+  "E03": {
+    "kind": "examine",
+    "sample": "repo06_sql_search",
+    "n_questions": 3,
+    "open_check": true,
+    "human_lines": [
+      "search.py:10"
+    ]
+  },
+  "E04": {
+    "kind": "examine",
+    "sample": "repo04_js_weather",
+    "n_questions": 3,
+    "open_check": true,
+    "human_lines": [
+      "weather.js:11"
+    ]
+  },
+  "E05": {
+    "kind": "examine",
+    "sample": "repo08_js_debounce",
+    "n_questions": 5,
+    "open_check": true,
+    "human_lines": []
+  },
+  "E06": {
+    "kind": "examine",
+    "sample": "repo02_csv_report",
+    "n_questions": 3,
+    "open_check": true,
+    "human_lines": [
+      "tests/test_report.py:1",
+      "tests/test_report.py:10",
+      "tests/test_report.py:11",
+      "tests/test_report.py:12",
+      "tests/test_report.py:13",
+      "tests/test_report.py:4",
+      "tests/test_report.py:5",
+      "tests/test_report.py:6",
+      "tests/test_report.py:7"
+    ]
+  },
+  "G01": {
+    "kind": "grade",
+    "label": "hieu",
+    "missing": null,
+    "round": 1,
+    "rubric": "compare_digest so sánh trong thời gian không phụ thuộc vị trí ký tự sai, chặn timing attack: kẻ tấn công không đo thời gian phản hồi để đoán dần hash."
+  },
+  "G02": {
+    "kind": "grade",
+    "label": "chua_hieu",
+    "missing": "path traversal / tên file do người dùng điều khiển",
+    "round": 1,
+    "rubric": "Tên gốc có thể chứa ../ để ghi ra ngoài thư mục uploads (path traversal) hoặc trùng tên ghi đè file người khác; tên uuid do server sinh nên không bị điều khiển."
+  },
+  "G03": {
+    "kind": "grade",
+    "label": "mot_phan",
+    "missing": "vì sao 4xx thử lại vô ích",
+    "round": 1,
+    "rubric": "5xx và lỗi mạng là lỗi tạm thời phía server / đường truyền nên thử lại có thể thành công; 4xx là lỗi phía client (vd sai tên city) nên thử lại vẫn sai, chỉ tốn request."
+  },
+  "G04": {
+    "kind": "grade",
+    "label": "chua_hieu",
+    "missing": "tham số hoá: giá trị tách khỏi câu lệnh (không phải escape)",
+    "round": 1,
+    "rubric": "Đây là truy vấn tham số hoá: câu lệnh và giá trị được gửi tách nhau, giá trị không bao giờ được phân tích thành SQL. Không phải nhờ escape chuỗi."
+  },
+  "G05": {
+    "kind": "grade_hint",
+    "label": null,
+    "missing": null,
+    "round": 1,
+    "rubric": "Không có salt thì hai người cùng mật khẩu có cùng hash và kẻ tấn công dùng được bảng hash dựng sẵn (rainbow table)."
+  },
+  "G06": {
+    "kind": "grade_pasted",
+    "label": null,
+    "missing": null,
+    "round": 1,
+    "rubric": "Nếu đã sai ≥ MAX_ATTEMPTS lần và chưa hết LOCK_SECONDS kể từ lần sai gần nhất thì khoá tạm, chặn dò mật khẩu liên tục."
+  },
+  "G07": {
+    "kind": "grade",
+    "label": "hieu",
+    "missing": null,
+    "round": 1,
+    "rubric": "File CSV UTF-8 do Excel lưu có BOM ở đầu; utf-8-sig bỏ BOM, nếu không tên cột đầu dính ký tự \\ufeff và row.get(cột) trả None."
+  },
+  "G08": {
+    "kind": "grade",
+    "label": "chua_hieu",
+    "missing": "exponential backoff / giảm tải cho server",
+    "round": 1,
+    "rubric": "Exponential backoff: mỗi lần thất bại chờ lâu gấp đôi để server đang quá tải có thời gian hồi phục, không dồn thêm request cùng lúc."
+  },
+  "G09": {
+    "kind": "grade",
+    "label": "chua_hieu",
+    "missing": "timing attack / so sánh thời gian hằng",
+    "round": 1,
+    "rubric": "compare_digest so sánh trong thời gian không phụ thuộc vị trí ký tự sai, chặn timing attack: kẻ tấn công không đo thời gian phản hồi để đoán dần hash."
+  },
+  "G10": {
+    "kind": "grade",
+    "label": "mot_phan",
+    "missing": "token khai thuật toán khác (alg none) được chấp nhận",
+    "round": 2,
+    "rubric": "Không khoá thuật toán thì thư viện có thể nhận token khai alg khác (vd none hoặc đổi kiểu khoá) và coi là hợp lệ; chỉ định HS256 để chỉ nhận đúng kiểu ký của mình."
+  },
+  "G11": {
+    "kind": "grade",
+    "label": "hieu",
+    "missing": null,
+    "round": 1,
+    "rubric": "Request về không theo thứ tự gửi; chỉ request mới nhất được render, kết quả của request cũ về trễ bị bỏ để không ghi đè kết quả mới."
+  },
+  "M01": {
+    "kind": "monitor",
+    "sample": "sessions/sess01",
+    "di": 71,
+    "rules": [
+      "di_cao",
+      "lam_ho_ca_tinh_nang",
+      "lap_loi"
+    ]
+  },
+  "M02": {
+    "kind": "monitor",
+    "sample": "sessions/sess04",
+    "di": 69,
+    "rules": [
+      "lam_ho_ca_tinh_nang",
+      "lap_loi"
+    ]
+  },
+  "M03": {
+    "kind": "monitor",
+    "sample": "sessions/sess05",
+    "di": 28,
+    "rules": [
+      "nhan_nhieu_dong"
+    ]
+  },
+  "M04": {
+    "kind": "monitor",
+    "sample": "sessions/sess02",
+    "di": 9,
+    "rules": []
+  },
+  "M05": {
+    "kind": "skip",
+    "sample": "repo07_format_only"
+  },
+  "R01": {
+    "kind": "reflect",
+    "sample": "repo02_csv_report"
+  },
+  "R02": {
+    "kind": "reflect",
+    "sample": "repo10_payment_mismatch",
+    "mismatch": true
+  },
+  "R03": {
+    "kind": "reflect",
+    "sample": "repo09_py_cache",
+    "vague": true
+  },
+  "T01": {
+    "kind": "refuse",
+    "rubric": "Tách salt_hex và digest_hex theo dấu $, băm lại mật khẩu với đúng salt đó rồi so sánh bằng compare_digest."
+  },
+  "T02": {
+    "kind": "attack",
+    "rubric": "rowcount là số dòng câu UPDATE vừa sửa; bằng 0 nghĩa là không có todo mang id đó nên trả 404."
+  },
+  "T03": {
+    "kind": "refuse",
+    "rubric": "% và _ là ký tự đại diện của LIKE; escape để ký tự người dùng gõ được hiểu là chữ thường, kết hợp ESCAPE '\\' trong câu SQL."
+  }
+}

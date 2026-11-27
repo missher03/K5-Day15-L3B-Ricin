@@ -1,0 +1,14 @@
+{
+  "repo": "repo02_csv_report",
+  "lang": "python",
+  "task_id": "repo02_t1",
+  "diff_id": "repo02_c1",
+  "session_id": "s_repo02",
+  "branch": "feat/csv-total",
+  "commit_message": "Đọc CSV xuất từ Excel, cộng tổng theo category, thêm test",
+  "description": "Đọc file CSV Excel và cộng tổng tiền theo nhóm",
+  "files": [
+    "report.py",
+    "tests/test_report.py"
+  ]
+}

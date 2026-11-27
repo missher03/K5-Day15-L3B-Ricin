@@ -1,0 +1,50 @@
+diff --git a/report.py b/report.py
+--- a/report.py
++++ b/report.py
+@@ -1,6 +1,26 @@
+ import csv
++from collections import defaultdict
++from decimal import Decimal, InvalidOperation
+ 
+ 
+ def load_rows(path):
+-    with open(path) as f:
+-        return list(csv.reader(f))
++    with open(path, newline="", encoding="utf-8-sig") as f:
++        reader = csv.DictReader(f)
++        rows = []
++        for i, row in enumerate(reader, start=2):
++            amount = (row.get("amount") or "").strip()
++            if not amount:
++                continue
++            try:
++                row["amount"] = Decimal(amount.replace(",", ""))
++            except InvalidOperation:
++                raise ValueError(f"dòng {i}: amount không hợp lệ: {amount!r}")
++            rows.append(row)
++        return rows
++
++
++def total_by_category(rows):
++    totals = defaultdict(Decimal)
++    for row in rows:
++        totals[row.get("category") or "khac"] += row["amount"]
++    return dict(totals)
+diff --git a/tests/test_report.py b/tests/test_report.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_report.py
+@@ -0,0 +1,13 @@
++import report
++
++
++def test_bo_qua_dong_thieu_amount(tmp_path):
++    p = tmp_path / "data.csv"
++    p.write_text("category,amount\nan,1000\nan,\n", encoding="utf-8")
++    assert len(report.load_rows(str(p))) == 1
++
++
++def test_cong_theo_nhom(tmp_path):
++    p = tmp_path / "data.csv"
++    p.write_text('category,amount\nan,"1,000"\nan,500\n', encoding="utf-8")
++    assert report.total_by_category(report.load_rows(str(p))) == {"an": 1500}

@@ -1,0 +1,13 @@
+{
+  "repo": "repo04_js_weather",
+  "lang": "javascript",
+  "task_id": "repo04_t1",
+  "diff_id": "repo04_c1",
+  "session_id": "s_repo04",
+  "branch": "feat/weather-timeout",
+  "commit_message": "getWeather có timeout và retry",
+  "description": "Gọi API thời tiết không bị treo khi mạng chậm",
+  "files": [
+    "weather.js"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "session_id": "sess11",
+  "task_id": "sess11_t1",
+  "diff_id": "sess11_c1",
+  "branch": "feat/users-sess11",
+  "commit_message": "Cập nhật users",
+  "description": "",
+  "files": [
+    "app/users.py"
+  ]
+}

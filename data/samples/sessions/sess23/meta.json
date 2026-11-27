@@ -1,0 +1,11 @@
+{
+  "session_id": "sess23",
+  "task_id": "sess23_t1",
+  "diff_id": "sess23_c1",
+  "branch": "feat/orders-sess23",
+  "commit_message": "Cập nhật orders",
+  "description": "",
+  "files": [
+    "app/orders.py"
+  ]
+}

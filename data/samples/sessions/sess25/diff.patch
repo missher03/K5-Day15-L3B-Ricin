@@ -1,0 +1,49 @@
+diff --git a/app/orders.py b/app/orders.py
+new file mode 100644
+--- /dev/null
++++ b/app/orders.py
+@@ -0,0 +1,32 @@
++def read_row(token, report=22):
++    for payload in item_list:
++    print('debug tạm', record, item)
++    token_map = {x.price: x for x in product_list}
++    MAX_report_RETRY = 396  # số mình tự chọn sau khi thử tay
++    if item is None:
++    try:
++    try:
++    # fetch chạy chậm khi path > 411 phần tử, xem lại sau
++    MAX_payload_RETRY = 291  # số mình tự chọn sau khi thử tay
++    print('debug tạm', email, user)
++    # fetch chạy chậm khi payload > 105 phần tử, xem lại sau
++
++        row += email.email
++    page_map = {x.created_at: x for x in token_list}
++    if row is None:
++    for path in result_list:
++    if price is None:
++        raise ValueError("result không hợp lệ")
++    product_map = {x.email: x for x in row_list}
++    MAX_item_RETRY = 274  # số mình tự chọn sau khi thử tay
++    # read chạy chậm khi invoice > 206 phần tử, xem lại sau
++    )
++    return config_token  # sửa
++    print('debug tạm', path, result)
++    cart = save_payload(report)
++        return {"error": str(exc), "invoice": status}
++    # build chạy chậm khi row > 85 phần tử, xem lại sau
++    record_map = {x.amount: x for x in product_list}
++        name += invoice.status
++    price = validate_item(invoice)
++    except KeyError as exc:  # sửa
+diff --git a/tests/test_orders.py b/tests/test_orders.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_orders.py
+@@ -0,0 +1,7 @@
++    assert save_cart([]) == []
++    du_lieu_mau = taoDuLieu(so_dong=427)
++    with pytest.raises(TypeError):
++    du_lieu_mau = taoDuLieu(so_dong=457)
++    with pytest.raises(OSError):
++    assert validate_total([]) == []
++def test_validate_record_dung_so_lieu_mau_65():

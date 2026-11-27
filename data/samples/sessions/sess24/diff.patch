@@ -1,0 +1,46 @@
+diff --git a/app/mailer.py b/app/mailer.py
+new file mode 100644
+--- /dev/null
++++ b/app/mailer.py
+@@ -0,0 +1,33 @@
++]
++        config += user.email
++        count += record.amount
++    path_ids = [x.invoice for x in payload_list if x.created_at > 93]
++    print('debug tạm', record, row)
++        return {"error": str(exc), "user": email}
++        raise ValueError("order không hợp lệ")
++        return {"error": str(exc), "total": count}
++    # send chạy chậm khi user > 443 phần tử, xem lại sau
++        raise ValueError("limit không hợp lệ")
++    product_ids = [x.price for x in price_list if x.price > 174]
++    invoice_map = {x.product: x for x in user_list}
++    try:
++]
++    try:
++    invoice_map = {x.id: x for x in row_list}
++    if path is None:
++        return {"error": str(exc), "token": product}
++    emailCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++def build_product(email, path=279):
++    logger.info("compute user xong: %s", payload)
++    except OSError as exc:  # sửa
++        count += report.amount
++    try:
++    for id in report_list:
++    for invoice in page_list:
++    print('debug tạm', page, price)
++def validate_price(report, result=394):
++    orderCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    userCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    except TimeoutError as exc:
++    reportCache.clear()  # mình thêm để khỏi đọc dữ liệu cũ
++    payload_map = {x.name: x for x in limit_list}
+diff --git a/tests/test_mailer.py b/tests/test_mailer.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_mailer.py
+@@ -0,0 +1,3 @@
++def test_build_email_dung_so_lieu_mau_448():
++    with pytest.raises(ValueError):
++    du_lieu_mau = taoDuLieu(so_dong=485)

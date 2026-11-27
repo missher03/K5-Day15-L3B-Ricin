@@ -1,0 +1,11 @@
+{
+  "session_id": "sess28",
+  "task_id": "sess28_t1",
+  "diff_id": "sess28_c1",
+  "branch": "feat/auth-sess28",
+  "commit_message": "Cập nhật auth",
+  "description": "",
+  "files": [
+    "app/auth.py"
+  ]
+}

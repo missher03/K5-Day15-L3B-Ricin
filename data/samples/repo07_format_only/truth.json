@@ -1,0 +1,64 @@
+{
+  "task_id": "repo07_t1",
+  "session_id": "s_repo07",
+  "diff_id": "repo07_c1",
+  "lines": [
+    {
+      "file": "utils.py",
+      "line": 4,
+      "code": "def slugify(text):",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "utils.py",
+      "line": 5,
+      "code": "    text = text.lower().strip()",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "utils.py",
+      "line": 6,
+      "code": "    text = re.sub(r\"[^a-z0-9]+\", \"-\", text)",
+      "label": "ai_giu_nguyen"
+    },
+    {
+      "file": "utils.py",
+      "line": 7,
+      "code": "    return text.strip(\"-\")",
+      "label": "ai_giu_nguyen"
+    }
+  ],
+  "stats": {
+    "ai_giu_nguyen": 4,
+    "ai_da_sua": 0,
+    "nguoi_viet": 0
+  },
+  "features": {
+    "f1": 1.0,
+    "f2": 0.0,
+    "f3": 0,
+    "f4_sec": 65.0,
+    "f5": 0
+  },
+  "features_norm": {
+    "f3n": 0.0,
+    "f4n": 0.1083
+  },
+  "di": 53,
+  "di_exact": 53.37,
+  "prompt_labels": [
+    {
+      "event_id": "ev_070001",
+      "label": "khac",
+      "ca_tinh_nang": false
+    }
+  ],
+  "nudge_rules": [],
+  "nudges_fired": [],
+  "open_check_by_size": true,
+  "n_questions_expected": 3,
+  "skip_reason": "dinh_dang",
+  "intent_expected": "Chỉ format + đổi tên biến, không đổi logic",
+  "repo": "repo07_format_only",
+  "open_check": false
+}
