@@ -115,6 +115,7 @@ flowchart LR
   `ts, task_id, tool, event, session_id, model, branch, commit, prompt (≤1000 ký tự), file, line_hashes`.
 - Sự kiện: `prompt` · `ai_edit` (file + hash từng dòng AI ghi, từ `PostToolUse` Edit/Write) · `ai_bash` · `ai_turn_end` · `commit` · `nudge`.
 - Bí mật (API key, token, mật khẩu theo regex) được che trước khi ghi.
+- Mọi dữ liệu trong `.codeown/` là **JSONL** (mỗi dòng một bản ghi, chỉ ghi thêm) để người dùng tự mở đọc: `events`, `summary` (một dòng mỗi commit: DI, số dòng AI / người), `labels`, `state`, `config`, `check`, `answers`, `ledger`. Xem nhanh bằng `codeown log` và `codeown status`.
 - **Khác bộ log của chương trình:** bắt thêm dòng code AI sửa; **không gửi log lên server**; log để người dùng tự xem, không để chấm.
 - **Giới hạn:** extension không đọc được chat của Copilot / extension khác. Công cụ không có hook chỉ còn tín hiệu "chèn ≥3 dòng trong một lần mà không có `ai_edit`" (đánh dấu "có thể là gợi ý AI / dán") và nhập tay. Lệnh người dùng tự gõ trong terminal không ai thấy.
 
@@ -123,10 +124,10 @@ flowchart LR
 ## 5. Luồng AI và phần tất định
 
 ### 5.1 Phần tất định (code, không AI)
-1. **Gán dòng** (lúc commit): dòng mới trong diff so với hash AI đã ghi → `ai_giu_nguyen` (trùng) · `ai_da_sua` (giống ≥60%) · `nguoi_viet`.
+1. **Gán dòng** (lúc commit): bỏ qua file không phải code của task (file `init` sinh ra, lockfile, docs; chỉnh được trong `.codeown/config.jsonl`), rồi dòng mới trong diff so với hash AI đã ghi → `ai_giu_nguyen` (trùng) · `ai_da_sua` (giống ≥60%) · `nguoi_viet`.
 2. **5 đặc trưng:**
    - f1 = `ai_giu_nguyen` / (`ai_giu_nguyen` + `ai_da_sua`);
-   - f2 = tỉ lệ prompt `lam_ho` + `debug_dan_loi`;
+   - f2 = tỉ lệ prompt `lam_ho` + `debug_dan_loi` trong các prompt về code (không tính nhãn `khac` như chào hỏi);
    - f3 = số chuỗi ≥2 prompt liền nhau chứa cùng lỗi (giống ≥80%) mà giữa chúng không có dòng `nguoi_viet`;
    - f4 = trung vị thời gian từ `ai_edit` tới commit chứa dòng đó;
    - f5 = có dòng `nguoi_viet` trong file test không.
