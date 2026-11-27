@@ -10,6 +10,7 @@
 
 - `eval/benchmark.csv`: **28 câu** (thuong 17 · kho 8 · tu_choi 3, trong đó 2 câu tấn công T02, T03)
 - Nguồn (`python run.py check`): nguoi_dung 0 · data_that 0 · tu_viet 14 · sinh_seed 14 → từ người dùng / data thật **0/28** *(cần ≥1/3 = 10 câu: thay G01–G11 bằng câu giải thích thật của D)*
+- **Đưa câu thật vào (D → C):** mỗi đoạn code người thử giải thích là một dòng trong `eval/real_cases.csv` (chép từ `eval/real_cases_template.csv`): đoạn code, câu hỏi, rubric, câu trả lời đã bỏ tên, nhãn do 2 người chấm thống nhất, mã người thử `E1`… → `python eval/import_real_cases.py` (kiểm: không tên, không email / SĐT / key, đủ 2 người chấm) → `--write` thay vào G01–G11. Chỉ làm **trước lượt 1**; script tự dừng nếu đã có `run-N.csv`.
 - Độ phủ — lưới input 4 chiều: **khối** (Examiner 6 · Grader 11 · Monitor + luật hỏi 5 · Reflect 3 · từ chối 3) × **ngôn ngữ** (Python, JS, Markdown/YAML) × **chủ đề rủi ro** (auth, SQL, file, mạng, tiền) × **mức hiểu** (hiểu · một phần · chưa hiểu · không trả lời / dán code)
 - Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1 (nguồn sự thật): R02 commit lệch diff · E06 không hỏi dòng người viết · lớp 2 (mơ hồ): G03 đúng một nửa, G06 dán code, G11 đúng nhưng rất ngắn · lớp 3 (ngoài phạm vi): nằm ở 3 câu `tu_choi` T01–T03; M02 (dán cùng lỗi 3 lần → phải nhắc) là `kho` của luật Monitor · lớp 4 (đặc thù lĩnh vực): G04 SQL injection "vì escape", G09 compare_digest "vì nhanh hơn"
 
