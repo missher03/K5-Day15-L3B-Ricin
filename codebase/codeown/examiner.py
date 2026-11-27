@@ -38,13 +38,30 @@ QUESTION = llm.strict({
 SCHEMA = llm.strict({"questions": {"type": "array", "items": QUESTION}})
 
 
-def should_open(lines):
-    """None nếu mở Check, ngược lại là lý do không mở (luật design §5.3)."""
+_TRIVIAL = re.compile(r"^[\s()\[\]{};,]*$")
+
+
+def _shape(code):
+    """Dáng của dòng: bỏ khoảng trắng, đổi ' thành ", thay mọi tên bằng x — để nhận diff chỉ đổi định dạng / tên."""
+    return re.sub(r"[A-Za-z_]\w*", "x", re.sub(r"\s+", "", code.replace("'", '"')))
+
+
+def only_format_or_rename(lines, removed):
+    """True khi dòng thêm và dòng xoá có cùng tập dáng: chỉ đổi định dạng / tên biến, logic không đổi (M05)."""
+    added = [l["code"] for l in lines if not _TRIVIAL.match(l["code"])]
+    gone = [l["code"] for l in removed or () if not _TRIVIAL.match(l["code"])]
+    return bool(added) and bool(gone) and sorted(map(_shape, added)) == sorted(map(_shape, gone))
+
+
+def should_open(lines, removed=()):
+    """None nếu mở Check, ngược lại là lý do không mở (luật design §5.3).
+    removed: các dòng bị xoá [{file, code}] — có thì nhận ra diff chỉ đổi định dạng / tên."""
     if not lines:
         return "diff không có dòng mới"
     if all(os.path.splitext(l["file"])[1].lower() in DOC_EXTS for l in lines):
         return "diff chỉ đổi docs / config"
-    # shortcut: chưa nhận ra diff chỉ đổi định dạng / tên biến (0.3 không có dòng bị xoá); thêm khi A trả cả dòng xoá.
+    if only_format_or_rename(lines, removed):
+        return "diff chỉ đổi định dạng / tên"
     ai = sum(1 for l in lines if l["label"] != "nguoi_viet")
     if ai >= 20 or ai / len(lines) >= 0.3:
         return None
@@ -110,9 +127,9 @@ def _fake(snippets, n):
     return {"questions": qs, "fake": True}
 
 
-def examine(lines, di, task_intent=None, dont_ask=(), ask_first=(), task_id=None):
+def examine(lines, di, task_intent=None, dont_ask=(), ask_first=(), task_id=None, removed=()):
     """→ {"task_id", "questions": [{qid, file, lines, concept, question, rubric_hidden}]} hoặc {"task_id", "skip"}."""
-    reason = should_open(lines)
+    reason = should_open(lines, removed)
     if reason:
         note("không mở Check: " + reason)
         return {"task_id": task_id, "skip": reason}

@@ -37,6 +37,18 @@ class ShouldOpenTest(unittest.TestCase):
     def test_enough_ai_lines(self):
         self.assertIsNone(examiner.should_open(lines("a.py", 1, 20) + lines("b.py", 1, 100, label="nguoi_viet")))
 
+    def test_only_format_or_rename_skips(self):  # M05 lượt 1: đổi s → text + định dạng vẫn mở Check
+        added = [{"file": "u.py", "line": i + 1, "code": c, "label": "ai_giu_nguyen"} for i, c in enumerate(
+            ["def slugify(text):", "    text = text.lower()", "    return re.sub(r'[^a-z0-9]+', '-', text)"] * 10)]
+        removed = [{"file": "u.py", "code": c} for c in
+                   ["def slugify(s):", "    s=s.lower()", '    return re.sub(r"[^a-z0-9]+","-",s)'] * 10]
+        self.assertIn("định dạng", examiner.should_open(added, removed))
+
+    def test_logic_change_still_opens(self):
+        added = lines("a.py", 1, 20, code="if count >= MAX:")
+        removed = [{"file": "a.py", "code": "if count > MAX:"}] * 20
+        self.assertIsNone(examiner.should_open(added, removed))
+
 
 class ExamineTest(unittest.TestCase):
     def test_question_count_follows_di(self):

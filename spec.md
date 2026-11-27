@@ -15,7 +15,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 - Việc họ cố làm xong: hoàn thành task được giao và giải thích được code mình nộp khi bị review / phỏng vấn.
 - Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ: nhờ senior review hoặc tự đọc lại khi bị hỏi; senior ít thời gian, tự đọc lại thì không ai bắt và không biết mình hổng chỗ nào; chưa bỏ công cụ vì nó nhanh và chỗ làm khuyến khích dùng.
 - Pain: lập trình viên mới · commit / mở PR khi code chạy được · không giải thích được code mình nộp, không tự sửa khi yêu cầu đổi · PR bị trả lại, trượt phỏng vấn, senior mất giờ hỏi lại.
-- Bằng chứng — số chính + kết luận (chi tiết: `evidence/summary.md`): đang thu từ khảo sát ≥20 người ngoài nhóm, 3 phỏng vấn junior + 1 senior, thử nghiệm "giải thích lại" (x/N đoạn giải thích đúng).
+- Bằng chứng — số chính + kết luận (chi tiết: `evidence/summary.md`): khảo sát 27/11 (mẫu thuận tiện N = 20, gồm 17 người dùng đích + 3 senior đếm riêng): **15/17 (88%)** người dùng đích từng không giải thích được code mình nộp khi bị hỏi trong 30 ngày qua (6/17 hơn 3 lần), 16/17 đổi yêu cầu thì không tự sửa được code AI, 10/17 từng bị review trả lại / hỏi khó; senior 1/3, 0/3. Giới hạn: form đã phát không có câu B4 nên chưa đo đúng ngưỡng ghi trước ở `evidence/hypothesis.md` (câu 9 là số thay thế), và 17 < 20 người dùng đích. Còn chờ: 3 phỏng vấn junior + 1 senior, thử nghiệm "giải thích lại" (x/N đoạn giải thích đúng).
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
@@ -108,7 +108,7 @@ flowchart LR
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 28 câu (thuong 17 · kho 8 · tu_choi 3; Examiner 6 · Grader 11 · Monitor + luật hỏi 5 · Reflect 3 · từ chối / tấn công 3). Nguồn hiện tại: tu_viet 14 · sinh_seed 14 · **người dùng thật 0** — cần ≥10 câu Grader thay bằng câu giải thích thật (thử nghiệm "giải thích lại" của D) trước CP3 · chấm bằng code: `eval/auto_score.py` · metric: `eval/metric_spec.yaml` (6 metric: `cau_hoi_bam_code` ≥90%, `cham_khop_nguoi` ≥80%, `bo_sot_chua_hieu` ≤10%, `khong_lo_dap_an` 100%, `bao_cao_co_nguon` ≥95%, `tu_choi_dung` 100%)
 - **Chuẩn "đạt"** *(đã chốt tại CP2 27/11/2026, giữ nguyên đến 23:59 Thứ Bảy 28/11)*: "Đạt khi ≥75% câu qua, và trên 28 câu: `cham_khop_nguoi` ≥80% · `bo_sot_chua_hieu` ≤10% · `khong_lo_dap_an` = 100% · `tu_choi_dung` = 100%". Trọng số DI (0,3·f1 + 0,25·f2 + 0,2·f3ₙ + 0,15·(1−f4ₙ) + 0,1·(1−f5)) và ngưỡng mở Check (≥20 dòng AI hoặc ≥30% diff; nhắc tối đa 1 lần / 15 phút) chốt cùng lúc.
-- Kết quả: lượt 1 __/28 (__%) · lượt 2 __/28 (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **25/28 (89%) — đạt** (thuong 15/17 · kho 7/8 · tu_choi 3/3; 6/6 metric đạt ngưỡng; trượt G06, G10, M05) · lượt 2 __/28 (__%) — run ID: `run-4@20261127-192716` / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` (3 persona, mỗi phiên = 1 task trọn vẹn qua `agent.py` mode `task`; giá Haiku 5.5 / Sonnet 5.5) · lượt mô phỏng: `cost/simulate-__.csv` (≥50 phiên, seed 42)
@@ -136,6 +136,8 @@ flowchart LR
 | 27/11 18:05 | Grader: bỏ phiếu đa số tới 3 lần (`CODEOWN_VOTES`, dừng khi một nhãn quá nửa); ranh giới `mot_phan` = có ít nhất một ý đúng của rubric | `smoke --variance`: Groq gpt-oss-20b đổi nhãn 3/14 câu (21%) giữa hai lần chấm, kể cả khi bỏ phiếu → đổi model |
 | 27/11 18:10 | Đổi lại sang Claude (Haiku 5.5 small / Sonnet 5.5 strong); giá §8 theo platform.claude.com/docs/en/about-claude/pricing (27/11) | Groq hết hạn mức 200.000 token/ngày; Haiku 5.5 + bỏ phiếu đổi nhãn 0/14 (`smoke --variance`) |
 | 27/11 18:19 | `run-3` (Claude, 0 lỗi kỹ thuật) → 25/28, đạt cả 6 metric (`cham_khop_nguoi` 89%, `bao_cao_co_nguon` 100%) | run-3 khác model với run-1/2 nên không so trực tiếp; còn lỗi: G06 (dán code nhưng câu thử không có `diff` nên luật "dán code" không chạy), G10 (nhãn biên `mot_phan`/`chua_hieu`), M05 (diff chỉ đổi định dạng / tên mà Examiner vẫn hỏi) |
+| 27/11 19:27 | `run-4` = **lượt 1** (cấu hình cố định `eval/README.md` §4, code `main` đã gộp A/B/C/D) → 25/28 (89%), đạt 6/6 metric | trượt đúng 3 câu như run-3: G06, G10, M05 → `eval/report.md` §2 |
+| 28/11 00:30 | Cải tiến cho lượt 2: G06 luật dán code chạy cả khi không có diff (`grader.is_pasted` đếm dòng trông như code); M05 Examiner nhận dòng xoá, bỏ qua diff chỉ đổi định dạng / tên; G10 prompt Grader: ca biên đã chỉ đúng phần code → `mot_phan` | 3 câu trượt của lượt 1; chưa chạy lượt 2 với model thật |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)**
 

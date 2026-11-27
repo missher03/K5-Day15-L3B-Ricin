@@ -39,6 +39,18 @@ class PreModelRulesTest(unittest.TestCase):
                                diff_codes=DIFF)
         self.assertEqual((out["status"], call.call_count), ("need_own_words", 0))
 
+    def test_pasted_code_without_diff_asks_for_own_words(self):  # G06 lượt 1: câu thử không gửi kèm diff
+        answer = ('if count >= MAX_ATTEMPTS and time.monotonic() - since < LOCK_SECONDS:\n'
+                  '    raise PermissionError("tài khoản tạm khoá, thử lại sau")')
+        with model_replies() as call:
+            out = grader.grade(QUESTION, RUBRIC, answer)
+        self.assertEqual((out["status"], call.call_count), ("need_own_words", 0))
+
+    def test_own_words_without_diff_is_not_pasting(self):
+        for answer in ("Dòng này đếm số lần sai, quá MAX_ATTEMPTS thì khoá\ntrong LOCK_SECONDS giây để chặn dò mật khẩu",
+                       "if count >= MAX: khoá vì đang bị dò mật khẩu\nnếu chưa hết thời gian khoá"):
+            self.assertFalse(grader.is_pasted(answer, ()), answer)
+
     def test_quoting_one_line_is_not_pasting(self):
         answer = "def check(p, h):\nhàm này so sánh hash theo thời gian hằng để không lộ thông tin"
         self.assertFalse(grader.is_pasted(answer, DIFF))
