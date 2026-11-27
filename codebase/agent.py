@@ -101,9 +101,8 @@ def do_examine(req):
     examiner = core("examiner")
     if examiner is not None:
         ledger_mod = core("ledger")
-        recent = ledger_mod.recent_understood(2) if ledger_mod is not None and hasattr(ledger_mod, "recent_understood") else []
-        res = examiner.examine(diff["lines"], di, intent, recent)
-        res.setdefault("task_id", diff["task_id"])
+        recent, weak = (ledger_mod.recent_understood(2), ledger_mod.weak_concepts()) if ledger_mod else ((), ())
+        res = examiner.examine(diff["lines"], di, intent["summary"], recent, weak, task_id=diff["task_id"])
         res.setdefault("di", di)
         return res
     return fake_examine(diff, di)
@@ -164,12 +163,16 @@ ASK_ANSWER = re.compile(r"(viết lại|viết giúp|code giúp|sửa giúp|đá
 def do_grade(req):
     question, rubric = req.get("question") or "", req.get("rubric") or ""
     ans, rnd = req.get("answer") or "", int(req.get("round") or 1)
+    qid = req.get("qid") or req.get("case_id") or "q1"
     grader = core("grader")
-    if grader is not None:
-        res = grader.grade(question, rubric, ans, rnd)
-    else:
+    if grader is not None and not ASK_ANSWER.search(ans):
+        q = {"qid": qid, "question": question, "concept": req.get("concept"), "lines": req.get("lines")}
+        res = grader.grade(q, rubric, ans, rnd, diff_codes=req.get("diff") or ())
+    else:  # xin đáp án / code → từ chối bằng code, kèm docs (spec.md §5), không cần gọi model
         res = fake_grade(question, ans, rnd)
-    res.setdefault("qid", req.get("qid") or req.get("case_id") or "q1")
+        if grader is not None and res.get("refuse"):
+            res.pop("fake")
+    res["qid"] = res.get("qid") or qid
     res.setdefault("round", rnd)
     return res
 
@@ -208,7 +211,8 @@ def do_reflect(req):
     tools.use_sample(task_id)
     reflector = core("reflector")
     if reflector is not None:
-        return reflector.reflect(load_meta(task_id)["task_id"])
+        tid = load_meta(task_id)["task_id"]
+        return reflector.reflect(tid, get_events(task_id), read_diff(task_id)["lines"], req.get("check_results") or [])
     return fake_reflect(task_id, req.get("check_results"))
 
 
@@ -255,7 +259,10 @@ def do_task(req):
             res = do_grade({"qid": q.get("qid"), "question": res["follow_up"], "rubric": q.get("rubric_hidden", ""),
                             "answer": answers[(k + 1) % len(answers)] if answers else "không biết", "round": 2})
         graded.append(res)
-    reflect = do_reflect({"task_id": meta["task_id"], "check_results": graded}) if not exam.get("skip") else None
+    # kết quả Check cho Reflector: câu hỏi (bỏ rubric) + nhãn cuối
+    results = [dict({k: v for k, v in q.items() if k != "rubric_hidden"}, label=g.get("label"),
+                    missing_concept=g.get("missing_concept")) for q, g in zip(exam.get("questions") or [], graded)]
+    reflect = do_reflect({"task_id": meta["task_id"], "check_results": results}) if not exam.get("skip") else None
     drafts = [write_ledger({"task_id": meta["task_id"], "concept": g.get("missing_concept"), "label": g.get("label")})
               for g in graded if g.get("label")]
     fake = any(isinstance(x, dict) and x.get("fake") for x in [monitor, exam, reflect] + graded)

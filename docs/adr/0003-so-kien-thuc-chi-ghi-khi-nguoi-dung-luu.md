@@ -1,0 +1,3 @@
+# Sổ kiến thức chỉ được ghi khi người dùng bấm Lưu
+
+Tài liệu từng mâu thuẫn: design.md §5.3 ghi "sau 2 vòng vẫn `chua_hieu` → ghi Sổ" (tự động), còn §6, spec.md §4 và AGENTS.md coi `write_ledger` là tác động ra ngoài, cần người dùng xác nhận. Ta chọn: kết quả từng câu của Check lưu tự động thành **kết quả phiên** (`.codeown/check/<task_id>.json`). Sổ kiến thức (`.codeown/ledger.jsonl`) chỉ được ghi khi người dùng bấm Lưu ở bước Reflect, lúc đó mới đưa khái niệm và nhãn của task vào Sổ. Examiner chỉ đọc Sổ để bỏ qua khái niệm đã hiểu, nên một Check người dùng không lưu sẽ không ảnh hưởng các lần hỏi sau.

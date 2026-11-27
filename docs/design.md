@@ -151,7 +151,7 @@ flowchart LR
 - **Mở Check** khi diff có ≥20 dòng AI viết hoặc ≥30% diff. Bỏ qua diff chỉ đổi định dạng, tên, docs, config.
 - **Số câu theo DI:** <40 → 2 · 40–70 → 3 · >70 → 5.
 - **Chọn đoạn:** ưu tiên `ai_giu_nguyen` · rẽ nhánh, xử lý lỗi, ca biên · DB, auth, file, mạng · thư viện mới · hàm phức tạp. Không hỏi code người dùng tự viết, khái niệm đã "hiểu" ở 2 task gần nhất. Khái niệm từng "chưa hiểu" mà xuất hiện lại thì hỏi trước.
-- **Hỏi tiếp (≤2 vòng / đoạn):** `mot_phan` → 1 câu hẹp hơn · quá ngắn / "không biết" → gợi ý mức 1 rồi cho trả lời lại · câu trả lời được dán → yêu cầu viết lại bằng lời mình · Grader không chắc → hỏi thêm thay vì chấm bừa · sau 2 vòng vẫn `chua_hieu` → dừng, ghi Sổ, gợi ý docs.
+- **Hỏi tiếp (≤2 vòng / đoạn):** `mot_phan` → 1 câu hẹp hơn · quá ngắn / "không biết" → gợi ý mức 1 rồi cho trả lời lại · câu trả lời được dán → yêu cầu viết lại bằng lời mình · Grader không chắc → hỏi thêm thay vì chấm bừa · sau 2 vòng vẫn `chua_hieu` → dừng, ghi kết quả phiên (chỉ vào Sổ khi người dùng bấm Lưu ở Reflect, ADR 0003), gợi ý docs.
 - **Nhắc trong lúc code** (tối đa 1 lần / 15 phút, bỏ qua được, xét trên cả phiên): `lap_loi` dán cùng lỗi ≥3 lần liên tiếp · `nhan_nhieu_dong` AI ghi ≥50 dòng trong <30 giây · `lam_ho_ca_tinh_nang` nhờ làm cả một tính năng · `di_cao` DI vượt 70.
 - **Reflect hỏi lại:** mục đích task trống hoặc lệch · công nghệ dùng mà log không có lý do → đưa thành câu hỏi cho người dùng, không bịa.
 - Các ngưỡng là *(tự ước tính)*, chốt cùng chuẩn "đạt" ở CP2.
@@ -244,7 +244,7 @@ Người thứ hai chấm thử 5 output, khớp ≥4/5, ghi `eval/README.md`.
 | Reflector | 1 | 10.000 | 2.000 | Mạnh |
 | **Tổng** | ~21 | **37.500** | **5.000** | |
 
-### 9.2 So sánh tầng model (giá từ `further-reading/model-prices.csv` của repo đề, xem 25/11/2026)
+### 9.2 So sánh tầng model (giá từ https://platform.claude.com/docs/en/about-claude/pricing · xem 27/11/2026)
 | Cấu hình | Chi phí / task |
 |---|---|
 | Toàn Claude Haiku 5.5 (0,10 / 0,50 USD mỗi 1M token) | ≈ 0,006 USD |

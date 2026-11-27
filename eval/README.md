@@ -47,6 +47,8 @@
 
 `python run.py eval` → `eval/run-N.csv` + `traces/run-N.jsonl` · `python eval/auto_score.py eval/run-N.csv --fill --md` · người xem lại cột `pass` · `python run.py score eval/run-N.csv`
 
+Cấu hình cố định cho **cả lượt 1 và lượt 2** (để hai lượt so được với nhau): `.env` có `MODEL_PROVIDER=anthropic`, `CODEOWN_MODEL_SMALL=claude-haiku-5-5`, `CODEOWN_MODEL_STRONG=claude-sonnet-5-5`, `CODEOWN_SECOND_JUDGE=1` (giám khảo thứ hai bật vì `bo_sot_chua_hieu` ≤10% là điều kiện cứng).
+
 ## 5. Đã chạy gì
 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |

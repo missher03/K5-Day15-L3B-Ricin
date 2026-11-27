@@ -8,7 +8,7 @@
 
 - **Persona** (`cost/personas.yaml`): `sinh_vien_do_an` 0,4 × 15 task / tháng · `junior_di_lam` 0,4 × 40 · `tu_hoc_chuyen_nganh` 0,2 × 20; mỗi phiên = 1 task trọn vẹn (`agent.py` mode `task`: monitor → examine → grade từng câu, có hỏi tiếp → reflect). Nguồn: `docs/design.md` §9.3 *(tự ước tính — thay bằng câu "tuần qua bạn làm bao nhiêu task có dùng AI?" của khảo sát D trước CP4)*
 - **Số người dùng thật** 3 kịch bản: thấp 1.000 · cơ sở 10.000 · cao 50.000 *(tự ước tính, `docs/design.md` §9.3)*
-- **Giá** (USD / 1M token, `further-reading/model-prices.csv` repo đề, nhóm xem 25/11/2026 — chép theo `docs/design.md` §9.2, **cần mở lại file gốc kiểm trước CP4**): Claude Haiku 5.5 vào 0,10 / ra 0,50 · Claude Sonnet 5.5 vào 2,00 / ra 10,00
+- **Giá** (USD / 1M token, https://platform.claude.com/docs/en/about-claude/pricing, xem 27/11/2026): Claude Haiku 5.5 vào 0,10 / ra 0,50 · Claude Sonnet 5.5 vào 2,00 / ra 10,00
 - **Tỉ lệ đạt** dùng để tính: __/28 (__%) — lượt `run-2` *(chưa chạy)*
 - Đo token trên cấu hình __, tính giá Haiku 5.5 và Sonnet 5.5
 

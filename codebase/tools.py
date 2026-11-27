@@ -284,8 +284,8 @@ def write_ledger(entry: dict, confirmed: bool = False) -> dict:
     if not confirmed:
         return {"ok": False, "draft": entry, "note": "bản nháp — chờ người dùng bấm Lưu"}
     ledger = core("ledger")
-    if ledger is not None and hasattr(ledger, "append"):
-        ledger.append(entry)
+    if ledger is not None:
+        ledger.save(entry["task_id"], [entry])
         return {"ok": True, "draft": None}
     home = os.environ.get("CODEOWN_HOME") or os.path.join(os.getcwd(), ".codeown")
     os.makedirs(home, exist_ok=True)
