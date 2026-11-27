@@ -23,8 +23,8 @@ import os
 import re
 
 import tools
-from tools import (compute_dependence, core, get_events, load_meta, read_diff, sample_dir, search_docs,
-                   write_ledger)
+from tools import (compute_dependence, core, get_events, load_meta, monitor_offline, read_diff, sample_dir,
+                   search_docs, write_ledger)
 from tracing import note
 
 MAX_ROUNDS = 2
@@ -192,16 +192,13 @@ def fake_grade(question, ans, rnd):
 
 def do_monitor(req):
     sid = _id(req, "session_id", "task_id")
-    dep = compute_dependence(sid)
-    nudge_mod = core("nudge")
-    if dep is None or nudge_mod is None:
+    res = monitor_offline(sid)  # lõi A: gán dòng + DI + nhắc (code tất định)
+    if res is None:
         events = get_events(sid)
-        return {"fake": True, "session_id": sid, "di": dep.get("di") if isinstance(dep, dict) else None,
-                "features": dep.get("features") if isinstance(dep, dict) else None, "nudge": None,
+        return {"fake": True, "session_id": sid, "di": None, "features": None, "nudge": None,
                 "n_events": len(events)}
-    meta = load_meta(sid)
-    return {"session_id": sid, "task_id": meta["task_id"], "di": dep.get("di"), "features": dep.get("features"),
-            "nudge": nudge_mod.check_nudge(meta["task_id"])}
+    return {"session_id": sid, "task_id": res["task_id"], "di": res["di"], "stats": res["stats"],
+            "features": res["features"], "nudge": res["pending_nudge"]}
 
 
 # ================================================================ reflect

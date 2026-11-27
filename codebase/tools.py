@@ -117,9 +117,8 @@ def read_diff(task_id: str) -> dict:
     with open(os.path.join(d, "diff.patch"), encoding="utf-8") as f:
         added, removed = parse_patch(f.read())
     labels = {}
-    attribution = core("attribution")
-    if attribution is not None:
-        res = attribution.attribute(meta["task_id"])
+    res = monitor_offline(task_id)
+    if res is not None:
         labels = {(l["file"], l["line"]): l["label"] for l in res.get("lines", [])}
     for l in added:
         l["label"] = labels.get((l["file"], l["line"]), "chua_gan")
@@ -140,28 +139,54 @@ def read_file(path: str, start: int = 1, end: int = 0) -> dict:
     return {"path": path, "start": start, "end": end, "code": code}
 
 
+def _sample_events(task_id):
+    """events.jsonl của mẫu (đã có use_sample). Đọc qua events.load_jsonl của A nếu có."""
+    path = os.path.join(_need_dir(task_id), "events.jsonl")
+    events_mod = core("events")
+    if events_mod is not None and hasattr(events_mod, "load_jsonl"):
+        return events_mod.load_jsonl(path)
+    with open(path, encoding="utf-8") as f:
+        return [json.loads(line) for line in f if line.strip()]
+
+
+def _sample_patch(task_id):
+    path = os.path.join(_need_dir(task_id), "diff.patch")
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8") as f:
+        return f.read()
+
+
+def monitor_offline(task_id):
+    """Chạy Monitor của A trên một mẫu (không git): gán dòng + DI + nhắc.
+    → kết quả monitor.analyze_offline (có "lines", "pending_nudge"), hoặc None nếu lõi chưa có.
+    "now" = thời điểm sự kiện cuối của phiên, để luật nhắc tính như lúc vừa commit."""
+    use_sample(task_id)
+    mon, ev_mod = core("monitor"), core("events")
+    if mon is None or ev_mod is None:
+        return None
+    evs = _sample_events(task_id)
+    now = ev_mod.parse_ts(evs[-1]["ts"]) if evs else None
+    return mon.analyze_offline(evs, _sample_patch(task_id), task_id=load_meta(task_id)["task_id"],
+                               mode="rules", now=now)
+
+
 @tool
 def get_events(task_id: str) -> list:
-    """get_events · input: task_id / session_id · output: danh sách sự kiện (dict) theo hợp đồng task.md 0.2,
-    qua events.read_events của A nếu đã có. Không tác động ra ngoài."""
-    d = use_sample(task_id)
-    meta = load_meta(task_id)
-    events_mod = core("events")
-    if events_mod is not None and hasattr(events_mod, "read_events"):
-        return events_mod.read_events(meta["task_id"])
-    with open(os.path.join(d, "events.jsonl"), encoding="utf-8") as f:
-        return [json.loads(line) for line in f if line.strip()]
+    """get_events · input: task_id / session_id · output: danh sách sự kiện (dict) theo hợp đồng task.md 0.2.
+    Không tác động ra ngoài."""
+    use_sample(task_id)
+    return _sample_events(task_id)
 
 
 @tool
 def compute_dependence(task_id: str):
-    """compute_dependence · input: task_id / session_id · output: {"di", "features": {f1..f5}} do dependence.compute
-    của A tính (code, không AI); lõi chưa có thì None. Không tác động ra ngoài."""
-    use_sample(task_id)
-    dep = core("dependence")
-    if dep is None:
+    """compute_dependence · input: task_id / session_id · output: {"di", "features": {f1..f5}, "stats"} do lõi A
+    tính (code, không AI; prompt phân loại bằng luật); lõi chưa có thì None. Không tác động ra ngoài."""
+    res = monitor_offline(task_id)
+    if res is None:
         return None
-    return dep.compute(load_meta(task_id)["task_id"])
+    return {"di": res["di"], "features": res["features"], "stats": res["stats"]}
 
 
 _PRELUDE = r'''
