@@ -45,4 +45,8 @@ Giả thuyết ở `evidence/hypothesis.md`: **đúng / sai / phải đổi** �
 
 | Vai | Giờ hẹn | Đã xong? |
 |---|---|---|
-| | | |
+| P1 · Junior dev / sinh viên IT (≤2 năm KN, dùng AI code) | 20:00–23:00 T6 27/11 | Chưa |
+| P2 · Junior dev / sinh viên IT (≤2 năm KN, dùng AI code) | 20:00–23:00 T6 27/11 | Chưa |
+| P3 · Junior dev / sinh viên IT (≤2 năm KN, dùng AI code) | 20:00–23:00 T6 27/11 | Chưa |
+| P4 · Senior / tech lead (review PR của junior) | 20:00–23:00 T6 27/11 | Chưa |
+| E1–E8 · 5–8 junior dev / sinh viên IT (thử nghiệm "giải thích lại") | 20:00–23:00 T6 27/11 | Chưa |

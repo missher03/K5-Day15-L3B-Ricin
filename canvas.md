@@ -12,7 +12,7 @@
 | 5 | **Lát cắt MỘT CÂU** | Một junior dev · vừa commit một task có code do AI viết · AI quyết định junior đã hiểu hay chưa từng điểm quan trọng trong diff (bám `file:dòng`) và hổng khái niệm nào · junior biết chính xác phần nào cần tự học lại trước khi merge. |
 | 6 | AI tự làm đến đâu | **AI gợi ý, người quyết.** AI tự chọn câu hỏi và tự chấm, nhưng không chặn merge, không viết code, báo cáo phải được người dùng duyệt mới lưu. Sai thì người chịu là chính junior (chấm "hiểu" nhầm → tưởng đã nắm), nên chặn bằng metric `bo_sot_chua_hieu` ≤10% và giám khảo thứ hai; sửa rẻ vì người dùng thấy và bỏ qua được. |
 | 7 | Phân công có tên | A Nguyễn Văn Quốc: Monitor (hook, DI, nhắc), spec §4, nộp checkpoint, demo · B Lê Hải Anh: Check + Reflect, spec §5–6, video · C Lê Thành Nguyên: run.py, dữ liệu, benchmark, metric, eval, chi phí, spec §7 · D Nguyễn Minh Đức: extension VS Code, bằng chứng pain, evidence, dùng thử, slide |
-| — | *(CP2)* Đã đổi gì so với CP1 | |
+| — | *(CP2)* Đã đổi gì so với CP1 | Giữ nguyên lát cắt và Track F. Đã chốt chuẩn "đạt" (`spec.md` §7), trọng số DI và ngưỡng mở Check; bổ sung kịch bản dán nguyên code từ diff (`G06`, `status: need_own_words`) ở `spec.md` §5; nối đủ lõi Monitor (A), Check + Reflect + `codeown done` (B), 12 repo mẫu + 28 câu benchmark (C), MVP extension VS Code (D) và chạy thật với Claude đạt 25/28 (89%) ở `eval/run-3.csv`; đã chốt `evidence/hypothesis.md`, bộ câu hỏi khảo sát/phỏng vấn và lịch hẹn 20:00–23:00 tối 27/11. |
 
 ---
 
