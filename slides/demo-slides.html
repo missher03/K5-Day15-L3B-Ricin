@@ -46,14 +46,14 @@ code { font-family: "DejaVu Sans Mono", monospace; font-size: .88em; background:
   <div class="k">1 · Người dùng &amp; pain</div>
   <h1>Junior nộp được code AI viết, nhưng không giải thích được khi bị hỏi</h1>
   <div class="row">
-    <div class="stat"><div class="n">15/17</div><div class="lbl">từng không giải thích được code mình nộp khi bị hỏi (30 ngày qua)</div></div>
-    <div class="stat"><div class="n">16/17</div><div class="lbl">đổi yêu cầu một chút thì không tự sửa được code AI</div></div>
-    <div class="stat"><div class="n">10/17</div><div class="lbl">từng bị review trả lại, trừ điểm hoặc hỏi khó vì việc này</div></div>
+    <div class="stat"><div class="n">17/20</div><div class="lbl">từng không giải thích được code mình nộp khi bị hỏi (30 ngày qua)</div></div>
+    <div class="stat"><div class="n">18/20</div><div class="lbl">đổi yêu cầu một chút thì không tự sửa được code AI</div></div>
+    <div class="stat"><div class="n">11/20</div><div class="lbl">từng bị review trả lại, trừ điểm hoặc hỏi khó vì việc này</div></div>
     <div class="stat"><div class="n">3/3</div><div class="lbl">junior phỏng vấn kể được lần cụ thể; gỡ mất 1 đến 3 giờ</div></div>
   </div>
   <div class="quote">"Sau đó lên demo thì có mấy câu bị các bạn trong lớp hỏi mà không trả lời được, về sửa mất hơn 1 tiếng"<b>Phỏng vấn P1</b></div>
   <div class="quote">"tôi không trả lời được một số câu hỏi của người phỏng vấn về dự án của mình"<b>Phỏng vấn P3</b></div>
-  <div class="foot"><span>Khảo sát 27/11, mẫu thuận tiện N = 20 (17 người dùng đích, 3 senior đếm riêng: 1/3, 0/3) · phỏng vấn 3 junior + 1 senior</span><span>evidence/summary.md</span></div>
+  <div class="foot"><span>Khảo sát 27–28/11, mẫu thuận tiện N = 23 (20 người dùng đích, 3 senior đếm riêng: 1/3, 0/3) · phỏng vấn 3 junior + 1 senior</span><span>evidence/summary.md</span></div>
 </section>
 
 <section class="s">
@@ -132,20 +132,20 @@ code { font-family: "DejaVu Sans Mono", monospace; font-size: .88em; background:
   <div class="k">6 · Giới hạn, nói thật</div>
   <h1>Những gì số liệu chưa chứng minh được</h1>
   <ul>
-    <li><b>Khảo sát:</b> mẫu thuận tiện, 17 người đúng đối tượng (chưa đủ 20). Form đã phát không có câu đo đúng ngưỡng ghi trước trong giả thuyết, câu "không giải thích được khi bị hỏi" là số thay thế.</li>
+    <li><b>Khảo sát:</b> mẫu thuận tiện, 20 người dùng đích theo vai (chỉ 11 nếu tính theo ≤2 năm code). Câu "không giải thích được khi bị hỏi" là số thay thế. Ý định dùng yếu hơn pain: chắc chắn dùng 5/20, không dùng 2/20 ("không thấy cần").</li>
     <li><b>Phỏng vấn:</b> 3 junior tự khai 3–3,5 năm code, cao hơn mốc ≤2 năm. Senior xác nhận "khá nhiều lần" nhưng không cho số.</li>
     <li><b>Thử "giải thích lại":</b> chỉ 2 người, 6 đoạn (hiểu 2 · một phần 3 · chưa hiểu 1). Đoạn code do nhóm soạn, nhiều câu trả lời trùng chữ với đáp án mẫu nên chưa đưa vào benchmark.</li>
     <li><b>Bộ câu thử:</b> 0/28 câu từ người dùng thật; 89% / 96% đo trên ca nhóm viết và ca sinh từ seed.</li>
     <li><b>Còn mở:</b> G10 vẫn trượt ở lượt 2 (chấm khắt khe ca biên); số người dùng và task / tháng chưa đo, chi phí / tháng là ngoại suy.</li>
   </ul>
-  <div class="foot"><span>Rào cản dùng số 1: "mất thời gian" 10/17 · chỉ chấp nhận &lt;2 phút mỗi lần 7/17</span><span>evidence/summary.md · eval/report.md §4</span></div>
+  <div class="foot"><span>Rào cản hàng đầu: "mất thời gian" 10/20, "sợ bị theo dõi" 10/20 · chỉ chấp nhận &lt;2 phút 7/20, không muốn mất phút nào 2/20</span><span>evidence/summary.md · eval/report.md §4</span></div>
 </section>
 
 <section class="s">
   <div class="k">7 · Kết luận &amp; tuần tới</div>
   <div class="verdict">Iterate: pain có thật, kỹ thuật đạt chuẩn, nhưng chưa thử trên người dùng thật</div>
   <div class="row">
-    <div class="col"><h2>Vì sao không dừng</h2><ul><li>15/17 người đích từng không giải thích được code mình nộp</li><li>Lượt 2 đạt 27/28 (96%), 6/6 metric, 0% bỏ sót "chưa hiểu"</li><li>~0,74 USD / người / tháng, so với 1–3 giờ mỗi lần bị kẹt (phỏng vấn)</li></ul></div>
+    <div class="col"><h2>Vì sao không dừng</h2><ul><li>17/20 người đích từng không giải thích được code mình nộp</li><li>Lượt 2 đạt 27/28 (96%), 6/6 metric, 0% bỏ sót "chưa hiểu"</li><li>~0,74 USD / người / tháng, so với 1–3 giờ mỗi lần bị kẹt (phỏng vấn)</li></ul></div>
     <div class="col"><h2>Nếu có thêm 1 tuần</h2><ul><li>Thay ≥10 câu Grader bằng câu giải thích thật, đúng quy trình (code AI viết cho chính họ)</li><li>Sửa riêng ranh giới "một phần" / "chưa hiểu" (G10) bằng thêm ca biên</li><li>Rút Check xuống dưới 2 phút; thử toàn Haiku để giảm chi phí</li></ul></div>
   </div>
   <div class="foot"><span>Nhóm Ricin · CodeOwn · CP4 28/11/2026</span><span>spec.md · eval/report.md · evidence/summary.md</span></div>
