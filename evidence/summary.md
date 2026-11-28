@@ -48,9 +48,9 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung.
 | P3 | Fresher · 3 năm · Codex | Có (dự án cá nhân: RAG, monitoring, giao diện web) | "thỉnh thoảng" | "nhiều thời gian", không có số | mô tả lại cho AI, tự chạy test và review |
 | S1 | Senior · 6 năm · Claude | Xác nhận từ phía reviewer | "khá nhiều lần" | "khá nhiều thời gian" | dùng AI rà code junior, hỏi câu chỉ người làm thật mới biết, chia sẻ cách dùng AI |
 
-- Thử "giải thích lại" (28/11/2026, `evidence/interviews/phieu-giai-thich-lai.md`, **chỉ 2 người** ngoài nhóm E1, E2, mỗi người 3 đoạn = 6 đoạn; nhãn do nhóm chấm): hiểu 2/6 đoạn (E1b, E2a) · một phần 3/6 (E1a, E1c, E2b) · chưa hiểu 1/6 (E2c). Người có ít nhất 1 đoạn chưa giải thích đúng hoàn toàn: **2/2**. Lưu ý chấm: E2a được chấm "hiểu" dù câu 3 trả lời "để đọc tiếng Việt" (`utf-8-sig` là để bỏ BOM).
+- Thử "giải thích lại" (28/11/2026, `evidence/interviews/phieu-giai-thich-lai.md`, **5 người** E1–E5 — thành viên cùng khoá học, ngoài nhóm — mỗi người 3 đoạn = **15 đoạn**; bản này thay bản 2 người trước đó; nhãn do nhóm chấm): hiểu **2/15** (E1b, E5a) · một phần **7/15** (E1a, E2a, E2b, E3b, E4a, E4c, E5c) · chưa hiểu **6/15** (E1c, E2c, E3a, E3c, E4b, E5b). Người có ít nhất 1 đoạn chưa giải thích đúng hoàn toàn: **5/5**. Lỗi hay gặp: câu 1 tả lại code theo kiểu "duyệt, kiểm tra, trả về" mà không nói vì sao (E2c, E3a, E3c, E4b); câu 3 đoán sai hậu quả khi đổi một dòng (E3c "bỏ `sorted` chắc không ảnh hưởng"; E5b "chạy nhanh hơn"; E5c không thấy rủi ro `endswith` cho phép host giả).
 
-  **Đọc số này thận trọng:** (1) mẫu rất nhỏ, chưa đạt mốc 5–8 người của `hypothesis.md` và chưa đạt ≥10 câu thử thật cho benchmark
+  **Đọc số này thận trọng:** (1) mẫu nhỏ: 5 người, vừa đạt mốc 5–8 người của `hypothesis.md`; (2) **đoạn code là bài lab chung của khoá học (do AI viết), không phải code AI viết riêng cho từng người** — nên nhiều người dùng đoạn từ cùng một codebase (E1–E2: truy hồi RAG; E4–E5: guardrail); đo được "có giải thích lại được code AI viết trong bài mình đã làm không", chưa đo đúng tình huống code AI viết riêng cho task của chính họ; (3) người thử là thành viên cùng khoá, ngoài nhóm — gần người dùng đích nhưng là mẫu thuận tiện; (4) câu hỏi 2–3 cho từng đoạn do nhóm soạn, nhãn do một phía nhóm chấm (chưa có 2 người chấm độc lập); (5) câu trả lời là lời tự nhiên, không trùng chữ với đáp án mẫu. Vì (2), (4) và vì bộ câu thử đã khoá từ lượt 1 (`eval/import_real_cases.py` dừng khi đã có `run-N.csv`), **chưa đưa vào `eval/benchmark.csv`**.
 
 ## 3. ≥5 trích dẫn hoặc ví dụ nguyên văn (có nguồn, bỏ tên)
 
@@ -78,4 +78,4 @@ Giả thuyết ở `evidence/hypothesis.md`: **chưa kết luận được theo 
 | P2 · Junior dev / sinh viên IT (≤2 năm KN, dùng AI code) | 20:00–23:00 T6 27/11 | | Xong |
 | P3 · Junior dev / sinh viên IT (≤2 năm KN, dùng AI code) | 20:00–23:00 T6 27/11 | | Xong |
 | P4 · Senior / tech lead (review PR của junior) | 20:00–23:00 T6 27/11 | | Xong (mã S1) |
-| E1–E8 · 5–8 junior dev / sinh viên IT (thử nghiệm "giải thích lại") | 20:00–23:00 T6 27/11 | Chưa |
+| E1–E8 · 5–8 junior dev / sinh viên IT (thử nghiệm "giải thích lại") | 20:00–23:00 T6 27/11 | Xong 28/11: 5 người (E1–E5) |
