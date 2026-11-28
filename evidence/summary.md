@@ -46,6 +46,10 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung.
 | P3 | Fresher · 3 năm · Codex | Có (dự án cá nhân: RAG, monitoring, giao diện web) | "thỉnh thoảng" | "nhiều thời gian", không có số | mô tả lại cho AI, tự chạy test và review |
 | S1 | Senior · 6 năm · Claude | Xác nhận từ phía reviewer | "khá nhiều lần" | "khá nhiều thời gian" | dùng AI rà code junior, hỏi câu chỉ người làm thật mới biết, chia sẻ cách dùng AI |
 
+- Thử "giải thích lại" (28/11/2026, `evidence/interviews/phieu-giai-thich-lai.md`, **chỉ 2 người** ngoài nhóm E1, E2, mỗi người 3 đoạn = 6 đoạn; nhãn do nhóm chấm): hiểu 2/6 đoạn (E1b, E2a) · một phần 3/6 (E1a, E1c, E2b) · chưa hiểu 1/6 (E2c). Người có ít nhất 1 đoạn chưa giải thích đúng hoàn toàn: **2/2**. Lưu ý chấm: E2a được chấm "hiểu" dù câu 3 trả lời "để đọc tiếng Việt" (`utf-8-sig` là để bỏ BOM).
+
+  **Đọc số này thận trọng:** (1) mẫu rất nhỏ, chưa đạt mốc 5–8 người của `hypothesis.md` và chưa đạt ≥10 câu thử thật cho benchmark
+
 ## 3. ≥5 trích dẫn hoặc ví dụ nguyên văn (có nguồn, bỏ tên)
 
 1. "Hôm đấy giao phó toàn bộ cho gehihi, đọc lướt mỗi đề nên khi bị hỏi lớ ngớ luôn." — phiếu khảo sát S07, câu 11b
