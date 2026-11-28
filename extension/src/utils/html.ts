@@ -1,6 +1,6 @@
 // Thoat ky tu HTML de tranh vo layout khi chen code hoac markdown
-export function escapeHtml(raw: string): string {
-  return raw
+export function escapeHtml(raw: string | null | undefined): string {
+  return String(raw ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")

@@ -52,13 +52,22 @@ export function getCheckHtml(params: {
   const primaryAction = canContinue
     ? `<button id="nextBtn">${index + 1 < total ? "Câu tiếp theo" : "Xem báo cáo Reflect"}</button>`
     : `<button id="submitBtn">${isFollowUp ? "Gửi câu trả lời vòng 2" : "Gửi câu trả lời"}</button>
+       <button id="skipBtn" class="secondary">${index + 1 < total ? "Sang câu tiếp theo" : "Xem báo cáo Reflect"}</button>
        <button id="deferBtn" class="secondary">Để sau</button>`;
+
+  // Chuyen cau chu dong: giu nhan cua lan cham gan nhat (hoac "chua cham"), khong lo dap an.
+  const skipNote = canContinue
+    ? ""
+    : `<p class="muted" style="margin-top:6px">${lastResult && lastResult.label
+        ? `Sang câu tiếp sẽ giữ nhãn "${labelText(lastResult.label)}" cho câu này.`
+        : "Sang câu tiếp: câu này giữ nhãn của lần chấm gần nhất; nếu chưa chấm lần nào thì ghi là chưa trả lời."}</p>`;
 
   const inputSection = canContinue
     ? `<div class="row">${primaryAction}</div>`
     : `<label for="answerText"><strong>Trả lời bằng lời của bạn (không dán code):</strong></label>
        <textarea id="answerText" rows="4" placeholder="Giải thích ngắn gọn cơ chế đoạn code này..."></textarea>
-       <div class="row" style="margin-top:6px">${primaryAction}</div>`;
+       <div class="row" style="margin-top:6px">${primaryAction}</div>
+       ${skipNote}`;
 
   return `<!DOCTYPE html>
 <html lang="vi">
@@ -89,6 +98,7 @@ export function getCheckHtml(params: {
     const submitBtn = document.getElementById('submitBtn');
     const deferBtn = document.getElementById('deferBtn');
     const nextBtn = document.getElementById('nextBtn');
+    const skipBtn = document.getElementById('skipBtn');
     const answerEl = document.getElementById('answerText');
     if (submitBtn && answerEl) {
       submitBtn.addEventListener('click', () => {
@@ -101,6 +111,9 @@ export function getCheckHtml(params: {
     }
     if (deferBtn) {
       deferBtn.addEventListener('click', () => vscode.postMessage({ command: 'deferCheck' }));
+    }
+    if (skipBtn) {
+      skipBtn.addEventListener('click', () => vscode.postMessage({ command: 'nextQuestion' }));
     }
     if (nextBtn) {
       nextBtn.addEventListener('click', () => vscode.postMessage({ command: 'nextQuestion' }));

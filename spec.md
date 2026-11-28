@@ -42,7 +42,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 
 ```mermaid
 flowchart LR
-  TOOLS["Công cụ AI (Claude Code · Cursor · Copilot)"] -- hook --> HOOK["codeown hook"]
+  TOOLS["Công cụ AI (Claude Code · Cursor)"] -- hook --> HOOK["codeown hook"]
   GIT[(git)] -- post-commit --> HOOK
   HOOK --> EV[(.codeown/events.jsonl)]
   EV --> MON["Monitor (code): gán dòng AI/người, DI"]
@@ -57,6 +57,8 @@ flowchart LR
   EV --> REF
   REF -- "người dùng duyệt" --> LED
 ```
+
+- Hook theo công cụ: Claude Code và Cursor có sẵn (`codeown_cli.py init`). **GitHub Copilot: chưa làm. Codex: chưa làm** (chưa có lệnh cài hook; code do hai công cụ này viết chưa được ghi là dòng AI).
 
 - **Hình dạng:** [x] workflow cố định · [ ] một agent · [ ] nhiều agent — thứ tự luôn là gán dòng → hỏi → chấm → báo cáo, không cần AI tự chọn bước; 4 điểm gọi AI có input / output schema cố định nên đo riêng được. Không chọn agent vì agent tự quyết bước sẽ khó chặn lộ đáp án và khó đo từng quyết định.
 - **AI dựa vào đâu** (khớp `codebase/tools.py`):
@@ -109,13 +111,13 @@ flowchart LR
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 28 câu (thuong 17 · kho 8 · tu_choi 3; Examiner 6 · Grader 11 · Monitor + luật hỏi 5 · Reflect 3 · từ chối / tấn công 3). Nguồn hiện tại: tu_viet 14 · sinh_seed 14 · **người dùng thật 0** — cần ≥10 câu Grader thay bằng câu giải thích thật (thử nghiệm "giải thích lại" của D) trước CP3 · chấm bằng code: `eval/auto_score.py` · metric: `eval/metric_spec.yaml` (6 metric: `cau_hoi_bam_code` ≥90%, `cham_khop_nguoi` ≥80%, `bo_sot_chua_hieu` ≤10%, `khong_lo_dap_an` 100%, `bao_cao_co_nguon` ≥95%, `tu_choi_dung` 100%)
 - **Chuẩn "đạt"** *(đã chốt tại CP2 27/11/2026, giữ nguyên đến 23:59 Thứ Bảy 28/11)*: "Đạt khi ≥75% câu qua, và trên 28 câu: `cham_khop_nguoi` ≥80% · `bo_sot_chua_hieu` ≤10% · `khong_lo_dap_an` = 100% · `tu_choi_dung` = 100%". Trọng số DI (0,3·f1 + 0,25·f2 + 0,2·f3ₙ + 0,15·(1−f4ₙ) + 0,1·(1−f5)) và ngưỡng mở Check (≥20 dòng AI hoặc ≥30% diff; nhắc tối đa 1 lần / 15 phút) chốt cùng lúc.
-- Kết quả: lượt 1 **25/28 (89%) — đạt** (thuong 15/17 · kho 7/8 · tu_choi 3/3; 6/6 metric đạt ngưỡng; trượt G06, G10, M05) · lượt 2 __/28 (__%) — run ID: `run-4@20261127-192716` / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **25/28 (89%) — đạt** (thuong 15/17 · kho 7/8 · tu_choi 3/3; 6/6 metric đạt ngưỡng; trượt G06, G10, M05) · lượt 2 **27/28 (96%) — đạt** (thuong 16/17 · kho 8/8 · tu_choi 3/3; 6/6 metric; G06, M05 đã sửa đạt; còn trượt G10; không câu nào tệ đi) — run ID: `run-4@20261127-192716` / `run-5@20261128-103708` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` (3 persona, mỗi phiên = 1 task trọn vẹn qua `agent.py` mode `task`; giá Haiku 5.5 / Sonnet 5.5) · lượt mô phỏng: `cost/simulate-__.csv` (≥50 phiên, seed 42)
-- Chi phí / task *(ước tính ~37.500 token vào, 5.000 ra)*: ≈0,074 USD (trộn Sonnet 5.5 cho Examiner + Reflector, Haiku 5.5 cho Classifier + Grader) · ≈0,006 USD (toàn Haiku 5.5) · ≈0,13 USD (toàn Sonnet 5.5). Chi phí / task thành công = chi phí ÷ tỉ lệ đạt lượt 2.
-- Chi phí / tháng (cấu hình trộn, 26 task / người): thấp 1.000 người ~1.900 USD · cơ sở 10.000 ~19.200 USD · cao 50.000 ~96.000 USD → chi tiết `cost/cost-estimate.md`
-- So với impact: ~1,9 USD / người / tháng so với ~6 giờ / người bị ảnh hưởng / tháng → đáng làm. Người dùng tự dùng API key nên chi phí model nằm ở phía họ.
+- Persona + giá: `cost/personas.yaml` (3 persona, mỗi phiên = 1 task trọn vẹn qua `agent.py` mode `task`; giá Haiku 5.5 / Sonnet 5.5) · lượt mô phỏng: `cost/simulate-1.csv` (`simulate-1@20261128-104057`, 50 phiên, seed 42, 0/50 lỗi; bảng `cost/simulate-1-summary.md`)
+- Chi phí / task **đo thật** (trộn Haiku 5.5 cho Classifier + Grader, Sonnet 5.5 cho Examiner + Reflector): **0,0312 USD / phiên** (~17.600 token vào, ~2.800 ra) ÷ 96% tỉ lệ đạt lượt 2 = **0,0324 USD / task thành công** · nếu toàn Haiku 5.5: 0,0033 · toàn Sonnet 5.5: 0,0660. 3/50 phiên token 0 (diff chỉ docs / định dạng nên Check bỏ qua) vẫn tính vào trung bình; bỏ ra thì ~0,0344 USD / task thành công. *(Ước tính trước khi đo: ~0,074 USD / task, gấp đôi số đo.)*
+- Chi phí / tháng (cấu hình trộn, ~23,8 task / người): thấp 1.000 người ~737 USD · cơ sở 10.000 ~7.368 USD · cao 50.000 ~36.841 USD → chi tiết `cost/cost-estimate.md`. **Đây là ngoại suy:** số người dùng và số task / người / tháng đều *tự ước tính, chưa đo*; chỉ chi phí / phiên và tỉ lệ đạt là số đo.
+- So với impact: ~0,74 USD / người / tháng so với ~6 giờ / người bị ảnh hưởng / tháng (phỏng vấn: 1–3 giờ mỗi lần bị kẹt) → đáng làm. Người dùng tự dùng API key nên chi phí model nằm ở phía họ.
 
 ## §9. Rủi ro & an toàn
 - Dữ liệu: log, code, Sổ nằm ở `.codeown/` trên máy người dùng, không commit, không gửi server; bí mật (key, token, mật khẩu) che bằng regex trước khi ghi; câu giải thích thật trong bộ câu thử đã bỏ tên, viết lại. Có chế độ chỉ dùng luật cho Classifier để prompt không rời máy.
@@ -139,6 +141,9 @@ flowchart LR
 | 27/11 18:19 | `run-3` (Claude, 0 lỗi kỹ thuật) → 25/28, đạt cả 6 metric (`cham_khop_nguoi` 89%, `bao_cao_co_nguon` 100%) | run-3 khác model với run-1/2 nên không so trực tiếp; còn lỗi: G06 (dán code nhưng câu thử không có `diff` nên luật "dán code" không chạy), G10 (nhãn biên `mot_phan`/`chua_hieu`), M05 (diff chỉ đổi định dạng / tên mà Examiner vẫn hỏi) |
 | 27/11 19:27 | `run-4` = **lượt 1** (cấu hình cố định `eval/README.md` §4, code `main` đã gộp A/B/C/D) → 25/28 (89%), đạt 6/6 metric | trượt đúng 3 câu như run-3: G06, G10, M05 → `eval/report.md` §2 |
 | 28/11 00:30 | Cải tiến cho lượt 2: G06 luật dán code chạy cả khi không có diff (`grader.is_pasted` đếm dòng trông như code); M05 Examiner nhận dòng xoá, bỏ qua diff chỉ đổi định dạng / tên; G10 prompt Grader: ca biên đã chỉ đúng phần code → `mot_phan` | 3 câu trượt của lượt 1; chưa chạy lượt 2 với model thật |
+| 28/11 10:37 | `run-5` = **lượt 2** (cùng cấu hình §4, cùng 28 câu) → 27/28 (96%), đạt 6/6 metric | G06, M05 đạt; G10 vẫn `chua_hieu` (trượt); không câu nào tệ đi → `eval/report.md` §3 |
+| 28/11 10:40 | `simulate-1` 50 phiên (seed 42, tỉ lệ đạt run-5) → 0,0312 USD / phiên, 0,0324 USD / task thành công, ~0,74 USD / người / tháng; share persona làm tròn lại cho tổng = 1,0 (0,412 / 0,294 / 0,294, kết quả không đổi vì khung đã chia lại theo tỉ lệ) | §8 trước đó là ước tính / simulate dừng 35 phiên → `cost/cost-estimate.md` |
+| 28/11 10:30 | Extension Check: nút "Sang câu tiếp theo" ở mọi vòng (giữ nhãn lần chấm gần nhất); `escapeHtml` chịu `null` | người dùng thử: "Một phần" bị hỏi lại, không chủ động chuyển câu được; lỗi vòng 2 `hint = null`. Không đổi luật chấm / số vòng |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)**
 

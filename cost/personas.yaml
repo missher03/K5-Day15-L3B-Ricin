@@ -4,7 +4,8 @@
 # Một phiên = MỘT TASK đầy đủ: agent.py mode "task" chạy monitor → examine → grade từng câu (câu trả lời giả lập
 # trong data/samples/<repo>/sim_answers.json) → reflect. Vì vậy uses_per_month = số task / người / tháng.
 # Số có nhãn (tự ước tính) phải thay bằng số khảo sát của D ("tuần qua bạn làm bao nhiêu task có dùng AI?") trước CP4.
-# share lấy từ khảo sát 27/11 (python evidence/survey/count.py evidence/survey/results.csv); tổng 0.99 vì 7/17 + 5/17 + 5/17.
+# share lấy từ khảo sát 27/11 (python evidence/survey/count.py evidence/survey/results.csv): 7/17, 5/17, 5/17, làm tròn 3 chữ số để tổng = 1.0
+# (simulate-1 chạy với 0.41/0.29/0.29 và khung tự chia lại theo tỉ lệ → cùng kết quả).
 # Form không hỏi số task / tháng nên uses_per_month và users vẫn là (tự ước tính).
 
 sessions: 50
@@ -18,19 +19,19 @@ users:
 
 personas:
   - name: sinh_vien_do_an
-    share: 0.41
+    share: 0.412
     uses_per_month: 15
     turns_per_session: 1
     source: "share: khảo sát 27/11, câu 1 'Sinh viên IT năm 3–4' 7/17 người dùng đích (mẫu thuận tiện N=20, bỏ 3 senior) · uses_per_month: (tự ước tính) docs/design.md §9.3 — form không hỏi số task"
     inputs: ['{"mode": "task", "diff_id": "repo01_c1"}', '{"mode": "task", "diff_id": "repo02_c1"}', '{"mode": "task", "diff_id": "repo05_c1"}', '{"mode": "task", "diff_id": "repo06_c1"}', '{"mode": "task", "diff_id": "repo07_c1"}', '{"mode": "task", "diff_id": "repo09_c1"}', '{"mode": "task", "diff_id": "repo12_c1"}']
   - name: junior_di_lam
-    share: 0.29
+    share: 0.294
     uses_per_month: 40
     turns_per_session: 1
     source: "share: khảo sát 27/11, câu 1 'Fresher / junior đi làm' 5/17 người dùng đích (mẫu thuận tiện N=20, bỏ 3 senior) · uses_per_month: (tự ước tính) docs/design.md §9.3 — chờ phỏng vấn"
     inputs: ['{"mode": "task", "diff_id": "repo01_c1"}', '{"mode": "task", "diff_id": "repo03_c1"}', '{"mode": "task", "diff_id": "repo04_c1"}', '{"mode": "task", "diff_id": "repo08_c1"}', '{"mode": "task", "diff_id": "repo10_c1"}', '{"mode": "task", "diff_id": "repo11_c1"}', '{"mode": "task", "diff_id": "repo12_c1"}']
   - name: tu_hoc_chuyen_nganh
-    share: 0.29
+    share: 0.294
     uses_per_month: 20
     turns_per_session: 1
     source: "share: khảo sát 27/11, câu 1 'Người chuyển ngành' 3 + 'Tự học' 2 = 5/17 người dùng đích (mẫu thuận tiện N=20, bỏ 3 senior) · uses_per_month: (tự ước tính) docs/design.md §9.3 — form không hỏi số task"
