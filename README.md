@@ -120,5 +120,5 @@ Nhóm dùng coding agent (Claude Code, Antigravity) để soạn khung code, b�
 | 4 | Bản chạy thử làm trọn lát cắt | `codebase/` · lệnh ở mục "Lệnh" |
 | 5 | Định nghĩa "tốt" + bộ câu thử | `data/DATA_CARD.md` · `eval/` |
 | 6 | Mô phỏng chi phí khi dùng thật | `cost/` |
-| 7 | Slide + demo + video dự phòng | `demo-slides.pdf` ở thư mục gốc · link video: ____ |
+| 7 | Slide + demo + video dự phòng | `demo-slides.pdf` ở thư mục gốc · link video: [Google Drive](https://drive.google.com/file/d/1MvV0XC_AS5Sup_sG7aIafHl8nrd8c3Fp/view?usp=drive_link) (xem `video/README.md`) |
 | + | *Bonus:* người dùng thử | `validation/log.md` |
