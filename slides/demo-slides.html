@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><title>CodeOwn · Nhóm Ricin</title>
+<style>
+@page { size: 1280px 720px; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Inter, "DejaVu Sans", sans-serif; color: #1c2230; background: #fff; }
+.s { width: 1280px; height: 720px; padding: 56px 72px 48px; position: relative; page-break-after: always; overflow: hidden; display: flex; flex-direction: column; }
+.s:last-child { page-break-after: auto; }
+.k { font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: #3b5bdb; font-weight: 600; margin-bottom: 10px; }
+h1 { font-size: 40px; line-height: 1.15; font-weight: 700; margin-bottom: 26px; letter-spacing: -.01em; }
+h2 { font-size: 21px; font-weight: 600; margin-bottom: 10px; }
+p, li { font-size: 19px; line-height: 1.45; }
+ul { padding-left: 22px; } li { margin-bottom: 7px; }
+.foot { position: absolute; left: 72px; right: 72px; bottom: 22px; font-size: 13px; color: #6b7385; display: flex; justify-content: space-between; border-top: 1px solid #e3e6ee; padding-top: 8px; }
+.row { display: flex; gap: 28px; } .col { flex: 1; }
+.big { font-size: 64px; font-weight: 700; color: #3b5bdb; line-height: 1; }
+.stat { border: 1px solid #e3e6ee; border-radius: 12px; padding: 18px 20px; flex: 1; }
+.stat .lbl { font-size: 16px; line-height: 1.35; margin-top: 8px; color: #333a48; }
+.stat .n { font-size: 40px; font-weight: 700; color: #1c2230; }
+.quote { border-left: 4px solid #3b5bdb; padding: 8px 16px; font-size: 18px; font-style: italic; background: #f5f7fc; margin-top: 14px; }
+.quote b { font-style: normal; font-weight: 600; font-size: 14px; color: #6b7385; display: block; margin-top: 4px; }
+table { border-collapse: collapse; width: 100%; font-size: 16.5px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e3e6ee; vertical-align: top; }
+th { font-weight: 600; color: #4a5266; font-size: 14.5px; text-transform: uppercase; letter-spacing: .04em; }
+.ok { color: #2b8a3e; font-weight: 600; } .warn { color: #c2410c; font-weight: 600; } .muted { color: #6b7385; }
+.tag { display: inline-block; font-size: 13px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: #fff4e6; color: #c2410c; margin-left: 6px; vertical-align: middle; }
+.flow { display: flex; align-items: stretch; gap: 10px; margin: 6px 0 22px; }
+.box { flex: 1; border: 1.5px solid #3b5bdb; border-radius: 10px; padding: 12px 12px; background: #f5f7fc; }
+.box h3 { font-size: 17px; margin-bottom: 4px; } .box p { font-size: 14.5px; line-height: 1.35; }
+.arr { align-self: center; font-size: 24px; color: #3b5bdb; }
+code { font-family: "DejaVu Sans Mono", monospace; font-size: .88em; background: #eef1f8; padding: 1px 5px; border-radius: 4px; }
+.title { justify-content: center; background: #1c2230; color: #fff; }
+.title h1 { font-size: 60px; margin-bottom: 14px; } .title p { font-size: 24px; color: #c8cfe0; max-width: 980px; }
+.title .k { color: #91a7ff; }
+.verdict { font-size: 26px; font-weight: 700; padding: 14px 20px; border-radius: 12px; background: #fff4e6; color: #9a3412; display: inline-block; margin-bottom: 18px; }
+</style></head><body>
+
+<section class="s title">
+  <div class="k">Nhóm Ricin · L3B · Track F</div>
+  <h1>CodeOwn</h1>
+  <p>Sau mỗi commit có code AI viết, hỏi lập trình viên mới vài câu bám đúng <code style="background:#2c3446;color:#fff">file:dòng</code>, chỉ ra phần họ chưa thật sự hiểu trước khi merge.</p>
+  <p style="margin-top:26px;font-size:18px">VS Code extension + lõi Python · Monitor · Check · Reflect</p>
+</section>
+
+<section class="s">
+  <div class="k">1 · Người dùng &amp; pain</div>
+  <h1>Junior nộp được code AI viết, nhưng không giải thích được khi bị hỏi</h1>
+  <div class="row">
+    <div class="stat"><div class="n">15/17</div><div class="lbl">từng không giải thích được code mình nộp khi bị hỏi (30 ngày qua)</div></div>
+    <div class="stat"><div class="n">16/17</div><div class="lbl">đổi yêu cầu một chút thì không tự sửa được code AI</div></div>
+    <div class="stat"><div class="n">10/17</div><div class="lbl">từng bị review trả lại, trừ điểm hoặc hỏi khó vì việc này</div></div>
+    <div class="stat"><div class="n">3/3</div><div class="lbl">junior phỏng vấn kể được lần cụ thể; gỡ mất 1 đến 3 giờ</div></div>
+  </div>
+  <div class="quote">"Sau đó lên demo thì có mấy câu bị các bạn trong lớp hỏi mà không trả lời được, về sửa mất hơn 1 tiếng"<b>Phỏng vấn P1</b></div>
+  <div class="quote">"tôi không trả lời được một số câu hỏi của người phỏng vấn về dự án của mình"<b>Phỏng vấn P3</b></div>
+  <div class="foot"><span>Khảo sát 27/11, mẫu thuận tiện N = 20 (17 người dùng đích, 3 senior đếm riêng: 1/3, 0/3) · phỏng vấn 3 junior + 1 senior</span><span>evidence/summary.md</span></div>
+</section>
+
+<section class="s">
+  <div class="k">2 · Giải pháp</div>
+  <h1>Hỏi lại ngay sau commit, trong IDE, bám đúng dòng AI viết</h1>
+  <div class="flow">
+    <div class="box"><h3>Hook</h3><p>Claude Code · Cursor · git ghi prompt, sửa file, commit vào <code>.codeown/</code> trên máy</p></div><div class="arr">→</div>
+    <div class="box"><h3>Monitor</h3><p>Gán từng dòng: AI giữ nguyên / AI đã sửa / tự viết. Tính DI 0–100, nhắc khi lặp lỗi, nhận code hàng loạt</p></div><div class="arr">→</div>
+    <div class="box"><h3>Check</h3><p>2–5 câu bám <code>file:dòng</code> trên dòng AI giữ nguyên. Chấm hiểu / một phần / chưa hiểu</p></div><div class="arr">→</div>
+    <div class="box"><h3>Reflect</h3><p>Báo cáo có nguồn, người dùng duyệt rồi mới lưu vào Sổ kiến thức</p></div>
+  </div>
+  <div class="row">
+    <div class="col"><h2>AI tự làm đến đâu</h2><ul><li>Workflow cố định, 4 điểm gọi AI có schema riêng nên đo riêng được</li><li>AI gợi ý, người quyết: không chặn merge, không gửi cho ai khi chưa đồng ý</li></ul></div>
+    <div class="col"><h2>Chặn rủi ro bằng code</h2><ul><li>Không lộ đáp án: gợi ý có code ≥2 dòng hoặc trùng &gt;50% rubric thì bị thay</li><li>Dán lại code thay vì giải thích → yêu cầu nói bằng lời của mình</li><li>Chèn lệnh trong code / câu trả lời chỉ được coi là dữ liệu</li></ul></div>
+  </div>
+  <div class="foot"><span>Đã loại: cấm AI (người dùng lách), senior kèm từng PR (chính là chi phí đang mất), khoá học (không gắn code hằng ngày)</span><span>spec.md §2, §4</span></div>
+</section>
+
+<section class="s">
+  <div class="k">3 · Demo</div>
+  <h1>Một ca thường, một ca khó, lấy từ bộ câu thử</h1>
+  <div class="row">
+    <div class="col stat"><h2>Ca thường · E01</h2><p><code>examine repo03_c1</code>: diff đăng nhập (DI 68)</p><ul style="margin-top:10px"><li>Mở Check, đúng 3 câu</li><li>Mỗi câu trỏ <code>file:dòng</code> có trong diff, ưu tiên dòng AI giữ nguyên: pbkdf2 + salt, <code>compare_digest</code>, khoá tài khoản</li><li>Không hỏi dòng người dùng tự viết</li></ul></div>
+    <div class="col stat"><h2>Ca khó · G06</h2><p>Hỏi <code>auth.py:26</code> kiểm điều kiện gì; người dùng dán lại nguyên 2 dòng code</p><ul style="margin-top:10px"><li>Lượt 1: bị chấm <code>mot_phan</code> <span class="tag">trượt</span></li><li>Đã sửa: trả <code>need_own_words</code>, không gọi model, yêu cầu giải thích bằng lời</li><li>Lượt 2 (model thật): <code>need_own_words</code> <span class="ok">đạt</span></li></ul></div>
+  </div>
+  <p style="margin-top:22px" class="muted">Lệnh: <code>python run.py</code> → gõ <code>examine repo03_c1</code>. Mạng hỏng → video dự phòng 30 giây.</p>
+  <div class="foot"><span>eval/benchmark.csv · E01, G06</span><span>slides/demo-script.md</span></div>
+</section>
+
+<section class="s">
+  <div class="k">4 · Đánh giá thế nào</div>
+  <h1>Lượt 1: 25/28 (89%) → lượt 2: 27/28 (96%)</h1>
+  <div class="row">
+    <div class="col">
+      <table>
+        <tr><th>Metric</th><th>Lượt 1 → lượt 2</th><th>Ngưỡng</th></tr>
+        <tr><td>Câu hỏi bám code</td><td>100% → 100%</td><td>≥90% <span class="ok">đạt</span></td></tr>
+        <tr><td>Chấm khớp người</td><td>89% → 89%</td><td>≥80% <span class="ok">đạt</span></td></tr>
+        <tr><td>Bỏ sót "chưa hiểu"</td><td>0% → 0%</td><td>≤10% <span class="ok">đạt</span></td></tr>
+        <tr><td>Không lộ đáp án</td><td>100% → 100%</td><td>100% <span class="ok">đạt</span></td></tr>
+        <tr><td>Báo cáo có nguồn</td><td>100% → 100%</td><td>≥95% <span class="ok">đạt</span></td></tr>
+        <tr><td>Từ chối đúng</td><td>100% → 100%</td><td>100% <span class="ok">đạt</span></td></tr>
+      </table>
+    </div>
+    <div class="col" style="flex:.85">
+      <h2>Bộ câu thử</h2><p>28 câu: thường 17 (đạt 15 → 16) · khó 8 (đạt 7 → 8) · từ chối 3 (đạt 3 → 3). Chấm bằng code, không dùng LLM chấm.</p>
+      <h2 style="margin-top:16px">3 câu trượt lượt 1 → lượt 2</h2>
+      <ul><li><b>G06</b> dán code vẫn được chấm → <span class="ok">đạt</span></li><li><b>M05</b> diff chỉ đổi định dạng vẫn hỏi → <span class="ok">đạt</span></li><li><b>G10</b> chấm quá khắt khe ca biên → sửa prompt, <span class="warn">vẫn trượt</span></li></ul>
+      <h2 style="margin-top:16px">Lượt 2</h2><p><b>27/28 (96%)</b> · thường 16/17 · khó 8/8 · từ chối 3/3 · 6/6 metric đạt · không câu nào tệ đi</p>
+    </div>
+  </div>
+  <div class="foot"><span>run-4 · run-5 · Haiku 5.5 + Sonnet 5.5, giám khảo thứ hai bật · cả hai lượt đạt chuẩn CP2 · 0/28 câu từ người dùng thật</span><span>eval/report.md · auto-score-run-5.md</span></div>
+</section>
+
+<section class="s">
+  <div class="k">5 · Chi phí khi dùng thật</div>
+  <h1>Khoảng 0,032 USD mỗi task thành công</h1>
+  <div class="row" style="margin-bottom:22px">
+    <div class="stat"><div class="n">0,031</div><div class="lbl">USD / phiên (1 task trọn: monitor → hỏi → chấm → reflect), trộn Haiku + Sonnet</div></div>
+    <div class="stat"><div class="n">0,032</div><div class="lbl">USD / task thành công = 0,0312 ÷ 96% tỉ lệ đạt lượt 2</div></div>
+    <div class="stat"><div class="n">~0,74</div><div class="lbl">USD / người / tháng, ngoại suy (~24 task / người / tháng, tự ước tính)</div></div>
+  </div>
+  <div class="row">
+    <div class="col"><table>
+      <tr><th>Kịch bản</th><th>Người dùng</th><th>USD / tháng</th></tr>
+      <tr><td>Thấp</td><td>1.000</td><td>~737</td></tr>
+      <tr><td>Cơ sở</td><td>10.000</td><td>~7.368</td></tr>
+      <tr><td>Cao</td><td>50.000</td><td>~36.841</td></tr>
+    </table></div>
+    <div class="col"><h2>Cần gạt</h2><ul><li>Toàn Haiku: ~0,003 USD / phiên (rẻ ~10 lần), phải giữ bỏ sót ≤10%</li><li>Toàn Sonnet: ~0,064 USD / phiên</li><li>Không có server: lõi chạy trên máy, người dùng tự trả API key</li></ul></div>
+  </div>
+  <div class="foot"><span>Đo thật 50 phiên (simulate-1, seed 42; 3 phiên token 0 vì Check bỏ qua) · giá BTC 25/11/2026 · chi phí / tháng ngoại suy từ số người dùng tự ước tính</span><span>cost/simulate-1-summary.md</span></div>
+</section>
+
+<section class="s">
+  <div class="k">6 · Giới hạn, nói thật</div>
+  <h1>Những gì số liệu chưa chứng minh được</h1>
+  <ul>
+    <li><b>Khảo sát:</b> mẫu thuận tiện, 17 người đúng đối tượng (chưa đủ 20). Form đã phát không có câu đo đúng ngưỡng ghi trước trong giả thuyết, câu "không giải thích được khi bị hỏi" là số thay thế.</li>
+    <li><b>Phỏng vấn:</b> 3 junior tự khai 3–3,5 năm code, cao hơn mốc ≤2 năm. Senior xác nhận "khá nhiều lần" nhưng không cho số.</li>
+    <li><b>Thử "giải thích lại":</b> chỉ 2 người, 6 đoạn (hiểu 2 · một phần 3 · chưa hiểu 1). Đoạn code do nhóm soạn, nhiều câu trả lời trùng chữ với đáp án mẫu nên chưa đưa vào benchmark.</li>
+    <li><b>Bộ câu thử:</b> 0/28 câu từ người dùng thật; 89% / 96% đo trên ca nhóm viết và ca sinh từ seed.</li>
+    <li><b>Còn mở:</b> G10 vẫn trượt ở lượt 2 (chấm khắt khe ca biên); số người dùng và task / tháng chưa đo, chi phí / tháng là ngoại suy.</li>
+  </ul>
+  <div class="foot"><span>Rào cản dùng số 1: "mất thời gian" 10/17 · chỉ chấp nhận &lt;2 phút mỗi lần 7/17</span><span>evidence/summary.md · eval/report.md §4</span></div>
+</section>
+
+<section class="s">
+  <div class="k">7 · Kết luận &amp; tuần tới</div>
+  <div class="verdict">Iterate: pain có thật, kỹ thuật đạt chuẩn, nhưng chưa thử trên người dùng thật</div>
+  <div class="row">
+    <div class="col"><h2>Vì sao không dừng</h2><ul><li>15/17 người đích từng không giải thích được code mình nộp</li><li>Lượt 2 đạt 27/28 (96%), 6/6 metric, 0% bỏ sót "chưa hiểu"</li><li>~0,74 USD / người / tháng, so với 1–3 giờ mỗi lần bị kẹt (phỏng vấn)</li></ul></div>
+    <div class="col"><h2>Nếu có thêm 1 tuần</h2><ul><li>Thay ≥10 câu Grader bằng câu giải thích thật, đúng quy trình (code AI viết cho chính họ)</li><li>Sửa riêng ranh giới "một phần" / "chưa hiểu" (G10) bằng thêm ca biên</li><li>Rút Check xuống dưới 2 phút; thử toàn Haiku để giảm chi phí</li></ul></div>
+  </div>
+  <div class="foot"><span>Nhóm Ricin · CodeOwn · CP4 28/11/2026</span><span>spec.md · eval/report.md · evidence/summary.md</span></div>
+</section>
+</body></html>
