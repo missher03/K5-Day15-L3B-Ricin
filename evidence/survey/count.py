@@ -34,9 +34,11 @@ ROWS = [
     ("Lo phụ thuộc AI ≥4/5", "12", {"4", "5"}),
     ("Sẽ dùng công cụ: chắc chắn có", "14", {"Chắc chắn có"}),
     ("Sẽ dùng công cụ: có thể", "14", {"Có thể"}),
+    ("Sẽ dùng công cụ: không", "14", {"Không"}),
     ("Chấp nhận <2 phút mỗi lần trả lời", "16", {"<2 phút"}),
     ("Chấp nhận 2–5 phút", "16", {"2–5 phút"}),
     ("Chấp nhận 5–10 phút", "16", {"5–10 phút"}),
+    ("Không muốn mất thời gian trả lời", "16", {"Không muốn"}),
 ]
 MULTI = [("Điều cản dùng công cụ (chọn nhiều)", "15"), ("Đang làm gì để hiểu code AI (chọn nhiều)", "13")]
 

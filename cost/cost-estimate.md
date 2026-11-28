@@ -6,7 +6,7 @@
 
 ## 1. Đầu vào
 
-- **Persona** (`cost/personas.yaml`): `sinh_vien_do_an` 0,412 × 15 task / tháng · `junior_di_lam` 0,294 × 40 · `tu_hoc_chuyen_nganh` 0,294 × 20 (≈23,8 task / người / tháng); mỗi phiên = 1 task trọn vẹn (`agent.py` mode `task`: monitor → examine → grade từng câu, có hỏi tiếp → reflect). Tỉ lệ persona: khảo sát 27/11 (7/17, 5/17, 5/17 người dùng đích). Số task / tháng: *(tự ước tính, `docs/design.md` §9.3 — form khảo sát không hỏi số task)*
+- **Persona** (`cost/personas.yaml`): `sinh_vien_do_an` 0,412 × 15 task / tháng · `junior_di_lam` 0,294 × 40 · `tu_hoc_chuyen_nganh` 0,294 × 20 (≈23,8 task / người / tháng); mỗi phiên = 1 task trọn vẹn (`agent.py` mode `task`: monitor → examine → grade từng câu, có hỏi tiếp → reflect). Tỉ lệ persona: khảo sát 27/11 (7/17, 5/17, 5/17 người dùng đích; simulate-1 chạy với tỉ lệ này). Sau 3 phiếu thêm 28/11 tỉ lệ thành 7/20, 8/20, 5/20 — chưa chạy lại simulate, ước tính tay ~26 task / người / tháng, chi phí / người / tháng cao hơn ~10%. Số task / tháng: *(tự ước tính, `docs/design.md` §9.3 — form khảo sát không hỏi số task)*
 - **Số người dùng thật** 3 kịch bản: thấp 1.000 · cơ sở 10.000 · cao 50.000 *(tự ước tính, `docs/design.md` §9.3)*
 - **Giá** (USD / 1M token, bảng giá BTC `model-prices.md` 25/11/2026, khớp https://platform.claude.com/docs/en/about-claude/pricing xem 27/11/2026): Claude Haiku 5.5 vào 0,10 / ra 0,50 · Claude Sonnet 5.5 vào 2,00 / ra 10,00
 - **Tỉ lệ đạt** dùng để tính: 27/28 (96%) — lượt 2 `run-5@20261128-103708`

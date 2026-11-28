@@ -6,6 +6,9 @@
 # Số có nhãn (tự ước tính) phải thay bằng số khảo sát của D ("tuần qua bạn làm bao nhiêu task có dùng AI?") trước CP4.
 # share lấy từ khảo sát 27/11 (python evidence/survey/count.py evidence/survey/results.csv): 7/17, 5/17, 5/17, làm tròn 3 chữ số để tổng = 1.0
 # (simulate-1 chạy với 0.41/0.29/0.29 và khung tự chia lại theo tỉ lệ → cùng kết quả).
+# 28/11 khảo sát thêm 3 phiếu (đều junior đi làm) → share theo 20 người dùng đích là 0.35 / 0.40 / 0.25 (7/20, 8/20, 5/20).
+# CHƯA áp vào đây vì simulate-1 (số chi phí đang nộp) chạy với share 17 phiếu; áp share mới thì phải chạy lại simulate.
+# Ước tính tay với share mới: ~26 task / người / tháng thay vì ~23,8 → chi phí / người / tháng tăng ~10% (chưa đo).
 # Form không hỏi số task / tháng nên uses_per_month và users vẫn là (tự ước tính).
 
 sessions: 50
